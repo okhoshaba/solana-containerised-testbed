@@ -1,0 +1,79 @@
+FROM debian:bookworm AS builder
+
+ARG SOLANA_VERSION=v1.18.25
+ARG CARGO_BUILD_JOBS=1
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+# Важно:
+# target-cpu=native собирает под текущий CPU.
+# target-feature=-avx2 явно запрещает AVX2.
+ENV RUSTFLAGS="-C target-cpu=native -C target-feature=-avx2"
+ENV RUST_REED_SOLOMON_ERASURE_ARCH=native
+ENV CARGO_BUILD_JOBS=${CARGO_BUILD_JOBS}
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       ca-certificates \
+       curl \
+       git \
+       bash \
+       build-essential \
+       clang \
+       cmake \
+       pkg-config \
+       libssl-dev \
+       libudev-dev \
+       libclang-dev \
+       llvm \
+       protobuf-compiler \
+       python3 \
+       bzip2 \
+       xz-utils \
+       perl \
+       m4 \
+       make \
+    && rm -rf /var/lib/apt/lists/*
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | bash -s -- -y --profile minimal
+
+WORKDIR /src
+
+RUN git clone --depth 1 --branch ${SOLANA_VERSION} \
+    https://github.com/solana-labs/solana.git /src/solana
+
+WORKDIR /src/solana
+
+# Скрипт Solana сам выбирает нужную версию Rust через ./cargo wrapper.
+# cargo-install-all.sh — штатный способ собрать и установить набор CLI/validator binaries.
+# В официальном скрипте среди собираемых бинарников есть solana, solana-test-validator и solana-genesis.
+RUN ./scripts/cargo-install-all.sh /opt/solana
+
+FROM debian:bookworm-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/opt/solana/bin:${PATH}"
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+       ca-certificates \
+       bash \
+       curl \
+       bzip2 \
+       procps \
+       libssl3 \
+       libudev1 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /opt/solana /opt/solana
+
+RUN solana --version \
+    && solana-test-validator --version \
+    && solana-genesis --version
+
+ENTRYPOINT ["/bin/bash"]
+

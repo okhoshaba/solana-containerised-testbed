@@ -1,0 +1,4 @@
+rpc_url: "http://validator:8899"
+geyser_grpc_url: "http://validator:10000"
+metrics_address: "0.0.0.0:9464"
+output_dir: "/app/output"
