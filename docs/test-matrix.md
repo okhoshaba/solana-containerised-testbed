@@ -34,3 +34,6 @@ Expected payer balance:
 |---|---|---|---|---|---|---|---|---|---|---|
 | think | Intel Core i7-3667U | Zorin / Ubuntu-based Linux | Podman | yes | no | v1.18.25-noavx2 | ok | 10000 SOL | pass | Source-built no-AVX2 image works |
 | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
+
+| think | Intel Core i7-3667U | Zorin / Ubuntu-based Linux | Podman | yes | no | docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge | ok | 10000 SOL | pass | Pulled from Docker Hub and started through compose.release.yaml |
+
