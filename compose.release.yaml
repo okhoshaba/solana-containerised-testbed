@@ -1,0 +1,38 @@
+services:
+  validator:
+    image: docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge
+    container_name: solana-localnet-validator
+    environment:
+      LEDGER_PATH: /var/lib/solana/ledger
+      RESET_LEDGER: "true"
+      VALIDATOR_BIND_ADDRESS: 0.0.0.0
+      RPC_PORT: "8899"
+      ENABLE_GEYSER: "false"
+      GEYSER_CONFIG: /etc/solana/yellowstone-geyser.json
+    ports:
+      - "127.0.0.1:8899:8899"
+      - "127.0.0.1:10000:10000"
+    volumes:
+      - solana-ledger:/var/lib/solana/ledger
+      - ./validator/yellowstone-geyser.json.template:/etc/solana/yellowstone-geyser.json:ro
+    healthcheck:
+      test: ["CMD-SHELL", "solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+
+  wallet-init:
+    image: docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge
+    container_name: solana-wallet-init
+    depends_on:
+      validator:
+        condition: service_healthy
+    environment:
+      SOLANA_URL: http://validator:8899
+      PAYER: 6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+      AIRDROP_SOL: "10000"
+    restart: "no"
+
+volumes:
+  solana-ledger:

@@ -325,6 +325,25 @@ TSWLatexianTemp*
 # xwatermark package
 *.xwm
 
+# Local build/download artifacts
+.local-backup/
+downloads/
+*.tar.gz
+*.tar.bz2
+*.img
+*.oci
+*.sif
+
+# Solana local artifacts
+ledger/
+solana-ledger/
+test-ledger/
+
+# Local runtime output
+output/
+monitor-output/
+
+
 # REVTeX puts footnotes in the bibliography by default, unless the nofootinbib
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.

@@ -1,0 +1,22 @@
+{
+  "title": "Solana Containerised Testbed",
+  "description": "A containerised local Solana testbed for dataset generation and latency/performance research, including a source-built no-AVX2 compatibility image for older x86_64 CPUs.",
+  "creators": [
+    {
+      "name": "Khoshaba, Oleksandr",
+      "orcid": "0000-0001-5375-6280"
+    }
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "Solana",
+    "testbed",
+    "Docker",
+    "Podman",
+    "containerisation",
+    "dataset generation",
+    "no-AVX2"
+  ],
+  "upload_type": "software",
+  "version": "0.1.0"
+}
