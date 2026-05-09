@@ -1,5 +1,7 @@
 # Solana Containerised Testbed
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20095384.svg)](https://doi.org/10.5281/zenodo.20095384)
+
 Containerised local Solana testbed for dataset generation and latency/performance research.
 
 This repository implements the first stage of moving a VM-based Solana local testbed into a reproducible Podman/Docker Compose architecture.
