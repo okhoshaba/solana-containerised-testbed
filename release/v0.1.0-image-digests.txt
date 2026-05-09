@@ -1,0 +1,13 @@
+# Solana Containerised Testbed v0.1.0 image digests
+
+Base source-built compatibility image:
+
+docker.io/khoshaba/solana-source-noavx2@sha256:f538e5cbc4f242865dc2e680845036daaa8305ed4d7c03b3f054fd47544cc10f
+
+
+Runtime images used by compose.release.yaml:
+
+docker.io/khoshaba/solana-localnet-validator@sha256:d14663e6c654e7d032b410c84cd9068d4c8d11251381402acfa57d0d1e13f188
+
+docker.io/khoshaba/solana-wallet-init@sha256:8b62658c8dfee0d562711089190702e2bf9e2edaf8c79dcf388e4a451f002e58
+
