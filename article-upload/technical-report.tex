@@ -1,0 +1,421 @@
+\documentclass[11pt,a4paper]{article}
+
+% ------------------------------------------------------------
+% Solana Containerised Testbed Technical Report
+% Draft LaTeX source
+% ------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{float}
+
+\geometry{
+  left=25mm,
+  right=25mm,
+  top=25mm,
+  bottom=25mm
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue,
+  pdftitle={Containerising a Solana v1.18.25 Local Testbed for Reproducible Dataset Generation on Legacy x86_64 CPUs},
+  pdfauthor={TODO},
+  pdfsubject={Solana local testbed, containerisation, reproducibility, no-AVX2 compatibility},
+  pdfkeywords={Solana, testbed, Podman, Docker Compose, no-AVX2, legacy x86_64, dataset generation}
+}
+
+\lstdefinestyle{terminal}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false
+}
+
+\lstset{style=terminal}
+
+\title{
+  \textbf{Containerising a Solana v1.18.25 Local Testbed for Reproducible Dataset Generation on Legacy x86\_64 CPUs}
+}
+
+\author{
+  Oleksandr Khoshaba, Ph.D.\\
+  Vinnitsia National Technical University, Ukraine\\
+  \texttt{Oleksandr.Khoshaba@gmail.com}\\
+  ORCID: \href{https://orcid.org/T0000-0001-5375-628}{0000-0001-5375-6280}
+}
+
+\date{
+  Version 0.1\\
+  Article DOI: \href{https://doi.org/10.5281/zenodo.20098291}{10.5281/zenodo.20098291}\\
+  Software DOI: \href{https://doi.org/10.5281/zenodo.20095384}{10.5281/zenodo.20095384}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This technical report describes the design, implementation, and validation of a containerised local Solana v1.18.25 testbed for reproducible dataset generation and future latency/performance research. The work converts an initially virtual-machine-based workflow into a Podman/Docker Compose architecture with separated validator and wallet-bootstrap responsibilities. A central engineering issue addressed in this report is the execution of Solana local validator software on legacy x86\_64 hardware without AVX2 support. Standard prebuilt Solana binaries and the official Solana container image were found unsuitable on an Intel Core i7-3667U CPU, where execution failed with illegal-instruction or segmentation-fault symptoms. To address this limitation, Solana v1.18.25 was built from source with AVX2 disabled and packaged into a no-AVX2 compatibility container image. The resulting testbed was validated through JSON-RPC health checks and wallet funding operations, and the runtime images were published on Docker Hub for reproducible deployment. This report documents the architecture, build workflow, Docker images, compatibility constraints, validation procedure, limitations, and planned extensions, including Geyser/Yellowstone integration and a containerised Solana latency-monitoring component.
+\end{abstract}
+
+\noindent\textbf{Keywords:}
+Solana; testbed; containerisation; Podman; Docker Compose; Docker Hub; no-AVX2; legacy x86\_64; reproducibility; dataset generation; blockchain performance.
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+Local blockchain testbeds are useful for controlled experimentation, dataset generation, and performance instrumentation. In the context of Solana research, a local \texttt{solana-test-validator} instance can provide a private and repeatable environment for evaluating transaction submission, RPC behaviour, account state updates, and latency-monitoring pipelines without interacting with a public cluster.
+
+The original implementation used a virtual machine on which the validator, wallet funding commands, and monitoring framework were started manually. Although this setup was functional, it had several limitations:
+
+\begin{itemize}[leftmargin=2em]
+  \item the environment was not fully reproducible;
+  \item the validator process, wallet bootstrap logic, and monitoring framework were not isolated as independent services;
+  \item deployment on another machine required manual reconstruction of the software environment;
+  \item the architecture was not yet prepared for scaling, composition, or automated testing;
+  \item older x86\_64 CPUs without AVX2 support could not reliably execute standard Solana prebuilt binaries.
+\end{itemize}
+
+This report documents the first stage of restructuring the testbed into a containerised architecture. The implementation uses Podman/Docker Compose and separates the system into a validator service, a one-shot wallet-bootstrap service, and future monitoring services.
+
+\section{Original VM-Based Workflow}
+
+The initial workflow on the virtual machine consisted of four manually executed steps.
+
+First, the local Solana test validator was started with a local ledger, RPC port, bind address, and optional Geyser plugin configuration:
+
+\begin{lstlisting}[language=bash]
+solana-test-validator \
+  --ledger ~/solana-localnet/ledger \
+  --reset \
+  --bind-address 127.0.0.1 \
+  --rpc-port 8899 \
+  --geyser-plugin-config ~/yellowstone-geyser.json
+\end{lstlisting}
+
+Second, a predefined payer wallet was funded using the Solana command-line interface:
+
+\begin{lstlisting}[language=bash]
+PAYER=6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+solana config set --url http://127.0.0.1:8899
+solana balance "$PAYER"
+solana airdrop 10000 "$PAYER"
+solana balance "$PAYER"
+\end{lstlisting}
+
+Third, the performance-monitoring framework was launched:
+
+\begin{lstlisting}[language=bash]
+cd ~/solana-latency-research
+go run . --config configs/config.local.yaml
+\end{lstlisting}
+
+Finally, SSH local port forwarding exposed the VM-hosted testbed to the wider system:
+
+\begin{lstlisting}[language=bash]
+ssh -N -o ExitOnForwardFailure=yes \
+  -L 127.0.0.1:8899:127.0.0.1:8899 \
+  -L 127.0.0.1:9464:127.0.0.1:9464 \
+  -L 127.0.0.1:10000:127.0.0.1:10000 \
+  s
+\end{lstlisting}
+
+The first containerised release focuses on reproducing the validator and wallet-bootstrap parts of this workflow. The monitoring framework and Geyser/Yellowstone integration are reserved for later releases.
+
+\section{Design Goals}
+
+The first-stage design was guided by the following goals:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Reproducibility}: the testbed should be redeployable from a GitHub repository and published container images.
+  \item \textbf{Separation of concerns}: validator execution and wallet bootstrapping should be separate services.
+  \item \textbf{Legacy hardware compatibility}: the system should support at least one older x86\_64 CPU without AVX2 support.
+  \item \textbf{Controlled exposure}: RPC and future Geyser/metrics ports should be bound to localhost on the host machine.
+  \item \textbf{Future extensibility}: the architecture should later support Geyser/Yellowstone and a monitoring container.
+  \item \textbf{Citable software}: the software release should be archived and assigned a DOI.
+\end{enumerate}
+
+\section{Containerised Architecture}
+
+The containerised architecture separates the local testbed into independent service roles.
+
+\subsection{Validator Service}
+
+The validator service runs \texttt{solana-test-validator}. In the containerised setup, the validator binds to \texttt{0.0.0.0} inside the container so that other services in the Compose network can access it. Host-level access remains restricted by binding published ports to \texttt{127.0.0.1}.
+
+The validator service exposes:
+
+\begin{itemize}[leftmargin=2em]
+  \item \texttt{8899/tcp}: Solana JSON-RPC endpoint;
+  \item \texttt{10000/tcp}: reserved for future Yellowstone/Geyser gRPC access.
+\end{itemize}
+
+\subsection{Wallet Bootstrap Service}
+
+The wallet-bootstrap service is implemented as a one-shot container. Its purpose is to:
+
+\begin{itemize}[leftmargin=2em]
+  \item configure the Solana CLI endpoint;
+  \item wait for the validator RPC endpoint to become available;
+  \item check the payer wallet balance;
+  \item request a local airdrop;
+  \item print the final balance.
+\end{itemize}
+
+The funded payer address used in the first release is:
+
+\begin{lstlisting}
+6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+\end{lstlisting}
+
+The initial funded amount is:
+
+\begin{lstlisting}
+10000 SOL
+\end{lstlisting}
+
+\subsection{Monitoring Service Placeholder}
+
+A future service named \texttt{monitor} is reserved for the Solana latency-monitoring framework. This component is not included in the functional scope of the v0.1.x software release. Its expected responsibilities include latency measurement, metrics exposition, and dataset generation.
+
+\section{CPU Compatibility Problem}
+
+During validation on an Intel Core i7-3667U host, the standard prebuilt Solana v1.18.25 binaries failed to execute correctly. The host CPU supports AVX but does not support AVX2:
+
+\begin{lstlisting}
+CPU: Intel Core i7-3667U
+Architecture: x86_64
+AVX: yes
+AVX2: no
+SSE4.1: yes
+SSE4.2: yes
+\end{lstlisting}
+
+Observed symptoms included:
+
+\begin{lstlisting}
+Illegal instruction
+Aborted
+solana-test-validator exited with code 139
+general protection fault
+\end{lstlisting}
+
+The official \texttt{solanalabs/solana:v1.18.25} image was also unsuitable on this host, confirming that the issue was not caused by the custom container wrapper but by the binary/runtime compatibility of the prebuilt Solana release on this hardware.
+
+\section{Source-Built no-AVX2 Compatibility Image}
+
+To address the compatibility issue, Solana v1.18.25 was built from source with AVX2 disabled. The resulting image was used as the base for runtime validator and wallet-bootstrap images.
+
+The development source image is:
+
+\begin{lstlisting}
+localhost/solana-source-noavx2:v1.18.25
+\end{lstlisting}
+
+The runtime images are:
+
+\begin{lstlisting}
+localhost/solana-localnet-validator:v1.18.25-noavx2
+localhost/solana-wallet-init:v1.18.25-noavx2
+\end{lstlisting}
+
+The published Docker Hub images are:
+
+\begin{lstlisting}
+docker.io/khoshaba/solana-source-noavx2:v1.18.25-noavx2-ivybridge
+docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge
+docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge
+\end{lstlisting}
+
+The \texttt{ivybridge} suffix is intentional. The current compatibility image was built and validated on an Ivy Bridge CPU and should not be described as a universal x86\_64 image until tested on a wider hardware matrix.
+
+\section{Docker Compose Workflow}
+
+The release workflow uses \texttt{compose.release.yaml}. This file references Docker Hub images rather than building local images.
+
+A release-mode startup is performed with:
+
+\begin{lstlisting}[language=bash]
+podman compose -f compose.release.yaml up
+\end{lstlisting}
+
+The release Compose file includes:
+
+\begin{itemize}[leftmargin=2em]
+  \item a long-running validator container;
+  \item a one-shot wallet-init container;
+  \item a persistent ledger volume;
+  \item localhost-bound port exposure;
+  \item a validator healthcheck.
+\end{itemize}
+
+The release-mode RPC endpoint is:
+
+\begin{lstlisting}
+http://127.0.0.1:8899
+\end{lstlisting}
+
+\section{Validation Procedure}
+
+\subsection{RPC Health Check}
+
+The validator RPC endpoint is checked using JSON-RPC:
+
+\begin{lstlisting}[language=bash]
+curl -s http://127.0.0.1:8899 \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"getHealth"}'
+\end{lstlisting}
+
+The expected response is:
+
+\begin{lstlisting}
+{"jsonrpc":"2.0","result":"ok","id":1}
+\end{lstlisting}
+
+\subsection{Payer Balance Check}
+
+After the wallet bootstrap container completes, the payer balance is checked with:
+
+\begin{lstlisting}[language=bash]
+podman exec -it solana-localnet-validator \
+  solana --url http://127.0.0.1:8899 \
+  balance 6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+\end{lstlisting}
+
+The expected result is:
+
+\begin{lstlisting}
+10000 SOL
+\end{lstlisting}
+
+\section{Validation Results}
+
+\begin{longtable}{p{2.7cm}p{3.2cm}p{1.2cm}p{1.3cm}p{2.2cm}p{2.2cm}}
+\caption{Initial validation matrix.}\\
+\toprule
+Machine & CPU & AVX & AVX2 & Health check & Payer balance \\
+\midrule
+\endfirsthead
+\toprule
+Machine & CPU & AVX & AVX2 & Health check & Payer balance \\
+\midrule
+\endhead
+think & Intel Core i7-3667U & yes & no & ok & 10000 SOL \\
+fedora & TODO & TODO & TODO & ok & TODO \\
+\bottomrule
+\end{longtable}
+
+The initial validation confirms that the source-built no-AVX2 image can run a Solana v1.18.25 local validator on the tested legacy x86\_64 host.
+
+\section{Software Availability}
+
+The software artifact is archived on Zenodo:
+
+\begin{quote}
+Software DOI: \href{https://doi.org/10.5281/zenodo.20095384}{10.5281/zenodo.20095384}
+\end{quote}
+
+The article/technical report DOI is:
+
+\begin{quote}
+Article DOI: \href{https://doi.org/10.5281/zenodo.20098291}{10.5281/zenodo.20098291}
+\end{quote}
+
+The Docker Hub images are:
+
+\begin{lstlisting}
+docker.io/khoshaba/solana-source-noavx2:v1.18.25-noavx2-ivybridge
+docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge
+docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge
+\end{lstlisting}
+
+Immutable image digests are recorded in:
+
+\begin{lstlisting}
+release/v0.1.0-image-digests.txt
+\end{lstlisting}
+
+The GitHub repository is:
+
+\begin{quote}
+\url{https://github.com/okhoshaba/solana-containerised-testbed}
+\end{quote}
+
+\section{Limitations}
+
+The v0.1.x release has several limitations:
+
+\begin{itemize}[leftmargin=2em]
+  \item Geyser/Yellowstone plugin runtime integration is not yet included.
+  \item The latency-monitoring framework is not yet containerised.
+  \item The no-AVX2 image is validated on an Ivy Bridge CPU and should not yet be treated as a universal compatibility image.
+  \item The system is intended for local research testbed use, not production validator operation.
+  \item The source-built image may have different performance characteristics from official prebuilt Solana binaries.
+\end{itemize}
+
+\section{Future Work}
+
+Planned future work includes:
+
+\begin{enumerate}[leftmargin=2em]
+  \item containerising the Solana latency-monitoring framework;
+  \item adding Geyser/Yellowstone plugin support;
+  \item publishing a broader hardware compatibility matrix;
+  \item producing a generic no-AVX2 build with more conservative CPU flags;
+  \item automating release validation through GitHub Actions or an equivalent CI system;
+  \item generating structured datasets and assigning dataset DOIs.
+\end{enumerate}
+
+\section{Conclusion}
+
+This report presented the first containerised release of a local Solana v1.18.25 testbed for dataset generation and performance research. The system separates validator and wallet-bootstrap responsibilities into distinct containers and provides a release-mode Compose workflow based on Docker Hub images. A key technical contribution is the source-built no-AVX2 compatibility image, which enables execution on a tested legacy x86\_64 CPU where standard prebuilt Solana binaries fail. The resulting software release has been archived with a DOI, and the current report provides the methodological and architectural documentation needed for reproducibility and future extension.
+
+\begin{thebibliography}{9}
+
+\bibitem{software-doi}
+Khoshaba, \emph{Solana Containerised Testbed}, Zenodo software release.
+DOI: \href{https://doi.org/10.5281/zenodo.20095384}{10.5281/zenodo.20095384}.
+
+\bibitem{article-doi}
+Khoshaba, \emph{Containerising a Solana v1.18.25 Local Testbed for Reproducible Dataset Generation on Legacy x86\_64 CPUs}, Zenodo technical report.
+DOI: \href{https://doi.org/10.5281/zenodo.20098291}{10.5281/zenodo.20098291}.
+
+\bibitem{solana}
+Solana Labs, \emph{Solana Documentation and Software Releases}.
+\url{https://github.com/solana-labs/solana}
+
+\bibitem{podman}
+Podman, \emph{Podman Documentation}.
+\url{https://docs.podman.io/}
+
+\bibitem{dockerhub}
+Docker, \emph{Docker Hub}.
+\url{https://hub.docker.com/}
+
+\bibitem{zenodo}
+Zenodo, \emph{Zenodo Documentation}.
+\url{https://help.zenodo.org/}
+
+\end{thebibliography}
+
+\end{document}
