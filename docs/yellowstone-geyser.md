@@ -1,10 +1,10 @@
-# Yellowstone / Geyser Integration Plan
+# Yellowstone / Geyser Integration
 
 ## Goal
 
 Integrate Yellowstone gRPC Geyser plugin into the local Solana v1.18.25 validator container.
 
-The expected final architecture is:
+Expected architecture:
 
     validator container:
       solana-test-validator
@@ -26,75 +26,72 @@ Implemented:
     Docker Hub images
     no-AVX2 Solana v1.18.25 build
 
-Not yet implemented:
+Not yet implemented in main:
 
-    Yellowstone plugin library
-    validator image with libyellowstone_grpc_geyser.so
-    ENABLE_GEYSER=true runtime path
+    Yellowstone plugin library inside validator image
+    ENABLE_GEYSER=true release workflow
     live monitor subscription through validator:10000
 
 ## Compatibility constraints
 
-The current Solana validator version is:
+Current Solana validator version:
 
     Solana v1.18.25
 
-The host compatibility target is:
+Primary legacy CPU target:
 
-    legacy x86_64 without AVX2
-    validated on Intel Core i7-3667U
+    Intel Core i7-3667U
+    AVX: yes
+    AVX2: no
 
-Therefore, the Yellowstone plugin should be built with CPU compatibility in mind.
+Therefore, the Yellowstone plugin should be built with AVX2 disabled.
 
-The plugin version must be compatible with Solana 1.18.x.
+## Candidate source
 
-## Candidate Yellowstone sources
+Initial candidate:
 
-Primary repository:
+    Repository: https://github.com/rpcpool/yellowstone-grpc-gamma
+    Branch: v1.18-gamma
 
-    https://github.com/rpcpool/yellowstone-grpc
+This branch is selected as an initial compatibility candidate for Solana 1.18.x.
 
-Candidate legacy branch / fork for Solana 1.18.x compatibility:
+## Build policy
 
-    https://github.com/rpcpool/yellowstone-grpc-gamma
-    branch: v1.18-gamma
+The no-AVX2 build uses:
 
-## Integration steps
+    RUSTFLAGS="-C target-cpu=x86-64 -C target-feature=-avx2"
+    CFLAGS="-march=x86-64 -mno-avx2"
+    CXXFLAGS="-march=x86-64 -mno-avx2"
 
-1. Identify a Yellowstone version compatible with Solana v1.18.x.
-2. Build libyellowstone_grpc_geyser.so.
-3. Prefer source build with no-AVX2 flags.
-4. Copy libyellowstone_grpc_geyser.so into validator image.
-5. Update yellowstone-geyser.json.template.
-6. Enable ENABLE_GEYSER=true.
-7. Start validator with --geyser-plugin-config.
-8. Confirm that port 10000 is listening.
-9. Confirm monitor connects to validator:10000.
-10. Confirm /metrics exposes live subscription data.
+The resulting image must still be validated on a no-AVX2 host.
+
+## Files
+
+    validator/Dockerfile.geyser-noavx2
+    compose.yellowstone.yaml
+    scripts/build-yellowstone-geyser-noavx2.sh
+    scripts/test-yellowstone-geyser.sh
 
 ## Success criteria
 
-Validator logs show that the Geyser plugin was loaded.
+Validator starts with Geyser enabled:
 
     podman logs solana-localnet-validator | grep -i geyser
 
-Port 10000 is listening inside validator container.
+Port 10000 is listening:
 
     podman exec -it solana-localnet-validator ss -ltnp | grep 10000
 
-Monitor logs show successful connection.
-
-    podman logs solana-latency-monitor
-
-Prometheus metrics endpoint is available.
+Monitor starts and exposes metrics:
 
     curl -s http://127.0.0.1:9464/metrics | head -n 40
+
+Monitor logs do not continuously report connection refused for validator:10000.
 
 ## Risks
 
 - Yellowstone plugin ABI mismatch with Solana v1.18.25.
-- Prebuilt Yellowstone binaries may require AVX2.
+- Build may fail if the selected branch is not compatible with the Rust/Solana dependency set.
+- Prebuilt binaries are intentionally avoided for no-AVX2 compatibility.
 - Source build may be long and memory-intensive.
-- Yellowstone license must be reviewed before publishing a derived image.
-- Monitor may need config adjustment after the plugin is enabled.
-
+- License and redistribution terms must be checked before publishing a derived image.
