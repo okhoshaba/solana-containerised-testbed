@@ -1,3 +1,5 @@
+ARG SOLANA_BASE_IMAGE=docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge
+
 FROM debian:bookworm AS yellowstone-builder
 
 ARG YELLOWSTONE_REPO=https://github.com/rpcpool/yellowstone-grpc-gamma.git
@@ -27,7 +29,6 @@ RUN cargo build --release -p yellowstone-grpc-geyser
 
 RUN test -f /src/yellowstone-grpc/target/release/libyellowstone_grpc_geyser.so     && ls -lh /src/yellowstone-grpc/target/release/libyellowstone_grpc_geyser.so
 
-ARG SOLANA_BASE_IMAGE=docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge
 FROM ${SOLANA_BASE_IMAGE}
 
 USER root

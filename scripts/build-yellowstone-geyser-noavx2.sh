@@ -16,7 +16,7 @@ echo "  SOLANA_BASE_IMAGE=$SOLANA_BASE_IMAGE"
 echo "  CARGO_BUILD_JOBS=$CARGO_BUILD_JOBS"
 echo "  IMAGE_TAG=$IMAGE_TAG"
 
-podman build --format docker --no-cache   --build-arg YELLOWSTONE_REPO="$YELLOWSTONE_REPO"   --build-arg YELLOWSTONE_REF="$YELLOWSTONE_REF"   --build-arg SOLANA_BASE_IMAGE="$SOLANA_BASE_IMAGE"   --build-arg CARGO_BUILD_JOBS="$CARGO_BUILD_JOBS"   -t "$IMAGE_TAG"   -f validator/Dockerfile.geyser-noavx2   validator
+podman build --format docker   --build-arg YELLOWSTONE_REPO="$YELLOWSTONE_REPO"   --build-arg YELLOWSTONE_REF="$YELLOWSTONE_REF"   --build-arg SOLANA_BASE_IMAGE="$SOLANA_BASE_IMAGE"   --build-arg CARGO_BUILD_JOBS="$CARGO_BUILD_JOBS"   -t "$IMAGE_TAG"   -f validator/Dockerfile.geyser-noavx2   validator
 
 echo
 echo "Built: $IMAGE_TAG"
