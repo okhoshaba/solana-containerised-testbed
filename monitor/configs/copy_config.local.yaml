@@ -1,0 +1,17 @@
+# 样例配置：定义 gRPC、RPC 节点以及监测间隔
+#    - "8pQKHs1xmJ1ALt8LyrU5HPC8M7esSfwksqdVh3Eu7zWH" # 为空代表不过滤，可替换为目标账户公钥列表
+rpc: http://127.0.0.1:8899
+grpc: 127.0.0.1:10000
+interval: 5s
+log_level: info
+
+metrics:
+  prometheus_port: 9464
+
+filters:
+  accounts:
+    - "6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb" # 为空代表不过滤，可替换为目标账户公钥列表
+
+reconnect:
+  retries: -1 # -1 表示无限重连
+  backoff: 2s

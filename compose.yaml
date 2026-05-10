@@ -47,8 +47,6 @@ services:
     build:
       context: ./monitor
     container_name: solana-latency-monitor
-    profiles:
-      - monitor
     depends_on:
       validator:
         condition: service_healthy

@@ -1,0 +1,17 @@
+# 样例配置：定义 gRPC、RPC 节点以及监测间隔
+#rpc: https://api.mainnet-beta.solana.com
+#grpc: solana-yellowstone-grpc.publicnode.com:443
+rpc: http://127.0.0.1:8899
+interval: 5s
+log_level: info
+
+metrics:
+  prometheus_port: 9464
+
+filters:
+  accounts:
+    - "" # 为空代表不过滤，可替换为目标账户公钥列表
+
+reconnect:
+  retries: -1 # -1 表示无限重连
+  backoff: 2s

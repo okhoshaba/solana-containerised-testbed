@@ -1,4 +1,21 @@
-rpc_url: "http://validator:8899"
-geyser_grpc_url: "http://validator:10000"
-metrics_address: "0.0.0.0:9464"
-output_dir: "/app/output"
+# Container-oriented configuration for solana-containerised-testbed.
+#
+# RPC is available immediately when the validator container is running.
+# Yellowstone gRPC on validator:10000 requires the Geyser/Yellowstone plugin
+# to be integrated and enabled in the validator image.
+
+rpc: http://validator:8899
+grpc: validator:10000
+interval: 5s
+log_level: info
+
+metrics:
+  prometheus_port: 9464
+
+filters:
+  accounts:
+    - "6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb"
+
+reconnect:
+  retries: -1
+  backoff: 2s
