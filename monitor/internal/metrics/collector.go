@@ -8,7 +8,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-// Collector 聚合常用指标，便于在业务代码中直接记录。
+// Collector aggregates commonly used metrics for direct use in application code.
 type Collector struct {
 	registry         *prometheus.Registry
 	SlotInterval     prometheus.Observer
@@ -16,22 +16,22 @@ type Collector struct {
 	Errors           *prometheus.CounterVec
 }
 
-// NewCollector 初始化自定义 registry，避免污染全局指标。
+// NewCollector initializes a custom registry to avoid polluting the global metrics registry.
 func NewCollector() *Collector {
 	reg := prometheus.NewRegistry()
 	slot := promauto.With(reg).NewSummary(prometheus.SummaryOpts{
 		Name:       "solana_slot_interval_seconds",
-		Help:       "记录连续 slot 之间的时间差，用于衡量出块间隔稳定性。",
+		Help:       "Time interval between consecutive Solana slots, used to measure slot production stability.",
 		Objectives: map[float64]float64{0.5: 0.01, 0.9: 0.01, 0.99: 0.001},
 	})
 	tx := promauto.With(reg).NewSummary(prometheus.SummaryOpts{
 		Name:       "solana_transaction_latency_seconds",
-		Help:       "记录交易从广播到确认的延迟分布。",
+		Help:       "Latency distribution from transaction broadcast to confirmation.",
 		Objectives: map[float64]float64{0.5: 0.01, 0.95: 0.005, 0.99: 0.001},
 	})
 	errors := promauto.With(reg).NewCounterVec(prometheus.CounterOpts{
 		Name: "solana_stream_errors_total",
-		Help: "统计订阅流中的错误次数。",
+		Help: "Total number of errors observed in the subscription stream.",
 	}, []string{"stream"})
 
 	return &Collector{
@@ -42,12 +42,12 @@ func NewCollector() *Collector {
 	}
 }
 
-// Registry 暴露内部 registry，供 HTTP Handler 使用。
+// Registry exposes the internal registry for use by the HTTP handler.
 func (c *Collector) Registry() *prometheus.Registry {
 	return c.registry
 }
 
-// Handler 返回 Prometheus 兼容的指标 Handler。
+// Handler returns a Prometheus-compatible metrics handler.
 func (c *Collector) Handler() http.Handler {
 	return promhttp.HandlerFor(c.registry, promhttp.HandlerOpts{})
 }
