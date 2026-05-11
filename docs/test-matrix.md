@@ -35,6 +35,8 @@ Expected payer balance:
 | think | Intel Core i7-3667U | Zorin / Ubuntu-based Linux | Podman | yes | no | v1.18.25-noavx2 | ok | 10000 SOL | pass | Source-built no-AVX2 image works |
 | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 
+| think | Intel Core i7-3667U | Zorin / Ubuntu-based Linux | Podman | yes | no | localhost/solana-localnet-validator:v1.18.25-noavx2-yellowstone + localhost/solana-latency-monitor:local | ok | 10000 SOL | pass | Yellowstone/Geyser validator and monitor tested on no-AVX2 host; metrics exposed on 127.0.0.1:9464 |
+
 | note | Intel(R) Core(TM) i7-6500U CPU @ 2.50GHz | Fedora 43 / RedHat-based Linux | Podman | yes | yes | docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge | ok | 10000 SOL | pass | Pulled from Docker Hub and started through compose.release.yaml |
 
 | note | Intel(R) Xeon(R) CPU E3-1240 v5 @ 3.50GHz | Fedora 43 / RedHat-based Linux | Podman | yes | yes | docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge | ok | 10000 SOL | pass | Pulled from Docker Hub and started through compose.release.yaml |
