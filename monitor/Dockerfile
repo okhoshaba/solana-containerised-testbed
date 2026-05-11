@@ -1,4 +1,4 @@
-FROM golang:1.24-bookworm AS builder
+FROM docker.io/library/golang:1.24-bookworm AS builder
 
 WORKDIR /src
 
@@ -8,7 +8,7 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/solana-latency-monitor .
 
-FROM debian:bookworm-slim
+FROM docker.io/library/debian:bookworm-slim
 
 WORKDIR /app
 
