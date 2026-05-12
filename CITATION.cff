@@ -1,4 +1,4 @@
-cff-version: 1.2.0
+cff-version: 1.3.0
 title: "Solana Containerised Testbed"
 message: "If you use this software, please cite it using the metadata from this file."
 type: software
@@ -8,8 +8,8 @@ authors:
 repository-code: "https://github.com/okhoshaba/solana-containerised-testbed"
 abstract: "A containerised local Solana testbed for dataset generation and latency/performance research, including a source-built no-AVX2 compatibility image for older x86_64 CPUs."
 license: "Apache-2.0"
-version: "0.1.1"
-date-released: "2026-05-09"
+version: "0.2.0"
+date-released: "2026-05-12"
 keywords:
   - Solana
   - testbed
