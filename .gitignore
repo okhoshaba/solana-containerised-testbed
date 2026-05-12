@@ -349,3 +349,6 @@ monitor-output/
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
 .env
+
+# Private local prompt packs
+.local-prompts/
