@@ -1,5 +1,6 @@
 # Solana Containerised Testbed
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20095383.svg)](https://doi.org/10.5281/zenodo.20095383)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20095384.svg)](https://doi.org/10.5281/zenodo.20095384)
 
 Containerised local Solana testbed for dataset generation and latency/performance research.
@@ -126,6 +127,29 @@ See:
 
     docs/docker-hub.md
 
+## Yellowstone/Geyser release mode
+
+Run the v0.2.0 release workflow:
+
+```bash
+podman compose -f compose.yellowstone.release.yaml up
+
+Check validator health:
+curl -s http://127.0.0.1:8899 \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"getHealth"}'
+
+Check Prometheus metrics:
+curl -s http://127.0.0.1:9464/metrics | head -n 40
+
+Docker Hub images:
+docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge
+docker.io/khoshaba/solana-latency-monitor:v0.2.0
+
+Immutable digests are listed in:
+release/v0.2.0-image-digests.txt
+
 ## Citation
 
 Citation metadata is provided in:
@@ -135,6 +159,7 @@ Citation metadata is provided in:
 
 The first citable software release is planned as:
 
+    v0.2.0
     v0.1.0
 
 ## License
