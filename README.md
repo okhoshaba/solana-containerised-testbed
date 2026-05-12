@@ -6,6 +6,18 @@ Containerised local Solana testbed for dataset generation and latency/performanc
 
 This repository implements the first stage of moving a VM-based Solana local testbed into a reproducible Podman/Docker Compose architecture.
 
+## Publications
+
+Software artifact:
+
+- Concept DOI: https://doi.org/10.5281/zenodo.20095383
+- v0.1.1 DOI: https://doi.org/10.5281/zenodo.20095384
+- v0.2.0 DOI: https://doi.org/10.5281/zenodo.20132465
+
+Technical report:
+
+- DOI: https://doi.org/10.5281/zenodo.20098291
+
 ## Current status
 
 Implemented:
