@@ -1,4 +1,4 @@
-# 样例配置：定义 gRPC、RPC 节点以及监测间隔
+# Example configuration: defines gRPC/RPC endpoints and monitoring interval
 #rpc: https://api.mainnet-beta.solana.com
 #grpc: solana-yellowstone-grpc.publicnode.com:443
 rpc: http://127.0.0.1:8899
@@ -10,8 +10,8 @@ metrics:
 
 filters:
   accounts:
-    - "" # 为空代表不过滤，可替换为目标账户公钥列表
+    - "" # Empty value means no filtering; replace with target account public keys if needed.
 
 reconnect:
-  retries: -1 # -1 表示无限重连
+  retries: -1 # -1 means reconnect indefinitely
   backoff: 2s

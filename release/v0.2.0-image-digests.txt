@@ -1,0 +1,18 @@
+# Solana Containerised Testbed v0.2.0 image digests
+
+Yellowstone validator image:
+docker.io/khoshaba/solana-localnet-validator@sha256:00bf9e93262f59706883e973e9fb8813907445dc67951d63afdde73858af3bff
+localhost/solana-localnet-validator@sha256:00bf9e93262f59706883e973e9fb8813907445dc67951d63afdde73858af3bff
+
+
+Wallet init image:
+docker.io/khoshaba/solana-wallet-init@sha256:2996972c2594817275dceca6655718025c4bedd808a47d1b430bf0011ca68b70
+docker.io/khoshaba/solana-wallet-init@sha256:8b62658c8dfee0d562711089190702e2bf9e2edaf8c79dcf388e4a451f002e58
+localhost/solana-wallet-init@sha256:2996972c2594817275dceca6655718025c4bedd808a47d1b430bf0011ca68b70
+localhost/solana-wallet-init@sha256:8b62658c8dfee0d562711089190702e2bf9e2edaf8c79dcf388e4a451f002e58
+
+
+Latency monitor image:
+docker.io/khoshaba/solana-latency-monitor@sha256:39a9e7ce455f35ddc52042fde07da8b50bfe7532f84da528a2c474b61be066da
+localhost/solana-latency-monitor@sha256:39a9e7ce455f35ddc52042fde07da8b50bfe7532f84da528a2c474b61be066da
+

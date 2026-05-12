@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-// Config 定义运行时配置映射，与 YAML 结构保持一致。
+// Config defines the runtime configuration mapping and mirrors the YAML structure.
 type Config struct {
 	RPC      string        `mapstructure:"rpc"`
 	GRPC     string        `mapstructure:"grpc"`
@@ -19,23 +19,23 @@ type Config struct {
 	Reconnect RetryConfig  `mapstructure:"reconnect"`
 }
 
-// MetricsConfig 管理指标端口配置。
+// MetricsConfig manages metrics port configuration.
 type MetricsConfig struct {
 	PrometheusPort int `mapstructure:"prometheus_port"`
 }
 
-// FilterConfig 定义账户等过滤条件。
+// FilterConfig defines account and related filtering conditions.
 type FilterConfig struct {
 	Accounts []string `mapstructure:"accounts"`
 }
 
-// RetryConfig 控制重连策略。
+// RetryConfig controls reconnect behaviour.
 type RetryConfig struct {
 	Retries int           `mapstructure:"retries"`
 	Backoff time.Duration `mapstructure:"backoff"`
 }
 
-// LoadConfig 使用 viper 解析 YAML，并对字符串时长配置进行转换。
+// LoadConfig parses YAML using viper and converts string-based duration values.
 func LoadConfig(path string) (*Config, error) {
 	v := viper.New()
 	v.SetConfigFile(path)
@@ -45,12 +45,12 @@ func LoadConfig(path string) (*Config, error) {
 	v.AutomaticEnv()
 
 	if err := v.ReadInConfig(); err != nil {
-		return nil, fmt.Errorf("读取配置失败: %w", err)
+		return nil, fmt.Errorf("failed to read config: %w", err)
 	}
 
 	var cfg Config
 	if err := v.Unmarshal(&cfg); err != nil {
-		return nil, fmt.Errorf("配置解析失败: %w", err)
+		return nil, fmt.Errorf("failed to parse config: %w", err)
 	}
 
 	if cfg.Interval == 0 {

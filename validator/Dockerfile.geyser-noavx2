@@ -1,0 +1,46 @@
+ARG SOLANA_BASE_IMAGE=docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge
+
+FROM debian:bookworm AS yellowstone-builder
+
+ARG YELLOWSTONE_REPO=https://github.com/rpcpool/yellowstone-grpc-gamma.git
+ARG YELLOWSTONE_REF=v1.18-gamma
+ARG CARGO_BUILD_JOBS=1
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.cargo/bin:${PATH}"
+ENV RUSTFLAGS="-C target-cpu=x86-64 -C target-feature=-avx2"
+ENV CFLAGS="-march=x86-64 -mno-avx2"
+ENV CXXFLAGS="-march=x86-64 -mno-avx2"
+ENV CARGO_BUILD_JOBS=${CARGO_BUILD_JOBS}
+
+RUN apt-get update     && apt-get install -y --no-install-recommends        ca-certificates curl git bash build-essential clang cmake pkg-config        libssl-dev libudev-dev libclang-dev llvm protobuf-compiler python3        bzip2 xz-utils perl m4 make     && rm -rf /var/lib/apt/lists/*
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs     | bash -s -- -y --profile minimal
+
+WORKDIR /src
+
+RUN git clone --depth 1 --branch "${YELLOWSTONE_REF}" "${YELLOWSTONE_REPO}" /src/yellowstone-grpc
+
+WORKDIR /src/yellowstone-grpc
+
+RUN cargo build --release -p yellowstone-grpc-geyser
+
+RUN test -f /src/yellowstone-grpc/target/release/libyellowstone_grpc_geyser.so     && ls -lh /src/yellowstone-grpc/target/release/libyellowstone_grpc_geyser.so
+
+FROM ${SOLANA_BASE_IMAGE}
+
+USER root
+
+RUN apt-get update     && apt-get install -y --no-install-recommends        ca-certificates libssl3 libgcc-s1 libstdc++6 procps iproute2     && rm -rf /var/lib/apt/lists/*
+
+COPY --from=yellowstone-builder   /src/yellowstone-grpc/target/release/libyellowstone_grpc_geyser.so   /usr/local/lib/libyellowstone_grpc_geyser.so
+
+COPY yellowstone-geyser.json.template /etc/solana/yellowstone-geyser.json
+
+RUN ls -lh /usr/local/lib/libyellowstone_grpc_geyser.so     && ldd /usr/local/lib/libyellowstone_grpc_geyser.so || true
+
+EXPOSE 8899 10000
+
+ENTRYPOINT ["/usr/local/bin/validator-entrypoint.sh"]

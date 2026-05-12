@@ -1,5 +1,5 @@
-# 样例配置：定义 gRPC、RPC 节点以及监测间隔
-#    - "8pQKHs1xmJ1ALt8LyrU5HPC8M7esSfwksqdVh3Eu7zWH" # 为空代表不过滤，可替换为目标账户公钥列表
+# Example configuration: defines gRPC/RPC endpoints and monitoring interval
+#    - "8pQKHs1xmJ1ALt8LyrU5HPC8M7esSfwksqdVh3Eu7zWH" # Empty value means no filtering; replace with target account public keys if needed.
 rpc: http://127.0.0.1:8899
 grpc: 127.0.0.1:10000
 interval: 5s
@@ -10,8 +10,8 @@ metrics:
 
 filters:
   accounts:
-    - "6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb" # 为空代表不过滤，可替换为目标账户公钥列表
+    - "6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb" # Target account public key for local testbed monitoring.
 
 reconnect:
-  retries: -1 # -1 表示无限重连
+  retries: -1 # -1 means reconnect indefinitely
   backoff: 2s

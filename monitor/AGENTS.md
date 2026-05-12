@@ -1,4 +1,8 @@
-## Language / 语言
-- 所有对话、解释、变更摘要、提交信息、PR 评论、代码注释一律使用**简体中文**。
-- 如需保留英文标识符/接口/日志，请保留英文，但务必在注释或文档中补充**中文解释**。
-- 与本项目无关的闲聊/示例一律用简体中文。
+# Agent Notes for the Monitor Component
+
+- Use English for explanations, change summaries, commit messages, pull request comments, and code comments.
+- Keep runtime configuration examples reproducible and container-oriented.
+- Avoid committing private keys, seed phrases, tokens, `.env` files, generated logs, or runtime output.
+- Prefer explicit container image names such as `docker.io/library/...` to avoid Podman short-name resolution issues.
+- The monitor connects to the validator through the Compose network using `validator:10000`.
+- Prometheus metrics must bind to `0.0.0.0` inside the container so that the host port mapping works.

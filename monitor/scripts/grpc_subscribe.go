@@ -13,10 +13,10 @@ import (
 )
 
 func main() {
-	// 该脚本用于快速验证 Yellowstone gRPC 连通性，避免干扰主进程。
+	// This script quickly validates Yellowstone gRPC connectivity without interfering with the main process.
 	cfg, err := utils.LoadConfig("configs/config.example.yaml")
 	if err != nil {
-		log.Fatalf("加载配置失败: %v", err)
+		log.Fatalf("failed to load config: %v", err)
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
@@ -30,9 +30,9 @@ func main() {
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 	if err != nil {
-		log.Fatalf("gRPC 连通性检查失败: %v", err)
+		log.Fatalf("gRPC connectivity check failed: %v", err)
 	}
 	defer conn.Close()
 
-	fmt.Println("Yellowstone gRPC 连通性检查成功")
+	fmt.Println("Yellowstone gRPC connectivity check succeeded")
 }

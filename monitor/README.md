@@ -1,47 +1,73 @@
-# Solana Latency Research
+# Solana Latency Monitor
 
-A high-performance trading infrastructure and research framework for Solana,
-focused on studying **transaction propagation**, **block inclusion latency**, and
-**order execution efficiency** across validators.
+Containerised Solana latency monitoring component for the Solana Containerised Testbed.
 
-## Features
-- Real-time subscription via gRPC and WebSocket
-- Latency measurement and statistical visualization
-- Configurable connection to public or self-hosted RPC nodes
-- Designed for quantitative strategy and execution research
+## Purpose
 
-## Example Usage
-```bash
-go run main.go --config configs/config.example.yaml
-```
+This component connects to a Solana validator through Yellowstone gRPC and exposes Prometheus-compatible metrics.
 
-Example configuration:
-rpc: "https://api.mainnet-beta.solana.com"
-grpc: "solana-yellowstone-grpc.publicnode.com:443"
-interval: 5s
-log_level: info
+In the containerised testbed, the monitor is expected to connect to:
 
-🧪 Research Goals
-	•	Measure end-to-end transaction latency across validators
-	•	Analyze shred and block propagation in real time
-	•	Benchmark different validator locations for optimal routing
-	•	Improve trading execution timing for quantitative strategies
+    validator:10000
 
-⸻
+and expose metrics on:
 
-🔬 Tech Stack
-	•	Go 1.22
-	•	gRPC
-	•	Prometheus (for metrics)
-	•	Plotly / Grafana (for visualization)
+    0.0.0.0:9464
 
-Research Focus
+The host can access metrics through:
 
-This project analyzes:
-	•	Block inclusion delay between validators
-	•	Propagation time of shreds and bundles
-	•	Transaction confirmation latency
+    http://127.0.0.1:9464/metrics
 
-License
+## Main goals
 
-MIT License © 2025 tongor
+- Measure slot interval stability.
+- Measure transaction broadcast-to-confirmation latency.
+- Expose Prometheus metrics for later collection and visualisation.
+- Support reproducible local testbed experiments.
+- Integrate with the containerised Solana validator and wallet bootstrap services.
+
+## Configuration
+
+The container-oriented configuration is:
+
+    configs/config.local.yaml
+
+Expected Compose-network endpoints:
+
+    rpc: http://validator:8899
+    grpc: validator:10000
+
+## Build
+
+From the repository root:
+
+    podman build --format docker \
+      -t localhost/solana-latency-monitor:local \
+      ./monitor
+
+## Run through Compose
+
+From the repository root:
+
+    podman compose -f compose.yellowstone.yaml up validator wallet-init monitor
+
+## Metrics check
+
+After the monitor starts:
+
+    curl -s http://127.0.0.1:9464/metrics | head -n 40
+
+Expected metric names include:
+
+    solana_slot_interval_seconds
+    solana_transaction_latency_seconds
+    solana_subscription_errors_total
+
+## Notes
+
+This monitor requires a validator image with Yellowstone/Geyser enabled.
+The basic validator-only release does not provide a live gRPC endpoint on port 10000.
+
+## License
+
+See LICENSE.

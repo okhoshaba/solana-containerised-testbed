@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# 快速执行延迟监测主程序，可在 CI 中使用快速模式验证构建。
+# Quickly run the latency monitor; useful for validating builds in CI.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CONFIG_PATH="${1:-${ROOT_DIR}/configs/config.example.yaml}"
 
-echo "使用配置 ${CONFIG_PATH} 启动延迟监测主程序（模拟模式）"
+echo "Starting the latency monitor with config ${CONFIG_PATH} in simulation mode"
 cd "${ROOT_DIR}"
 
 if [[ -n "${GRPC_ENDPOINT:-}" ]]; then

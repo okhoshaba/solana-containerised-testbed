@@ -1,7 +1,19 @@
-# Go 构建文件
+# Go build artifacts
 bin/
+dist/
+build/
+*.test
 *.out
 
-# 临时文件
-.DS_Store
+# Temporary files
+tmp/
+*.tmp
+
+# Logs and runtime output
 *.log
+output/
+monitor-output/
+
+# Local environment files
+.env
+.env.*
