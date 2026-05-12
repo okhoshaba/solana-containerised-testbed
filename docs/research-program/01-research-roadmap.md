@@ -2,48 +2,46 @@
 
 ## Level 1: Observability Core
 
-The first level establishes a reproducible local observability core:
+The first level establishes:
 
 ```text
 validator + Yellowstone/Geyser + monitor + Prometheus metrics
 ```
 
-The purpose is to prove that the system can expose reproducible runtime observations before introducing external load.
+## Dataset layer 0
 
-## Dataset layer 0: Observability Validation
-
-Dataset layer 0 validates the observability pipeline.
-
-This dataset is not intended to measure maximum throughput.
+Dataset layer 0 validates observability. It is not a throughput benchmark.
 
 ## Kubernetes Observability Core
 
-After Dataset layer 0 is validated, the same core should be deployed to Kubernetes.
-
-The Kubernetes stage should initially include only:
+Kubernetes should initially deploy only the same observability core:
 
 - validator
 - wallet-init job
 - monitor
 - services
-- PVC for ledger data
+- PVC
 
-It should not yet include loadgen, dashboard, MPC, or RL/MARL.
+It should not include loadgen, dashboard, MPC, single-agent RL, MARL or Agave.
 
-## Dataset layer 1: Controlled Load Response
+Kubernetes should be future-controller-ready, but it is not the controller and not the learning policy.
 
-The second dataset layer introduces controlled load generation.
+## Dataset layer 1
 
-## Adaptive control
+Dataset layer 1 introduces controlled load and response measurement.
 
-The adaptive control line should progress through:
+## MPC
 
-1. rule-based control
-2. knee detection
-3. MPC
-4. single-agent RL
-5. MARL
+MPC comes after Dataset layer 1, when controlled response data exists.
 
-## Agave research branch
+## Single-Agent RL
 
-Agave should be treated as a separate research branch and not as a simple replacement for the current Solana v1.18.25 local testbed.
+Single-agent RL comes after Dataset layer 1 and after an MPC baseline.
+
+## MARL
+
+MARL is a later extension after single-agent RL.
+
+## Agave
+
+Agave is a separate research branch.

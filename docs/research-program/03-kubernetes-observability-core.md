@@ -4,49 +4,32 @@
 
 Move the Level 1 observability core to Kubernetes without introducing load generation or adaptive control.
 
-The target system is:
+## Boundary
 
-```text
-validator + wallet-init job + monitor
-```
+This stage is about the object/environment, not about an RL agent.
 
-## Initial Kubernetes components
+Kubernetes hosts the environment. It is not the controller and not the learning policy.
 
-Recommended structure:
-
-```text
-k8s/
-  base/
-    namespace.yaml
-    configmap.yaml
-    pvc.yaml
-    validator-statefulset.yaml
-    validator-service.yaml
-    wallet-init-job.yaml
-    monitor-deployment.yaml
-    monitor-service.yaml
-  overlays/
-    local-single-node/
-    kind/
-    minikube/
-```
-
-## Scope
-
-Included:
+## Included
 
 - validator with Yellowstone/Geyser enabled
 - wallet-init job
 - monitor
-- persistent volume claim for validator ledger
+- PVC for validator ledger
 - service for RPC
 - service for gRPC
 - service for metrics
 
-Excluded:
+## Excluded
 
 - loadgen
 - dashboard
 - MPC
-- RL/MARL
+- single-agent RL
+- MARL
 - Agave
+
+## Future-controller-ready requirements
+
+The environment should provide stable service names, explicit RPC/gRPC/metrics endpoints,
+resettable validator state, reproducible run IDs, configurable resource limits, and later actuator interfaces.
