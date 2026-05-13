@@ -11,11 +11,23 @@ This directory documents the research roadmap built around the Solana Containeri
 - containerised Solana latency monitor
 - Prometheus metrics endpoint
 
-## Identifiers
+## Publications and identifiers
 
-- Software concept DOI: https://doi.org/10.5281/zenodo.20095383
-- Software v0.2.0 DOI: https://doi.org/10.5281/zenodo.20132465
-- Technical report DOI: https://doi.org/10.5281/zenodo.20098291
+Software concept DOI:
+- https://doi.org/10.5281/zenodo.20095383
+
+Software v0.2.0 DOI:
+- https://doi.org/10.5281/zenodo.20132465
+
+Original technical report DOI:
+- https://doi.org/10.5281/zenodo.20098291
+
+Yellowstone/Geyser v0.2.0 technical note DOI:
+- https://doi.org/10.5281/zenodo.20167936
+
+## Technical note citation
+
+Khoshaba, O. (2026). *Yellowstone/Geyser Observability Extension for the Solana Containerised Testbed v0.2.0* (0.2.0). Zenodo. https://doi.org/10.5281/zenodo.20167936
 
 ## Accepted roadmap
 

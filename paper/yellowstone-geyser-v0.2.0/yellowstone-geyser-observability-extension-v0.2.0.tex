@@ -1,0 +1,526 @@
+\documentclass[11pt,a4paper]{article}
+
+% ------------------------------------------------------------
+% Yellowstone/Geyser Observability Extension Technical Note
+% Solana Containerised Testbed v0.2.0
+% ------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{float}
+
+\geometry{
+  left=25mm,
+  right=25mm,
+  top=25mm,
+  bottom=25mm
+}
+
+% Replace this DOI after reserving the Zenodo DOI for this technical note.
+\newcommand{\TechnicalNoteDOI}{10.5281/zenodo.TODO}
+\newcommand{\SoftwareConceptDOI}{10.5281/zenodo.20095383}
+\newcommand{\SoftwareVersionDOI}{10.5281/zenodo.20132465}
+\newcommand{\OriginalReportDOI}{10.5281/zenodo.20098291}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue,
+  pdftitle={Yellowstone/Geyser Observability Extension for the Solana Containerised Testbed v0.2.0},
+  pdfauthor={TODO},
+  pdfsubject={Solana local testbed, Yellowstone/Geyser, observability, Prometheus, no-AVX2},
+  pdfkeywords={Solana, Yellowstone, Geyser, Prometheus, testbed, containerisation, Podman, Docker Compose, no-AVX2, legacy x86_64, observability}
+}
+
+\lstdefinestyle{terminal}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false
+}
+
+\lstset{style=terminal}
+
+\title{
+  \textbf{Yellowstone/Geyser Observability Extension for the Solana Containerised Testbed v0.2.0}
+}
+
+\author{
+  Oleksandr Khoshaba\\
+  Vinnitsia National Technical University, Ukraine\\
+  \texttt{Oleksandr.Khoshaba@gmail.com}\\
+  ORCID: \href{https://orcid.org/0000-0001-5375-6280}{0000-0001-5375-6280}
+}
+
+\date{
+  Version 0.2.0\\
+  Technical Note DOI: \href{https://doi.org/\TechnicalNoteDOI}{\TechnicalNoteDOI}\\
+  Software v0.2.0 DOI: \href{https://doi.org/\SoftwareVersionDOI}{\SoftwareVersionDOI}\\
+  Original Technical Report DOI: \href{https://doi.org/\OriginalReportDOI}{\OriginalReportDOI}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This technical note documents the Yellowstone/Geyser observability extension introduced in Solana Containerised Testbed v0.2.0. The extension adds a Yellowstone/Geyser-enabled Solana v1.18.25 local validator image, a containerised Solana latency monitor, and a Prometheus-compatible metrics endpoint. The resulting observability core exposes Solana JSON-RPC on \texttt{127.0.0.1:8899}, Yellowstone/Geyser gRPC on \texttt{127.0.0.1:10000}, and Prometheus metrics on \texttt{127.0.0.1:9464}. The implementation preserves the no-AVX2 compatibility objective established in the earlier validator containerisation work and was validated on legacy x86\_64 hardware. This note describes the motivation, architecture, container images, release workflow, validation procedure, limitations, and research roadmap for using the v0.2.0 observability core as the baseline for Dataset layer 0, Kubernetes deployment, controlled load response experiments, and later adaptive control research.
+\end{abstract}
+
+\noindent\textbf{Keywords:}
+Solana; Yellowstone; Geyser; Prometheus; observability; testbed; containerisation; Podman; Docker Compose; no-AVX2; legacy x86\_64; dataset generation; blockchain performance.
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+The Solana Containerised Testbed project provides a reproducible local Solana testbed for dataset generation, performance observation, and future adaptive transaction-load control experiments. The first technical report documented the initial containerisation of a Solana v1.18.25 local validator and wallet bootstrap workflow for legacy x86\_64 hardware without AVX2 support~\cite{original-report}. That earlier milestone established the basic validator and wallet-init components and demonstrated that a source-built no-AVX2 Solana image could run on older hardware where standard prebuilt binaries failed.
+
+The present technical note documents the next milestone, Solana Containerised Testbed v0.2.0. This version adds a Yellowstone/Geyser observability layer and a containerised Solana latency monitor. The main purpose of this extension is to turn the testbed from a runnable local validator environment into an observable research environment.
+
+The v0.2.0 release is not intended to be a throughput benchmark by itself. Instead, it establishes an observability core:
+
+\begin{lstlisting}
+validator + Yellowstone/Geyser + monitor + Prometheus metrics
+\end{lstlisting}
+
+This observability core becomes the basis for Dataset layer 0, whose purpose is to validate that metrics can be collected reproducibly before introducing synthetic load generation, dashboards, MPC controllers, reinforcement learning agents, or Agave-based deployments.
+
+\section{Baseline: Solana Containerised Testbed v0.1.x}
+
+The v0.1.x baseline provided a containerised reproduction of the original virtual-machine workflow. It separated the system into a validator service and a wallet bootstrap service.
+
+The original validator workflow was based on:
+
+\begin{lstlisting}[language=bash]
+solana-test-validator \
+  --ledger ~/solana-localnet/ledger \
+  --reset \
+  --bind-address 127.0.0.1 \
+  --rpc-port 8899
+\end{lstlisting}
+
+The wallet bootstrap workflow used the Solana command-line interface to configure the RPC endpoint, inspect the payer balance, request an airdrop, and verify the resulting balance:
+
+\begin{lstlisting}[language=bash]
+PAYER=6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+solana config set --url http://127.0.0.1:8899
+solana balance "$PAYER"
+solana airdrop 10000 "$PAYER"
+solana balance "$PAYER"
+\end{lstlisting}
+
+A major engineering issue in the v0.1.x stage was CPU compatibility. The target legacy host used an Intel Core i7-3667U CPU with AVX support but without AVX2 support. Standard Solana prebuilt binaries and the official Solana container image were unsuitable on this host. The project therefore built Solana v1.18.25 from source with AVX2 disabled and packaged the resulting binaries into compatibility images.
+
+The v0.1.x release established:
+
+\begin{itemize}[leftmargin=2em]
+  \item a no-AVX2 Solana validator image;
+  \item a wallet-init image;
+  \item Docker Hub publication of runtime images;
+  \item release-mode Compose workflows;
+  \item Zenodo software archiving and DOI assignment;
+  \item a technical report documenting the initial containerisation work.
+\end{itemize}
+
+\section{Motivation for the v0.2.0 Observability Extension}
+
+The next research requirement was not to immediately introduce external load generation or adaptive control. Before a controlled load response dataset can be trusted, the underlying observation path must be validated.
+
+The v0.2.0 extension therefore focuses on the following question:
+
+\begin{quote}
+Can the local Solana testbed expose reproducible runtime observations through Yellowstone/Geyser and Prometheus-compatible metrics on legacy x86\_64 hardware?
+\end{quote}
+
+This question must be answered before the project moves toward:
+
+\begin{itemize}[leftmargin=2em]
+  \item controlled synthetic load generation;
+  \item knee-point probing;
+  \item MPC-based transaction-load control;
+  \item single-agent reinforcement learning;
+  \item multi-agent reinforcement learning;
+  \item Agave-based research branches;
+  \item Kubernetes-based deployment of the full experimental stack.
+\end{itemize}
+
+The v0.2.0 milestone therefore introduces an observability core but deliberately avoids mixing it with the later control and learning layers.
+
+\section{v0.2.0 Architecture}
+
+The v0.2.0 architecture contains three primary runtime services:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{Validator}: a Solana v1.18.25 local validator image with Yellowstone/Geyser enabled.
+  \item \textbf{Wallet-init}: a one-shot container that funds the predefined payer account.
+  \item \textbf{Monitor}: a containerised Solana latency monitor that connects to Yellowstone/Geyser and exposes Prometheus metrics.
+\end{enumerate}
+
+The release-mode architecture is summarised as follows:
+
+\begin{lstlisting}
+Host
+  127.0.0.1:8899  -> validator:8899   Solana JSON-RPC
+  127.0.0.1:10000 -> validator:10000  Yellowstone/Geyser gRPC
+  127.0.0.1:9464  -> monitor:9464     Prometheus metrics
+
+Compose network
+  wallet-init -> validator:8899
+  monitor     -> validator:10000
+\end{lstlisting}
+
+The service-level responsibilities are intentionally separated. The validator runs the local Solana chain, the wallet-init container performs deterministic local funding, and the monitor observes the validator through Yellowstone/Geyser and publishes metrics.
+
+\section{Yellowstone/Geyser Integration}
+
+The v0.2.0 validator image includes the Yellowstone/Geyser plugin library:
+
+\begin{lstlisting}
+/usr/local/lib/libyellowstone_grpc_geyser.so
+\end{lstlisting}
+
+The validator is configured with a Geyser plugin configuration file:
+
+\begin{lstlisting}
+/etc/solana/yellowstone-geyser.json
+\end{lstlisting}
+
+The relevant runtime environment values are:
+
+\begin{lstlisting}
+ENABLE_GEYSER=true
+GEYSER_CONFIG=/etc/solana/yellowstone-geyser.json
+RPC_PORT=8899
+\end{lstlisting}
+
+Inside the validator container, the Yellowstone/Geyser gRPC service listens on:
+
+\begin{lstlisting}
+0.0.0.0:10000
+\end{lstlisting}
+
+The host binds this endpoint to:
+
+\begin{lstlisting}
+127.0.0.1:10000
+\end{lstlisting}
+
+The Geyser-enabled validator image was built from a no-AVX2-compatible Solana baseline image and a source-built Yellowstone/Geyser plugin. The no-AVX2 build policy is an important part of the release because the project targets legacy x86\_64 systems in addition to newer AVX2-capable hosts.
+
+\section{Containerised Latency Monitor}
+
+The monitor component is a Go-based service imported from the existing Solana latency research workflow and adapted for the containerised testbed.
+
+The monitor connects to the validator through the Compose service name:
+
+\begin{lstlisting}
+validator:10000
+\end{lstlisting}
+
+The container-oriented monitor configuration uses:
+
+\begin{lstlisting}
+rpc: http://validator:8899
+grpc: validator:10000
+interval: 5s
+metrics:
+  prometheus_port: 9464
+\end{lstlisting}
+
+The monitor exposes Prometheus-compatible metrics on:
+
+\begin{lstlisting}
+0.0.0.0:9464
+\end{lstlisting}
+
+The host maps this to:
+
+\begin{lstlisting}
+127.0.0.1:9464
+\end{lstlisting}
+
+The monitor was normalised to use English source comments, configuration text, and Prometheus HELP strings. This was done to make the component suitable for public research software documentation and later publication.
+
+\section{Prometheus Metrics Endpoint}
+
+The v0.2.0 monitor exposes Prometheus-compatible metrics at:
+
+\begin{lstlisting}
+http://127.0.0.1:9464/metrics
+\end{lstlisting}
+
+A typical check is:
+
+\begin{lstlisting}[language=bash]
+curl -s http://127.0.0.1:9464/metrics | head -n 40
+\end{lstlisting}
+
+Expected metric families include:
+
+\begin{lstlisting}
+solana_slot_interval_seconds
+solana_transaction_latency_seconds
+solana_subscription_errors_total
+\end{lstlisting}
+
+Example HELP text after normalisation:
+
+\begin{lstlisting}
+# HELP solana_slot_interval_seconds Time interval between consecutive Solana slots, used to measure slot production stability.
+# HELP solana_transaction_latency_seconds Latency distribution from transaction broadcast to confirmation.
+# HELP solana_subscription_errors_total Total number of errors observed in the subscription stream.
+\end{lstlisting}
+
+These metrics form the initial basis for Dataset layer 0. Dataset layer 0 is intended to validate observability, not to characterise maximum throughput.
+
+\section{Docker Hub Images and Immutable Digests}
+
+The v0.2.0 release uses the following Docker Hub images:
+
+\begin{lstlisting}
+docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge
+docker.io/khoshaba/solana-latency-monitor:v0.2.0
+\end{lstlisting}
+
+The immutable image digests are recorded in the repository file:
+
+\begin{lstlisting}
+release/v0.2.0-image-digests.txt
+\end{lstlisting}
+
+This approach separates the human-readable image tags from the reproducibility-critical image digests. The Zenodo software release archives the source code, Dockerfiles, Compose files, documentation, and digest metadata, while Docker Hub remains the operational registry for pulling and running the images.
+
+\section{Release Workflow}
+
+The v0.2.0 release workflow is defined by:
+
+\begin{lstlisting}
+compose.yellowstone.release.yaml
+\end{lstlisting}
+
+The release workflow is started with:
+
+\begin{lstlisting}[language=bash]
+podman compose -f compose.yellowstone.release.yaml up
+\end{lstlisting}
+
+The validator health check is performed through Solana JSON-RPC:
+
+\begin{lstlisting}[language=bash]
+curl -s http://127.0.0.1:8899 \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"getHealth"}'
+\end{lstlisting}
+
+The expected response is:
+
+\begin{lstlisting}
+{"jsonrpc":"2.0","result":"ok","id":1}
+\end{lstlisting}
+
+The payer balance is checked inside the validator container:
+
+\begin{lstlisting}[language=bash]
+podman exec -it solana-localnet-validator \
+  solana --url http://127.0.0.1:8899 \
+  balance 6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+\end{lstlisting}
+
+The expected balance after wallet bootstrap is:
+
+\begin{lstlisting}
+10000 SOL
+\end{lstlisting}
+
+The Yellowstone/Geyser port can be checked inside the validator container:
+
+\begin{lstlisting}[language=bash]
+podman exec -it solana-localnet-validator \
+  ss -ltnp | grep 10000
+\end{lstlisting}
+
+The monitor metrics endpoint is checked with:
+
+\begin{lstlisting}[language=bash]
+curl -s http://127.0.0.1:9464/metrics | head -n 40
+\end{lstlisting}
+
+\section{no-AVX2 Validation}
+
+A central constraint of the project is support for legacy x86\_64 hosts without AVX2 support. The v0.2.0 release preserves this constraint by using a no-AVX2 Solana baseline and by building the Yellowstone/Geyser plugin with conservative CPU compatibility settings.
+
+The relevant target host class includes:
+
+\begin{lstlisting}
+Architecture: x86_64
+AVX: yes
+AVX2: no
+Example CPU: Intel Core i7-3667U
+\end{lstlisting}
+
+The Yellowstone/Geyser-enabled validator image and monitor image were tested on a no-AVX2 host. The validation criteria included:
+
+\begin{itemize}[leftmargin=2em]
+  \item the validator container does not crash with illegal-instruction failures;
+  \item Solana JSON-RPC health returns \texttt{ok};
+  \item the payer balance is available after wallet bootstrap;
+  \item the Yellowstone/Geyser gRPC port listens on port \texttt{10000};
+  \item the monitor container starts successfully;
+  \item Prometheus metrics are available on \texttt{127.0.0.1:9464};
+  \item metric HELP strings and source text are normalised to English.
+\end{itemize}
+
+\section{Dataset Layer 0}
+
+The next immediate research step is Dataset layer 0: an observability validation dataset. The purpose of this dataset is to prove that the observability core is reproducible before introducing external load generation.
+
+A candidate output layout is:
+
+\begin{lstlisting}
+output/datasets/layer0-observability/<run_id>/
+  metadata.json
+  samples.csv
+  samples.jsonl
+  raw-metrics.prom
+\end{lstlisting}
+
+Candidate fields include:
+
+\begin{lstlisting}
+timestamp_utc
+run_id
+host_id
+cpu_model
+avx2_present
+git_commit
+testbed_version
+validator_image
+monitor_image
+validator_health
+payer_balance_sol
+metrics_scrape_ok
+slot_interval_p50
+slot_interval_p90
+slot_interval_p99
+slot_interval_sum
+slot_interval_count
+transaction_latency_p50
+transaction_latency_p95
+transaction_latency_p99
+transaction_latency_sum
+transaction_latency_count
+subscription_errors_total
+\end{lstlisting}
+
+The initial recommended run profile is:
+
+\begin{lstlisting}
+duration: 60 seconds
+sample interval: 2 seconds
+\end{lstlisting}
+
+Dataset layer 0 is deliberately not a controlled load response dataset. It is a validation artifact for the observation pipeline.
+
+\section{Research Roadmap}
+
+The v0.2.0 release anchors the first research level: the observability core. The accepted roadmap is layered as follows:
+
+\begin{enumerate}[leftmargin=2em]
+  \item Observability Core.
+  \item Dataset layer 0: observability validation.
+  \item Kubernetes deployment of the observability core.
+  \item Dataset layer 1: controlled load response.
+  \item MPC adaptive control.
+  \item Single-agent reinforcement learning.
+  \item Multi-agent reinforcement learning.
+  \item Agave research branch.
+\end{enumerate}
+
+A key methodological decision is that Kubernetes is treated as an environment and deployment layer, not as the learning agent. The Kubernetes stage should initially deploy the observability core only: validator, wallet-init job, monitor, services, and persistent storage. It should be future-controller-ready but should not include MPC, RL, MARL, load generation, dashboarding, or Agave in the first step.
+
+Another key decision is to avoid moving directly to MARL. The intended control progression is:
+
+\begin{lstlisting}
+controlled load response -> system model -> MPC -> single-agent RL -> MARL
+\end{lstlisting}
+
+This preserves interpretability and creates baselines for later learning-based methods.
+
+\section{Limitations}
+
+The v0.2.0 release has several limitations:
+
+\begin{itemize}[leftmargin=2em]
+  \item It validates observability but does not yet provide a controlled load response dataset.
+  \item It does not yet containerise the existing load generator and dashboard workflow.
+  \item It does not yet include Kubernetes manifests.
+  \item It does not yet include MPC, single-agent RL, or MARL.
+  \item It does not yet include an Agave validator branch.
+  \item Prometheus summary metrics are useful for validation, but later datasets may require lower-level event traces or additional raw measurements.
+  \item The no-AVX2 compatibility claim should remain tied to the tested host class and should be expanded only after broader hardware validation.
+\end{itemize}
+
+\section{Conclusion}
+
+Solana Containerised Testbed v0.2.0 extends the earlier validator and wallet-init containerisation work with a Yellowstone/Geyser observability layer and a containerised latency monitor. The release exposes Solana JSON-RPC, Yellowstone/Geyser gRPC, and Prometheus-compatible metrics through a reproducible Compose workflow based on Docker Hub images. The system was validated on legacy x86\_64 hardware without AVX2 support and is intended to serve as the baseline for Dataset layer 0, Kubernetes deployment of the observability core, controlled load response experiments, and later adaptive control research.
+
+The main contribution of v0.2.0 is therefore not maximum throughput measurement, but the creation of a reproducible and observable local Solana testbed suitable for systematic dataset generation and future control-oriented experimentation.
+
+\section*{Related Identifiers}
+
+\begin{itemize}[leftmargin=2em]
+  \item Technical Note DOI: \href{https://doi.org/\TechnicalNoteDOI}{\TechnicalNoteDOI}.
+  \item Software concept DOI: \href{https://doi.org/\SoftwareConceptDOI}{\SoftwareConceptDOI}.
+  \item Software v0.2.0 DOI: \href{https://doi.org/\SoftwareVersionDOI}{\SoftwareVersionDOI}.
+  \item Original technical report DOI: \href{https://doi.org/\OriginalReportDOI}{\OriginalReportDOI}.
+  \item GitHub repository: \url{https://github.com/okhoshaba/solana-containerised-testbed}.
+\end{itemize}
+
+\begin{thebibliography}{9}
+
+\bibitem{software-v020}
+Khoshaba, \emph{Solana Containerised Testbed v0.2.0}, Zenodo software release.
+DOI: \href{https://doi.org/\SoftwareVersionDOI}{\SoftwareVersionDOI}.
+
+\bibitem{software-concept}
+Khoshaba, \emph{Solana Containerised Testbed}, Zenodo software concept record.
+DOI: \href{https://doi.org/\SoftwareConceptDOI}{\SoftwareConceptDOI}.
+
+\bibitem{original-report}
+Khoshaba, \emph{Containerising a Solana v1.18.25 Local Testbed for Reproducible Dataset Generation on Legacy x86\_64 CPUs}, Zenodo technical report.
+DOI: \href{https://doi.org/\OriginalReportDOI}{\OriginalReportDOI}.
+
+\bibitem{repository}
+Khoshaba, \emph{Solana Containerised Testbed GitHub Repository}.
+\url{https://github.com/okhoshaba/solana-containerised-testbed}.
+
+\bibitem{dockerhub-validator}
+Khoshaba, \emph{Docker Hub Image: solana-localnet-validator}.
+\url{https://hub.docker.com/r/khoshaba/solana-localnet-validator}.
+
+\bibitem{dockerhub-monitor}
+Khoshaba, \emph{Docker Hub Image: solana-latency-monitor}.
+\url{https://hub.docker.com/r/khoshaba/solana-latency-monitor}.
+
+\end{thebibliography}
+
+\end{document}
+

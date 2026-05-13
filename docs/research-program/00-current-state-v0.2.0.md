@@ -1,5 +1,18 @@
 # Current State: v0.2.0
 
+## Publication status
+
+The v0.2.0 milestone is documented by a dedicated technical note:
+
+Khoshaba, O. (2026). *Yellowstone/Geyser Observability Extension for the Solana Containerised Testbed v0.2.0* (0.2.0). Zenodo. https://doi.org/10.5281/zenodo.20167936
+
+Related identifiers:
+
+- Software concept DOI: https://doi.org/10.5281/zenodo.20095383
+- Software v0.2.0 DOI: https://doi.org/10.5281/zenodo.20132465
+- Original technical report DOI: https://doi.org/10.5281/zenodo.20098291
+- Yellowstone/Geyser v0.2.0 technical note DOI: https://doi.org/10.5281/zenodo.20167936
+
 ## Implemented
 
 Solana Containerised Testbed v0.2.0 provides:
@@ -14,6 +27,7 @@ Solana Containerised Testbed v0.2.0 provides:
 - Yellowstone/Geyser gRPC endpoint on `127.0.0.1:10000`
 - Docker Hub images
 - GitHub release and Zenodo archive
+- dedicated Zenodo technical note for the Yellowstone/Geyser observability extension
 
 ## Main Docker Hub images
 
