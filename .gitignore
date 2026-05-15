@@ -352,3 +352,13 @@ monitor-output/
 
 # Private local prompt packs
 .local-prompts/
+
+# Article empirical data collection outputs
+data/article-runs/
+data/article-workloads/
+*.tar.gz
+
+# Local temporary article outputs
+*_txload-low_300s_*.tar.gz
+*_txload-medium_300s_*.tar.gz
+*_baseline_300s_*.tar.gz
