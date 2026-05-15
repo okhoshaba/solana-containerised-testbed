@@ -1,0 +1,10 @@
+run_id,profile,timestamp_utc,hostname,samples,health_ok,slot_delta,transaction_count_delta,workload_attempted,workload_successful,workload_failed,target_rate_tps,achieved_rate_tps,mean_transfer_ms,median_transfer_ms,p95_transfer_ms,max_transfer_ms
+20260515T111550Z_fedora__baseline_300s_d0c848a,baseline,2026-05-15T11:15:50Z,fedora_,60,60,759,759,,,,,,,,,
+20260515T113703Z_fedora__baseline_300s_d0c848a,baseline,2026-05-15T11:37:03Z,fedora_,60,60,758,758,,,,,,,,,
+20260515T114752Z_fedora__baseline_300s_d0c848a,baseline,2026-05-15T11:47:52Z,fedora_,60,60,768,768,,,,,,,,,
+20260515T124639Z_fedora__txload-low_300s_d0c848a,txload-low,2026-05-15T12:46:39Z,fedora_,60,60,734,1000,265,265,0,1,0.9464285714285714,791.2754716981132,775,882,1405
+20260515T132525Z_fedora__txload-low_300s_d0c848a,txload-low,2026-05-15T13:25:25Z,fedora_,60,60,733,998,264,264,0,1,0.9428571428571428,798.0530303030303,778.0,885,1522
+20260515T141758Z_fedora__txload-low_300s_d0c848a,txload-low,2026-05-15T14:17:58Z,fedora_,60,60,735,992,263,263,0,1,0.9392857142857143,796.5095057034221,772,895,1532
+20260515T131423Z_fedora__txload-medium_300s_d0c848a,txload-medium,2026-05-15T13:14:23Z,fedora_,60,60,741,1102,360,360,0,2,1.2857142857142858,763.2,745.0,842,1519
+20260515T133247Z_fedora__txload-medium_300s_d0c848a,txload-medium,2026-05-15T13:32:47Z,fedora_,60,60,739,1102,362,362,0,2,1.292857142857143,760.3259668508288,745.0,839,1294
+20260515T142420Z_fedora__txload-medium_300s_d0c848a,txload-medium,2026-05-15T14:24:20Z,fedora_,60,60,736,1096,358,358,0,2,1.2785714285714285,767.0754189944134,750.0,852,1343

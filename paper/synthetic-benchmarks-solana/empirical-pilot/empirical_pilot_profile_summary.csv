@@ -1,0 +1,4 @@
+profile,runs,health_ok_ratio,mean_slot_delta,sd_slot_delta,mean_tx_delta,sd_tx_delta,mean_workload_successful,mean_achieved_rate_tps,mean_transfer_ms,mean_p95_transfer_ms
+baseline,3,180/180,761.67,5.51,761.67,5.51,,,,
+txload-low,3,180/180,734,1.0,996.67,4.16,264,0.943,795.3,887.3
+txload-medium,3,180/180,738.67,2.52,1100,3.46,360,1.286,763.5,844.3
