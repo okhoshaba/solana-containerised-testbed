@@ -78,7 +78,7 @@
 \maketitle
 
 \begin{abstract}
-Synthetic benchmarks have historically provided simplified and repeatable workloads for comparing computing systems, but contemporary distributed systems require a broader evaluation model. They are telemetry-rich, resource-constrained, dynamically operated, and increasingly shaped by feedback mechanisms. This paper argues that synthetic benchmarking is therefore evolving from open-loop performance measurement towards reproducible experimental testbeds in which workload generation, observability, dataset production, and future control interfaces are designed together. The argument is developed as a methodological contribution and illustrated through a containerised private Solana network consisting of a validator, wallet and workload components, Yellowstone/Geyser-based observability, monitoring services, and Prometheus-compatible metrics. The paper also reports a preliminary single-host empirical pilot consisting of three baseline runs, two low transaction-load runs, and two medium transaction-load runs. The pilot is not presented as a general Solana performance study. Instead, it validates the article's measurement discipline: the data-collection pipeline preserves hostname-aware metadata, validator health samples, RPC-level slot and transaction counters, and workload-side transaction evidence. The results show stable health across all included runs and a clear increase in transaction-count deltas under controlled workload profiles. The resulting case study positions the Solana testbed as a reproducible research infrastructure for studying high-performance blockchain behaviour under controlled synthetic workloads and for preparing later feedback-control experiments with rule-based controllers, classical baselines, model-predictive approaches, and multi-agent reinforcement learning.
+Synthetic benchmarks have historically provided simplified and repeatable workloads for comparing computing systems, but contemporary distributed systems require a broader evaluation model. They are telemetry-rich, resource-constrained, dynamically operated, and increasingly shaped by feedback mechanisms. This paper argues that synthetic benchmarking is therefore evolving from open-loop performance measurement towards reproducible experimental testbeds in which workload generation, observability, dataset production, and future control interfaces are designed together. The argument is developed as a methodological contribution and illustrated through a containerised private Solana network consisting of a validator, wallet and workload components, Yellowstone/Geyser-based observability, monitoring services, and Prometheus-compatible metrics. The paper also reports a preliminary single-host empirical pilot consisting of three baseline runs, three low transaction-load runs, and three medium transaction-load runs. The pilot is not presented as a general Solana performance study. Instead, it validates the article's measurement discipline: the data-collection pipeline preserves hostname-aware metadata, validator health samples, RPC-level slot and transaction counters, and workload-side transaction evidence. The results show stable health across all included runs and a clear increase in transaction-count deltas under controlled workload profiles. The resulting case study positions the Solana testbed as a reproducible research infrastructure for studying high-performance blockchain behaviour under controlled synthetic workloads and for preparing later feedback-control experiments with rule-based controllers, classical baselines, model-predictive approaches, and multi-agent reinforcement learning.
 \end{abstract}
 
 \noindent\textbf{Keywords:} synthetic benchmark; distributed systems; Solana; testbed; observability; Geyser; Yellowstone gRPC; Prometheus; feedback control; multi-agent reinforcement learning; reproducible research.
@@ -141,7 +141,7 @@ The paper makes seven contributions.
 \subsection{Paper structure}
 \label{subsec:structure}
 
-\Cref{sec:related} positions the work against prior benchmarking, workload-driven, control-theoretic, and observability literature. \Cref{sec:terminology} defines the main terms. \Cref{sec:evolution} reviews the evolution of synthetic benchmarks. \Cref{sec:control} explains the transition from open-loop to closed-loop benchmarking. \Cref{sec:requirements} proposes requirements for control-oriented benchmarks. \Cref{sec:solana-case} presents the Solana case study and its implementation boundary. \Cref{sec:experimental-design} specifies the proposed experimental design and matrix. \Cref{sec:empirical-pilot} reports the preliminary empirical pilot. \Cref{sec:protocol} describes an experimental protocol, metric taxonomy, and evidence plan. \Cref{sec:data-requirements} states when additional empirical data become necessary. \Cref{sec:artefacts} discusses publication of research \artifacts. \Cref{sec:roadmap} defines staged future work. \Cref{sec:validity} discusses threats to validity, and \Cref{sec:conclusion} concludes.
+\Cref{sec:related} positions the work against prior benchmarking, workload-driven, control-theoretic, and observability literature. \Cref{sec:terminology} defines the main terms and maps the Solana testbed components to their research roles. \Cref{sec:implementation-boundary} separates design-supported claims from claims that require further empirical evidence. \Cref{sec:experimental-design} specifies the proposed experimental design, run profiles, and transaction-load workload implementation. \Cref{sec:empirical-pilot} reports the preliminary empirical pilot. \Cref{sec:protocol} describes an experimental protocol, metric taxonomy, and evidence plan. \Cref{sec:data-requirements} states when additional empirical data become necessary. \Cref{sec:artefacts} discusses publication of research \artifacts. \Cref{sec:roadmap} defines staged future work. \Cref{sec:validity} discusses threats to validity, and \Cref{sec:conclusion} concludes.
 
 \section{Related work and positioning}
 \label{sec:related}
@@ -371,6 +371,24 @@ The experiments should be executed through named run profiles. A profile should 
   \item \textbf{cross-host}: repeat selected profiles on at least two hosts using identical code and image digests.
 \end{enumerate}
 
+
+For the empirical pilot reported in \cref{sec:empirical-pilot}, the \texttt{txload-low} and \texttt{txload-medium} profiles were implemented by the shell workload driver \path{scripts/run_article_txload_container_v0_4.sh}. The script parameterises a single transaction workload by profile name, duration, target rate, and output directory. It executes inside the running validator container through \texttt{podman exec}, creates temporary payer and recipient keypairs, funds the payer by a local airdrop, and then submits a sequence of \texttt{solana transfer} commands to the local RPC endpoint. Thus, these profiles are not abstract labels in the results section: they are concrete workload perturbations applied to the validator localnet.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Concrete transaction-load profiles used in the empirical pilot}
+\label{tab:txload-profile-implementation}
+\begin{tabularx}{\textwidth}{L{2.6cm}L{2.9cm}Y Y}
+\toprule
+\textbf{Profile} & \textbf{Target input} & \textbf{Transaction semantics} & \textbf{Recorded workload evidence} \\
+\midrule
+\texttt{txload-low} & 300 s run, target 1 transfer/s. & Sequential native SOL transfers of \texttt{0.000001} SOL from a generated payer to a generated recipient after a local \texttt{10} SOL airdrop to the payer. & Per-transfer CSV rows containing timestamp, sequence number, profile, target rate, exit code, command duration, transaction signature, and per-transfer log path; summary JSON with attempted, successful, and failed transactions. \\
+\texttt{txload-medium} & 300 s run, target 2 transfers/s. & The same transfer transaction type and account policy as \texttt{txload-low}, but with a higher target submission rate. & The same CSV, log, and JSON evidence, allowing workload-side success counts to be compared with RPC-level transaction-count deltas. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 For each profile, the article should preserve a distinction between \emph{input parameters}, \emph{measured signals}, and \emph{derived summaries}. Input parameters belong in version-controlled profile files. Measured signals belong in raw datasets. Derived summaries and figures should be reproducible from scripts.
 
 \subsection{Claim-to-experiment mapping}
@@ -385,6 +403,8 @@ This claim-to-experiment mapping is deliberately conservative. Its purpose is to
 \label{sec:empirical-pilot}
 
 The preceding sections define the experimental design and claim discipline required for empirical work. This section adds a preliminary pilot dataset to validate the measurement pipeline. The pilot is intentionally modest: it is a single-host, single-validator localnet study conducted on the host recorded as \texttt{fedora\_}, with all included runs using the same Git short commit \texttt{d0c848a}. The purpose is not to establish general Solana performance limits. The purpose is to test whether the proposed dataset structure can distinguish baseline localnet operation from controlled transaction-load profiles while preserving run metadata, validator health samples, RPC counters, and workload-side transaction evidence.
+
+The transaction-load runs were generated by \path{scripts/run_article_txload_container_v0_4.sh}. Each workload run begins by creating two temporary keypairs inside the validator container: a payer and a recipient. The payer receives a local airdrop, after which the script repeatedly invokes \texttt{solana transfer} against \texttt{http://127.0.0.1:8899}. Each attempted transaction transfers \texttt{0.000001} SOL from the payer to the recipient using \texttt{--allow-unfunded-recipient}. Operationally, the workload is therefore a sequence of simple value-transfer transactions. It does not exercise SPL-token instructions, application smart-contract logic, a heterogeneous transaction mix, or a separate read-only RPC-pressure workload. The script records each attempt in \texttt{txload\_metrics.csv}, including the sequence number, profile, configured rate, exit code, elapsed command time, extracted transaction signature, and transfer log path, and writes a \texttt{txload\_summary.json} file with attempted, successful, and failed transaction totals.
 
 The pilot includes nine valid runs: three baseline runs, three low transaction-load runs, and three medium transaction-load runs. A previously collected \texttt{txload-low} archive without independent workload evidence is excluded from this pilot and treated as a diagnostic run rather than as transaction-load evidence.
 
@@ -758,7 +778,6 @@ A practical layout is shown in \cref{tab:repository-layout}. The exact directory
 \path{data/derived/} & Cleaned or aggregated datasets generated from raw data. & Regenerate from scripts where possible. \\
 \path{results/figures/} & Generated figures from empirical data. & Store generated plots with script references. \\
 \path{scripts/} & Build, validation, dataset collection, and plotting scripts. & Prefer deterministic scripts over manual figure editing. \\
-\path{prompts/codex/} & Optional local Codex prompts for repository maintenance tasks. & Use for repeatable integration or documentation updates. \\
 \path{releases/} or \path{docs/releases/} & Release notes and DOI mapping. & Keep GitHub and Zenodo identifiers synchronised. \\
 \bottomrule
 \end{tabularx}
@@ -829,7 +848,7 @@ The workflow in \cref{tab:github-workflow} assumes a local clone of the reposito
 \textbf{Stage} & \textbf{Action} & \textbf{Expected result} \\
 \midrule
 Pre-flight & Confirm the repository branch, clean working tree, and location of the extracted integration package. & The user knows which branch will receive the article files. \\
-Copy & Copy article source, PDF, build files, documentation, prompts, and scripts into their target paths. & New or updated files appear under \path{paper/}, \path{docs/research-program/}, \path{prompts/codex/}, and \path{scripts/}. \\
+Copy & Copy article source, PDF, build files, documentation, prompts, and scripts into their target paths. & New or updated files appear under \path{paper/}, \path{docs/research-program/}, and \path{scripts/}. \\
 Build & Run the article build script from the repository root. & \path{paper/synthetic-benchmarks-solana/main.pdf} is regenerated successfully. \\
 Inspect & Review \texttt{git status --short} and, when useful, \texttt{git diff --stat}. & Only article and documentation files are changed. \\
 Stage files & Stage the article, documentation, prompt, and helper scripts explicitly. & No logs, temporary files, raw datasets, or implementation changes are staged by accident. \\
@@ -870,7 +889,6 @@ git add \
   paper/synthetic-benchmarks-solana \
   docs/research-program/synthetic-benchmarks-solana-article.md \
   docs/research-program/article-status.md \
-  prompts/codex/21_github_integration_workflow_v1_1.md \
   scripts/build_synthetic_benchmarks_article.sh \
   scripts/integrate_synthetic_benchmark_article_v1_1.sh \
   scripts/check_synthetic_benchmark_article_integration.sh
@@ -891,7 +909,6 @@ If the integration was copied into the wrong branch or wrong repository, the cha
 git restore --staged \
   paper/synthetic-benchmarks-solana \
   docs/research-program \
-  prompts/codex \
   scripts/build_synthetic_benchmarks_article.sh \
   scripts/integrate_synthetic_benchmark_article_v1_1.sh \
   scripts/check_synthetic_benchmark_article_integration.sh
@@ -899,7 +916,6 @@ git restore --staged \
 git restore \
   paper/synthetic-benchmarks-solana \
   docs/research-program \
-  prompts/codex \
   scripts/build_synthetic_benchmarks_article.sh \
   scripts/integrate_synthetic_benchmark_article_v1_1.sh \
   scripts/check_synthetic_benchmark_article_integration.sh
@@ -912,7 +928,6 @@ git status --short
 rm -rf paper/synthetic-benchmarks-solana
 rm -f docs/research-program/synthetic-benchmarks-solana-article.md
 rm -f docs/research-program/article-status.md
-rm -f prompts/codex/21_github_integration_workflow_v1_1.md
 rm -f scripts/integrate_synthetic_benchmark_article_v1_1.sh
 rm -f scripts/check_synthetic_benchmark_article_integration.sh
 \end{verbatim}
@@ -1100,9 +1115,6 @@ docs/research-program/
   synthetic-benchmarks-solana-article.md
   article-status.md
 
-prompts/codex/
-  21_github_integration_workflow_v1_1.md
-
 scripts/
   build_synthetic_benchmarks_article.sh
   integrate_synthetic_benchmark_article_v1_1.sh
@@ -1142,7 +1154,6 @@ git add \
   paper/synthetic-benchmarks-solana \
   docs/research-program/synthetic-benchmarks-solana-article.md \
   docs/research-program/article-status.md \
-  prompts/codex/21_github_integration_workflow_v1_1.md \
   scripts/build_synthetic_benchmarks_article.sh \
   scripts/integrate_synthetic_benchmark_article_v1_1.sh \
   scripts/check_synthetic_benchmark_article_integration.sh
@@ -1155,7 +1166,7 @@ A slightly more explicit commit body is:
 
 \begin{verbatim}
 Add article source, generated review PDF, repository-facing status pages,
-local integration helpers, and a Codex prompt for the synthetic benchmarking
+and local integration helpers for the synthetic benchmarking
 article. The draft remains methodological and does not introduce empirical
 Solana performance, overhead, stream-latency, reproducibility, or controller
 claims.
@@ -1249,22 +1260,26 @@ This appendix defines practical metadata templates for future dataset-producing 
 \begin{verbatim}
 profile_name: txload-low
 profile_version: 1
+implementation: scripts/run_article_txload_container_v0_4.sh
 purpose: Conservative transaction-load validation profile.
 duration_seconds: 300
-warmup_seconds: 30
-cooldown_seconds: 30
-target_transaction_rate_per_second: 5
+target_transaction_rate_per_second: 1
+medium_profile_target_transaction_rate_per_second: 2
 burst_mode: false
+transaction_type: native_SOL_transfer
+amount_sol: 0.000001
+airdrop_sol_to_payer: 10
+payer_account_policy: generated_per_run
+recipient_account_policy: generated_per_run
+sequential_cli_confirmation: true
+rpc_url: http://127.0.0.1:8899
 request_mix:
   transfer_transactions: 1.0
-random_seed: 12345
-payer_account: default
-recipient_account_policy: generated
 expected_outputs:
-  - metrics_csv
-  - workload_log
-  - metadata_json
-  - summary_json
+  - txload_metrics_csv
+  - per_transfer_logs
+  - payer_and_recipient_pubkeys
+  - txload_summary_json
 \end{verbatim}
 
 \subsection{Recommended dataset bundle}
