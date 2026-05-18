@@ -41,3 +41,4 @@ Expected payer balance:
 
 | note | Intel(R) Xeon(R) CPU E3-1240 v5 @ 3.50GHz | Fedora 43 / RedHat-based Linux | Podman | yes | yes | docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge | ok | 10000 SOL | pass | Pulled from Docker Hub and started through compose.release.yaml |
 
+CentOS host + KVM/libvirt + legacy no-AVX2 Xeon server + planned multi-node Kubernetes VMs
