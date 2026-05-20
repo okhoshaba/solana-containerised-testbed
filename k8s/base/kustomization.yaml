@@ -12,3 +12,4 @@ resources:
   - validator-statefulset.yaml
   - rpc-service.yaml
   - geyser-grpc-service.yaml
+  - wallet-init-job.yaml
