@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: validator-ledger-pvc
+  labels:
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi

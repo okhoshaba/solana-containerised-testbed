@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: validator-config
+  labels:
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+data:
+  LEDGER_PATH: "/var/lib/solana/ledger"
+  RESET_LEDGER: "true"
+  VALIDATOR_BIND_ADDRESS: "0.0.0.0"
+  RPC_PORT: "8899"
+  ENABLE_GEYSER: "true"
+  GEYSER_CONFIG: "/etc/solana/yellowstone-geyser.json"

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: solana-rpc
+  labels:
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/component: rpc
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/component: validator
+  ports:
+    - name: rpc
+      port: 8899
+      targetPort: rpc
