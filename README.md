@@ -150,6 +150,28 @@ docker.io/khoshaba/solana-latency-monitor:v0.2.0
 Immutable digests are listed in:
 release/v0.2.0-image-digests.txt
 
+## Kubernetes Observability Core
+
+The Kubernetes Observability Core migration has been validated on a CentOS/KVM/Minikube environment.
+
+The validated Kubernetes workload includes:
+
+- validator StatefulSet;
+- validator ledger PersistentVolumeClaim;
+- wallet-init Job;
+- monitor Deployment;
+- RPC Service on port 8899;
+- Yellowstone/Geyser gRPC Service on port 10000;
+- metrics Service on port 9464.
+
+A minimal wallet transfer validation test was completed successfully through the Kubernetes RPC endpoint.
+
+See:
+
+```text
+docs/kubernetes/observability-core-validation.md
+
+
 ## Citation
 
 Citation metadata is provided in:
