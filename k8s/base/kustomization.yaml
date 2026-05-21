@@ -13,3 +13,6 @@ resources:
   - rpc-service.yaml
   - geyser-grpc-service.yaml
   - wallet-init-job.yaml
+  - monitor-configmap.yaml
+  - monitor-deployment.yaml
+  - metrics-service.yaml
