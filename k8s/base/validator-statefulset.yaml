@@ -46,7 +46,7 @@ spec:
               command:
                 - sh
                 - -c
-                - solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1
+                - /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1
             failureThreshold: 60
             periodSeconds: 5
             timeoutSeconds: 3
@@ -55,7 +55,7 @@ spec:
               command:
                 - sh
                 - -c
-                - solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1
+                - /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1
             failureThreshold: 6
             periodSeconds: 5
             timeoutSeconds: 3
@@ -64,7 +64,7 @@ spec:
               command:
                 - sh
                 - -c
-                - solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1
+                - /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1
             failureThreshold: 6
             periodSeconds: 10
             timeoutSeconds: 3
