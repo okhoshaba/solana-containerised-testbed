@@ -1,5 +1,5 @@
 {
-  "title": "Solana Containerised Testbed",
+  "title": "Solana Containerised Testbed v0.3.0: Kubernetes Observability Core"
   "description": "A containerised local Solana testbed for dataset generation and latency/performance research, including a source-built no-AVX2 compatibility image for older x86_64 CPUs.",
   "creators": [
     {
@@ -18,5 +18,5 @@
     "no-AVX2"
   ],
   "upload_type": "software",
-  "version": "0.2.0"
+  "version": "0.3.0"
 }
