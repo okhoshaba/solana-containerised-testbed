@@ -11,9 +11,14 @@ This repository implements the first stage of moving a VM-based Solana local tes
 
 Software artifact:
 
-- Concept DOI: https://doi.org/10.5281/zenodo.20095383
-- v0.1.1 DOI: https://doi.org/10.5281/zenodo.20095384
-- v0.2.0 DOI: https://doi.org/10.5281/zenodo.20132465
+## Identifiers
+
+- Software concept DOI: 10.5281/zenodo.20095383
+- Software v0.1.x DOI: 10.5281/zenodo.20095384
+- Software v0.2.0 DOI: 10.5281/zenodo.20132465
+- Software v0.3.0 DOI: 10.5281/zenodo.20337744
+- Technical report DOI: 10.5281/zenodo.20098291
+
 
 Technical reports and notes:
 - Containerising a Solana v1.18.25 Local Testbed for Reproducible Dataset Generation on Legacy x86_64 CPUs: https://doi.org/10.5281/zenodo.20098291

@@ -1,6 +1,7 @@
 cff-version: 1.3.0
-title: "Solana Containerised Testbed"
-message: "If you use this software, please cite it using the metadata from this file."
+title: "Solana Containerised Testbed v0.3.0: Kubernetes Observability Core"
+version: "0.3.0"
+doi: "10.5281/zenodo.20337744"
 type: software
 authors:
   - family-names: "Khoshaba"
@@ -8,8 +9,7 @@ authors:
 repository-code: "https://github.com/okhoshaba/solana-containerised-testbed"
 abstract: "A containerised local Solana testbed for dataset generation and latency/performance research, including a source-built no-AVX2 compatibility image for older x86_64 CPUs."
 license: "Apache-2.0"
-version: "0.3.0"
-date-released: "2026-05-12"
+date-released: "2026-05-22"
 keywords:
   - Solana
   - testbed
