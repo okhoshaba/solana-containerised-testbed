@@ -1,0 +1,318 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[numbers,sort&compress]{natbib}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\lstdefinestyle{terminal}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible,
+  keepspaces=true
+}
+
+\title{Kubernetes Observability Core for the Solana Containerised Testbed v0.3.0}
+
+\author{
+  Oleksandr Khoshaba\\
+  Vinnytsia National Technical University
+%  \texttt{okhoshaba}
+}
+
+\date{May 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This preprint reports the migration and validation of the Solana Containerised Testbed Observability Core from a Compose-based microservice deployment to a Kubernetes-based deployment. The work targets a legacy x86\_64 server without AVX2 support and therefore preserves the no-AVX2 Solana compatibility path used by the project. The Kubernetes implementation maps the validator to a StatefulSet, the validator ledger to a PersistentVolumeClaim, wallet initialisation to a Job, and the monitor to a Deployment. Stable Kubernetes Services are used for RPC, Yellowstone/Geyser gRPC, and metrics endpoints. The validation was performed on a CentOS 9 host using KVM and Minikube. The resulting system successfully exposed Solana RPC, Yellowstone/Geyser gRPC, and Prometheus-compatible metrics endpoints, and it passed a wallet transfer validation test through the Kubernetes RPC Service. The release remains limited to the observation stage of the project roadmap and intentionally excludes load generation, MPC, reinforcement learning, MARL, and the Agave research branch.
+\end{abstract}
+
+\textbf{Keywords:} Solana, Kubernetes, observability, Yellowstone, Geyser, containerised testbed, no-AVX2, performance evaluation, Minikube, KVM.
+
+\section{Introduction}
+
+The Solana Containerised Testbed is a research-oriented local Solana environment for dataset generation, latency observation, and performance-evaluation workflows. Earlier versions of the testbed used a Compose-based microservice architecture consisting of a local Solana validator, a wallet-initialisation service, and a latency/observability monitor. Version 0.3.0 introduces a Kubernetes deployment layer for the Observability Core while preserving the existing no-AVX2 compatibility path for older x86\_64 CPUs \citep{khoshaba_solana_testbed_v030}.
+
+The main contribution of this work is not a new consensus protocol, a new Solana client, or a new adaptive controller. Instead, it reports an infrastructure transition: the existing Yellowstone/Geyser-enabled Observability Core is mapped to Kubernetes primitives and validated through RPC, gRPC, metrics, and wallet-transfer checks.
+
+The methodological position of this stage is deliberately narrow. The accepted roadmap of the project is:
+
+\begin{center}
+\texttt{observation -> controlled load -> model -> MPC -> single-agent RL -> MARL}
+\end{center}
+
+This preprint covers only the observation stage. Load generation, model-predictive control, reinforcement learning, multi-agent reinforcement learning, and the Agave research branch are intentionally outside the scope of this release.
+
+\section{Background and Motivation}
+
+Containerised local blockchain testbeds are useful for repeatable experiments because they provide controlled deployment environments, explicit service boundaries, and reproducible configuration. However, Compose-based architectures are limited when the experimental programme moves toward clustered execution, controlled resource allocation, placement policies, persistent volumes, and future controller integration.
+
+Kubernetes provides a more explicit object model for these concerns. In this project, Kubernetes is used as a hosting substrate for the observable Solana localnet system. It is not used as an adaptive controller or learning agent at this stage. The migration to Kubernetes is therefore a preparatory infrastructure step that supports future distributed and controller-oriented experiments while keeping the current release focused on observability \citep{kubernetes_docs}.
+
+A second motivation is hardware compatibility. The available host platform is a dual-socket Intel Xeon E5-2690 system without AVX2 support. This hardware characteristic makes standard prebuilt Solana binaries unsuitable in some cases and confirms the continued importance of the project's no-AVX2 Solana compatibility images.
+
+\section{Baseline Compose-Based Testbed}
+
+The baseline Compose-based Observability Core consisted of three main services:
+
+\begin{itemize}
+  \item a Solana local validator with Yellowstone/Geyser enabled;
+  \item a wallet-initialisation service;
+  \item a latency and observability monitor.
+\end{itemize}
+
+The Compose deployment exposed the following primary endpoints:
+
+\begin{itemize}
+  \item RPC on port 8899;
+  \item Yellowstone/Geyser gRPC on port 10000;
+  \item metrics on port 9464.
+\end{itemize}
+
+This baseline provided a compact local execution model. The Kubernetes migration preserves these functional endpoints while replacing Compose service definitions with Kubernetes resources.
+
+\section{Kubernetes Observability Core Architecture}
+
+The Kubernetes architecture maps the baseline services to explicit Kubernetes primitives. Table~\ref{tab:mapping} summarises the mapping.
+
+\begin{table}[htbp]
+\centering
+\caption{Mapping from Compose-based services to Kubernetes resources.}
+\label{tab:mapping}
+\begin{tabular}{lll}
+\toprule
+\textbf{Baseline role} & \textbf{Kubernetes resource} & \textbf{Purpose} \\
+\midrule
+Validator container & StatefulSet & Stateful Solana validator process \\
+Ledger volume & PersistentVolumeClaim & Persistent validator ledger storage \\
+Wallet-init container & Job & One-time wallet preparation \\
+Monitor container & Deployment & Long-running observability process \\
+RPC port 8899 & Service & Stable internal RPC endpoint \\
+Geyser gRPC port 10000 & Service & Stable internal Geyser endpoint \\
+Metrics port 9464 & Service & Stable metrics endpoint \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The stable internal Kubernetes endpoints are:
+
+\begin{lstlisting}[style=terminal]
+http://solana-rpc:8899
+solana-geyser-grpc:10000
+solana-metrics:9464
+\end{lstlisting}
+
+The validator is represented as a StatefulSet because it owns persistent state in the form of the local ledger. The ledger is represented as a PersistentVolumeClaim. The wallet-initialisation component is represented as a Job because it is a finite task. The monitor is represented as a Deployment because it is a long-running observability process.
+
+\section{Implementation}
+
+The Kubernetes implementation is organised under the following repository structure:
+
+\begin{lstlisting}[style=terminal]
+k8s/
+  base/
+  overlays/
+    minikube/
+    kvm-multinode/
+\end{lstlisting}
+
+The \texttt{k8s/base} directory contains the portable Observability Core manifests. The \texttt{k8s/overlays/ minikube} overlay was used for the first validated deployment on the CentOS/KVM host. The \texttt{k8s/overlays/kvm-multinode} overlay is reserved for a future dedicated multi-node KVM-based Kubernetes cluster.
+
+\subsection{Validator StatefulSet}
+
+The validator uses the Yellowstone/Geyser-enabled no-AVX2 image:
+
+\begin{lstlisting}[style=terminal]
+docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+\end{lstlisting}
+
+The validator exposes RPC on port 8899 and Yellowstone/Geyser gRPC on port 10000. The Geyser plugin configuration is mounted from a ConfigMap. The validator ledger is mounted from the \texttt{validator-ledger-pvc} PersistentVolumeClaim.
+
+A practical implementation note is that Solana binaries inside the image are installed under:
+
+\begin{lstlisting}[style=terminal]
+/opt/solana/bin
+\end{lstlisting}
+
+Therefore, Kubernetes probes and validation scripts use absolute paths such as:
+
+\begin{lstlisting}[style=terminal]
+/opt/solana/bin/solana
+/opt/solana/bin/solana-keygen
+\end{lstlisting}
+
+\subsection{Wallet-Init Job}
+
+Wallet initialisation is implemented as a Kubernetes Job. The Job connects to the validator through the internal RPC Service:
+
+\begin{lstlisting}[style=terminal]
+http://solana-rpc:8899
+\end{lstlisting}
+
+This confirms that in-cluster service discovery is working and that one-off initialisation tasks can interact with the validator through the Kubernetes network.
+
+\subsection{Monitor Deployment}
+
+The monitor is implemented as a Kubernetes Deployment and connects to:
+
+\begin{lstlisting}[style=terminal]
+http://solana-rpc:8899
+solana-geyser-grpc:10000
+\end{lstlisting}
+
+The monitor exposes Prometheus-compatible metrics on port 9464 through the \texttt{solana-metrics} Service.
+
+\section{Validation Methodology}
+
+The validation was performed on the following infrastructure path:
+
+\begin{lstlisting}[style=terminal]
+CentOS 9 host
+  -> KVM
+  -> Minikube VM
+  -> single-node Kubernetes cluster
+  -> Solana Observability Core
+\end{lstlisting}
+
+Minikube was used as the first Kubernetes validation layer because it allowed the existing KVM host to run a Kubernetes cluster without immediately introducing a full multi-node deployment \citep{kubernetes_docs, minikube_docs, solana_docs, zenodo_versioning, khoshaba_kubernetes_observability_preprint_2026}. The validation procedure consisted of five checks:
+
+\begin{enumerate}
+  \item Kubernetes resource creation and readiness checks;
+  \item validator RPC health and version checks;
+  \item Geyser gRPC Service endpoint checks;
+  \item monitor and metrics endpoint checks;
+  \item wallet transfer validation through the Kubernetes RPC Service.
+\end{enumerate}
+
+The Kubernetes deployment was applied with:
+
+\begin{lstlisting}[style=terminal]
+kubectl apply -k k8s/overlays/minikube
+\end{lstlisting}
+
+The wallet transfer validation was executed with:
+
+\begin{lstlisting}[style=terminal]
+./scripts/k8s-wallet-transfer-validation.sh
+\end{lstlisting}
+
+\section{Results}
+
+The Kubernetes resources reached the expected states:
+
+\begin{lstlisting}[style=terminal]
+pod/solana-validator-0                  1/1   Running
+pod/solana-monitor-*                    1/1   Running
+pod/wallet-init-*                       Completed
+pod/wallet-transfer-validation-*        Completed
+
+service/solana-rpc                      8899/TCP
+service/solana-geyser-grpc              10000/TCP
+service/solana-metrics                  9464/TCP
+
+statefulset.apps/solana-validator       1/1
+deployment.apps/solana-monitor          1/1
+job.batch/wallet-init                   Complete
+persistentvolumeclaim/validator-ledger-pvc Bound
+\end{lstlisting}
+
+The RPC health check returned:
+
+\begin{lstlisting}[style=terminal]
+{"jsonrpc":"2.0","result":"ok","id":1}
+\end{lstlisting}
+
+The validator reported Solana version:
+
+\begin{lstlisting}[style=terminal]
+solana-core: 1.18.25
+\end{lstlisting}
+
+The monitor exposed Prometheus-compatible metrics through the metrics Service. Slot interval metrics were observed through the \texttt{/metrics} endpoint.
+
+The wallet transfer validation completed successfully. In one validation run, the temporary sender wallet received 2 SOL by airdrop and transferred 0.5 SOL to the monitored receiver wallet:
+
+\begin{lstlisting}[style=terminal]
+Sender balance after transfer:
+1.499995 SOL
+
+Receiver balance after transfer:
+0.5 SOL
+
+Transaction status:
+Confirmed
+\end{lstlisting}
+
+This confirms that a simple SOL transfer can be executed successfully through the Kubernetes RPC endpoint.
+
+\section{Discussion}
+
+The migration validates the use of Kubernetes as an execution substrate for the Solana Containerised Testbed Observability Core. The resulting design is more explicit than the Compose baseline because it separates stateful execution, persistent storage, one-time initialisation, long-running monitoring, and stable service endpoints.
+
+The implementation is also future-controller-ready in a limited sense. It provides stable service names, explicit RPC/gRPC/metrics endpoints, resettable validator state, resource specifications, and a path toward node placement policies in a future multi-node cluster. However, it does not yet implement a control policy, workload generator, or learning agent.
+
+\section{Limitations}
+
+The validation was performed on a single-node Minikube cluster running through the KVM2 driver. This is sufficient for validating the Kubernetes object model and the functional Solana transaction path, but it is not a substitute for a dedicated multi-node Kubernetes cluster.
+
+The monitor validation confirmed metrics availability and slot interval observations, but the current release does not claim a complete controlled-load dataset layer. Transaction-latency datasets and workload-response experiments are reserved for later stages.
+
+\section{Future Work}
+
+Future work includes:
+
+\begin{itemize}
+  \item migration from Minikube to a dedicated KVM-based multi-node Kubernetes cluster;
+  \item explicit node placement for validator and monitor workloads;
+  \item dataset layer 0 for observability validation;
+  \item dataset layer 1 for controlled load response;
+  \item an MPC baseline after controlled-load data collection;
+  \item single-agent reinforcement learning after the MPC baseline;
+  \item MARL as a later extension;
+  \item an Agave research branch as a separate line of work.
+\end{itemize}
+
+\section{Conclusion}
+
+This work reports the successful migration of the Solana Containerised Testbed Observability Core from a Compose-based microservice deployment to a Kubernetes-based deployment. The validator StatefulSet, ledger PersistentVolumeClaim, wallet-init Job, monitor Deployment, and stable Services for RPC, Yellowstone/Geyser gRPC, and metrics were implemented and validated. A wallet transfer validation Job confirmed that a simple SOL transaction can be executed through the Kubernetes RPC endpoint. The release remains limited to the observation stage and provides a reproducible foundation for future controlled-load and controller-oriented research.
+
+\section*{Software and Data Availability}
+
+The software release associated with this preprint is:
+
+\begin{itemize}
+  \item Solana Containerised Testbed v0.3.0: Kubernetes Observability Core.
+  \item DOI: \href{https://doi.org/10.5281/zenodo.20337744}{10.5281/zenodo.20337744}.
+\end{itemize}
+
+The repository is available at:
+
+\begin{itemize}
+  \item \url{https://github.com/okhoshaba/solana-containerised-testbed}
+\end{itemize}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
