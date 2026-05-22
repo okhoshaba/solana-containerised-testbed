@@ -3,7 +3,7 @@
 This directory contains the LaTeX source for the preprint:
 
 ```text
-Kubernetes Observability Core for the Solana Containerised Testbed v0.3.0
+From Compose to Kubernetes: Validating the Observability Core of a No-AVX2 Solana Containerised Testbed
 
 Associated software release
 Solana Containerised Testbed v0.3.0: Kubernetes Observability Core
@@ -52,4 +52,4 @@ Agave research branch.
 The published Zenodo preprint is:
 
 ```text
-Khoshaba, O. (2026). Kubernetes Observability Core for the Solana Containerised Testbed v0.3.0 (0.3.0). Zenodo. https://doi.org/10.5281/zenodo.20340310
+Khoshaba, O. (2026). From Compose to Kubernetes: Validating the Observability Core of a No-AVX2 Solana Containerised Testbed (0.3.0). Zenodo. https://doi.org/10.5281/zenodo.20340310

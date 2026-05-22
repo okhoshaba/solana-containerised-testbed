@@ -206,4 +206,4 @@ See LICENSE.
 The Kubernetes Observability Core preprint associated with the `v0.3.0` software release is available on Zenodo:
 
 - Preprint DOI: 10.5281/zenodo.20340310
-- Citation: Khoshaba, O. (2026). Kubernetes Observability Core for the Solana Containerised Testbed v0.3.0 (0.3.0). Zenodo. https://doi.org/10.5281/zenodo.20340310
+- Citation: Khoshaba, O. (2026). From Compose to Kubernetes: Validating the Observability Core of a No-AVX2 Solana Containerised Testbed (0.3.0). Zenodo. https://doi.org/10.5281/zenodo.20340310
