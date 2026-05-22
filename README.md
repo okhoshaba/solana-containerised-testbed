@@ -200,3 +200,10 @@ The first citable software release is planned as:
 ## License
 
 See LICENSE.
+
+## Kubernetes Observability Core preprint
+
+The Kubernetes Observability Core preprint associated with the `v0.3.0` software release is available on Zenodo:
+
+- Preprint DOI: 10.5281/zenodo.20340310
+- Citation: Khoshaba, O. (2026). Kubernetes Observability Core for the Solana Containerised Testbed v0.3.0 (0.3.0). Zenodo. https://doi.org/10.5281/zenodo.20340310
