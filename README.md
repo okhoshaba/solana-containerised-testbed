@@ -171,6 +171,14 @@ See:
 ```text
 docs/kubernetes/observability-core-validation.md
 
+### Planned v0.3.0 release
+
+The planned `v0.3.0` release documents the Kubernetes Observability Core migration.
+
+Draft release notes are available at:
+
+```text
+docs/releases/v0.3.0-kubernetes-observability-core.md
 
 ## Citation
 
