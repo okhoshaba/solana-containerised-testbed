@@ -1,0 +1,36 @@
+---
+- name: Clean unused Calico webhook resources
+  hosts: k8s_control_plane
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Delete Calico webhook deployment
+      ansible.builtin.command: kubectl delete deployment -n kube-system calico-webhooks --ignore-not-found=true
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Delete Calico webhook service
+      ansible.builtin.command: kubectl delete service -n kube-system calico-webhooks --ignore-not-found=true
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Delete Calico webhook service account
+      ansible.builtin.command: kubectl delete serviceaccount -n kube-system calico-webhooks --ignore-not-found=true
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Delete Calico webhook validating configuration
+      ansible.builtin.command: kubectl delete validatingwebhookconfiguration calico-webhooks --ignore-not-found=true
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Delete Calico webhook cluster role
+      ansible.builtin.command: kubectl delete clusterrole calico-webhooks --ignore-not-found=true
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Delete Calico webhook cluster role binding
+      ansible.builtin.command: kubectl delete clusterrolebinding calico-webhooks --ignore-not-found=true
+      become_user: khoshaba
+      changed_when: false

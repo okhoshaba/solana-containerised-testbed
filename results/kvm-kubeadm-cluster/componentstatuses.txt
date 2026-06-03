@@ -1,0 +1,4 @@
+NAME                 STATUS    MESSAGE   ERROR
+controller-manager   Healthy   ok        
+scheduler            Healthy   ok        
+etcd-0               Healthy   ok        

@@ -1,0 +1,49 @@
+---
+- name: Validate running Kubernetes cluster
+  hosts: k8s_control_plane
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Show nodes
+      ansible.builtin.command: kubectl get nodes -o wide
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Show node labels
+      ansible.builtin.command: kubectl get nodes -L testbed-role
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Show all pods
+      ansible.builtin.command: kubectl get pods -A -o wide
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Show storage classes
+      ansible.builtin.command: kubectl get storageclass
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Show persistent volumes
+      ansible.builtin.command: kubectl get pv
+      become_user: khoshaba
+      changed_when: false
+      failed_when: false
+
+    - name: Show persistent volume claims
+      ansible.builtin.command: kubectl get pvc -A
+      become_user: khoshaba
+      changed_when: false
+      failed_when: false
+
+    - name: Show cluster info
+      ansible.builtin.command: kubectl cluster-info
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Show recent events
+      ansible.builtin.command: kubectl get events -A --sort-by=.lastTimestamp
+      become_user: khoshaba
+      changed_when: false
+      failed_when: false

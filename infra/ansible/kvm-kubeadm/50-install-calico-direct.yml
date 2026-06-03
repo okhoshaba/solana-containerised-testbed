@@ -1,0 +1,36 @@
+---
+- name: Install Calico CNI by direct manifest
+  hosts: k8s_control_plane
+  become: true
+  gather_facts: false
+
+  vars:
+    calico_version: "v3.32.0"
+    calico_manifest_url: "https://raw.githubusercontent.com/projectcalico/calico/{{ calico_version }}/manifests/calico.yaml"
+    calico_manifest_path: "/home/khoshaba/calico.yaml"
+
+  tasks:
+    - name: Download Calico direct manifest with curl
+      ansible.builtin.shell: |
+        set -e
+        curl -fL --retry 5 --retry-delay 5 \
+          -o {{ calico_manifest_path }} \
+          {{ calico_manifest_url }}
+        chown khoshaba:khoshaba {{ calico_manifest_path }}
+      args:
+        executable: /bin/bash
+
+    - name: Apply Calico direct manifest
+      ansible.builtin.command: kubectl apply -f {{ calico_manifest_path }}
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Wait for Calico node daemonset rollout
+      ansible.builtin.command: kubectl -n kube-system rollout status daemonset/calico-node --timeout=300s
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Wait for Calico kube controllers rollout
+      ansible.builtin.command: kubectl -n kube-system rollout status deployment/calico-kube-controllers --timeout=300s
+      become_user: khoshaba
+      changed_when: false

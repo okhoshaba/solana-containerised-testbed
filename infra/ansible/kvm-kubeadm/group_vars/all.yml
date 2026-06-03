@@ -1,0 +1,24 @@
+---
+ansible_user: khoshaba
+ansible_python_interpreter: /usr/bin/python3
+
+k8s_control_plane_ip: "192.168.122.101"
+k8s_worker_01_ip: "192.168.122.102"
+k8s_worker_02_ip: "192.168.122.103"
+
+k8s_control_plane_name: "k8s-cp-01"
+k8s_worker_01_name: "k8s-worker-01"
+k8s_worker_02_name: "k8s-worker-02"
+
+k8s_pod_network_cidr: "192.168.0.0/16"
+
+k8s_hosts_block: |
+  192.168.122.101 k8s-cp-01
+  192.168.122.102 k8s-worker-01
+  192.168.122.103 k8s-worker-02
+
+validator_node_label: "testbed-role=validator"
+observability_node_label: "testbed-role=observability"
+control_plane_node_label: "testbed-role=control-plane"
+
+local_path_storage_dir: "/opt/local-path-provisioner"

@@ -1,0 +1,4 @@
+NAME            STATUS   ROLES           AGE   VERSION   TESTBED-ROLE
+k8s-cp-01       Ready    control-plane   11h   v1.36.1   control-plane
+k8s-worker-01   Ready    <none>          10h   v1.36.1   validator
+k8s-worker-02   Ready    <none>          10h   v1.36.1   observability

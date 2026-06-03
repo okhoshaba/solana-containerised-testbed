@@ -1,0 +1,29 @@
+---
+- name: Install local-path-provisioner
+  hosts: k8s_control_plane
+  become: true
+  gather_facts: false
+
+  vars:
+    local_path_version: "v0.0.36"
+
+  tasks:
+    - name: Download local-path-provisioner manifest
+      ansible.builtin.shell: |
+        set -e
+        curl -fL --retry 5 --retry-delay 5 \
+          -o /home/khoshaba/local-path-storage.yaml \
+          https://raw.githubusercontent.com/rancher/local-path-provisioner/{{ local_path_version }}/deploy/local-path-storage.yaml
+        chown khoshaba:khoshaba /home/khoshaba/local-path-storage.yaml
+      args:
+        executable: /bin/bash
+
+    - name: Apply local-path-provisioner manifest
+      ansible.builtin.command: kubectl apply -f /home/khoshaba/local-path-storage.yaml
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Wait for local-path-provisioner deployment
+      ansible.builtin.command: kubectl -n local-path-storage rollout status deployment/local-path-provisioner --timeout=180s
+      become_user: khoshaba
+      changed_when: false

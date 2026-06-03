@@ -1,0 +1,21 @@
+---
+- name: Label Kubernetes nodes for Solana testbed placement
+  hosts: k8s_control_plane
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Label control-plane node
+      ansible.builtin.command: kubectl label node k8s-cp-01 testbed-role=control-plane --overwrite
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Label validator worker node
+      ansible.builtin.command: kubectl label node k8s-worker-01 testbed-role=validator --overwrite
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Label observability worker node
+      ansible.builtin.command: kubectl label node k8s-worker-02 testbed-role=observability --overwrite
+      become_user: khoshaba
+      changed_when: false

@@ -1,0 +1,59 @@
+---
+- name: Install Calico CNI on Kubernetes control-plane
+  hosts: k8s_control_plane
+  become: true
+  gather_facts: false
+
+  vars:
+    calico_version: "v3.32.0"
+
+  tasks:
+    - name: Download Calico CRDs manifest with curl
+      ansible.builtin.shell: |
+        set -e
+        curl -fL --retry 5 --retry-delay 5 \
+          -o /home/khoshaba/calico-v3-crds.yaml \
+          https://raw.githubusercontent.com/projectcalico/calico/{{ calico_version }}/manifests/calico-v3-crds.yaml
+        chown khoshaba:khoshaba /home/khoshaba/calico-v3-crds.yaml
+      args:
+        executable: /bin/bash
+
+    - name: Download Tigera operator manifest with curl
+      ansible.builtin.shell: |
+        set -e
+        curl -fL --retry 5 --retry-delay 5 \
+          -o /home/khoshaba/tigera-operator.yaml \
+          https://raw.githubusercontent.com/projectcalico/calico/{{ calico_version }}/manifests/tigera-operator.yaml
+        chown khoshaba:khoshaba /home/khoshaba/tigera-operator.yaml
+      args:
+        executable: /bin/bash
+
+    - name: Download Calico custom resources manifest with curl
+      ansible.builtin.shell: |
+        set -e
+        curl -fL --retry 5 --retry-delay 5 \
+          -o /home/khoshaba/custom-resources.yaml \
+          https://raw.githubusercontent.com/projectcalico/calico/{{ calico_version }}/manifests/custom-resources.yaml
+        chown khoshaba:khoshaba /home/khoshaba/custom-resources.yaml
+      args:
+        executable: /bin/bash
+
+    - name: Apply Calico CRDs
+      ansible.builtin.command: kubectl apply -f /home/khoshaba/calico-v3-crds.yaml
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Apply Tigera operator
+      ansible.builtin.command: kubectl apply -f /home/khoshaba/tigera-operator.yaml
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Wait for Calico CRDs to be established
+      ansible.builtin.command: kubectl wait --for=condition=Established crd --all --timeout=120s
+      become_user: khoshaba
+      changed_when: false
+
+    - name: Apply Calico custom resources
+      ansible.builtin.command: kubectl apply -f /home/khoshaba/custom-resources.yaml
+      become_user: khoshaba
+      changed_when: false

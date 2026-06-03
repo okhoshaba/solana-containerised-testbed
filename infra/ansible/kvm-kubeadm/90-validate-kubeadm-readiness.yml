@@ -1,0 +1,71 @@
+---
+- name: Validate kubeadm node readiness
+  hosts: k8s
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Show hostname
+      ansible.builtin.command: hostname
+      changed_when: false
+
+    - name: Show IP addresses
+      ansible.builtin.command: ip -br addr
+      changed_when: false
+
+    - name: Show routing table
+      ansible.builtin.command: ip route
+      changed_when: false
+
+    - name: Check swap is disabled
+      ansible.builtin.command: swapon --show
+      changed_when: false
+      register: swap_status
+
+    - name: Show swap status
+      ansible.builtin.debug:
+        var: swap_status.stdout_lines
+
+    - name: Check overlay module
+      ansible.builtin.shell: lsmod | grep '^overlay'
+      changed_when: false
+
+    - name: Check br_netfilter module
+      ansible.builtin.shell: lsmod | grep '^br_netfilter'
+      changed_when: false
+
+    - name: Check IPv4 forwarding
+      ansible.builtin.command: sysctl net.ipv4.ip_forward
+      changed_when: false
+
+    - name: Check bridge netfilter IPv4
+      ansible.builtin.command: sysctl net.bridge.bridge-nf-call-iptables
+      changed_when: false
+
+    - name: Check containerd status
+      ansible.builtin.command: systemctl is-active containerd
+      changed_when: false
+
+    - name: Check containerd SystemdCgroup
+      ansible.builtin.shell: grep -n "SystemdCgroup = true" /etc/containerd/config.toml
+      changed_when: false
+
+    - name: Check kubeadm version
+      ansible.builtin.command: kubeadm version -o short
+      changed_when: false
+
+    - name: Check kubelet version
+      ansible.builtin.command: kubelet --version
+      changed_when: false
+
+    - name: Check kubectl client version
+      ansible.builtin.command: kubectl version --client=true
+      changed_when: false
+
+    - name: Check cluster hostnames
+      ansible.builtin.command: getent hosts k8s-cp-01 k8s-worker-01 k8s-worker-02
+      changed_when: false
+
+    - name: Check external DNS resolution
+      ansible.builtin.command: getent hosts registry.k8s.io
+      changed_when: false

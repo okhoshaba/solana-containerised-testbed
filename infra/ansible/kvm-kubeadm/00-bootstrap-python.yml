@@ -1,0 +1,19 @@
+---
+- name: Bootstrap Python and APT support on Ubuntu nodes
+  hosts: k8s
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Install Python and base APT support
+      ansible.builtin.raw: |
+        apt-get update
+        DEBIAN_FRONTEND=noninteractive apt-get install -y \
+          python3 \
+          python3-apt \
+          sudo \
+          ca-certificates \
+          curl \
+          gpg \
+          apt-transport-https
+      changed_when: false

@@ -1,0 +1,6 @@
+---
+- import_playbook: 00-bootstrap-python.yml
+- import_playbook: 10-prepare-os-for-k8s.yml
+- import_playbook: 20-install-containerd.yml
+- import_playbook: 30-install-kubernetes-tools.yml
+- import_playbook: 90-validate-kubeadm-readiness.yml

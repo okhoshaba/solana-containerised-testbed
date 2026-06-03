@@ -1,0 +1,54 @@
+---
+- name: Initialise Kubernetes control-plane
+  hosts: k8s_control_plane
+  become: true
+  gather_facts: true
+
+  vars:
+    control_plane_ip: "192.168.122.101"
+    pod_network_cidr: "192.168.0.0/16"
+
+  tasks:
+    - name: Check whether Kubernetes control-plane is already initialised
+      ansible.builtin.stat:
+        path: /etc/kubernetes/admin.conf
+      register: kubeadm_admin_conf
+
+    - name: Pull Kubernetes control-plane images
+      ansible.builtin.command: kubeadm config images pull
+      when: not kubeadm_admin_conf.stat.exists
+
+    - name: Initialise Kubernetes control-plane with kubeadm
+      ansible.builtin.command: >
+        kubeadm init
+        --node-name k8s-cp-01
+        --apiserver-advertise-address={{ control_plane_ip }}
+        --pod-network-cidr={{ pod_network_cidr }}
+      when: not kubeadm_admin_conf.stat.exists
+
+    - name: Create kubeconfig directory for khoshaba
+      ansible.builtin.file:
+        path: /home/khoshaba/.kube
+        state: directory
+        owner: khoshaba
+        group: khoshaba
+        mode: '0755'
+
+    - name: Copy admin kubeconfig for khoshaba
+      ansible.builtin.copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /home/khoshaba/.kube/config
+        owner: khoshaba
+        group: khoshaba
+        mode: '0600'
+        remote_src: true
+
+    - name: Check control-plane node status
+      ansible.builtin.command: kubectl get nodes -o wide
+      become_user: khoshaba
+      changed_when: false
+      register: node_status
+
+    - name: Show node status
+      ansible.builtin.debug:
+        var: node_status.stdout_lines
