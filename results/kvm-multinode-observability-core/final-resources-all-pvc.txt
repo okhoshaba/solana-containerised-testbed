@@ -1,0 +1,27 @@
+NAME                                                      READY   STATUS      RESTARTS   AGE     IP               NODE            NOMINATED NODE   READINESS GATES
+pod/solana-monitor-f995c8b9d-95vmp                        1/1     Running     0          34m     192.168.118.65   k8s-worker-02   <none>           <none>
+pod/solana-validator-0                                    1/1     Running     0          34m     192.168.36.198   k8s-worker-01   <none>           <none>
+pod/wallet-init-ngm2v                                     0/1     Completed   0          34m     192.168.118.66   k8s-worker-02   <none>           <none>
+pod/wallet-transfer-validation-kvm-20260604035307-vcv2b   0/1     Completed   0          5m18s   192.168.118.73   k8s-worker-02   <none>           <none>
+
+NAME                                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)              AGE   SELECTOR
+service/solana-geyser-grpc          ClusterIP   10.96.199.115    <none>        10000/TCP            34m   app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+service/solana-metrics              ClusterIP   10.110.176.165   <none>        9464/TCP             34m   app.kubernetes.io/component=monitor,app.kubernetes.io/name=solana-containerised-testbed
+service/solana-rpc                  ClusterIP   10.96.72.163     <none>        8899/TCP             34m   app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+service/solana-validator-headless   ClusterIP   None             <none>        8899/TCP,10000/TCP   34m   app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                             SELECTOR
+deployment.apps/solana-monitor   1/1     1            1           34m   monitor      docker.io/khoshaba/solana-latency-monitor:v0.2.0   app.kubernetes.io/component=monitor,app.kubernetes.io/name=solana-containerised-testbed
+
+NAME                                       DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES                                             SELECTOR
+replicaset.apps/solana-monitor-f995c8b9d   1         1         1       34m   monitor      docker.io/khoshaba/solana-latency-monitor:v0.2.0   app.kubernetes.io/component=monitor,app.kubernetes.io/name=solana-containerised-testbed,pod-template-hash=f995c8b9d
+
+NAME                                READY   AGE   CONTAINERS   IMAGES
+statefulset.apps/solana-validator   1/1     34m   validator    docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+
+NAME                                                      STATUS     COMPLETIONS   DURATION   AGE     CONTAINERS                   IMAGES                                                                               SELECTOR
+job.batch/wallet-init                                     Complete   1/1           58s        34m     wallet-init                  docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge                      batch.kubernetes.io/controller-uid=b763c5d9-364b-4e45-827a-007c1fb0fed8
+job.batch/wallet-transfer-validation-kvm-20260604035307   Complete   1/1           17s        5m18s   wallet-transfer-validation   docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone   batch.kubernetes.io/controller-uid=bf232e37-71e1-4ef5-9f3b-ba9a0569789e
+
+NAME                                         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
+persistentvolumeclaim/validator-ledger-pvc   Bound    pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75   20Gi       RWO            local-path     <unset>                 34m   Filesystem

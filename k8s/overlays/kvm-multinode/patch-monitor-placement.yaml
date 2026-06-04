@@ -1,0 +1,9 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solana-monitor
+spec:
+  template:
+    spec:
+      nodeSelector:
+        testbed-role: observability

@@ -1,0 +1,14 @@
+# HELP solana_slot_interval_seconds Time interval between consecutive Solana slots, used to measure slot production stability.
+# TYPE solana_slot_interval_seconds summary
+solana_slot_interval_seconds{quantile="0.5"} 0.411585126
+solana_slot_interval_seconds{quantile="0.9"} 0.415077648
+solana_slot_interval_seconds{quantile="0.99"} 0.41908748
+solana_slot_interval_seconds_sum 1811.0787084130004
+solana_slot_interval_seconds_count 4397
+# HELP solana_transaction_latency_seconds Latency distribution from transaction broadcast to confirmation.
+# TYPE solana_transaction_latency_seconds summary
+solana_transaction_latency_seconds{quantile="0.5"} 0.318976568
+solana_transaction_latency_seconds{quantile="0.95"} 0.318976568
+solana_transaction_latency_seconds{quantile="0.99"} 0.318976568
+solana_transaction_latency_seconds_sum 0.318976568
+solana_transaction_latency_seconds_count 1

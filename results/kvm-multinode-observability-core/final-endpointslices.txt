@@ -1,0 +1,5 @@
+NAME                              ADDRESSTYPE   PORTS        ENDPOINTS        AGE
+solana-geyser-grpc-glkn8          IPv4          10000        192.168.36.198   34m
+solana-metrics-p8647              IPv4          9464         192.168.118.65   34m
+solana-rpc-rp9kf                  IPv4          8899         192.168.36.198   34m
+solana-validator-headless-xj4rb   IPv4          10000,8899   192.168.36.198   34m

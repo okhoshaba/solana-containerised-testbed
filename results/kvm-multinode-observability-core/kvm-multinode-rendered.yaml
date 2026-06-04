@@ -1,0 +1,388 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    app.kubernetes.io/component: observability-core
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: solana-observability
+---
+apiVersion: v1
+data:
+  config.k8s.yaml: |
+    rpc: http://solana-rpc:8899
+    grpc: solana-geyser-grpc:10000
+    interval: 5s
+    log_level: info
+
+    metrics:
+      prometheus_port: 9464
+
+    filters:
+      accounts:
+        - "6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb"
+
+    reconnect:
+      retries: -1
+      backoff: 2s
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/component: monitor
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: monitor-config
+  namespace: solana-observability
+---
+apiVersion: v1
+data:
+  ENABLE_GEYSER: "true"
+  GEYSER_CONFIG: /etc/solana/yellowstone-geyser.json
+  LEDGER_PATH: /var/lib/solana/ledger
+  RESET_LEDGER: "true"
+  RPC_PORT: "8899"
+  VALIDATOR_BIND_ADDRESS: 0.0.0.0
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: validator-config
+  namespace: solana-observability
+---
+apiVersion: v1
+data:
+  yellowstone-geyser.json: |
+    {
+      "libpath": "/usr/local/lib/libyellowstone_grpc_geyser.so",
+      "log": {
+        "level": "info"
+      },
+      "grpc": {
+        "address": "0.0.0.0:10000"
+      }
+    }
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: validator-geyser-config
+  namespace: solana-observability
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: geyser-grpc
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: solana-geyser-grpc
+  namespace: solana-observability
+spec:
+  ports:
+  - name: geyser-grpc
+    port: 10000
+    targetPort: geyser-grpc
+  selector:
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/name: solana-containerised-testbed
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: metrics
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: solana-metrics
+  namespace: solana-observability
+spec:
+  ports:
+  - name: metrics
+    port: 9464
+    targetPort: metrics
+  selector:
+    app.kubernetes.io/component: monitor
+    app.kubernetes.io/name: solana-containerised-testbed
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: rpc
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: solana-rpc
+  namespace: solana-observability
+spec:
+  ports:
+  - name: rpc
+    port: 8899
+    targetPort: rpc
+  selector:
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/name: solana-containerised-testbed
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: solana-validator-headless
+  namespace: solana-observability
+spec:
+  clusterIP: None
+  ports:
+  - name: rpc
+    port: 8899
+    targetPort: rpc
+  - name: geyser-grpc
+    port: 10000
+    targetPort: geyser-grpc
+  selector:
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/name: solana-containerised-testbed
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: validator-ledger-pvc
+  namespace: solana-observability
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: local-path
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: monitor
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: solana-monitor
+  namespace: solana-observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: monitor
+      app.kubernetes.io/name: solana-containerised-testbed
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: monitor
+        app.kubernetes.io/name: solana-containerised-testbed
+        app.kubernetes.io/part-of: solana-containerised-testbed
+        testbed.solana/stage: observability-core
+    spec:
+      containers:
+      - args:
+        - --config
+        - /app/configs/config.k8s.yaml
+        image: docker.io/khoshaba/solana-latency-monitor:v0.2.0
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 6
+          httpGet:
+            path: /metrics
+            port: metrics
+          periodSeconds: 10
+          timeoutSeconds: 3
+        name: monitor
+        ports:
+        - containerPort: 9464
+          name: metrics
+        readinessProbe:
+          failureThreshold: 6
+          httpGet:
+            path: /metrics
+            port: metrics
+          periodSeconds: 5
+          timeoutSeconds: 3
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        startupProbe:
+          failureThreshold: 30
+          httpGet:
+            path: /metrics
+            port: metrics
+          periodSeconds: 5
+          timeoutSeconds: 3
+        volumeMounts:
+        - mountPath: /app/configs/config.k8s.yaml
+          name: monitor-config
+          readOnly: true
+          subPath: config.k8s.yaml
+        - mountPath: /app/output
+          name: monitor-output
+      nodeSelector:
+        testbed-role: observability
+      volumes:
+      - configMap:
+          name: monitor-config
+        name: monitor-config
+      - emptyDir: {}
+        name: monitor-output
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: solana-validator
+  namespace: solana-observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: validator
+      app.kubernetes.io/name: solana-containerised-testbed
+  serviceName: solana-validator-headless
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: validator
+        app.kubernetes.io/name: solana-containerised-testbed
+        app.kubernetes.io/part-of: solana-containerised-testbed
+        testbed.solana/stage: observability-core
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: validator-config
+        image: docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null
+              2>&1
+          failureThreshold: 6
+          periodSeconds: 10
+          timeoutSeconds: 3
+        name: validator
+        ports:
+        - containerPort: 8899
+          name: rpc
+        - containerPort: 10000
+          name: geyser-grpc
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null
+              2>&1
+          failureThreshold: 6
+          periodSeconds: 5
+          timeoutSeconds: 3
+        resources:
+          limits:
+            cpu: "6"
+            memory: 12Gi
+          requests:
+            cpu: "2"
+            memory: 4Gi
+        startupProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null
+              2>&1
+          failureThreshold: 60
+          periodSeconds: 5
+          timeoutSeconds: 3
+        volumeMounts:
+        - mountPath: /var/lib/solana/ledger
+          name: validator-ledger
+        - mountPath: /etc/solana/yellowstone-geyser.json
+          name: validator-geyser-config
+          readOnly: true
+          subPath: yellowstone-geyser.json
+      nodeSelector:
+        testbed-role: validator
+      volumes:
+      - name: validator-ledger
+        persistentVolumeClaim:
+          claimName: validator-ledger-pvc
+      - configMap:
+          name: validator-geyser-config
+        name: validator-geyser-config
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app.kubernetes.io/component: wallet-init
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    testbed.solana/stage: observability-core
+  name: wallet-init
+  namespace: solana-observability
+spec:
+  activeDeadlineSeconds: 600
+  backoffLimit: 12
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: wallet-init
+        app.kubernetes.io/name: solana-containerised-testbed
+        app.kubernetes.io/part-of: solana-containerised-testbed
+        testbed.solana/stage: observability-core
+    spec:
+      containers:
+      - env:
+        - name: SOLANA_URL
+          value: http://solana-rpc:8899
+        - name: PAYER
+          value: 6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+        - name: AIRDROP_SOL
+          value: "10000"
+        image: docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge
+        imagePullPolicy: IfNotPresent
+        name: wallet-init
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+      restartPolicy: OnFailure

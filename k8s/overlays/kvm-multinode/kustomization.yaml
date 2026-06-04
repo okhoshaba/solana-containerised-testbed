@@ -3,3 +3,19 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+patches:
+  - path: patch-validator-placement.yaml
+    target:
+      kind: StatefulSet
+      name: solana-validator
+
+  - path: patch-monitor-placement.yaml
+    target:
+      kind: Deployment
+      name: solana-monitor
+
+  - path: patch-validator-ledger-pvc.yaml
+    target:
+      kind: PersistentVolumeClaim
+      name: validator-ledger-pvc
