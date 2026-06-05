@@ -1,6 +1,6 @@
 {
-  "title": "Solana Containerised Testbed v0.3.0: Kubernetes Observability Core"
-  "description": "A containerised local Solana testbed for dataset generation and latency/performance research, including a source-built no-AVX2 compatibility image for older x86_64 CPUs.",
+  "title": "Solana Containerised Testbed v0.4.0: Dedicated KVM Multi-Node Kubernetes Deployment",
+  "description": "Version 0.4.0 validates the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster. The release includes kubeadm-based Kubernetes deployment, containerd runtime, Calico CNI, local-path storage, Ansible automation, workload placement for validator and observability components, RPC validation, metrics validation, and wallet transfer telemetry evidence.",
   "creators": [
     {
       "name": "Khoshaba, Oleksandr",
@@ -10,13 +10,36 @@
   "license": "Apache-2.0",
   "keywords": [
     "Solana",
-    "testbed",
-    "Docker",
-    "Podman",
+    "Kubernetes",
+    "kubeadm",
+    "KVM",
+    "libvirt",
+    "Ansible",
+    "observability",
+    "Yellowstone",
+    "Geyser",
+    "no-AVX2",
     "containerisation",
     "dataset generation",
-    "no-AVX2"
+    "latency measurement"
   ],
   "upload_type": "software",
-  "version": "0.3.0"
+  "version": "0.4.0",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.20337744",
+      "relation": "isNewVersionOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.20340310",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/okhoshaba/solana-containerised-testbed",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
 }

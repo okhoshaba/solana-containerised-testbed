@@ -1,20 +1,27 @@
-cff-version: 1.3.0
-title: "Solana Containerised Testbed v0.3.0: Kubernetes Observability Core"
-version: "0.3.0"
-doi: "10.5281/zenodo.20337744"
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+title: "Solana Containerised Testbed v0.4.0: Dedicated KVM Multi-Node Kubernetes Deployment"
+version: "0.4.0"
 type: software
 authors:
   - family-names: "Khoshaba"
     given-names: "Oleksandr"
+    orcid: "https://orcid.org/0000-0001-5375-6280"
 repository-code: "https://github.com/okhoshaba/solana-containerised-testbed"
-abstract: "A containerised local Solana testbed for dataset generation and latency/performance research, including a source-built no-AVX2 compatibility image for older x86_64 CPUs."
+abstract: "A containerised and Kubernetes-oriented Solana local testbed for reproducible infrastructure, observability, dataset generation, and latency/performance research on legacy x86_64 hardware. Version 0.4.0 validates the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster with kubeadm, containerd, Calico, local-path storage, Ansible automation, workload placement, RPC validation, metrics validation, and wallet transfer telemetry."
 license: "Apache-2.0"
-date-released: "2026-05-22"
+date-released: "2026-06-04"
 keywords:
   - Solana
-  - testbed
-  - Docker
-  - Podman
-  - containerisation
+  - Kubernetes
+  - kubeadm
+  - KVM
+  - libvirt
+  - Ansible
+  - observability
+  - Yellowstone
+  - Geyser
   - no-AVX2
+  - containerisation
   - dataset generation
+  - latency measurement
