@@ -2,6 +2,15 @@
 
 ## DOI
 
+Technical report DOI:
+
+    10.5281/zenodo.20561100
+
+Technical report citation:
+
+    Khoshaba, O. (2026). Dedicated KVM Multi-Node Kubernetes Deployment of the Solana Kubernetes Observability Core (0.4.0). Zenodo. https://doi.org/10.5281/zenodo.20561100
+
+
 Software version DOI:
 
     10.5281/zenodo.20551170

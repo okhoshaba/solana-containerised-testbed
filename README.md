@@ -49,7 +49,7 @@ Technical reports and notes:
 - Containerising a Solana v1.18.25 Local Testbed for Reproducible Dataset Generation on Legacy x86_64 CPUs: https://doi.org/10.5281/zenodo.20098291
 - Yellowstone/Geyser Observability Extension for the Solana Containerised Testbed v0.2.0: https://doi.org/10.5281/zenodo.20167936
 - From Compose to Kubernetes: Validating the Observability Core of a No-AVX2 Solana Containerised Testbed: https://doi.org/10.5281/zenodo.20340310
-- Dedicated KVM Multi-Node Kubernetes Deployment technical report: pending
+- Dedicated KVM Multi-Node Kubernetes Deployment technical report: https://doi.org/10.5281/zenodo.20561100
 
 ## Repository structure
 

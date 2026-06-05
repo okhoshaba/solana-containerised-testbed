@@ -2,6 +2,13 @@
 
 This document records the deployment and validation of the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster.
 
+## Technical report DOI
+
+The technical report associated with this deployment stage is:
+
+    Khoshaba, O. (2026). Dedicated KVM Multi-Node Kubernetes Deployment of the Solana Kubernetes Observability Core (0.4.0). Zenodo. https://doi.org/10.5281/zenodo.20561100
+
+
 ## Software DOI
 
 The software release associated with this deployment stage is:
