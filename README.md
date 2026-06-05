@@ -1,209 +1,261 @@
 # Solana Containerised Testbed
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20095383.svg)](https://doi.org/10.5281/zenodo.20095383)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20095384.svg)](https://doi.org/10.5281/zenodo.20095384)
+[![Software concept DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20095383.svg)](https://doi.org/10.5281/zenodo.20095383)
 
-Containerised local Solana testbed for dataset generation and latency/performance research.
+Containerised and Kubernetes-oriented Solana local testbed for reproducible infrastructure, observability, dataset generation, and latency/performance research on legacy x86_64 hardware.
 
-This repository implements the first stage of moving a VM-based Solana local testbed into a reproducible Podman/Docker Compose architecture.
+The project started as a local containerised Solana v1.18.25 testbed and has evolved into a Kubernetes-based observability environment. The current validated stage extends the previous Minikube validation to a dedicated KVM-based multi-node Kubernetes cluster.
 
-## Publications
+## Current validated state
 
-Software artifact:
+The current development state is `v0.4.0` preparation.
 
-## Identifiers
+The latest validated deployment is:
 
-- Software concept DOI: 10.5281/zenodo.20095383
-- Software v0.1.x DOI: 10.5281/zenodo.20095384
-- Software v0.2.0 DOI: 10.5281/zenodo.20132465
-- Software v0.3.0 DOI: 10.5281/zenodo.20337744
-- Technical report DOI: 10.5281/zenodo.20098291
+## Dedicated KVM Multi-Node Kubernetes Deployment of the Solana Kubernetes Observability Core
 
+This stage validates the existing Kubernetes Observability Core on a dedicated kubeadm cluster running on KVM virtual machines.
+
+## Validated capabilities include:
+
+- Solana v1.18.25 local validator;
+- no-AVX2 compatibility image for older x86_64 CPUs;
+- Yellowstone/Geyser-enabled validator image;
+- containerised latency monitor;
+- Kubernetes validator StatefulSet;
+- validator ledger PersistentVolumeClaim;
+- wallet-init Job;
+- monitor Deployment;
+- RPC Service on port 8899;
+- Yellowstone/Geyser gRPC Service on port 10000;
+- metrics Service on port 9464;
+- wallet transfer validation through the Kubernetes RPC endpoint;
+- transaction latency telemetry exposed through the metrics endpoint.
+
+The v0.4.0 stage remains focused on infrastructure and observability. It does not introduce controlled load generation, dashboarding, MPC, reinforcement learning, MARL, or Agave.
+
+## Publications and identifiers
+
+Software identifiers:
+
+Software concept DOI: 10.5281/zenodo.20095383
+Software v0.1.x DOI: 10.5281/zenodo.20095384
+Software v0.2.0 DOI: 10.5281/zenodo.20132465
+Software v0.3.0 DOI: 10.5281/zenodo.20337744
+Software v0.4.0 DOI: pending
 
 Technical reports and notes:
-- Containerising a Solana v1.18.25 Local Testbed for Reproducible Dataset Generation on Legacy x86_64 CPUs: https://doi.org/10.5281/zenodo.20098291
-- Yellowstone/Geyser Observability Extension for the Solana Containerised Testbed v0.2.0: https://doi.org/10.5281/zenodo.20167936
 
-## Current status
+Containerising a Solana v1.18.25 Local Testbed for Reproducible Dataset Generation on Legacy x86_64 CPUs: https://doi.org/10.5281/zenodo.20098291
+Yellowstone/Geyser Observability Extension for the Solana Containerised Testbed v0.2.0: https://doi.org/10.5281/zenodo.20167936
+From Compose to Kubernetes: Validating the Observability Core of a No-AVX2 Solana Containerised Testbed: https://doi.org/10.5281/zenodo.20340310
+Dedicated KVM Multi-Node Kubernetes Deployment technical report: pending
+Repository structure
+.
+├── compose.yaml
+├── compose.release.yaml
+├── compose.yellowstone.release.yaml
+├── docs
+│   ├── kubernetes
+│   ├── kvm-multinode-observability-core
+│   ├── releases
+│   └── research-program
+├── infra
+│   └── ansible
+│       └── kvm-kubeadm
+├── k8s
+│   ├── base
+│   └── overlays
+│       ├── minikube
+│       └── kvm-multinode
+├── monitor
+├── results
+│   ├── kvm-kubeadm-cluster
+│   └── kvm-multinode-observability-core
+├── scripts
+├── validator
+└── wallet-init
+Container images
 
-Implemented:
+The current published images used by the Kubernetes Observability Core are:
 
-- local solana-test-validator container;
-- one-shot wallet-init container;
-- no-AVX2 source-built compatibility image for older x86_64 CPUs;
-- local RPC access on 127.0.0.1:8899;
-- local payer funding through solana airdrop.
-
-Not yet implemented:
-
-- Yellowstone/Geyser plugin runtime integration;
-- solana-latency-research monitoring container;
-- Docker Hub publication;
-- Zenodo DOI release.
-
-## Repository structure
-
-    .
-    ├── compose.yaml
-    ├── compose.release.yaml
-    ├── docs
-    │   ├── architecture.md
-    │   ├── compatibility.md
-    │   ├── docker-hub.md
-    │   ├── ports.md
-    │   ├── reproducibility.md
-    │   ├── test-matrix.md
-    │   ├── troubleshooting.md
-    │   └── zenodo.md
-    ├── monitor
-    ├── scripts
-    ├── solana-source
-    ├── validator
-    └── wallet-init
-
-## Local development images
-
-    localhost/solana-source-noavx2:v1.18.25
-    localhost/solana-localnet-validator:v1.18.25-noavx2
-    localhost/solana-wallet-init:v1.18.25-noavx2
+- docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+- docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge
+- docker.io/khoshaba/solana-latency-monitor:v0.2.0
 
 ## Why no-AVX2?
 
 Some older x86_64 CPUs do not support AVX2. On such machines, standard prebuilt Solana validator binaries may fail with:
 
-    Illegal instruction
-    Aborted
-    exit code 139
+- Illegal instruction
+- Aborted
+- exit code 139
 
-For this reason, this repository includes a source-built no-AVX2 compatibility workflow.
+For this reason, the project uses source-built no-AVX2 compatible Solana images for the target legacy hardware.
 
 See:
 
-    docs/compatibility.md
-    docs/troubleshooting.md
+docs/compatibility.md
+docs/troubleshooting.md
+Local Compose-based testbed
 
-## Start local development testbed
+Copy the environment file:
 
-Copy environment file:
+cp .env.example .env
 
-    cp .env.example .env
+## Start the validator and wallet bootstrap:
 
-Start validator and wallet bootstrap:
-
-    podman compose up validator wallet-init
+podman compose up validator wallet-init
 
 Check RPC health:
 
-    curl -s http://127.0.0.1:8899 \
-      -H "Content-Type: application/json" \
-      -d '{"jsonrpc":"2.0","id":1,"method":"getHealth"}'
+curl -s http://127.0.0.1:8899 \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"getHealth"}'
 
 Expected result:
 
-    {"jsonrpc":"2.0","result":"ok","id":1}
+{"jsonrpc":"2.0","result":"ok","id":1}
 
-Check payer balance:
+Stop the local testbed:
 
-    podman exec -it solana-localnet-validator \
-      solana --url http://127.0.0.1:8899 \
-      balance 6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+podman compose down
 
-Expected result:
+Remove the local ledger volume:
 
-    10000 SOL
+podman compose down -v
 
-## Stop testbed
+Yellowstone/Geyser release mode
 
-Run this from the repository root:
+Run the Yellowstone/Geyser-enabled release workflow:
 
-    podman compose down
-
-To remove the local ledger volume:
-
-    podman compose down -v
-
-## Release-mode usage
-
-After Docker Hub publication, users should run:
-
-    podman compose -f compose.release.yaml up
-
-See:
-
-    docs/docker-hub.md
-
-## Yellowstone/Geyser release mode
-
-Run the v0.2.0 release workflow:
-
-```bash
 podman compose -f compose.yellowstone.release.yaml up
 
 Check validator health:
+
 curl -s http://127.0.0.1:8899 \
   -H "Content-Type: application/json" \
   -d '{"jsonrpc":"2.0","id":1,"method":"getHealth"}'
 
 Check Prometheus metrics:
+
 curl -s http://127.0.0.1:9464/metrics | head -n 40
 
-Docker Hub images:
-docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
-docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge
-docker.io/khoshaba/solana-latency-monitor:v0.2.0
+Immutable image digests for the v0.2.0 Yellowstone/Geyser stage are listed in:
 
-Immutable digests are listed in:
 release/v0.2.0-image-digests.txt
+Kubernetes Observability Core
 
-## Kubernetes Observability Core
+## The portable Kubernetes Observability Core is stored under:
 
-The Kubernetes Observability Core migration has been validated on a CentOS/KVM/Minikube environment.
+k8s/base/
 
-The validated Kubernetes workload includes:
+It includes:
 
+- solana-observability namespace;
 - validator StatefulSet;
-- validator ledger PersistentVolumeClaim;
+- validator ledger PVC;
 - wallet-init Job;
 - monitor Deployment;
 - RPC Service on port 8899;
 - Yellowstone/Geyser gRPC Service on port 10000;
 - metrics Service on port 9464.
 
-A minimal wallet transfer validation test was completed successfully through the Kubernetes RPC endpoint.
+The Minikube validation overlay is stored under:
+
+k8s/overlays/minikube/
+
+The dedicated KVM multi-node overlay is stored under:
+
+k8s/overlays/kvm-multinode/
+
+The KVM multi-node overlay adds:
+
+- validator placement on testbed-role=validator;
+- monitor placement on testbed-role=observability;
+- explicit local-path storage for the validator ledger PVC.
+
+Dedicated KVM multi-node Kubernetes deployment
+
+The dedicated deployment uses a three-node kubeadm cluster:
+
+Node	Role	Label
+k8s-cp-01	Kubernetes control-plane	testbed-role=control-plane
+k8s-worker-01	Solana validator workload	testbed-role=validator
+k8s-worker-02	Observability workload	testbed-role=observability
+
+The validated infrastructure stack includes:
+
+- CentOS Stream 9 KVM/libvirt host;
+- Ubuntu Server 24.04 LTS guest VMs;
+- containerd runtime;
+- kubeadm bootstrap;
+- Calico CNI;
+- local-path-provisioner;
+- Ansible automation for preparation, bootstrap, validation, and reset.
+
+The Ansible automation is stored under:
+
+infra/ansible/kvm-kubeadm/
+
+The validation evidence is stored under:
+
+results/kvm-kubeadm-cluster/
+results/kvm-multinode-observability-core/
+
+Wallet transfer validation
+
+The wallet transfer validation script is:
+
+scripts/k8s-wallet-transfer-validation.sh
+
+It creates a Kubernetes Job that:
+
+- checks the Solana CLI version;
+- checks the Solana cluster version;
+- creates a temporary sender keypair;
+- airdrops 2 SOL to the sender;
+- transfers 0.5 SOL to the receiver;
+- confirms the transaction;
+- prints final sender and receiver balances.
+
+In the validated KVM multi-node deployment, the transfer completed successfully and the metrics endpoint reported a transaction latency sample.
+
+## Research roadmap
+
+The project follows a layered research methodology:
+
+observation -> controlled load -> model -> MPC -> single-agent RL -> MARL
+
+The current v0.4.0 stage belongs to:
+
+infrastructure -> observability
+
+The following remain out of scope for the current stage:
+
+- synthetic load generation;
+- dashboard development;
+- Prometheus/Grafana stack;
+- MPC;
+- single-agent RL;
+- MARL;
+- Agave.
+
+Agave remains a separate research branch.
 
 See:
 
-```text
-docs/kubernetes/observability-core-validation.md
-
-### Planned v0.3.0 release
-
-The planned `v0.3.0` release documents the Kubernetes Observability Core migration.
-
-Draft release notes are available at:
-
-```text
-docs/releases/v0.3.0-kubernetes-observability-core.md
+docs/research-program/
 
 ## Citation
 
 Citation metadata is provided in:
 
-    CITATION.cff
-    .zenodo.json
+CITATION.cff
+.zenodo.json
 
-The first citable software release is planned as:
-
-    v0.2.0
-    v0.1.0
+The software and technical report identifiers will be updated after the v0.4.0 Zenodo publication.
 
 ## License
 
 See LICENSE.
-
-## Kubernetes Observability Core preprint
-
-The Kubernetes Observability Core preprint associated with the `v0.3.0` software release is available on Zenodo:
-
-- Preprint DOI: 10.5281/zenodo.20340310
-- Citation: Khoshaba, O. (2026). From Compose to Kubernetes: Validating the Observability Core of a No-AVX2 Solana Containerised Testbed (0.3.0). Zenodo. https://doi.org/10.5281/zenodo.20340310
