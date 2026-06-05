@@ -1,0 +1,145 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\lstdefinestyle{code}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  columns=fullflexible,
+  frame=single,
+  backgroundcolor=\color{gray!5}
+}
+
+\lstset{style=code}
+
+\title{Dedicated KVM Multi-Node Kubernetes Deployment of the Solana Kubernetes Observability Core}
+\author{Oleksandr Khoshaba\\ORCID: 0000-0001-5375-6280}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This technical report documents the deployment and validation of the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster. The work extends the previous Minikube-based Kubernetes validation by deploying the same observability-oriented Solana workload on a kubeadm cluster composed of one control-plane virtual machine and two worker virtual machines. The validated deployment includes a Solana validator StatefulSet, validator ledger PersistentVolumeClaim, wallet-init Job, latency monitor Deployment, RPC Service, Yellowstone/Geyser gRPC Service, metrics Service, and wallet transfer validation Job. The stage remains focused on infrastructure and observability.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+The Solana Containerised Testbed is a reproducible local Solana environment for infrastructure, observability, dataset generation, and latency/performance research on legacy x86\_64 hardware.
+
+This report documents the deployment of the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster.
+
+\section{Project Evolution}
+
+The project evolved through several stages:
+
+\begin{enumerate}[leftmargin=*]
+  \item Compose-based local Solana testbed.
+  \item No-AVX2 compatibility workflow.
+  \item Yellowstone/Geyser observability extension.
+  \item Minikube-based Kubernetes validation.
+  \item Dedicated KVM multi-node Kubernetes deployment.
+\end{enumerate}
+
+\section{Host and Virtualisation Environment}
+
+The deployment target is a CentOS Stream 9 host with KVM/libvirt support. VM disks are placed under the host home filesystem rather than the smaller root filesystem.
+
+\section{Kubernetes Cluster Topology}
+
+The validated cluster uses one control-plane VM and two worker VMs.
+
+\begin{longtable}{llll}
+\toprule
+Node & Role & Label & Main purpose \\
+\midrule
+\texttt{k8s-cp-01} & control-plane & \texttt{testbed-role=control-plane} & Kubernetes API and control-plane services \\
+\texttt{k8s-worker-01} & worker & \texttt{testbed-role=validator} & Solana validator and ledger PVC \\
+\texttt{k8s-worker-02} & worker & \texttt{testbed-role=observability} & Monitor and auxiliary validation jobs \\
+\bottomrule
+\end{longtable}
+
+\section{Kubernetes Bootstrap and Ansible Automation}
+
+The infrastructure automation is stored under:
+
+\begin{lstlisting}
+infra/ansible/kvm-kubeadm/
+\end{lstlisting}
+
+The automation covers node preparation, containerd installation, Kubernetes tool installation, control-plane initialisation, worker join, CNI installation, node labelling, local-path storage installation, validation, and reset support.
+
+\section{Solana Kubernetes Observability Core}
+
+The portable Kubernetes manifests are stored under:
+
+\begin{lstlisting}
+k8s/base/
+\end{lstlisting}
+
+The deployed core includes the validator StatefulSet, validator ledger PVC, wallet-init Job, monitor Deployment, RPC Service, Yellowstone/Geyser gRPC Service, and metrics Service.
+
+\section{Kustomize Overlay for KVM Multi-Node Deployment}
+
+The dedicated KVM multi-node overlay is stored under:
+
+\begin{lstlisting}
+k8s/overlays/kvm-multinode/
+\end{lstlisting}
+
+The overlay adds validator placement on \texttt{testbed-role=validator}, monitor placement on \texttt{testbed-role=observability}, and explicit \texttt{local-path} storage for the validator ledger PVC.
+
+\section{Validation Evidence}
+
+The validation evidence is stored under:
+
+\begin{lstlisting}
+results/kvm-kubeadm-cluster/
+results/kvm-multinode-observability-core/
+\end{lstlisting}
+
+The RPC health check returned:
+
+\begin{lstlisting}
+{"jsonrpc":"2.0","result":"ok","id":1}
+\end{lstlisting}
+
+After wallet transfer validation, the metrics endpoint reported:
+
+\begin{lstlisting}
+solana_transaction_latency_seconds_count 1
+\end{lstlisting}
+
+\section{Scope and Limitations}
+
+This report documents infrastructure and observability validation only. Load generation, dashboarding, Prometheus/Grafana integration, MPC, reinforcement learning, MARL, and Agave are out of scope.
+
+\section{Conclusion}
+
+The Solana Kubernetes Observability Core has been successfully deployed and validated on a dedicated KVM-based multi-node Kubernetes cluster.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
