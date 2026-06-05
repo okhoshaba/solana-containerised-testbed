@@ -47,9 +47,9 @@ This technical report documents the deployment and validation of the Solana Kube
 
 \section{Introduction}
 
-The Solana Containerised Testbed is a reproducible local Solana environment for infrastructure, observability, dataset generation, and latency/performance research on legacy x86\_64 hardware.
+The Solana Containerised Testbed is a reproducible local Solana environment for infrastructure, observability, dataset generation, and latency/performance research on legacy x86\_64 hardware. Earlier stages established the containerised no-AVX2 Solana local testbed~\cite{khoshaba_containerising_solana_v010}, added the Yellowstone/Geyser observability extension~\cite{khoshaba_yellowstone_geyser_v020}, and validated the Kubernetes Observability Core in a Minikube environment~\cite{khoshaba_solana_testbed_v030,khoshaba_kubernetes_observability_preprint_v030}.
 
-This report documents the deployment of the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster.
+This report documents the next stage: the deployment of the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster. The implementation and evidence for this stage are released as Solana Containerised Testbed v0.4.0~\cite{khoshaba_solana_testbed_v040}.
 
 \section{Project Evolution}
 
@@ -108,6 +108,20 @@ infra/ansible/kvm-kubeadm/
 
 The automation covers node preparation, containerd installation, Kubernetes tool installation, control-plane initialisation, worker join, CNI installation, node labelling, local-path storage installation, validation, and reset support.
 
+\subsection{Main Ansible Entry Points}
+
+The node preparation entry point combines the bootstrap, operating-system preparation, container runtime installation, Kubernetes tooling installation, and readiness validation steps.
+
+\lstinputlisting{listings/site-prepare-nodes.yml}
+
+The cluster creation entry point initialises the control plane, installs Calico, joins the workers, applies node labels, and installs the local-path provisioner.
+
+\lstinputlisting{listings/site-create-cluster.yml}
+
+The reset playbook documents the teardown path. This is important because a reproducible infrastructure baseline must support both deployment and reset.
+
+\lstinputlisting{listings/reset-kubeadm-cluster.yml}
+
 \section{Solana Kubernetes Observability Core}
 
 The portable Kubernetes manifests are stored under:
@@ -128,26 +142,106 @@ k8s/overlays/kvm-multinode/
 
 The overlay adds validator placement on \texttt{testbed-role=validator}, monitor placement on \texttt{testbed-role=observability}, and explicit \texttt{local-path} storage for the validator ledger PVC.
 
+\section{Kustomize Overlay Listings}
+
+The dedicated KVM multi-node deployment is represented by the \texttt{k8s/overlays/kvm-multinode} overlay. The overlay keeps the base manifests portable and adds only the environment-specific scheduling and storage rules.
+
+\subsection{Overlay Kustomization}
+
+\lstinputlisting{listings/kvm-multinode-kustomization.yaml}
+
+\subsection{Validator Placement Patch}
+
+\lstinputlisting{listings/patch-validator-placement.yaml}
+
+\subsection{Monitor Placement Patch}
+
+\lstinputlisting{listings/patch-monitor-placement.yaml}
+
+\subsection{Validator Ledger PVC Patch}
+
+\lstinputlisting{listings/patch-validator-ledger-pvc.yaml}
+
 \section{Validation Evidence}
 
-The validation evidence is stored under:
+The validation evidence is stored in the repository under:
 
 \begin{lstlisting}
 results/kvm-kubeadm-cluster/
 results/kvm-multinode-observability-core/
 \end{lstlisting}
 
-The RPC health check returned:
+Selected evidence files were also copied into the report directory to make the technical report reproducible from the LaTeX source tree.
+
+\subsection{Kubernetes Node Readiness and Placement Labels}
+
+The cluster contains one control-plane node and two worker nodes. The worker nodes are labelled according to their intended testbed role.
 
 \begin{lstlisting}
-{"jsonrpc":"2.0","result":"ok","id":1}
+\lstinputlisting{evidence/nodes-labels.txt}
 \end{lstlisting}
 
-After wallet transfer validation, the metrics endpoint reported:
+The validator workload is assigned to the node labelled \texttt{testbed-role=validator}. The observability workload is assigned to the node labelled \texttt{testbed-role=observability}. This explicit placement is the main difference from the earlier Minikube validation, where all workloads were scheduled onto a single-node cluster.
+
+\subsection{StorageClass Validation}
+
+The validator ledger PVC uses the \texttt{local-path} StorageClass. This is appropriate for the first dedicated KVM baseline because the validator ledger is intentionally node-local and bound to the validator worker.
+
+\lstinputlisting{evidence/storageclass.txt}
+
+\subsection{Workload Placement}
+
+The deployed pods confirm the intended placement: the validator pod runs on \texttt{k8s-worker-01}, while the monitor runs on \texttt{k8s-worker-02}.
+
+\lstinputlisting{evidence/pods-wide.txt}
+
+\subsection{Services and EndpointSlices}
+
+The deployment exposes three internal services: RPC on port \texttt{8899}, Yellowstone/Geyser gRPC on port \texttt{10000}, and metrics on port \texttt{9464}.
+
+\lstinputlisting{evidence/services.txt}
+
+EndpointSlice evidence confirms that the services resolve to the expected pod endpoints.
+
+\lstinputlisting{evidence/endpointslices.txt}
+
+\subsection{RPC Health}
+
+The RPC health check returned \texttt{ok} through the Kubernetes Service endpoint.
+
+\lstinputlisting{evidence/rpc-getHealth-clean.json}
+
+\subsection{Wallet Transfer Validation}
+
+The wallet transfer validation was executed as a Kubernetes Job. It created a temporary sender wallet, requested an airdrop, transferred \texttt{0.5 SOL} to the receiver, confirmed the transaction, and printed the final balances.
+
+The validation Job name was recorded as follows:
+
+\lstinputlisting{evidence/wallet-transfer-validation-job-name.txt}
+
+The completed Kubernetes Job was recorded as follows:
+
+\lstinputlisting{evidence/wallet-transfer-validation-job.txt}
+
+The completed validation pod was recorded as follows:
+
+\lstinputlisting{evidence/wallet-transfer-validation-pod.txt}
+
+The validation confirmed that the sender balance changed from \texttt{2 SOL} to \texttt{1.499995 SOL}, while the receiver balance changed from \texttt{10000 SOL} to \texttt{10000.5 SOL}.
+
+\subsection{Metrics After Wallet Transfer}
+
+After the transfer validation, the metrics endpoint reported both slot interval observations and a transaction latency sample.
+
+\lstinputlisting{evidence/metrics-after-wallet-transfer.txt}
+
+The important line is:
 
 \begin{lstlisting}
 solana_transaction_latency_seconds_count 1
 \end{lstlisting}
+
+This confirms that the monitor observed at least one transaction latency sample in the dedicated KVM multi-node deployment.
 
 \section{Scope and Limitations}
 

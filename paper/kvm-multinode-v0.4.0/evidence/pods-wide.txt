@@ -1,0 +1,4 @@
+NAME                             READY   STATUS      RESTARTS   AGE   IP               NODE            NOMINATED NODE   READINESS GATES
+solana-monitor-f995c8b9d-95vmp   1/1     Running     0          10m   192.168.118.65   k8s-worker-02   <none>           <none>
+solana-validator-0               1/1     Running     0          10m   192.168.36.198   k8s-worker-01   <none>           <none>
+wallet-init-ngm2v                0/1     Completed   0          10m   192.168.118.66   k8s-worker-02   <none>           <none>

@@ -1,0 +1,80 @@
+---
+- name: Reset kubeadm cluster on all nodes
+  hosts: k8s
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Run kubeadm reset
+      ansible.builtin.command: kubeadm reset -f
+      changed_when: true
+      failed_when: false
+
+    - name: Stop kubelet
+      ansible.builtin.systemd:
+        name: kubelet
+        state: stopped
+      failed_when: false
+
+    - name: Stop containerd
+      ansible.builtin.systemd:
+        name: containerd
+        state: stopped
+      failed_when: false
+
+    - name: Remove Kubernetes directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/kubernetes
+        - /var/lib/kubelet
+        - /var/lib/etcd
+        - /var/lib/cni
+        - /etc/cni
+        - /opt/cni
+        - /root/.kube
+        - /home/khoshaba/.kube
+
+    - name: Remove Calico state
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /var/lib/calico
+        - /var/run/calico
+
+    - name: Remove CNI network interfaces if present
+      ansible.builtin.shell: |
+        set +e
+        ip link delete cni0 2>/dev/null || true
+        ip link delete flannel.1 2>/dev/null || true
+        ip link delete tunl0 2>/dev/null || true
+        ip link delete vxlan.calico 2>/dev/null || true
+      args:
+        executable: /bin/bash
+      changed_when: false
+
+    - name: Clean iptables Kubernetes and CNI rules
+      ansible.builtin.shell: |
+        set +e
+        iptables -F
+        iptables -t nat -F
+        iptables -t mangle -F
+        iptables -X
+      args:
+        executable: /bin/bash
+      changed_when: true
+
+    - name: Restart containerd
+      ansible.builtin.systemd:
+        name: containerd
+        state: started
+        enabled: true
+
+    - name: Enable kubelet but keep it stopped before kubeadm init or join
+      ansible.builtin.systemd:
+        name: kubelet
+        enabled: true
+        state: stopped
+      failed_when: false
