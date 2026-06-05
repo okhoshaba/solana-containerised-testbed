@@ -12,6 +12,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{tabularx}
 
 \hypersetup{
   colorlinks=true,
@@ -70,15 +71,32 @@ The deployment target is a CentOS Stream 9 host with KVM/libvirt support. VM dis
 
 The validated cluster uses one control-plane VM and two worker VMs.
 
-\begin{longtable}{llll}
+\begin{table}[htbp]
+\centering
+\small
+\caption{Dedicated KVM Kubernetes cluster topology.}
+\label{tab:kvm-cluster-topology}
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}p{0.18\textwidth}p{0.27\textwidth}X@{}}
 \toprule
 Node & Role & Label & Main purpose \\
 \midrule
-\texttt{k8s-cp-01} & control-plane & \texttt{testbed-role=control-plane} & Kubernetes API and control-plane services \\
-\texttt{k8s-worker-01} & worker & \texttt{testbed-role=validator} & Solana validator and ledger PVC \\
-\texttt{k8s-worker-02} & worker & \texttt{testbed-role=observability} & Monitor and auxiliary validation jobs \\
+\texttt{k8s-cp-01} &
+control-plane &
+\texttt{testbed-role= control-plane} &
+Kubernetes API and control-plane services. \\
+
+\texttt{k8s-worker-01} &
+worker &
+\texttt{testbed-role=validator} &
+Solana validator workload and validator ledger PVC. \\
+
+\texttt{k8s-worker-02} &
+worker &
+\texttt{testbed-role= observability} &
+Monitor workload and auxiliary validation jobs. \\
 \bottomrule
-\end{longtable}
+\end{tabularx}
+\end{table}
 
 \section{Kubernetes Bootstrap and Ansible Automation}
 
