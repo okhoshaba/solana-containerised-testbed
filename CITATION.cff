@@ -2,6 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata from this file."
 title: "Solana Containerised Testbed v0.4.0: Dedicated KVM Multi-Node Kubernetes Deployment"
 version: "0.4.0"
+doi: "10.5281/zenodo.20551170"
 type: software
 authors:
   - family-names: "Khoshaba"
@@ -10,7 +11,7 @@ authors:
 repository-code: "https://github.com/okhoshaba/solana-containerised-testbed"
 abstract: "A containerised and Kubernetes-oriented Solana local testbed for reproducible infrastructure, observability, dataset generation, and latency/performance research on legacy x86_64 hardware. Version 0.4.0 validates the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster with kubeadm, containerd, Calico, local-path storage, Ansible automation, workload placement, RPC validation, metrics validation, and wallet transfer telemetry."
 license: "Apache-2.0"
-date-released: "2026-06-04"
+date-released: "2026-06-05"
 keywords:
   - Solana
   - Kubernetes

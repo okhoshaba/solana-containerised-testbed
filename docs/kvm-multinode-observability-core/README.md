@@ -2,6 +2,15 @@
 
 This document records the deployment and validation of the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster.
 
+## Software DOI
+
+The software release associated with this deployment stage is:
+
+    Solana Containerised Testbed v0.4.0
+    DOI: 10.5281/zenodo.20551170
+    URL: https://doi.org/10.5281/zenodo.20551170
+
+
 ## Deployment target
 
 The deployment target was a kubeadm-based Kubernetes cluster running on KVM virtual machines:

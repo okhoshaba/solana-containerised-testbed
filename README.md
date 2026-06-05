@@ -42,7 +42,7 @@ Software identifiers:
 - Software v0.1.x DOI: `10.5281/zenodo.20095384`
 - Software v0.2.0 DOI: `10.5281/zenodo.20132465`
 - Software v0.3.0 DOI: `10.5281/zenodo.20337744`
-- Software v0.4.0 DOI: pending
+- Software v0.4.0 DOI: `10.5281/zenodo.20551170`
 
 Technical reports and notes:
 

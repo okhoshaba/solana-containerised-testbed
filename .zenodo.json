@@ -27,6 +27,11 @@
   "version": "0.4.0",
   "related_identifiers": [
     {
+      "identifier": "10.5281/zenodo.20551170",
+      "relation": "isIdenticalTo",
+      "scheme": "doi"
+    },
+    {
       "identifier": "10.5281/zenodo.20337744",
       "relation": "isNewVersionOf",
       "scheme": "doi"
@@ -41,5 +46,6 @@
       "relation": "isSupplementTo",
       "scheme": "url"
     }
-  ]
+  ],
+  "doi": "10.5281/zenodo.20551170"
 }

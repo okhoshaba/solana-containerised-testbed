@@ -1,5 +1,16 @@
 # Current State: v0.4.0
 
+## DOI
+
+Software version DOI:
+
+    10.5281/zenodo.20551170
+
+Zenodo URL:
+
+    https://doi.org/10.5281/zenodo.20551170
+
+
 ## Summary
 
 Version `v0.4.0` of the Solana Containerised Testbed validates the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster.
