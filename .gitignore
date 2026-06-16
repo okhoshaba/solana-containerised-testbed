@@ -362,3 +362,21 @@ data/article-workloads/
 *_txload-low_300s_*.tar.gz
 *_txload-medium_300s_*.tar.gz
 *_baseline_300s_*.tar.gz
+# Solana / Kubernetes private material
+payer.json
+*payer*.json
+*keypair*.json
+id_rsa
+id_ed25519
+*.pem
+*.key
+kubeconfig
+*kubeconfig*
+admin.conf
+secrets/
+.secrets/
+.env.*
+# Controlled load runtime outputs
+results/controlled-load-layer1/tmp/
+results/controlled-load-layer1/*.log
+results/controlled-load-layer1/*.tmp
