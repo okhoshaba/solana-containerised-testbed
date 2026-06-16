@@ -380,3 +380,5 @@ secrets/
 results/controlled-load-layer1/tmp/
 results/controlled-load-layer1/*.log
 results/controlled-load-layer1/*.tmp
+__pycache__/
+*.pyc
