@@ -386,3 +386,4 @@ __pycache__/
 # Keep the safe controlled-load example environment file.
 !.env.controlled-load.example
 results/controlled-load-layer1/smoke_*.csv
+results/controlled-load-layer1/k8s-smoke/
