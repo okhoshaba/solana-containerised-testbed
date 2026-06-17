@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solana-loadgen2
+  namespace: solana-observability
+  labels:
+    app.kubernetes.io/name: solana-loadgen2
+    app.kubernetes.io/component: controlled-load
+    app.kubernetes.io/part-of: solana-containerised-testbed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: solana-loadgen2
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: solana-loadgen2
+        app.kubernetes.io/component: controlled-load
+        app.kubernetes.io/part-of: solana-containerised-testbed
+    spec:
+      nodeSelector:
+        testbed-role: observability
+      containers:
+        - name: loadgen2
+          image: docker.io/khoshaba/solana-loadgen2:layer1
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-keypair"
+            - "/run/secrets/solana/payer.json"
+            - "-rpc"
+            - "http://solana-rpc:8899"
+            - "-listen"
+            - "0.0.0.0:7070"
+            - "-workers"
+            - "4"
+            - "-inflight"
+            - "32"
+            - "-lambda"
+            - "0"
+            - "-burst"
+            - "1"
+          ports:
+            - name: http-control
+              containerPort: 7070
+          volumeMounts:
+            - name: payer-keypair
+              mountPath: /run/secrets/solana
+              readOnly: true
+      volumes:
+        - name: payer-keypair
+          secret:
+            secretName: solana-payer-keypair
+            defaultMode: 0400
