@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: solana-loadgen2
+  namespace: solana-observability
+  labels:
+    app.kubernetes.io/name: solana-loadgen2
+    app.kubernetes.io/component: controlled-load
+    app.kubernetes.io/part-of: solana-containerised-testbed
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: solana-loadgen2
+  ports:
+    - name: http-control
+      port: 7070
+      targetPort: http-control

@@ -1,0 +1,43 @@
+services:
+  loadgen2:
+    image: localhost/solana-loadgen2:layer1
+    container_name: solana-loadgen2-layer1
+    command:
+      - "-keypair"
+      - "${KEYPAIR_PATH_CONTAINER:-/run/secrets/solana/payer.json}"
+      - "-rpc"
+      - "${RPC_URL:-http://host.containers.internal:8899}"
+      - "-listen"
+      - "${LOADGEN_LISTEN:-0.0.0.0:7070}"
+      - "-workers"
+      - "${WORKERS:-16}"
+      - "-inflight"
+      - "${INFLIGHT:-128}"
+      - "-lambda"
+      - "${LAMBDA_INITIAL:-1}"
+      - "-burst"
+      - "${BURST:-1}"
+    ports:
+      - "7070:7070"
+    volumes:
+      - "${KEYPAIR_PATH_HOST:-/dev/null}:${KEYPAIR_PATH_CONTAINER:-/run/secrets/solana/payer.json}:ro,Z"
+
+  tools:
+    image: localhost/solana-controlled-load-tools:layer1
+    container_name: solana-controlled-load-tools-layer1
+    working_dir: /work
+    environment:
+      LOADGEN_URL: "${LOADGEN_URL:-http://loadgen2:7070}"
+      PROM_URL: "${PROM_URL:-http://host.containers.internal:9464}"
+      RPC_URL: "${RPC_URL:-http://host.containers.internal:8899}"
+      RATE_KEY: "lambda"
+      LEVELS_STR: "${LEVELS_STR:-1 2 5 10}"
+      HOLD: "${HOLD:-30}"
+      SAMPLE: "${SAMPLE:-2}"
+      WARMUP: "${WARMUP:-0}"
+      EXPERIMENT_ID: "${EXPERIMENT_ID:-controlled-load-local-smoke}"
+    volumes:
+      - "./results/controlled-load-layer1:/work/results:Z"
+    depends_on:
+      - loadgen2
+    command: ["bash"]

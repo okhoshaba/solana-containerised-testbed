@@ -1,0 +1,69 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: controlled-load-knee-step
+  namespace: solana-observability
+  labels:
+    app.kubernetes.io/name: controlled-load-knee-step
+    app.kubernetes.io/component: controlled-load
+    app.kubernetes.io/part-of: solana-containerised-testbed
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: controlled-load-knee-step
+        app.kubernetes.io/component: controlled-load
+        app.kubernetes.io/part-of: solana-containerised-testbed
+    spec:
+      restartPolicy: Never
+      nodeSelector:
+        testbed-role: observability
+      containers:
+        - name: tools
+          image: docker.io/khoshaba/solana-controlled-load-tools:layer1
+          imagePullPolicy: IfNotPresent
+          workingDir: /work
+          env:
+            - name: LOADGEN_URL
+              value: "http://solana-loadgen2:7070"
+            - name: PROM_URL
+              value: "http://solana-metrics:9464"
+            - name: RATE_KEY
+              value: "lambda"
+            - name: LEVELS_STR
+              value: "1 2"
+            - name: HOLD
+              value: "10"
+            - name: SAMPLE
+              value: "2"
+            - name: WARMUP
+              value: "0"
+            - name: EXPERIMENT_ID
+              value: "controlled-load-k8s-smoke"
+          command:
+            - "bash"
+            - "-lc"
+            - |
+              set -euo pipefail
+              mkdir -p /work/results
+              OUT="/work/results/knee_step_$(date -u +%Y%m%dT%H%M%SZ).csv"
+              echo "[controlled-load] writing ${OUT}" >&2
+              python3 /work/scripts/collect_csv.py \
+                --loadgen-url "${LOADGEN_URL}" \
+                --prom-url "${PROM_URL}" \
+                --rate-key "${RATE_KEY}" \
+                --sample "${SAMPLE}" \
+                step \
+                --levels "${LEVELS_STR}" \
+                --hold "${HOLD}" \
+                --warmup "${WARMUP}" \
+                > "${OUT}"
+              echo "[controlled-load] completed ${OUT}" >&2
+          volumeMounts:
+            - name: results
+              mountPath: /work/results
+      volumes:
+        - name: results
+          persistentVolumeClaim:
+            claimName: controlled-load-results-pvc

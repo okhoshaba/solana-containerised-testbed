@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: controlled-load-results-pvc
+  namespace: solana-observability
+  labels:
+    app.kubernetes.io/name: controlled-load-results
+    app.kubernetes.io/component: controlled-load
+    app.kubernetes.io/part-of: solana-containerised-testbed
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi

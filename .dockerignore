@@ -1,0 +1,38 @@
+.git
+.gitignore
+.dockerignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local environment files
+.env
+.env.*
+secrets/
+.secrets/
+
+# Solana / Kubernetes private material
+payer.json
+*payer*.json
+*keypair*.json
+id_rsa
+id_ed25519
+*.pem
+*.key
+kubeconfig
+*kubeconfig*
+admin.conf
+
+# Runtime and generated outputs
+data/raw/*.csv
+results/
+*.log
+*.tmp
+
+# Editor / OS noise
+.DS_Store
+.vscode/
+.idea/

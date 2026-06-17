@@ -1,0 +1,32 @@
+# syntax=docker/dockerfile:1
+
+ARG GO_IMAGE=golang:1.25-bookworm
+ARG RUNTIME_IMAGE=debian:bookworm-slim
+
+FROM ${GO_IMAGE} AS builder
+
+WORKDIR /src
+
+COPY loadgen2/go.mod loadgen2/go.sum ./
+RUN go mod download
+
+COPY loadgen2/ ./
+RUN CGO_ENABLED=0 GOOS=linux go build -o /out/loadgen2 .
+
+FROM ${RUNTIME_IMAGE}
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates curl \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --system --create-home --home-dir /app --shell /usr/sbin/nologin appuser
+
+WORKDIR /app
+
+COPY --from=builder /out/loadgen2 /usr/local/bin/loadgen2
+
+USER appuser
+
+EXPOSE 7070
+
+ENTRYPOINT ["loadgen2"]
