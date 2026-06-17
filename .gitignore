@@ -382,3 +382,6 @@ results/controlled-load-layer1/*.log
 results/controlled-load-layer1/*.tmp
 __pycache__/
 *.pyc
+
+# Keep the safe controlled-load example environment file.
+!.env.controlled-load.example

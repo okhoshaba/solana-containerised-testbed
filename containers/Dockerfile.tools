@@ -10,16 +10,17 @@ RUN apt-get update \
 
 WORKDIR /work
 
-COPY scripts/collect_csv.py /usr/local/bin/collect_csv.py
-COPY scripts/knee_step_test.sh /usr/local/bin/knee_step_test.sh
-COPY scripts/knee_probe_adaptive.sh /usr/local/bin/knee_probe_adaptive.sh
-COPY dashboard/controlled_load_dashboard.py /work/dashboard/controlled_load_dashboard.py
+COPY scripts/ /work/scripts/
+COPY dashboard/ /work/dashboard/
 
 RUN chmod +x \
-    /usr/local/bin/collect_csv.py \
-    /usr/local/bin/knee_step_test.sh \
-    /usr/local/bin/knee_probe_adaptive.sh \
-    /work/dashboard/controlled_load_dashboard.py
+    /work/scripts/collect_csv.py \
+    /work/scripts/knee_step_test.sh \
+    /work/scripts/knee_probe_adaptive.sh \
+    /work/dashboard/controlled_load_dashboard.py \
+    && ln -sf /work/scripts/collect_csv.py /usr/local/bin/collect_csv.py \
+    && ln -sf /work/scripts/knee_step_test.sh /usr/local/bin/knee_step_test.sh \
+    && ln -sf /work/scripts/knee_probe_adaptive.sh /usr/local/bin/knee_probe_adaptive.sh
 
 ENV PYTHONUNBUFFERED=1
 
