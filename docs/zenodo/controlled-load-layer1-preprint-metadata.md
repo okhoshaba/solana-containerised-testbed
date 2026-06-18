@@ -64,7 +64,7 @@ This stage is intentionally limited to controlled load generation and observabil
 ### Previous baseline
 
 - Title: Solana Containerised Testbed v0.4.0
-- DOI: 10.5281/zenodo.20742321
+- DOI: to be added
 
 ### Repository
 
