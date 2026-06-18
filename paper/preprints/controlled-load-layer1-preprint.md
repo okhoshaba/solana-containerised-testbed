@@ -117,16 +117,18 @@ The objective of this candidate run was to validate controlled-load operation an
 
 ## 6. Candidate run results
 
-The candidate run used a four-level knee-step schedule with commanded load levels of `1`, `2`, `4`, and `8` transactions per second. Each level was held for 60 seconds, and the collector sampled every 5 seconds. The generated raw CSV is stored in the repository under `data/raw/controlled-load-layer1/20260617T223738Z/`, and the derived per-level summary is stored under `results/controlled-load-layer1/20260617T223738Z/`.
+The candidate run used a four-level knee-step schedule with commanded load levels of `1`, `2`, `4`, and `8` transactions per second. Each level was held for 60 seconds, and the collector sampled every 5 seconds. The generated raw CSV and derived summary are stored in the repository; the exact paths are listed in the Data and software availability section.
 
 The per-level summary is shown below.
 
-| Commanded rate `u_cmd` | Samples | Sent delta | Achieved mean rate `u_ach_mean` | Mean error rate `err_per_sec_mean` | Max inflight | Observed latency p99 samples |
+| u_cmd | n | sent_delta | u_ach_mean | err/s | max_inflight | p99_n |
 |---:|---:|---:|---:|---:|---:|---:|
 | 1.000 | 12 | 56  | 1.015567 | 0.000000 | 0 | 0 |
 | 2.000 | 12 | 109 | 1.895051 | 0.000000 | 0 | 0 |
 | 4.000 | 12 | 220 | 3.822429 | 0.000000 | 0 | 0 |
 | 8.000 | 12 | 441 | 7.664078 | 0.000000 | 0 | 0 |
+
+In the table, `u_cmd` is the commanded transaction rate, `n` is the number of samples at that level, `u_ach_mean` is the mean achieved rate, `err/s` is the mean error rate, and `p99_n` is the number of latency-p99 samples observed in the derived summary.
 
 The results show that the controlled-load layer was able to increase submitted transaction load according to the configured schedule. The achieved rates tracked the commanded levels closely enough for a first validation run: approximately `1.02`, `1.90`, `3.82`, and `7.66` transactions per second for commanded levels `1`, `2`, `4`, and `8`.
 
@@ -214,39 +216,26 @@ Future work will extend this layer through:
 
 ## Data and software availability
 
-Software release:
+Software release: Solana Containerised Testbed `v0.5.0-controlled-load-layer1`.
 
-```text
-Solana Containerised Testbed v0.5.0-controlled-load-layer1
-DOI: 10.5281/zenodo.20742321
-```
+Software DOI: `10.5281/zenodo.20742321`.
 
-Repository:
-
-```text
-https://github.com/okhoshaba/solana-containerised-testbed
-```
+Repository: `https://github.com/okhoshaba/solana-containerised-testbed`.
 
 Candidate raw CSV:
 
-```text
-data/raw/controlled-load-layer1/20260617T223738Z/knee_step_candidate_20260617T223738Z.csv
-```
+- directory: `data/raw/controlled-load-layer1/20260617T223738Z/`
+- file: `knee_step_candidate_20260617T223738Z.csv`
 
 Derived summary:
 
-```text
-results/controlled-load-layer1/20260617T223738Z/summary_by_level.csv
-```
+- directory: `results/controlled-load-layer1/20260617T223738Z/`
+- file: `summary_by_level.csv`
 
 ## Citation
 
 The associated software release is archived on Zenodo:
 
-```text
-Solana Containerised Testbed v0.5.0-controlled-load-layer1
-DOI: 10.5281/zenodo.20742321
-URL: https://doi.org/10.5281/zenodo.20742321
-```
+Oleksandr Khoshaba. Solana Containerised Testbed `v0.5.0-controlled-load-layer1`. Zenodo. DOI: `10.5281/zenodo.20742321`. URL: `https://doi.org/10.5281/zenodo.20742321`.
 
 A formal citation entry will be finalised after the preprint DOI is assigned.
