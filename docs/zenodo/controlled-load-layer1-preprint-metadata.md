@@ -59,12 +59,12 @@ This stage is intentionally limited to controlled load generation and observabil
 ### Software
 
 - Title: Solana Containerised Testbed v0.5.0-controlled-load-layer1
-- DOI: to be added after Zenodo Software publication
+- DOI: 10.5281/zenodo.20742321
 
 ### Previous baseline
 
 - Title: Solana Containerised Testbed v0.4.0
-- DOI: to be added
+- DOI: 10.5281/zenodo.20742321
 
 ### Repository
 
