@@ -387,3 +387,4 @@ __pycache__/
 !.env.controlled-load.example
 results/controlled-load-layer1/smoke_*.csv
 results/controlled-load-layer1/k8s-smoke/
+results/controlled-load-layer1/candidate/
