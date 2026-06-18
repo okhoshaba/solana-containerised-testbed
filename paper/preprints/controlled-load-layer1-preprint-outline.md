@@ -155,7 +155,7 @@ Software:
 
 - GitHub repository: https://github.com/okhoshaba/solana-containerised-testbed
 - Planned software release: v0.5.0-controlled-load-layer1
-- Zenodo DOI: to be added after publication.
+- Zenodo DOI: 10.5281/zenodo.20742321.
 
 Data:
 
