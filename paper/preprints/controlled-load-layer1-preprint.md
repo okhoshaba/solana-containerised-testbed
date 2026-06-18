@@ -4,9 +4,9 @@
 
 This preprint describes Controlled Load Layer 1 for the Solana Containerised Testbed. The work extends a validated KVM-based multi-node Kubernetes observability baseline with controlled, reproducible transaction load generation. The methodological sequence is infrastructure, observability, and then controlled load.
 
-The implementation introduces a containerised transaction load generator, CSV collection tooling, Kubernetes manifests, PVC-backed result persistence, and validation procedures for local and in-cluster controlled-load execution. The controlled-load layer is deployed into the existing `solana-observability` namespace and uses the in-cluster `solana-rpc:8899` and `solana-metrics:9464` Services.
+The implementation introduces a containerised transaction load generator, CSV collection tooling, Kubernetes manifests, PVC-backed result persistence, and validation procedures for local and in-cluster controlled-load execution. The controlled-load layer runs inside the existing `solana-observability` namespace and uses the in-cluster Solana RPC and metrics Services already validated by the observability baseline.
 
-A candidate Kubernetes run using load levels `1 2 4 8`, 60 seconds per level, and 5 second sampling demonstrates that the layer can control transaction submission through an in-cluster Service, collect telemetry, persist results, and return to a safe idle state. The post-run state reported `sent_total=1401`, `ok_total=1401`, `err_total=0`, and an empty `last_err`.
+A candidate Kubernetes run using commanded load levels of `1`, `2`, `4`, and `8` transactions per second demonstrates that the controlled-load layer can drive transaction submission through an in-cluster Service, collect telemetry, persist results, and return to a safe idle state. The achieved mean rates were `1.015567`, `1.895051`, `3.822429`, and `7.664078` transactions per second respectively, with zero observed error rate in the derived per-level summary. After the run, `loadgen2` reported `sent_total=1401`, `ok_total=1401`, `err_total=0`, `inflight=0`, and an empty `last_err`.
 
 This stage is intentionally limited to controlled load generation and observability integration. It does not introduce MPC, reinforcement learning, MARL, adaptive policy learning, or Agave migration. The result is a reproducible experimental layer for later research into saturation analysis, control strategies, and high-load behaviour of Solana-oriented Kubernetes testbeds.
 
@@ -117,41 +117,24 @@ The objective of this candidate run was to validate controlled-load operation an
 
 ## 6. Candidate run results
 
-The candidate run generated the raw CSV file:
-
-```text
-data/raw/controlled-load-layer1/20260617T223738Z/knee_step_candidate_20260617T223738Z.csv
-```
-
-A derived per-level summary was created at:
-
-```text
-results/controlled-load-layer1/20260617T223738Z/summary_by_level.csv
-```
-
-The post-run `loadgen2` state was:
-
-```text
-target_lambda: 0
-sent_total: 1401
-ok_total: 1401
-err_total: 0
-inflight: 0
-last_err: ""
-```
+The candidate run used a four-level knee-step schedule with commanded load levels of `1`, `2`, `4`, and `8` transactions per second. Each level was held for 60 seconds, and the collector sampled every 5 seconds. The generated raw CSV is stored in the repository under `data/raw/controlled-load-layer1/20260617T223738Z/`, and the derived per-level summary is stored under `results/controlled-load-layer1/20260617T223738Z/`.
 
 The per-level summary is shown below.
 
-| Target `lambda` | Samples | Sent delta | Mean achieved tx/s | Mean error rate | Max inflight | Latency p99 samples |
+| Commanded rate `u_cmd` | Samples | Sent delta | Achieved mean rate `u_ach_mean` | Mean error rate `err_per_sec_mean` | Max inflight | Observed latency p99 samples |
 |---:|---:|---:|---:|---:|---:|---:|
-| 1 | 12 | 56  | 1.015567 | 0.000000 | 0 | 0 |
-| 2 | 12 | 109 | 1.895051 | 0.000000 | 0 | 0 |
-| 4 | 12 | 220 | 3.822429 | 0.000000 | 0 | 0 |
-| 8 | 12 | 441 | 7.664078 | 0.000000 | 0 | 0 |
+| 1.000 | 12 | 56  | 1.015567 | 0.000000 | 0 | 0 |
+| 2.000 | 12 | 109 | 1.895051 | 0.000000 | 0 | 0 |
+| 4.000 | 12 | 220 | 3.822429 | 0.000000 | 0 | 0 |
+| 8.000 | 12 | 441 | 7.664078 | 0.000000 | 0 | 0 |
 
-The achieved throughput follows the configured target load levels closely. The run reports zero error rate at each level, and the final state confirms that all submitted transactions were accepted according to the load generator counters.
+The results show that the controlled-load layer was able to increase submitted transaction load according to the configured schedule. The achieved rates tracked the commanded levels closely enough for a first validation run: approximately `1.02`, `1.90`, `3.82`, and `7.66` transactions per second for commanded levels `1`, `2`, `4`, and `8`.
 
-The `lat_p99_observed_samples` value is zero in this candidate summary. This is treated as a limitation of the candidate run rather than as evidence of zero latency. The run validates the throughput-control and data-persistence path, while latency quantile collection requires further instrumentation review and repeated experiments.
+No errors were observed in the derived per-level summary. The post-run `loadgen2` state reported `sent_total=1401`, `ok_total=1401`, `err_total=0`, `inflight=0`, `target_lambda=0`, and an empty `last_err`. This confirms that the run completed, accepted transactions matched submitted transactions at the cumulative counter level, and the system returned to an idle state after the experiment.
+
+The current candidate run should be interpreted as validation evidence rather than a general benchmark. It validates the experimental path from Kubernetes Job to `loadgen2`, Solana RPC, metrics collection, PVC persistence, and repository-level evidence capture. It does not yet establish saturation limits, knee points, or production performance claims.
+
+A notable limitation of this candidate run is that the derived summary contains zero observed `lat_p99` samples. Therefore, the present result validates throughput control and error-free execution, but it should not be used to make latency-distribution claims. Later runs should improve latency quantile capture and include repeated trials for variance analysis.
 
 ## 7. Reproducibility
 
@@ -204,17 +187,17 @@ Generated smoke-test extraction directories are ignored by Git. Candidate run ev
 
 ## 8. Limitations
 
-This work has several limitations.
+This stage has several intentional limitations.
 
-First, the candidate run is a validation run rather than a final performance benchmark. It demonstrates that controlled transaction load can be generated and observed, but it does not establish general Solana performance claims.
+First, the candidate run is a validation run, not a full benchmark. It demonstrates that Controlled Load Layer 1 works end-to-end, but it does not claim to characterise the maximum capacity of the cluster or validator.
 
-Second, the current stage does not define a formal saturation model or validated knee-point detector. The knee-step execution path exists, but saturation analysis remains future work.
+Second, the current run does not provide validated saturation or knee-point detection. The load levels were deliberately modest (`1`, `2`, `4`, and `8` transactions per second) so that the first candidate run could validate the control and measurement path before higher-load experiments.
 
-Third, latency quantile data were not observed in the candidate run summary. This requires additional validation of metric naming, quantile availability, and collection timing.
+Third, the derived summary contains no observed `lat_p99` samples. The current evidence is therefore suitable for validating transaction submission, success counters, error counters, and experiment persistence, but not for drawing latency distribution conclusions.
 
-Fourth, the experiment depends on the specific KVM, Kubernetes, storage, network, and validator configuration used in the testbed.
+Fourth, the results depend on the specific KVM, Kubernetes, storage, network, validator, and container-image configuration used in this testbed. The experiment is reproducible as a testbed procedure, but the absolute numbers should not be generalised to other Solana deployments.
 
-Finally, this stage deliberately excludes MPC, reinforcement learning, MARL, adaptive policy learning, and Agave migration.
+Finally, this work does not introduce MPC, reinforcement learning, MARL, adaptive policy learning, or Agave migration. These remain later or separate research branches.
 
 ## 9. Future work
 
@@ -258,4 +241,12 @@ results/controlled-load-layer1/20260617T223738Z/summary_by_level.csv
 
 ## Citation
 
-Khoshaba, O. Solana Containerised Testbed v0.5.0-controlled-load-layer1. Zenodo. https://doi.org/10.5281/zenodo.20742321
+The associated software release is archived on Zenodo:
+
+```text
+Solana Containerised Testbed v0.5.0-controlled-load-layer1
+DOI: 10.5281/zenodo.20742321
+URL: https://doi.org/10.5281/zenodo.20742321
+```
+
+A formal citation entry will be finalised after the preprint DOI is assigned.
