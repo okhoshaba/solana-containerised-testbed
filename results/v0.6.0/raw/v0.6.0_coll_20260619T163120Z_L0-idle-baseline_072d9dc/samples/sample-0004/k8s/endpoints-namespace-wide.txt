@@ -1,0 +1,7 @@
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME                        ENDPOINTS                                  AGE
+solana-geyser-grpc          192.168.36.203:10000                       15d
+solana-loadgen2             192.168.118.75:7070                        2d3h
+solana-metrics              192.168.118.65:9464                        15d
+solana-rpc                  192.168.36.203:8899                        15d
+solana-validator-headless   192.168.36.203:8899,192.168.36.203:10000   15d
