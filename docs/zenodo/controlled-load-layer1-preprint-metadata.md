@@ -1,6 +1,6 @@
 # Zenodo Preprint Metadata Draft
 
-## Reserved DOI
+## Preprint DOI
 
 10.5281/zenodo.20755604
 
