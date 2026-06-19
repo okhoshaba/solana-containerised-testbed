@@ -1,0 +1,16 @@
+# command: hostnamectl
+# started_utc: 2026-06-19T15:13:19Z
+ Static hostname: coll.vntu.org
+       Icon name: computer-server
+         Chassis: server 🖳
+      Machine ID: 0c99cf6472844dc3a24d02742a77ab6a
+         Boot ID: 33899b60385d452689ac9760a6ec4c5e
+Operating System: CentOS Stream 9
+     CPE OS Name: cpe:/o:centos:centos:9
+          Kernel: Linux 5.14.0-706.el9.x86_64
+    Architecture: x86-64
+ Hardware Vendor: Dell Inc.
+  Hardware Model: PowerEdge R620
+Firmware Version: 2.0.19
+# finished_utc: 2026-06-19T15:13:19Z
+# exit_code: 0

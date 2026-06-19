@@ -1,0 +1,7 @@
+# command: git status --short
+# started_utc: 2026-06-19T15:13:19Z
+?? docs/experiments/
+?? results/v0.6.0/
+?? scripts/load/
+# finished_utc: 2026-06-19T15:13:19Z
+# exit_code: 0

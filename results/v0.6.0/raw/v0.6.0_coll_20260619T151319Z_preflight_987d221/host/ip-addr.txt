@@ -1,0 +1,16 @@
+# command: ip -br addr
+# started_utc: 2026-06-19T15:13:19Z
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eno1             UP             194.146.142.228/28 fe80::ca1f:66ff:fecf:6140/64 
+eno2             UP             192.168.222.2/24 fe80::ca1f:66ff:fecf:6141/64 
+eno3             UP             192.168.223.2/24 fe80::ca1f:66ff:fecf:6142/64 
+eno4             DOWN           
+enp65s0f0        UP             fe80::a236:9fff:fe50:d330/64 
+enp65s0f1        UP             fe80::a236:9fff:fe50:d332/64 
+virbr1           DOWN           192.168.39.1/24 
+virbr0           UP             192.168.122.1/24 
+vnet12           UNKNOWN        fe80::fc54:ff:fe45:d34f/64 
+vnet14           UNKNOWN        fe80::fc54:ff:fe41:27bc/64 
+vnet16           UNKNOWN        fe80::fc54:ff:fe93:5f5a/64 
+# finished_utc: 2026-06-19T15:13:19Z
+# exit_code: 0
