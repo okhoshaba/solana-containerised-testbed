@@ -1,5 +1,8 @@
 # Controlled Load Layer 1 for the Solana Kubernetes Observability Core
 
+Preprint DOI reserved on Zenodo: `10.5281/zenodo.20755604`.
+
+
 ## Abstract
 
 This preprint describes Controlled Load Layer 1 for the Solana Containerised Testbed. The work extends a validated KVM-based multi-node Kubernetes observability baseline with controlled, reproducible transaction load generation. The methodological sequence is infrastructure, observability, and then controlled load.
@@ -238,4 +241,6 @@ The associated software release is archived on Zenodo:
 
 Oleksandr Khoshaba. Solana Containerised Testbed `v0.5.0-controlled-load-layer1`. Zenodo. DOI: `10.5281/zenodo.20742321`. URL: `https://doi.org/10.5281/zenodo.20742321`.
 
-A formal citation entry will be finalised after the preprint DOI is assigned.
+Preprint DOI reserved on Zenodo: `10.5281/zenodo.20755604`. Preprint URL: `https://doi.org/10.5281/zenodo.20755604`.
+
+A formal citation entry will be finalised after publication.

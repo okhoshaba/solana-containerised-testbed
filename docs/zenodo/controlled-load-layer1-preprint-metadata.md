@@ -1,5 +1,12 @@
 # Zenodo Preprint Metadata Draft
 
+## Reserved DOI
+
+10.5281/zenodo.20755604
+
+https://doi.org/10.5281/zenodo.20755604
+
+
 ## Record type
 
 Preprint
