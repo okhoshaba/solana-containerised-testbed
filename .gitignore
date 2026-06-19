@@ -388,3 +388,4 @@ __pycache__/
 results/controlled-load-layer1/smoke_*.csv
 results/controlled-load-layer1/k8s-smoke/
 results/controlled-load-layer1/candidate/
+controlled-load-layer1-preprint.pdf
