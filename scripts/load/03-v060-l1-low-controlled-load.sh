@@ -5,8 +5,8 @@ ROOT_DIR="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT_DIR"
 
 STAGE="v0.6.0"
-LOAD_LEVEL="L1"
-RUN_KIND="low-controlled-load"
+LOAD_LEVEL="${LOAD_LEVEL:-L1}"
+RUN_KIND="${RUN_KIND:-low-controlled-load}"
 
 NAMESPACE="${NAMESPACE:-solana-observability}"
 
