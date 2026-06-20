@@ -1,0 +1,5 @@
+# command: git status --short
+# started_utc: 2026-06-19T17:53:48Z
+?? results/v0.6.0/raw/v0.6.0_coll_20260619T175348Z_L1-low-controlled-load_lambda-1_eb311d8/
+# finished_utc: 2026-06-19T17:53:48Z
+# exit_code: 0
