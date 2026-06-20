@@ -36,6 +36,15 @@ def safe_std(values: list[float]) -> str:
     return f"{pstdev(values):.6f}"
 
 
+def safe_max(values: list[float]) -> str:
+    if not values:
+        return ""
+    value = max(values)
+    if value.is_integer():
+        return str(int(value))
+    return f"{value:.6f}"
+
+
 def sort_key(item: tuple[tuple[str, str], list[dict[str, str]]]) -> tuple[int, float]:
     level, target = item[0]
 
@@ -47,6 +56,7 @@ def sort_key(item: tuple[tuple[str, str], list[dict[str, str]]]) -> tuple[int, f
         "S4": 4,
         "S5": 5,
         "S6": 6,
+        "S7": 7,
     }.get(level, 99)
 
     target_value = to_float(target)
@@ -82,6 +92,9 @@ def main() -> int:
         err_delta: list[float] = []
         achieved_tps: list[float] = []
         final_inflight: list[float] = []
+        sample_inflight_max: list[float] = []
+        sample_err_per_sec_max: list[float] = []
+        sample_sent_per_sec_max: list[float] = []
 
         valid_runs = 0
         clean_runs = 0
@@ -91,7 +104,10 @@ def main() -> int:
             ok = to_float(row.get("ok_delta", ""))
             err = to_float(row.get("err_delta", ""))
             duration = to_float(row.get("duration_seconds", ""))
-            inflight = to_float(row.get("final_inflight", ""))
+            fin = to_float(row.get("final_inflight", ""))
+            sim = to_float(row.get("sample_inflight_max", ""))
+            sem = to_float(row.get("sample_err_per_sec_max", ""))
+            ssm = to_float(row.get("sample_sent_per_sec_max", ""))
 
             if sent is not None:
                 sent_delta.append(sent)
@@ -99,8 +115,14 @@ def main() -> int:
                 ok_delta.append(ok)
             if err is not None:
                 err_delta.append(err)
-            if inflight is not None:
-                final_inflight.append(inflight)
+            if fin is not None:
+                final_inflight.append(fin)
+            if sim is not None:
+                sample_inflight_max.append(sim)
+            if sem is not None:
+                sample_err_per_sec_max.append(sem)
+            if ssm is not None:
+                sample_sent_per_sec_max.append(ssm)
 
             if ok is not None and duration and duration > 0:
                 achieved_tps.append(ok / duration)
@@ -128,6 +150,10 @@ def main() -> int:
             "ok_delta_std": safe_std(ok_delta),
             "err_delta_total": f"{sum(err_delta):.0f}" if err_delta else "",
             "final_inflight_mean": safe_mean(final_inflight),
+            "sample_inflight_max": safe_max(sample_inflight_max),
+            "sample_inflight_max_mean": safe_mean(sample_inflight_max),
+            "sample_err_per_sec_max": safe_max(sample_err_per_sec_max),
+            "sample_sent_per_sec_max": safe_max(sample_sent_per_sec_max),
             "achieved_tps_mean": safe_mean(achieved_tps),
             "achieved_tps_std": safe_std(achieved_tps),
         })
@@ -146,6 +172,10 @@ def main() -> int:
         "ok_delta_std",
         "err_delta_total",
         "final_inflight_mean",
+        "sample_inflight_max",
+        "sample_inflight_max_mean",
+        "sample_err_per_sec_max",
+        "sample_sent_per_sec_max",
         "achieved_tps_mean",
         "achieved_tps_std",
     ]
