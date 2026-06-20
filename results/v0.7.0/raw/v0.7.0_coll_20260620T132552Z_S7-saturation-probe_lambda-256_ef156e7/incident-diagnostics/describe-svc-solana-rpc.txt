@@ -1,0 +1,19 @@
+Name:                     solana-rpc
+Namespace:                solana-observability
+Labels:                   app.kubernetes.io/component=rpc
+                          app.kubernetes.io/name=solana-containerised-testbed
+                          app.kubernetes.io/part-of=solana-containerised-testbed
+                          testbed.solana/stage=observability-core
+Annotations:              <none>
+Selector:                 app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.96.72.163
+IPs:                      10.96.72.163
+Port:                     rpc  8899/TCP
+TargetPort:               rpc/TCP
+Endpoints:                192.168.36.204:8899
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>

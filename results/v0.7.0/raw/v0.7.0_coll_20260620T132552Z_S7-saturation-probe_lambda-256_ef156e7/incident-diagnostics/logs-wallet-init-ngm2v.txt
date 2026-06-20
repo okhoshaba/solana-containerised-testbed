@@ -1,0 +1,19 @@
+Configuring Solana CLI URL: http://solana-rpc:8899
+Config File: /root/.config/solana/cli/config.yml
+RPC URL: http://solana-rpc:8899 
+WebSocket URL: ws://solana-rpc:8900/ (computed)
+Keypair Path: /root/.config/solana/id.json 
+Commitment: confirmed 
+Waiting for validator RPC to become available...
+Validator RPC is ready.
+Payer address: 6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+Balance before airdrop:
+0 SOL
+Requesting airdrop: 10000 SOL
+Requesting airdrop of 10000 SOL
+
+Signature: 5UwzSjXXKjmQ9dbqaNnRDT79Mrxd1yEdKjDnXTWhV3M3tJ92PJzSVWnwZqngNCUMyTZGrKoDW76pL26Ftg47tbN4
+
+10000 SOL
+Balance after airdrop:
+10000 SOL

@@ -1,0 +1,12 @@
+timestamp_utc,elapsed_seconds,sample_index,target_lambda,sent_total,ok_total,err_total,inflight,inflight_max,sent_per_sec,err_per_sec,last_err
+2026-06-20T13:26:03Z,0,0,256,140373,140373,0,0,32,256,0,
+2026-06-20T13:26:09Z,6,1,256,141907,141907,0,0,32,256,0,
+2026-06-20T13:26:15Z,12,2,256,143369,143320,49,0,32,256,0,"SendTransaction: rpc call sendTransaction() on http://solana-rpc:8899: Post ""http://solana-rpc:8899"": dial tcp 10.96.72.163:8899: connect: connection refused"
+2026-06-20T13:26:21Z,18,3,256,143407,143320,83,4,32,0,0,"GetLatestBlockhash: rpc call getLatestBlockhash() on http://solana-rpc:8899: Post ""http://solana-rpc:8899"": dial tcp 10.96.72.163:8899: connect: connection refused"
+2026-06-20T13:26:27Z,24,4,256,143407,143320,83,4,32,0,0,"GetLatestBlockhash: rpc call getLatestBlockhash() on http://solana-rpc:8899: Post ""http://solana-rpc:8899"": dial tcp 10.96.72.163:8899: connect: connection refused"
+2026-06-20T13:26:33Z,30,5,256,143407,143320,83,4,32,0,0,"GetLatestBlockhash: rpc call getLatestBlockhash() on http://solana-rpc:8899: Post ""http://solana-rpc:8899"": dial tcp 10.96.72.163:8899: connect: connection refused"
+2026-06-20T13:26:39Z,36,6,256,143407,143320,83,4,32,0,0,"GetLatestBlockhash: rpc call getLatestBlockhash() on http://solana-rpc:8899: Post ""http://solana-rpc:8899"": dial tcp 10.96.72.163:8899: connect: connection refused"
+2026-06-20T13:26:45Z,42,7,256,143407,143320,83,4,32,0,0,"GetLatestBlockhash: rpc call getLatestBlockhash() on http://solana-rpc:8899: Post ""http://solana-rpc:8899"": dial tcp 10.96.72.163:8899: connect: connection refused"
+2026-06-20T13:26:51Z,48,8,256,143407,143320,83,4,32,0,0,"GetLatestBlockhash: rpc call getLatestBlockhash() on http://solana-rpc:8899: Post ""http://solana-rpc:8899"": dial tcp 10.96.72.163:8899: connect: connection refused"
+2026-06-20T13:26:57Z,54,9,256,143407,143320,83,4,32,0,0,"GetLatestBlockhash: rpc call getLatestBlockhash() on http://solana-rpc:8899: Post ""http://solana-rpc:8899"": dial tcp 10.96.72.163:8899: connect: connection refused"
+2026-06-20T13:27:03Z,60,10,256,143407,143320,83,4,32,0,0,"GetLatestBlockhash: rpc call getLatestBlockhash() on http://solana-rpc:8899: Post ""http://solana-rpc:8899"": dial tcp 10.96.72.163:8899: connect: connection refused"

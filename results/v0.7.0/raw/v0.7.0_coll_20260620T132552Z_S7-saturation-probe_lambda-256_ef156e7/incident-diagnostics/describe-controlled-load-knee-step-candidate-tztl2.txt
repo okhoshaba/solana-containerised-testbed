@@ -1,0 +1,89 @@
+Name:             controlled-load-knee-step-candidate-tztl2
+Namespace:        solana-observability
+Priority:         0
+Service Account:  default
+Node:             k8s-worker-02/192.168.122.103
+Start Time:       Thu, 18 Jun 2026 01:37:37 +0300
+Labels:           app.kubernetes.io/component=controlled-load
+                  app.kubernetes.io/name=controlled-load-knee-step-candidate
+                  app.kubernetes.io/part-of=solana-containerised-testbed
+                  batch.kubernetes.io/controller-uid=31f7057d-25d3-4de8-a00e-90c2b6e40aaf
+                  batch.kubernetes.io/job-name=controlled-load-knee-step-candidate
+                  controller-uid=31f7057d-25d3-4de8-a00e-90c2b6e40aaf
+                  job-name=controlled-load-knee-step-candidate
+Annotations:      cni.projectcalico.org/containerID: e95cb538c2f5ca7af0a0cfc124cabc483465bdcd7dc18cb13144fd251f8e8ce6
+                  cni.projectcalico.org/podIP: 
+                  cni.projectcalico.org/podIPs: 
+Status:           Succeeded
+IP:               192.168.118.81
+IPs:
+  IP:           192.168.118.81
+Controlled By:  Job/controlled-load-knee-step-candidate
+Containers:
+  tools:
+    Container ID:  containerd://5ca8a9942d34ccb8e68ecf0fce34c20e420c7087c0ee460b4bff7edc6ca96574
+    Image:         docker.io/khoshaba/solana-controlled-load-tools:layer1
+    Image ID:      docker.io/khoshaba/solana-controlled-load-tools@sha256:816088d04078755072d95d4c5430a5c0cba6199a0308e6915dad5ffb1e990e5d
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      bash
+      -lc
+      set -euo pipefail
+      mkdir -p /work/results
+      OUT="/work/results/knee_step_candidate_$(date -u +%Y%m%dT%H%M%SZ).csv"
+      echo "[controlled-load] writing ${OUT}" >&2
+      python3 /work/scripts/collect_csv.py \
+        --loadgen-url "${LOADGEN_URL}" \
+        --prom-url "${PROM_URL}" \
+        --rate-key "${RATE_KEY}" \
+        --sample "${SAMPLE}" \
+        step \
+        --levels "${LEVELS_STR}" \
+        --hold "${HOLD}" \
+        --warmup "${WARMUP}" \
+        > "${OUT}"
+      echo "[controlled-load] completed ${OUT}" >&2
+      
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 18 Jun 2026 01:37:38 +0300
+      Finished:     Thu, 18 Jun 2026 01:41:44 +0300
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      LOADGEN_URL:    http://solana-loadgen2:7070
+      PROM_URL:       http://solana-metrics:9464
+      RATE_KEY:       lambda
+      LEVELS_STR:     1 2 4 8
+      HOLD:           60
+      SAMPLE:         5
+      WARMUP:         0
+      EXPERIMENT_ID:  controlled-load-layer1-candidate
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tg4zm (ro)
+      /work/results from results (rw)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  results:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  controlled-load-results-pvc
+    ReadOnly:   false
+  kube-api-access-tg4zm:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              testbed-role=observability
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

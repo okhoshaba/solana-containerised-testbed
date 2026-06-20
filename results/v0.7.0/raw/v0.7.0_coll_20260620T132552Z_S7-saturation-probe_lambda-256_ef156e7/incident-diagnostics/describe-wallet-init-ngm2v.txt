@@ -1,0 +1,66 @@
+Name:             wallet-init-ngm2v
+Namespace:        solana-observability
+Priority:         0
+Service Account:  default
+Node:             k8s-worker-02/192.168.122.103
+Start Time:       Thu, 04 Jun 2026 06:22:35 +0300
+Labels:           app.kubernetes.io/component=wallet-init
+                  app.kubernetes.io/name=solana-containerised-testbed
+                  app.kubernetes.io/part-of=solana-containerised-testbed
+                  batch.kubernetes.io/controller-uid=b763c5d9-364b-4e45-827a-007c1fb0fed8
+                  batch.kubernetes.io/job-name=wallet-init
+                  controller-uid=b763c5d9-364b-4e45-827a-007c1fb0fed8
+                  job-name=wallet-init
+                  testbed.solana/stage=observability-core
+Annotations:      cni.projectcalico.org/containerID: becd48b65af2b04998d11790970c75ad6d284145c17c85e1faae5953d7838b5b
+                  cni.projectcalico.org/podIP: 
+                  cni.projectcalico.org/podIPs: 
+Status:           Succeeded
+IP:               
+IPs:              <none>
+Controlled By:    Job/wallet-init
+Containers:
+  wallet-init:
+    Container ID:   containerd://4354ed1b688ccf03242920bd875fdf1e308840a8edd5c71f7304a663dd43b72a
+    Image:          docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge
+    Image ID:       docker.io/khoshaba/solana-wallet-init@sha256:8b62658c8dfee0d562711089190702e2bf9e2edaf8c79dcf388e4a451f002e58
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 04 Jun 2026 06:23:20 +0300
+      Finished:     Thu, 04 Jun 2026 06:23:23 +0300
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:     100m
+      memory:  128Mi
+    Environment:
+      SOLANA_URL:   http://solana-rpc:8899
+      PAYER:        6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+      AIRDROP_SOL:  10000
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-xfmjj (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-xfmjj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

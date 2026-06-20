@@ -1,0 +1,30 @@
+[INFO] Checking Solana CLI
+solana-cli 1.18.25 (src:00000000; feat:3241752014, client:SolanaLabs)
+solana-keygen 1.18.25 (src:00000000; feat:3241752014, client:SolanaLabs)
+[INFO] Checking Solana cluster version
+1.18.25
+[INFO] Creating temporary sender keypair
+Wrote new keypair to /tmp/sender-validation.json
+[INFO] Sender:   F4rvDc2k5SkcutEoEbwuyKaBodVJU4dfnD9LDbsu3sAh
+[INFO] Receiver: 6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+[INFO] Airdropping 2 SOL to sender
+Requesting airdrop of 2 SOL
+
+Signature: GYLgh5yGobAtRNCht58E6KiTeG21AZ4QayV5QCSYjvCLyARiDwXXWkCJhr98UGuNdAA2HDxK7yJWr1BVNvM6Ang
+
+2 SOL
+[INFO] Sender balance before transfer
+2 SOL
+[INFO] Receiver balance before transfer
+10000 SOL
+[INFO] Sending 0.5 SOL from sender to receiver
+
+Signature: 4yRE143pTSQWvXr1LEbXsNs876hn9R3FQ76CW7PEsosWBnxvCuBG76Bn91y4LckbE4faswX5ooa2UwC2xZYtzQSq
+[INFO] Transaction signature: 4yRE143pTSQWvXr1LEbXsNs876hn9R3FQ76CW7PEsosWBnxvCuBG76Bn91y4LckbE4faswX5ooa2UwC2xZYtzQSq
+[INFO] Confirming transaction
+Confirmed
+[INFO] Sender balance after transfer
+1.499995 SOL
+[INFO] Receiver balance after transfer
+10000.5 SOL
+[INFO] Wallet transfer validation completed successfully

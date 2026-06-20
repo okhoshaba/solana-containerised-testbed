@@ -1,0 +1,74 @@
+Name:             solana-monitor-f995c8b9d-95vmp
+Namespace:        solana-observability
+Priority:         0
+Service Account:  default
+Node:             k8s-worker-02/192.168.122.103
+Start Time:       Thu, 04 Jun 2026 06:22:35 +0300
+Labels:           app.kubernetes.io/component=monitor
+                  app.kubernetes.io/name=solana-containerised-testbed
+                  app.kubernetes.io/part-of=solana-containerised-testbed
+                  pod-template-hash=f995c8b9d
+                  testbed.solana/stage=observability-core
+Annotations:      cni.projectcalico.org/containerID: 2815dd93f4d33ef70b42e09029912757e2ceb37b488553c811b0d92df42da30c
+                  cni.projectcalico.org/podIP: 192.168.118.65/32
+                  cni.projectcalico.org/podIPs: 192.168.118.65/32
+Status:           Running
+IP:               192.168.118.65
+IPs:
+  IP:           192.168.118.65
+Controlled By:  ReplicaSet/solana-monitor-f995c8b9d
+Containers:
+  monitor:
+    Container ID:  containerd://6f1e7ece5a846869ba9bba27cff8071e16dbf8935e1d6bffa7127d815a96dd68
+    Image:         docker.io/khoshaba/solana-latency-monitor:v0.2.0
+    Image ID:      docker.io/khoshaba/solana-latency-monitor@sha256:264cf2ff6e791226fe896f167355e8182425f3d67441f35037e1a461f7f4c1e3
+    Port:          9464/TCP (metrics)
+    Host Port:     0/TCP (metrics)
+    Args:
+      --config
+      /app/configs/config.k8s.yaml
+    State:          Running
+      Started:      Thu, 04 Jun 2026 06:22:44 +0300
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:        100m
+      memory:     128Mi
+    Liveness:     http-get http://:metrics/metrics delay=0s timeout=3s period=10s #success=1 #failure=6
+    Readiness:    http-get http://:metrics/metrics delay=0s timeout=3s period=5s #success=1 #failure=6
+    Startup:      http-get http://:metrics/metrics delay=0s timeout=3s period=5s #success=1 #failure=30
+    Environment:  <none>
+    Mounts:
+      /app/configs/config.k8s.yaml from monitor-config (ro,path="config.k8s.yaml")
+      /app/output from monitor-output (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-h966h (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  monitor-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      monitor-config
+    Optional:  false
+  monitor-output:
+    Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:     
+    SizeLimit:  <unset>
+  kube-api-access-h966h:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              testbed-role=observability
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

@@ -1,0 +1,6 @@
+NAME                        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)              AGE   SELECTOR
+solana-geyser-grpc          ClusterIP   10.96.199.115    <none>        10000/TCP            16d   app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+solana-loadgen2             ClusterIP   10.110.23.96     <none>        7070/TCP             3d    app.kubernetes.io/name=solana-loadgen2
+solana-metrics              ClusterIP   10.110.176.165   <none>        9464/TCP             16d   app.kubernetes.io/component=monitor,app.kubernetes.io/name=solana-containerised-testbed
+solana-rpc                  ClusterIP   10.96.72.163     <none>        8899/TCP             16d   app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+solana-validator-headless   ClusterIP   None             <none>        8899/TCP,10000/TCP   16d   app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
