@@ -1,0 +1,7 @@
+NAME                                                  READY   STATUS      RESTARTS   AGE     IP               NODE            NOMINATED NODE   READINESS GATES
+controlled-load-knee-step-candidate-tztl2             0/1     Completed   0          2d12h   192.168.118.81   k8s-worker-02   <none>           <none>
+solana-loadgen2-5ccbc58fbb-wtr78                      1/1     Running     0          2d22h   192.168.118.75   k8s-worker-02   <none>           <none>
+solana-monitor-f995c8b9d-95vmp                        1/1     Running     0          16d     192.168.118.65   k8s-worker-02   <none>           <none>
+solana-validator-0                                    1/1     Running     0          3d5h    192.168.36.203   k8s-worker-01   <none>           <none>
+wallet-init-ngm2v                                     0/1     Completed   0          16d     <none>           k8s-worker-02   <none>           <none>
+wallet-transfer-validation-kvm-20260604035307-vcv2b   0/1     Completed   0          16d     <none>           k8s-worker-02   <none>           <none>
