@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: Node
+metadata:
+  annotations:
+    node.alpha.kubernetes.io/ttl: "0"
+    projectcalico.org/IPv4Address: 192.168.122.102/24
+    projectcalico.org/IPv4IPIPTunnelAddr: 192.168.36.192
+    projectcalico.org/Interfaces: '[{"name":"enp1s0","addresses":["192.168.122.102"]}]'
+    volumes.kubernetes.io/controller-managed-attach-detach: "true"
+  creationTimestamp: "2026-06-03T04:01:40Z"
+  labels:
+    beta.kubernetes.io/arch: amd64
+    beta.kubernetes.io/os: linux
+    kubernetes.io/arch: amd64
+    kubernetes.io/hostname: k8s-worker-01
+    kubernetes.io/os: linux
+    testbed-role: validator
+  name: k8s-worker-01
+  resourceVersion: "2489310"
+  uid: 735557e8-ffd3-41e9-9a05-80a553bc5d20
+spec:
+  podCIDR: 192.168.1.0/24
+  podCIDRs:
+  - 192.168.1.0/24
+status:
+  addresses:
+  - address: 192.168.122.102
+    type: InternalIP
+  - address: k8s-worker-01
+    type: Hostname
+  allocatable:
+    cpu: "8"
+    ephemeral-storage: "46314425473"
+    hugepages-1Gi: "0"
+    hugepages-2Mi: "0"
+    memory: 16273232Ki
+    pods: "110"
+  capacity:
+    cpu: "8"
+    ephemeral-storage: 50254368Ki
+    hugepages-1Gi: "0"
+    hugepages-2Mi: "0"
+    memory: 16375632Ki
+    pods: "110"
+  conditions:
+  - lastHeartbeatTime: "2026-06-03T04:02:28Z"
+    lastTransitionTime: "2026-06-03T04:02:28Z"
+    message: Calico is running on this node
+    reason: CalicoIsUp
+    status: "False"
+    type: NetworkUnavailable
+  - lastHeartbeatTime: "2026-06-21T04:08:42Z"
+    lastTransitionTime: "2026-06-03T04:01:40Z"
+    message: kubelet has sufficient memory available
+    reason: KubeletHasSufficientMemory
+    status: "False"
+    type: MemoryPressure
+  - lastHeartbeatTime: "2026-06-21T04:08:42Z"
+    lastTransitionTime: "2026-06-20T13:30:29Z"
+    message: kubelet has no disk pressure
+    reason: KubeletHasNoDiskPressure
+    status: "False"
+    type: DiskPressure
+  - lastHeartbeatTime: "2026-06-21T04:08:42Z"
+    lastTransitionTime: "2026-06-03T04:01:40Z"
+    message: kubelet has sufficient PID available
+    reason: KubeletHasSufficientPID
+    status: "False"
+    type: PIDPressure
+  - lastHeartbeatTime: "2026-06-21T04:08:42Z"
+    lastTransitionTime: "2026-06-03T04:02:04Z"
+    message: kubelet is posting ready status
+    reason: KubeletReady
+    status: "True"
+    type: Ready
+  daemonEndpoints:
+    kubeletEndpoint:
+      Port: 10250
+  declaredFeatures:
+  - ExtendWebSocketsToKubelet
+  - InPlacePodLevelResourcesVerticalScaling
+  - InPlacePodVerticalScalingInitContainers
+  - RestartAllContainersOnContainerExits
+  features:
+    supplementalGroupsPolicy: true
+  images:
+  - names:
+    - docker.io/khoshaba/solana-localnet-validator@sha256:4291dabd1160d4862671ab96bf34c9ed0c6e02af8af204c7250b47024a440ae8
+    - docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+    sizeBytes: 376722222
+  - names:
+    - quay.io/calico/node@sha256:f4fafd8ba641d96c5a91b01e5a519117d77d55dee789a3562ba3ad4aa125b36a
+    - quay.io/calico/node:v3.32.0
+    sizeBytes: 120319620
+  - names:
+    - docker.io/rancher/local-path-provisioner@sha256:1eba82e9c386038b4af6d69cca7519fac738c28c42735ed48ce70c882ad0d80f
+    - docker.io/rancher/local-path-provisioner:v0.0.36
+    sizeBytes: 89390500
+  - names:
+    - quay.io/calico/cni@sha256:1cfc6aa9c4dad3575fdf36b78185fd7d68bcd4acc95778f8342be4fb6a851a14
+    - quay.io/calico/cni:v3.32.0
+    sizeBytes: 69471162
+  - names:
+    - registry.k8s.io/kube-proxy@sha256:a96b6e12863ef766d18f69afaad7a5329220c37ce21cb232bcb58362d284f3f7
+    - registry.k8s.io/kube-proxy:v1.36.1
+    sizeBytes: 28853312
+  - names:
+    - registry.k8s.io/pause@sha256:278fb9dbcca9518083ad1e11276933a2e96f23de604a3a08cc3c80002767d24c
+    - registry.k8s.io/pause:3.10.1
+    sizeBytes: 320448
+  nodeInfo:
+    architecture: amd64
+    bootID: 76cd5cf3-bc5c-4a06-9e11-3738a45379f4
+    containerRuntimeVersion: containerd://2.2.1
+    kernelVersion: 6.8.0-124-generic
+    kubeProxyVersion: ""
+    kubeletVersion: v1.36.1
+    machineID: c877367a00764da9884cd7335fa77f58
+    operatingSystem: linux
+    osImage: Ubuntu 24.04.4 LTS
+    systemUUID: c877367a-0076-4da9-884c-d7335fa77f58
+  runtimeHandlers:
+  - features:
+      recursiveReadOnlyMounts: true
+      userNamespaces: true
+    name: ""
+  - features:
+      recursiveReadOnlyMounts: true
+      userNamespaces: true
+    name: runc

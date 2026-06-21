@@ -1,0 +1,75 @@
+Name:             solana-validator-0
+Namespace:        solana-observability
+Priority:         0
+Service Account:  default
+Node:             k8s-worker-01/192.168.122.102
+Start Time:       Sat, 20 Jun 2026 16:30:29 +0300
+Labels:           app.kubernetes.io/component=validator
+                  app.kubernetes.io/name=solana-containerised-testbed
+                  app.kubernetes.io/part-of=solana-containerised-testbed
+                  apps.kubernetes.io/pod-index=0
+                  controller-revision-hash=solana-validator-69b9db9449
+                  statefulset.kubernetes.io/pod-name=solana-validator-0
+                  testbed.solana/stage=observability-core
+Annotations:      cni.projectcalico.org/containerID: c1d38939667aad2c43f1cea4b495864ffd286fce34ceefcf9f0e69b06a064b16
+                  cni.projectcalico.org/podIP: 192.168.36.204/32
+                  cni.projectcalico.org/podIPs: 192.168.36.204/32
+Status:           Running
+IP:               192.168.36.204
+IPs:
+  IP:           192.168.36.204
+Controlled By:  StatefulSet/solana-validator
+Containers:
+  validator:
+    Container ID:   containerd://03a38f2665117eceafe40d858023f26bf5193781bd8bb6db1996a2eaa6790db6
+    Image:          docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+    Image ID:       docker.io/khoshaba/solana-localnet-validator@sha256:4291dabd1160d4862671ab96bf34c9ed0c6e02af8af204c7250b47024a440ae8
+    Ports:          8899/TCP (rpc), 10000/TCP (geyser-grpc)
+    Host Ports:     0/TCP (rpc), 0/TCP (geyser-grpc)
+    State:          Running
+      Started:      Sat, 20 Jun 2026 16:31:05 +0300
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     6
+      memory:  12Gi
+    Requests:
+      cpu:      2
+      memory:   4Gi
+    Liveness:   exec [sh -c /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1] delay=0s timeout=3s period=10s #success=1 #failure=6
+    Readiness:  exec [sh -c /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1] delay=0s timeout=3s period=5s #success=1 #failure=6
+    Startup:    exec [sh -c /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null 2>&1] delay=0s timeout=3s period=5s #success=1 #failure=60
+    Environment Variables from:
+      validator-config  ConfigMap  Optional: false
+    Environment:        <none>
+    Mounts:
+      /etc/solana/yellowstone-geyser.json from validator-geyser-config (ro,path="yellowstone-geyser.json")
+      /var/lib/solana/ledger from validator-ledger (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-4fgxt (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  validator-ledger:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  validator-ledger-pvc
+    ReadOnly:   false
+  validator-geyser-config:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      validator-geyser-config
+    Optional:  false
+  kube-api-access-4fgxt:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              testbed-role=validator
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

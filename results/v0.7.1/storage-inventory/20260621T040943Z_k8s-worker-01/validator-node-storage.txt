@@ -1,0 +1,581 @@
+Permission denied, please try again.
+=== identity ===
+k8s-worker-01
+Sun Jun 21 04:09:17 AM UTC 2026
+Linux k8s-worker-01 6.8.0-124-generic #124-Ubuntu SMP PREEMPT_DYNAMIC Tue May 26 13:00:45 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+
+=== block devices ===
+NAME                      FSTYPE      FSVER    LABEL UUID                                   FSAVAIL FSUSE% MOUNTPOINTS
+sr0                                                                                                        
+vda                                                                                                        
+├─vda1                                                                                                     
+├─vda2                    ext4        1.0            2dd14aac-de5e-430e-aa89-62689ba9fc21      1.7G     5% /boot
+└─vda3                    LVM2_member LVM2 001       PR6Apr-amX0-m1lu-hQIN-YM3r-HtG5-J2jD5m                
+  ├─ubuntu--vg-ubuntu--lv ext4        1.0            03e806c3-b8b1-4494-8bb3-164b54c5e01f     29.4G    34% /var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb/volume-subpaths/validator-geyser-config/validator/1
+  │                                                                                                        /
+  └─ubuntu--vg-lv--0      ext4        1.0            468e2cc1-bbaa-43f5-93bd-c198bb09557a     45.5G     0% /home
+
+=== mounts ===
+TARGET                                                                                                                           SOURCE                                                                                                                                                                                                         FSTYPE      OPTIONS
+/                                                                                                                                /dev/mapper/ubuntu--vg-ubuntu--lv                                                                                                                                                                              ext4        rw,relatime
+├─/sys                                                                                                                           sysfs                                                                                                                                                                                                          sysfs       rw,nosuid,nodev,noexec,relatime
+│ ├─/sys/kernel/security                                                                                                         securityfs                                                                                                                                                                                                     securityfs  rw,nosuid,nodev,noexec,relatime
+│ ├─/sys/fs/cgroup                                                                                                               cgroup2                                                                                                                                                                                                        cgroup2     rw,nosuid,nodev,noexec,relatime
+│ ├─/sys/fs/pstore                                                                                                               pstore                                                                                                                                                                                                         pstore      rw,nosuid,nodev,noexec,relatime
+│ ├─/sys/fs/bpf                                                                                                                  bpf                                                                                                                                                                                                            bpf         rw,nosuid,nodev,noexec,relatime,mode=700
+│ ├─/sys/kernel/tracing                                                                                                          tracefs                                                                                                                                                                                                        tracefs     rw,nosuid,nodev,noexec,relatime
+│ ├─/sys/kernel/debug                                                                                                            debugfs                                                                                                                                                                                                        debugfs     rw,nosuid,nodev,noexec,relatime
+│ ├─/sys/fs/fuse/connections                                                                                                     fusectl                                                                                                                                                                                                        fusectl     rw,nosuid,nodev,noexec,relatime
+│ └─/sys/kernel/config                                                                                                           configfs                                                                                                                                                                                                       configfs    rw,nosuid,nodev,noexec,relatime
+├─/proc                                                                                                                          proc                                                                                                                                                                                                           proc        rw,nosuid,nodev,noexec,relatime
+│ └─/proc/sys/fs/binfmt_misc                                                                                                     systemd-1                                                                                                                                                                                                      autofs      rw,relatime,fd=32,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=639
+│   └─/proc/sys/fs/binfmt_misc                                                                                                   binfmt_misc                                                                                                                                                                                                    binfmt_misc rw,nosuid,nodev,noexec,relatime
+├─/dev                                                                                                                           udev                                                                                                                                                                                                           devtmpfs    rw,nosuid,relatime,size=8146072k,nr_inodes=2036518,mode=755,inode64
+│ ├─/dev/pts                                                                                                                     devpts                                                                                                                                                                                                         devpts      rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000
+│ ├─/dev/shm                                                                                                                     tmpfs                                                                                                                                                                                                          tmpfs       rw,nosuid,nodev,inode64
+│ ├─/dev/mqueue                                                                                                                  mqueue                                                                                                                                                                                                         mqueue      rw,nosuid,nodev,noexec,relatime
+│ └─/dev/hugepages                                                                                                               hugetlbfs                                                                                                                                                                                                      hugetlbfs   rw,nosuid,nodev,relatime,pagesize=2M
+├─/run                                                                                                                           tmpfs                                                                                                                                                                                                          tmpfs       rw,nosuid,nodev,noexec,relatime,size=1637564k,mode=755,inode64
+│ ├─/run/lock                                                                                                                    tmpfs                                                                                                                                                                                                          tmpfs       rw,nosuid,nodev,noexec,relatime,size=5120k,inode64
+│ ├─/run/user/1000                                                                                                               tmpfs                                                                                                                                                                                                          tmpfs       rw,nosuid,nodev,relatime,size=1637560k,nr_inodes=409390,mode=700,uid=1000,gid=1000,inode64
+│ ├─/run/netns/cni-a22ef99c-7810-eb98-fca5-adaf5db76afe                                                                          nsfs[net:[4026532521]]                                                                                                                                                                                         nsfs        rw
+│ ├─/run/containerd/io.containerd.grpc.v1.cri/sandboxes/c1d38939667aad2c43f1cea4b495864ffd286fce34ceefcf9f0e69b06a064b16/shm     shm                                                                                                                                                                                                            tmpfs       rw,nosuid,nodev,noexec,relatime,size=65536k,inode64
+│ ├─/run/containerd/io.containerd.runtime.v2.task/k8s.io/c1d38939667aad2c43f1cea4b495864ffd286fce34ceefcf9f0e69b06a064b16/rootfs overlay                                                                                                                                                                                                        overlay     rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/1/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/100/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/100/work,uuid=on,nouserxattr
+│ ├─/run/containerd/io.containerd.runtime.v2.task/k8s.io/03a38f2665117eceafe40d858023f26bf5193781bd8bb6db1996a2eaa6790db6/rootfs overlay                                                                                                                                                                                                        overlay     rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/110/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/109/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/108/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/107/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/106/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/105/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/104/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/102/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/101/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/111/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/111/work,uuid=on,nouserxattr
+│ ├─/run/containerd/io.containerd.grpc.v1.cri/sandboxes/52b04ed2b03f9cdc90963160af4e59371873cd38b54dd81d43a87388a2fedc0f/shm     shm                                                                                                                                                                                                            tmpfs       rw,nosuid,nodev,noexec,relatime,size=65536k,inode64
+│ ├─/run/containerd/io.containerd.grpc.v1.cri/sandboxes/3d9c5efdeaf86a0e6ea2b55fc52123c1ba2bbba266771e28d35b05e84163bd30/shm     shm                                                                                                                                                                                                            tmpfs       rw,nosuid,nodev,noexec,relatime,size=65536k,inode64
+│ ├─/run/containerd/io.containerd.runtime.v2.task/k8s.io/3d9c5efdeaf86a0e6ea2b55fc52123c1ba2bbba266771e28d35b05e84163bd30/rootfs overlay                                                                                                                                                                                                        overlay     rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/1/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/2/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/2/work,uuid=on,nouserxattr
+│ ├─/run/containerd/io.containerd.runtime.v2.task/k8s.io/52b04ed2b03f9cdc90963160af4e59371873cd38b54dd81d43a87388a2fedc0f/rootfs overlay                                                                                                                                                                                                        overlay     rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/1/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/3/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/3/work,uuid=on,nouserxattr
+│ ├─/run/containerd/io.containerd.runtime.v2.task/k8s.io/228665ae91d23774362668f21af48059eea8f45d099046f6f2cf5fdc8f04209c/rootfs overlay                                                                                                                                                                                                        overlay     rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/11/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/10/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/9/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/12/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/12/work,uuid=on,nouserxattr
+│ ├─/run/containerd/io.containerd.runtime.v2.task/k8s.io/11419dd93baf58db89356da109b19eaf551b4455c8fe670ffa4b21d3b9857a6e/rootfs overlay                                                                                                                                                                                                        overlay     rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/14/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/16/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/16/work,uuid=on,nouserxattr
+│ ├─/run/calico/cgroup                                                                                                           none                                                                                                                                                                                                           cgroup2     rw,relatime
+│ ├─/run/netns/cni-080c2bdd-7455-722e-2e23-87a1915fe2f1                                                                          nsfs[net:[4026532541]]                                                                                                                                                                                         nsfs        rw
+│ ├─/run/containerd/io.containerd.grpc.v1.cri/sandboxes/eeed0153b0cc598ce417e1fed06f52bf680b4e46f80a5a1a40e12ce58a8b6dfb/shm     shm                                                                                                                                                                                                            tmpfs       rw,nosuid,nodev,noexec,relatime,size=65536k,inode64
+│ ├─/run/containerd/io.containerd.runtime.v2.task/k8s.io/eeed0153b0cc598ce417e1fed06f52bf680b4e46f80a5a1a40e12ce58a8b6dfb/rootfs overlay                                                                                                                                                                                                        overlay     rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/1/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/17/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/17/work,uuid=on,nouserxattr
+│ └─/run/containerd/io.containerd.runtime.v2.task/k8s.io/5cabe528b6a499cb045cbd39ebcabaabc378cb5af4c253a8c136dfe5f7ef8656/rootfs overlay                                                                                                                                                                                                        overlay     rw,relatime,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/26/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/25/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/24/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/23/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/22/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/21/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/20/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/19/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/27/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/27/work,uuid=on,nouserxattr
+├─/home                                                                                                                          /dev/mapper/ubuntu--vg-lv--0                                                                                                                                                                                   ext4        rw,relatime
+├─/boot                                                                                                                          /dev/vda2                                                                                                                                                                                                      ext4        rw,relatime
+├─/var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb/volumes/kubernetes.io~projected/kube-api-access-4fgxt               tmpfs                                                                                                                                                                                                          tmpfs       rw,relatime,size=12582912k,inode64,noswap
+├─/var/lib/kubelet/pods/46ad9a6f-e099-4416-92cf-0dcb52d0bd4c/volumes/kubernetes.io~projected/kube-api-access-njtjn               tmpfs                                                                                                                                                                                                          tmpfs       rw,relatime,size=16273232k,inode64,noswap
+├─/var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb/volume-subpaths/validator-geyser-config/validator/1                 /dev/mapper/ubuntu--vg-ubuntu--lv[/var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb/volumes/kubernetes.io~configmap/validator-geyser-config/..2026_06_20_13_30_29.2181982057/yellowstone-geyser.json] ext4        rw,relatime
+├─/var/lib/kubelet/pods/eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/volumes/kubernetes.io~projected/kube-api-access-phjcm               tmpfs                                                                                                                                                                                                          tmpfs       rw,relatime,size=16273232k,inode64,noswap
+└─/var/lib/kubelet/pods/6b9eaf2a-d46f-4bc6-9d25-5d3fb584f887/volumes/kubernetes.io~projected/kube-api-access-dtpxn               tmpfs                                                                                                                                                                                                          tmpfs       rw,relatime,size=16273232k,inode64,noswap
+
+=== df -hT ===
+Filesystem                        Type   Size  Used Avail Use% Mounted on
+tmpfs                             tmpfs  1.6G  1.9M  1.6G   1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4    48G   17G   30G  36% /
+tmpfs                             tmpfs  7.9G     0  7.9G   0% /dev/shm
+tmpfs                             tmpfs  5.0M     0  5.0M   0% /run/lock
+/dev/mapper/ubuntu--vg-lv--0      ext4    48G   60K   46G   1% /home
+/dev/vda2                         ext4   2.0G  104M  1.7G   6% /boot
+tmpfs                             tmpfs  1.6G   12K  1.6G   1% /run/user/1000
+
+=== df -ih ===
+Filesystem                        Inodes IUsed IFree IUse% Mounted on
+tmpfs                               2.0M  1.1K  2.0M    1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv   3.1M  125K  3.0M    4% /
+tmpfs                               2.0M     1  2.0M    1% /dev/shm
+tmpfs                               2.0M     3  2.0M    1% /run/lock
+/dev/mapper/ubuntu--vg-lv--0        3.1M    22  3.1M    1% /home
+/dev/vda2                           128K   317  128K    1% /boot
+tmpfs                               400K    32  400K    1% /run/user/1000
+
+=== root filesystem ===
+Filesystem                        Type  Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4   48G   17G   30G  36% /
+
+=== top-level disk usage ===
+4.0K	/bin.usr-is-merged
+4.0K	/cdrom
+4.0K	/lib.usr-is-merged
+4.0K	/media
+4.0K	/mnt
+4.0K	/sbin.usr-is-merged
+4.0K	/srv
+8.0K	/snap
+16K	/lost+found
+24K	/root
+80K	/tmp
+6.2M	/etc
+2.6G	/usr
+3.0G	/var
+6.6G	/opt
+17G	/
+
+=== /opt disk usage ===
+4.0K	/opt/containerd/bin
+4.0K	/opt/containerd/lib
+12K	/opt/containerd
+278M	/opt/cni
+278M	/opt/cni/bin
+6.4G	/opt/local-path-provisioner
+6.4G	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc
+6.6G	/opt
+
+=== /var/lib disk usage ===
+4.0K	/var/lib/apport/coredump
+4.0K	/var/lib/apt/periodic
+4.0K	/var/lib/boltd
+4.0K	/var/lib/cloud/handlers
+4.0K	/var/lib/cloud/seed
+4.0K	/var/lib/cni/networks
+4.0K	/var/lib/containerd/io.containerd.sandbox.controller.v1.shim
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.blockfile
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.btrfs
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.erofs
+4.0K	/var/lib/containerd/tmpmounts
+4.0K	/var/lib/dbus
+4.0K	/var/lib/dhcpcd
+4.0K	/var/lib/dpkg/parts
+4.0K	/var/lib/dpkg/updates
+4.0K	/var/lib/fwupd/quirks.d
+4.0K	/var/lib/fwupd/remotes.d
+4.0K	/var/lib/git
+4.0K	/var/lib/grub/esp
+4.0K	/var/lib/ieee-data
+4.0K	/var/lib/kubelet/checkpoints
+4.0K	/var/lib/kubelet/device-plugins
+4.0K	/var/lib/kubelet/plugins
+4.0K	/var/lib/kubelet/plugins_registry
+4.0K	/var/lib/kubelet/pod-resources
+4.0K	/var/lib/libuuid
+4.0K	/var/lib/man-db
+4.0K	/var/lib/misc
+4.0K	/var/lib/os-prober
+4.0K	/var/lib/plymouth
+4.0K	/var/lib/private
+4.0K	/var/lib/python
+4.0K	/var/lib/snapd/auto-import
+4.0K	/var/lib/snapd/cookie
+4.0K	/var/lib/snapd/environment
+4.0K	/var/lib/snapd/features
+4.0K	/var/lib/snapd/firstboot
+4.0K	/var/lib/snapd/hostfs
+4.0K	/var/lib/snapd/inhibit
+4.0K	/var/lib/snapd/void
+4.0K	/var/lib/sudo/lectured
+4.0K	/var/lib/systemd/coredump
+4.0K	/var/lib/systemd/ephemeral-trees
+4.0K	/var/lib/systemd/linger
+4.0K	/var/lib/systemd/pstore
+4.0K	/var/lib/systemd/timers
+4.0K	/var/lib/systemd/timesync
+4.0K	/var/lib/tpm
+4.0K	/var/lib/ubuntu-drivers-common
+4.0K	/var/lib/ubuntu-release-upgrader
+4.0K	/var/lib/udisks2
+4.0K	/var/lib/unattended-upgrades
+4.0K	/var/lib/update-notifier/user.d
+4.0K	/var/lib/upower
+4.0K	/var/lib/usb_modeswitch
+4.0K	/var/lib/vim/addons
+8.0K	/var/lib/apport
+8.0K	/var/lib/apt/mirrors
+8.0K	/var/lib/cloud/sem
+8.0K	/var/lib/containerd/io.containerd.grpc.v1.introspection
+8.0K	/var/lib/containerd/io.containerd.snapshotter.v1.native
+8.0K	/var/lib/grub/ucf
+8.0K	/var/lib/landscape
+8.0K	/var/lib/logrotate
+8.0K	/var/lib/snapd/desktop
+8.0K	/var/lib/snapd/snaps
+8.0K	/var/lib/snapd/ssl
+8.0K	/var/lib/sudo
+8.0K	/var/lib/update-notifier/package-data-downloads
+8.0K	/var/lib/vim
+12K	/var/lib/calico
+12K	/var/lib/fwupd/pki
+12K	/var/lib/sgml-base
+12K	/var/lib/snapd/apparmor
+12K	/var/lib/snapd/dbus-1
+12K	/var/lib/update-manager
+16K	/var/lib/grub
+16K	/var/lib/kubelet/image_manager
+16K	/var/lib/kubelet/pki
+16K	/var/lib/polkit-1/localauthority
+16K	/var/lib/xml-core
+20K	/var/lib/cloud/scripts
+20K	/var/lib/cni/results
+20K	/var/lib/polkit-1
+20K	/var/lib/snapd/lib
+20K	/var/lib/update-notifier
+28K	/var/lib/cloud/data
+28K	/var/lib/cni
+28K	/var/lib/pam
+32K	/var/lib/snapd/assertions
+36K	/var/lib/PackageKit
+40K	/var/lib/containerd/io.containerd.runtime.v2.task
+44K	/var/lib/systemd/deb-systemd-user-helper-enabled
+48K	/var/lib/dpkg/triggers
+52K	/var/lib/ucf/cache
+64K	/var/lib/swcatalog/yaml
+68K	/var/lib/swcatalog
+116K	/var/lib/ucf
+128K	/var/lib/dpkg/alternatives
+132K	/var/lib/containerd/io.containerd.grpc.v1.cri
+148K	/var/lib/cloud/instances
+148K	/var/lib/snapd
+216K	/var/lib/cloud
+224K	/var/lib/systemd/catalog
+252K	/var/lib/kubelet/pods
+340K	/var/lib/kubelet
+428K	/var/lib/systemd/deb-systemd-helper-enabled
+728K	/var/lib/systemd
+916K	/var/lib/containerd/io.containerd.metadata.v1.bolt
+1.9M	/var/lib/fwupd
+1.9M	/var/lib/fwupd/metadata
+3.9M	/var/lib/command-not-found
+6.4M	/var/lib/ubuntu-advantage
+6.4M	/var/lib/ubuntu-advantage/apt-esm
+28M	/var/lib/dpkg/info
+29M	/var/lib/dpkg
+183M	/var/lib/apt
+183M	/var/lib/apt/lists
+654M	/var/lib/containerd/io.containerd.content.v1.content
+1.8G	/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs
+2.5G	/var/lib/containerd
+2.7G	/var/lib
+
+=== /var/lib/containerd disk usage ===
+4.0K	/var/lib/containerd/io.containerd.content.v1.content/ingest
+4.0K	/var/lib/containerd/io.containerd.sandbox.controller.v1.shim
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.blockfile
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.btrfs
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.erofs
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.native/snapshots
+4.0K	/var/lib/containerd/tmpmounts
+8.0K	/var/lib/containerd/io.containerd.grpc.v1.introspection
+8.0K	/var/lib/containerd/io.containerd.snapshotter.v1.native
+36K	/var/lib/containerd/io.containerd.runtime.v2.task/k8s.io
+40K	/var/lib/containerd/io.containerd.runtime.v2.task
+60K	/var/lib/containerd/io.containerd.grpc.v1.cri/containers
+68K	/var/lib/containerd/io.containerd.grpc.v1.cri/sandboxes
+132K	/var/lib/containerd/io.containerd.grpc.v1.cri
+916K	/var/lib/containerd/io.containerd.metadata.v1.bolt
+654M	/var/lib/containerd/io.containerd.content.v1.content
+654M	/var/lib/containerd/io.containerd.content.v1.content/blobs
+1.8G	/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs
+1.8G	/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots
+2.5G	/var/lib/containerd
+
+=== /var/lib/kubelet disk usage ===
+4.0K	/var/lib/kubelet/checkpoints
+4.0K	/var/lib/kubelet/device-plugins
+4.0K	/var/lib/kubelet/image_manager/pulling
+4.0K	/var/lib/kubelet/plugins
+4.0K	/var/lib/kubelet/plugins_registry
+4.0K	/var/lib/kubelet/pod-resources
+8.0K	/var/lib/kubelet/image_manager/pulled
+8.0K	/var/lib/kubelet/pods/46ad9a6f-e099-4416-92cf-0dcb52d0bd4c/containers
+8.0K	/var/lib/kubelet/pods/6b9eaf2a-d46f-4bc6-9d25-5d3fb584f887/containers
+8.0K	/var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb/containers
+8.0K	/var/lib/kubelet/pods/eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/volumes
+12K	/var/lib/kubelet/pods/eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/plugins
+16K	/var/lib/kubelet/image_manager
+16K	/var/lib/kubelet/pki
+16K	/var/lib/kubelet/pods/46ad9a6f-e099-4416-92cf-0dcb52d0bd4c/plugins
+16K	/var/lib/kubelet/pods/6b9eaf2a-d46f-4bc6-9d25-5d3fb584f887/plugins
+16K	/var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb/plugins
+16K	/var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb/volume-subpaths
+20K	/var/lib/kubelet/pods/eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/containers
+24K	/var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb/volumes
+28K	/var/lib/kubelet/pods/46ad9a6f-e099-4416-92cf-0dcb52d0bd4c/volumes
+36K	/var/lib/kubelet/pods/6b9eaf2a-d46f-4bc6-9d25-5d3fb584f887/volumes
+48K	/var/lib/kubelet/pods/eedaf65b-6ef8-4f8a-96b2-c2c38876cad6
+60K	/var/lib/kubelet/pods/46ad9a6f-e099-4416-92cf-0dcb52d0bd4c
+68K	/var/lib/kubelet/pods/6b9eaf2a-d46f-4bc6-9d25-5d3fb584f887
+72K	/var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb
+252K	/var/lib/kubelet/pods
+340K	/var/lib/kubelet
+
+=== local-path provisioner storage ===
+80K	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/snapshot/127500
+84K	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/snapshot
+1.3M	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/snapshot
+8.3M	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run
+9.6M	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts
+1.9G	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb
+6.4G	/opt/local-path-provisioner
+6.4G	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc
+
+=== largest files under /opt ===
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/124900.1258
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125000.1259
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125100.1260
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125200.1261
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125300.1262
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125400.1263
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125500.1264
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125600.1265
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125700.1266
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125800.1267
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/125900.1268
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126000.1269
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126100.1270
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126200.1271
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126300.1272
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126400.1273
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126500.1274
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126600.1275
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126700.1276
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126800.1277
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/126900.1278
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/127000.1279
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/127100.1280
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/127200.1281
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/127300.1282
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/127400.1283
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/127500.1284
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/snapshot/127500/127400.1283
+162224 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/snapshot/127500/127500.1284
+166433 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000338.sst
+174239 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/LOG.old.1781962269323283
+189369 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000347.sst
+217430 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/genesis.tar.bz2
+242251 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000343.sst
+274023 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/snapshot-127400-AzAJgmLjBQGxcgivr4iGDVwAZi5gmLGS7RTTHkGxRYJy.tar.zst
+274045 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/snapshot-127500-5HPwPrEkufT4Qsmu2MkAkMf5h1R3mXfekqVWpkbagftN.tar.zst
+889531 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/genesis.bin
+915320 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/run/0.1
+915320 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts/snapshot/127500/0.1
+1438823 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000337.sst
+2960155 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/LOG
+2971419 /opt/cni/bin/flannel
+3776708 /opt/cni/bin/static
+4137089 /opt/cni/bin/loopback
+4262449 /opt/cni/bin/host-local
+4292972 /opt/cni/bin/tuning
+4343774 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000341.sst
+4344033 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000446.sst
+4344057 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000388.sst
+4382118 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000342.sst
+4382450 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000389.sst
+4382453 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000448.sst
+4525826 /opt/cni/bin/sbr
+4685012 /opt/cni/bin/vrf
+4841176 /opt/cni/bin/portmap
+5042926 /opt/cni/bin/bandwidth
+5159967 /opt/cni/bin/host-device
+5251069 /opt/cni/bin/dummy
+5267679 /opt/cni/bin/vlan
+5274322 /opt/cni/bin/ipvlan
+5307111 /opt/cni/bin/macvlan
+5453308 /opt/cni/bin/tap
+5475470 /opt/cni/bin/ptp
+5698763 /opt/cni/bin/bridge
+5702145 /opt/cni/bin/firewall
+13725422 /opt/cni/bin/dhcp
+23529347 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000470.log
+29116795 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000477.sst
+67293447 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000474.log
+95159438 /opt/cni/bin/calico
+95159438 /opt/cni/bin/calico-ipam
+108177125 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000476.sst
+155133770 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000465.log
+171093378 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000456.log
+171236398 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000467.log
+176801726 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000438.log
+349900380 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000463.log
+349902825 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000461.log
+349923450 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb/000458.log
+4798395577 /opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/validator-1781962268862.log
+
+=== largest files under /var/lib ===
+3461277 /var/lib/apt/lists/ua.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_i18n_Translation-en
+3804464 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/101/fs/usr/bin/perl
+3804464 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/101/fs/usr/bin/perl5.36.0
+3864189 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/6a0ac1617861a677b045b7ff88545213ec31c0ff08763195a70a4a5adda577bb
+4050944 /var/lib/command-not-found/commands.db
+4120032 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/14/fs/var/lib/dnf/history.sqlite-wal
+4137089 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs/opt/cni/bin/loopback
+4206751 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_main_binary-amd64_Packages
+4262449 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs/opt/cni/bin/host-local
+4292972 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs/opt/cni/bin/tuning
+4373704 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_restricted_i18n_Translation-en
+4399536 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/deps/libsolana_program.so
+4407752 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/rbpf-cli
+4492792 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/cargo-test-bpf
+4528886 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/20/fs/usr/local/go/pkg/tool/linux_amd64/cgo
+4596152 /var/lib/apt/lists/ua.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_i18n_Translation-en
+4734232 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/102/fs/usr/lib/x86_64-linux-gnu/libcrypto.so.3
+4734232 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/9/fs/usr/lib/x86_64-linux-gnu/libcrypto.so.3
+4841176 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs/opt/cni/bin/portmap
+4847923 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/c0a2a9c26fe59528411ed0698caabbff47687055bb7a788d49e67a9805416e38
+4985616 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/18/fs/usr/lib/libcrypto.so.3
+5016588 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/20/fs/usr/local/go/pkg/tool/linux_amd64/asm
+5279185 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/20/fs/usr/local/go/pkg/tool/linux_amd64/cover
+5529252 /var/lib/apt/lists/ua.archive.ubuntu.com_ubuntu_dists_noble-updates_main_binary-amd64_Packages
+5942598 /var/lib/apt/lists/ua.archive.ubuntu.com_ubuntu_dists_noble_universe_dep11_Components-amd64.yml.gz
+6147696 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/14/fs/usr/lib64/libcrypto.so.3.5.1
+6465348 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/06647a97f64e414417f4796ad859845509560c2bb22fdc740d821db29a28d931
+6469245 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_restricted_binary-amd64_Packages
+6680481 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/20/fs/usr/local/go/pkg/tool/linux_amd64/link
+6782792 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-keygen
+6813303 /var/lib/apt/lists/ua.archive.ubuntu.com_ubuntu_dists_noble-updates_restricted_binary-amd64_Packages
+6942080 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/cargo-build-bpf
+7165069 /var/lib/apt/lists/ua.archive.ubuntu.com_ubuntu_dists_noble_main_binary-amd64_Packages
+7409984 /var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_noble-security_universe_binary-amd64_Packages
+7731064 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-net-shaper
+7738304 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-log-analyzer
+7987776 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/cargo-test-sbf
+8770066 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/20/fs/usr/local/go/pkg/tool/linux_amd64/vet
+8987196 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/20/fs/usr/local/go/pkg/tool/linux_amd64/fix
+10378590 /var/lib/apt/lists/ua.archive.ubuntu.com_ubuntu_dists_noble-updates_universe_binary-amd64_Packages
+11558434 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/1faccb5a2f0f6cdd625bf4e3a5a08b309ff68ae7a98c90ace0a3c0fd970a27a5
+12198074 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/deps/libsolana_program.rlib
+12296192 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/14/fs/var/lib/rpm/rpmdb.sqlite
+14763152 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/108/fs/usr/local/lib/libyellowstone_grpc_geyser.so
+15018601 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/2ea378030e229653465b96cba2649a10ad5ce102171db84c263bb85a1bd8854f
+15434598 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/20/fs/usr/local/go/bin/go
+15896602 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/9eb38b0e1fbf448542b69a55accf5d8520359ca2843683e8bd0b2d6776d62df2
+22209184 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-faucet
+22521296 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/cargo-build-sbf
+22653512 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-stake-accounts
+23348960 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-tokens
+23584784 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-watchtower
+24611400 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-install-init
+25590104 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-install
+25774723 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/20/fs/usr/local/go/pkg/tool/linux_amd64/compile
+28236252 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/ff86ea2e5edce334d19a34fbc65d1a511aa1fc823dba1110422f991aa56b44d4
+28935400 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-gossip
+31211208 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/spl-token
+31995184 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/perf-libs/cuda-10.1/libcuda-crypt.so
+32116896 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/perf-libs/cuda-10.0/libcuda-crypt.so
+32194499 /var/lib/apt/lists/ua.archive.ubuntu.com_ubuntu_dists_noble_universe_i18n_Translation-en
+32328592 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-genesis
+33169456 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/perf-libs/cuda-10.2/libcuda-crypt.so
+33552936 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-dos
+36178320 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-bench-tps
+36547239 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs/opt/cni/bin/install
+40982072 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana
+44200098 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/10/fs/usr/local/bin/kube-proxy
+52637858 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/26/fs/usr/bin/local-path-provisioner
+61230504 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-ledger-tool
+66502728 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/6cc3578c776f06a5e299c860f83a254f7488c84bcc542b0bb2488094c24ada4a
+67285082 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/1a70bdedd442d430ea119cf8db8c0031b4eedeb5bde886892773876ded7629e8
+73379142 /var/lib/apt/lists/ua.archive.ubuntu.com_ubuntu_dists_noble_universe_binary-amd64_Packages
+74016352 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-test-validator
+79453872 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solana-validator
+81917352 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/103/fs/opt/solana/bin/solang
+95159438 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/5/fs/opt/cni/bin/calico
+120313838 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/d0e8293b26f670b4098917eec7ec39dfca296e32417c74f369b2987036248ffe
+172702696 /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/14/fs/usr/bin/calico-node
+334868215 /var/lib/containerd/io.containerd.content.v1.content/blobs/sha256/09dbf90de9a58fe951c308e6f17378190d196cbf5dab408d2f43719f88aeff6c
+
+=== largest files under /var/log ===
+52 /var/log/installer/casper-md5check.json
+67 /var/log/installer/media-info
+197 /var/log/installer/device-map.json
+340 /var/log/installer/curtin-install/subiquity-initial.conf
+428 /var/log/installer/subiquity-client-info.log.1641
+472 /var/log/installer/curtin-install/subiquity-curtin-apt.conf
+768 /var/log/btmp
+1105 /var/log/pods/kube-system_calico-node-2zb4j_eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/ebpf-bootstrap/0.log
+1268 /var/log/pods/kube-system_calico-node-2zb4j_eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/upgrade-ipam/0.log
+2050 /var/log/installer/curtin-install/subiquity-partitioning.conf
+2285 /var/log/kern.log.2.gz
+3158 /var/log/installer/curtin-install/subiquity-curthooks.conf
+3158 /var/log/installer/curtin-install/subiquity-extract.conf
+3177 /var/log/installer/subiquity-client-info.log.1386
+3363 /var/log/installer/autoinstall-user-data
+3372 /var/log/installer/cloud-init-output.log
+3465 /var/log/pods/kube-system_calico-node-2zb4j_eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/install-cni/1.log
+3783 /var/log/pods/kube-system_kube-proxy-47b92_46ad9a6f-e099-4416-92cf-0dcb52d0bd4c/kube-proxy/0.log
+4340 /var/log/cloud-init-output.log
+4976 /var/log/installer/subiquity-client-debug.log.1641
+6348 /var/log/installer/subiquity-server-info.log.1672
+7563 /var/log/pods/local-path-storage_local-path-provisioner-6d76485965-6rncq_6b9eaf2a-d46f-4bc6-9d25-5d3fb584f887/local-path-provisioner/0.log
+8660 /var/log/installer/block/discover.log
+17296 /var/log/unattended-upgrades/unattended-upgrades.log
+17920 /var/log/kern.log.3.gz
+22695 /var/log/auth.log
+22817 /var/log/apt/term.log
+24607 /var/log/auth.log.3.gz
+24849 /var/log/installer/subiquity-client-debug.log.1386
+25815 /var/log/kern.log.1
+25946 /var/log/installer/block/probe-data.json
+26920 /var/log/apt/eipp.log.xz
+27412 /var/log/auth.log.2.gz
+46933 /var/log/unattended-upgrades/unattended-upgrades-dpkg.log
+50847 /var/log/alternatives.log
+51726 /var/log/installer/cloud-init.log
+56064 /var/log/wtmp
+61229 /var/log/bootstrap.log
+69689 /var/log/dmesg
+71532 /var/log/sysstat/sa21
+72747 /var/log/cloud-init.log
+78797 /var/log/apt/history.log
+122110 /var/log/syslog.3.gz
+122193 /var/log/installer/curtin-install.log
+131624 /var/log/syslog.2.gz
+144111 /var/log/installer/subiquity-server-debug.log.1672
+166006 /var/log/syslog
+250785 /var/log/calico/cni/cni.log
+292292 /var/log/lastlog
+307332 /var/log/auth.log.1
+406468 /var/log/sysstat/sa13
+406468 /var/log/sysstat/sa17
+406468 /var/log/sysstat/sa20
+406636 /var/log/sysstat/sa14
+406636 /var/log/sysstat/sa15
+406636 /var/log/sysstat/sa16
+406636 /var/log/sysstat/sa18
+406636 /var/log/sysstat/sa19
+630520 /var/log/installer/installer-journal.txt
+660035 /var/log/sysstat/sar13
+660035 /var/log/sysstat/sar17
+660035 /var/log/sysstat/sar20
+660261 /var/log/sysstat/sar14
+660261 /var/log/sysstat/sar15
+660261 /var/log/sysstat/sar16
+660261 /var/log/sysstat/sar18
+660261 /var/log/sysstat/sar19
+684814 /var/log/pods/kube-system_calico-node-2zb4j_eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/calico-node/0.log.20260610-182410.gz
+748178 /var/log/dpkg.log
+875665 /var/log/pods/solana-observability_solana-validator-0_75dabba1-3320-45d0-95ac-119fa9e732bb/validator/0.log.20260620-234008.gz
+875820 /var/log/pods/solana-observability_solana-validator-0_75dabba1-3320-45d0-95ac-119fa9e732bb/validator/0.log.20260620-201744.gz
+882819 /var/log/pods/solana-observability_solana-validator-0_75dabba1-3320-45d0-95ac-119fa9e732bb/validator/0.log.20260620-165520.gz
+3204448 /var/log/pods/kube-system_calico-node-2zb4j_eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/calico-node/0.log
+3680255 /var/log/pods/solana-observability_solana-validator-0_75dabba1-3320-45d0-95ac-119fa9e732bb/validator/0.log
+7395842 /var/log/syslog.1
+8388608 /var/log/journal/c877367a00764da9884cd7335fa77f58/system@6d0bd4b36f6f4e0aa756cdd6d57a7eda-0000000000000360-0006534955fcdaa6.journal
+8388608 /var/log/journal/c877367a00764da9884cd7335fa77f58/user-1000.journal
+10485970 /var/log/pods/kube-system_calico-node-2zb4j_eedaf65b-6ef8-4f8a-96b2-c2c38876cad6/calico-node/0.log.20260618-174951
+10491215 /var/log/pods/solana-observability_solana-validator-0_75dabba1-3320-45d0-95ac-119fa9e732bb/validator/0.log.20260621-025951
+41943040 /var/log/journal/c877367a00764da9884cd7335fa77f58/system.journal
+
+=== container runtime images ===
+
+=== container runtime containers ===
+
+=== kubelet disk-pressure logs, recent ===
+Jun 20 12:11:47 k8s-worker-01 kubelet[3171272]: I0620 12:11:47.631584 3171272 image_gc_manager.go:395] "Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold" usage=85 highThreshold=85 amountToFree=2061932134 lowThreshold=80
+Jun 20 12:11:47 k8s-worker-01 kubelet[3171272]: E0620 12:11:47.633213 3171272 kubelet.go:1725] "Image garbage collection failed once. Stats initialization may not have completed yet" err="Insufficient free disk space on the node's image filesystem (85% of 47.9 GiB used). Failed to free sufficient space by deleting unused images (freed 0 bytes). Investigate disk usage, as it could be used by active images, logs, volumes, or other data."
+Jun 20 13:16:48 k8s-worker-01 kubelet[3171272]: I0620 13:16:48.079158 3171272 image_gc_manager.go:395] "Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold" usage=85 highThreshold=85 amountToFree=2107283046 lowThreshold=80
+Jun 20 13:16:48 k8s-worker-01 kubelet[3171272]: E0620 13:16:48.079573 3171272 kubelet.go:1725] "Image garbage collection failed once. Stats initialization may not have completed yet" err="Insufficient free disk space on the node's image filesystem (85% of 47.9 GiB used). Failed to free sufficient space by deleting unused images (freed 0 bytes). Investigate disk usage, as it could be used by active images, logs, volumes, or other data."
+Jun 20 13:21:48 k8s-worker-01 kubelet[3171272]: I0620 13:21:48.109234 3171272 image_gc_manager.go:395] "Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold" usage=85 highThreshold=85 amountToFree=2319443558 lowThreshold=80
+Jun 20 13:21:48 k8s-worker-01 kubelet[3171272]: E0620 13:21:48.109433 3171272 kubelet.go:1721] "Image garbage collection failed multiple times in a row" err="Insufficient free disk space on the node's image filesystem (85% of 47.9 GiB used). Failed to free sufficient space by deleting unused images (freed 0 bytes). Investigate disk usage, as it could be used by active images, logs, volumes, or other data."
+Jun 20 13:25:23 k8s-worker-01 kubelet[3171272]: I0620 13:25:23.429585 3171272 eviction_manager.go:381] "Eviction manager: attempting to reclaim" resourceName="ephemeral-storage"
+Jun 20 13:25:23 k8s-worker-01 kubelet[3171272]: I0620 13:25:23.504173 3171272 eviction_manager.go:392] "Eviction manager: must evict pod(s) to reclaim" resourceName="ephemeral-storage"
+Jun 20 13:25:23 k8s-worker-01 kubelet[3171272]: I0620 13:25:23.504584 3171272 eviction_manager.go:410] "Eviction manager: pods ranked for eviction" pods=["solana-observability/solana-validator-0","local-path-storage/local-path-provisioner-6d76485965-6rncq","kube-system/calico-node-2zb4j","kube-system/kube-proxy-47b92"]
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.399699 3171272 eviction_manager.go:635] "Eviction manager: pod is evicted successfully" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.399780 3171272 eviction_manager.go:213] "Eviction manager: pods evicted, waiting for pod to be cleaned up" pods=["solana-observability/solana-validator-0"]
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.571497 3171272 allocation_manager.go:619] "Pod admission denied" podUID="92310f90-a932-4f98-a3f8-245a91d0100e" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.634864 3171272 allocation_manager.go:619] "Pod admission denied" podUID="da50abdf-7f1a-4e55-b5c1-2e6732b0c36e" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.711368 3171272 allocation_manager.go:619] "Pod admission denied" podUID="f254ceae-547a-4607-961d-011823cadef3" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.772653 3171272 allocation_manager.go:619] "Pod admission denied" podUID="46c5936a-e75c-48c3-a96f-0293aaca3c51" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.053578 3171272 allocation_manager.go:619] "Pod admission denied" podUID="e27e008c-9db3-4215-a7d1-c379827b48af" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.118667 3171272 allocation_manager.go:619] "Pod admission denied" podUID="581146f3-3a8c-4d78-8a5e-24ae0b9e3ecd" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.233802 3171272 allocation_manager.go:619] "Pod admission denied" podUID="9e2367cb-33ee-44e5-99f9-40d3046250bb" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.400761 3171272 eviction_manager.go:464] "Eviction manager: pods successfully cleaned up" pods=["solana-observability/solana-validator-0"]
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.566479 3171272 allocation_manager.go:619] "Pod admission denied" podUID="34e859c4-e261-4e2d-8e74-0bd752d5bb75" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.905306 3171272 allocation_manager.go:619] "Pod admission denied" podUID="f138d3af-455b-4343-803c-4bf6360a6676" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: I0620 13:25:28.203747 3171272 allocation_manager.go:619] "Pod admission denied" podUID="00e4df9b-cfd5-4ad5-97c6-108738ddba90" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: I0620 13:25:28.503592 3171272 allocation_manager.go:619] "Pod admission denied" podUID="961a3a4b-413b-4fe4-bcc0-1479b90cebec" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: I0620 13:25:28.793774 3171272 allocation_manager.go:619] "Pod admission denied" podUID="d479489f-b4d3-4b1f-b14a-ea511ea53eab" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: I0620 13:25:29.109465 3171272 allocation_manager.go:619] "Pod admission denied" podUID="7046a8fa-13e6-4983-ae61-2694d33f2e16" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: I0620 13:25:29.352211 3171272 allocation_manager.go:619] "Pod admission denied" podUID="54fd7af8-8e32-46e0-b87d-21de62cb7ced" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: I0620 13:25:29.561301 3171272 allocation_manager.go:619] "Pod admission denied" podUID="2565fb15-8434-4a82-a435-1780f116106d" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:26:48 k8s-worker-01 kubelet[3171272]: I0620 13:26:48.134700 3171272 image_gc_manager.go:395] "Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold" usage=85 highThreshold=85 amountToFree=2554283622 lowThreshold=80
+Jun 20 13:26:48 k8s-worker-01 kubelet[3171272]: E0620 13:26:48.569706 3171272 kubelet.go:1721] "Image garbage collection failed multiple times in a row" err="Insufficient free disk space on the node's image filesystem (85% of 47.9 GiB used). Failed to free sufficient space by deleting unused images (freed 376722222 bytes). Investigate disk usage, as it could be used by active images, logs, volumes, or other data."

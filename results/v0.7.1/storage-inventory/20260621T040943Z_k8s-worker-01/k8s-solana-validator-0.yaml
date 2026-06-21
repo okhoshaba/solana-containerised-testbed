@@ -1,0 +1,232 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/containerID: c1d38939667aad2c43f1cea4b495864ffd286fce34ceefcf9f0e69b06a064b16
+    cni.projectcalico.org/podIP: 192.168.36.204/32
+    cni.projectcalico.org/podIPs: 192.168.36.204/32
+  creationTimestamp: "2026-06-20T13:25:37Z"
+  generateName: solana-validator-
+  generation: 1
+  labels:
+    app.kubernetes.io/component: validator
+    app.kubernetes.io/name: solana-containerised-testbed
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    apps.kubernetes.io/pod-index: "0"
+    controller-revision-hash: solana-validator-69b9db9449
+    statefulset.kubernetes.io/pod-name: solana-validator-0
+    testbed.solana/stage: observability-core
+  name: solana-validator-0
+  namespace: solana-observability
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: StatefulSet
+    name: solana-validator
+    uid: 08da07ee-687d-475f-ab05-51307d0c3006
+  resourceVersion: "2405236"
+  uid: 75dabba1-3320-45d0-95ac-119fa9e732bb
+spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+        name: validator-config
+    image: docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      exec:
+        command:
+        - sh
+        - -c
+        - /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null
+          2>&1
+      failureThreshold: 6
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 3
+    name: validator
+    ports:
+    - containerPort: 8899
+      name: rpc
+      protocol: TCP
+    - containerPort: 10000
+      name: geyser-grpc
+      protocol: TCP
+    readinessProbe:
+      exec:
+        command:
+        - sh
+        - -c
+        - /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null
+          2>&1
+      failureThreshold: 6
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 3
+    resources:
+      limits:
+        cpu: "6"
+        memory: 12Gi
+      requests:
+        cpu: "2"
+        memory: 4Gi
+    startupProbe:
+      exec:
+        command:
+        - sh
+        - -c
+        - /opt/solana/bin/solana --url http://127.0.0.1:8899 cluster-version >/dev/null
+          2>&1
+      failureThreshold: 60
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 3
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/lib/solana/ledger
+      name: validator-ledger
+    - mountPath: /etc/solana/yellowstone-geyser.json
+      name: validator-geyser-config
+      readOnly: true
+      subPath: yellowstone-geyser.json
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-4fgxt
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  hostname: solana-validator-0
+  nodeName: k8s-worker-01
+  nodeSelector:
+    testbed-role: validator
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  subdomain: solana-validator-headless
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: validator-ledger
+    persistentVolumeClaim:
+      claimName: validator-ledger-pvc
+  - configMap:
+      defaultMode: 420
+      name: validator-geyser-config
+    name: validator-geyser-config
+  - name: kube-api-access-4fgxt
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  allocatedResources:
+    cpu: "2"
+    memory: 4Gi
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T13:30:30Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T13:30:29Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T13:31:14Z"
+    observedGeneration: 1
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T13:31:14Z"
+    observedGeneration: 1
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T13:30:29Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - allocatedResources:
+      cpu: "2"
+      memory: 4Gi
+    containerID: containerd://03a38f2665117eceafe40d858023f26bf5193781bd8bb6db1996a2eaa6790db6
+    image: docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+    imageID: docker.io/khoshaba/solana-localnet-validator@sha256:4291dabd1160d4862671ab96bf34c9ed0c6e02af8af204c7250b47024a440ae8
+    lastState: {}
+    name: validator
+    ready: true
+    resources:
+      limits:
+        cpu: "6"
+        memory: 12Gi
+      requests:
+        cpu: "2"
+        memory: 4Gi
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-06-20T13:31:05Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        uid: 0
+    volumeMounts:
+    - mountPath: /var/lib/solana/ledger
+      name: validator-ledger
+    - mountPath: /etc/solana/yellowstone-geyser.json
+      name: validator-geyser-config
+      readOnly: true
+      recursiveReadOnly: Disabled
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-4fgxt
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.168.122.102
+  hostIPs:
+  - ip: 192.168.122.102
+  observedGeneration: 1
+  phase: Running
+  podIP: 192.168.36.204
+  podIPs:
+  - ip: 192.168.36.204
+  qosClass: Burstable
+  resources:
+    limits:
+      cpu: "6"
+      memory: 12Gi
+    requests:
+      cpu: 1999m
+      memory: 4Gi
+  startTime: "2026-06-20T13:30:29Z"
