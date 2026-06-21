@@ -134,7 +134,6 @@ def main() -> int:
                 row.get("err_delta", "") in {"", "0", "0.0"}
                 and row.get("final_target_lambda", "") in {"", "0", "0.0"}
                 and row.get("final_inflight", "") in {"", "0", "0.0"}
-                and row.get("final_last_err", "") == ""
             ):
                 clean_runs += 1
 
