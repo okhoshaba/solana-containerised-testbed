@@ -1,10 +1,10 @@
 # v0.8.0 preflight report
 
 run_id: v0.8.0-M0-L32
-timestamp_utc: 2026-06-23T14:54:23Z
+timestamp_utc: 2026-06-23T15:00:04Z
 branch: v0.8.0-dynamic-load-system-identification
-commit_sha: e935355250b4
-working_tree_clean: false
+commit_sha: e5959fd53615
+working_tree_clean: true
 rpc_url: http://127.0.0.1:18899
 local_path_dir: /opt/local-path-provisioner
 containerd_dir: /var/lib/containerd
@@ -29,20 +29,20 @@ k8s-worker-02   Ready    <none>          20d   v1.36.1   192.168.122.103   <none
 
 ## Node conditions
 Name:               k8s-cp-01
-  MemoryPressure       False   Tue, 23 Jun 2026 17:51:15 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
-  DiskPressure         False   Tue, 23 Jun 2026 17:51:15 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
-  PIDPressure          False   Tue, 23 Jun 2026 17:51:15 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
-  Ready                True    Tue, 23 Jun 2026 17:51:15 +0300   Wed, 03 Jun 2026 06:56:02 +0300   KubeletReady                 kubelet is posting ready status
+  MemoryPressure       False   Tue, 23 Jun 2026 17:56:21 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Tue, 23 Jun 2026 17:56:21 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Tue, 23 Jun 2026 17:56:21 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Tue, 23 Jun 2026 17:56:21 +0300   Wed, 03 Jun 2026 06:56:02 +0300   KubeletReady                 kubelet is posting ready status
 Name:               k8s-worker-01
-  MemoryPressure       False   Tue, 23 Jun 2026 17:49:26 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
-  DiskPressure         False   Tue, 23 Jun 2026 17:49:26 +0300   Sat, 20 Jun 2026 16:30:29 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
-  PIDPressure          False   Tue, 23 Jun 2026 17:49:26 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
-  Ready                True    Tue, 23 Jun 2026 17:49:26 +0300   Wed, 03 Jun 2026 07:02:04 +0300   KubeletReady                 kubelet is posting ready status
+  MemoryPressure       False   Tue, 23 Jun 2026 17:54:31 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Tue, 23 Jun 2026 17:54:31 +0300   Sat, 20 Jun 2026 16:30:29 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Tue, 23 Jun 2026 17:54:31 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Tue, 23 Jun 2026 17:54:31 +0300   Wed, 03 Jun 2026 07:02:04 +0300   KubeletReady                 kubelet is posting ready status
 Name:               k8s-worker-02
-  MemoryPressure       False   Tue, 23 Jun 2026 17:49:30 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
-  DiskPressure         False   Tue, 23 Jun 2026 17:49:30 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
-  PIDPressure          False   Tue, 23 Jun 2026 17:49:30 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
-  Ready                True    Tue, 23 Jun 2026 17:49:30 +0300   Wed, 03 Jun 2026 07:02:16 +0300   KubeletReady                 kubelet is posting ready status
+  MemoryPressure       False   Tue, 23 Jun 2026 17:54:36 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Tue, 23 Jun 2026 17:54:36 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Tue, 23 Jun 2026 17:54:36 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Tue, 23 Jun 2026 17:54:36 +0300   Wed, 03 Jun 2026 07:02:16 +0300   KubeletReady                 kubelet is posting ready status
 
 ## Validator pods
 solana-observability   solana-validator-0                                    1/1   Running     0     3d1h
@@ -81,4 +81,4 @@ Filesystem           Size  Used Avail Use% Mounted on
 
 ## Recent Kubernetes events
 NAMESPACE     LAST SEEN   TYPE      REASON      OBJECT                         MESSAGE
-kube-system   11m         Warning   Unhealthy   pod/kube-apiserver-k8s-cp-01   Readiness probe failed: HTTP probe failed with statuscode: 500
+kube-system   16m         Warning   Unhealthy   pod/kube-apiserver-k8s-cp-01   Readiness probe failed: HTTP probe failed with statuscode: 500
