@@ -1,0 +1,85 @@
+{
+  "schema_version": "v0.8.0-run-metadata-1",
+  "project": "Solana Containerised Testbed",
+  "stage": "v0.8.0 dynamic load system identification",
+  "run_id": "v0.8.0-M0-L32",
+  "experiment_class": "M0-baseline-steady-state",
+  "profile_type": "steady_state",
+  "git": {
+    "branch": "v0.8.0-dynamic-load-system-identification",
+    "commit_sha": "72a99d7803d0",
+    "working_tree_clean": true
+  },
+  "timing": {
+    "start_time_utc": "2026-06-23T00:00:00Z",
+    "end_time_utc": "2026-06-23T00:15:00Z",
+    "duration_seconds": 900
+  },
+  "sampling": {
+    "target_sampling_interval_seconds": 1,
+    "actual_sampling_interval_seconds": 1,
+    "resampling_used": false
+  },
+  "load_profile": {
+    "lambda_min": 32,
+    "lambda_max": 32,
+    "lambda_nominal": 32,
+    "parameters": {
+      "profile": "constant",
+      "target_lambda": 32,
+      "description": "Example metadata for the first v0.8.0 baseline steady-state run. This is not a real run record."
+    },
+    "commanded_signal_file": "data/raw/v0.8.0/v0.8.0-M0-L32/load_profile_commanded.csv",
+    "applied_signal_file": "data/raw/v0.8.0/v0.8.0-M0-L32/load_profile_applied.csv"
+  },
+  "safety_preflight": {
+    "disk_pressure": false,
+    "validator_pod_ready": true,
+    "rpc_healthy": true,
+    "root_filesystem_used_percent": 36.0,
+    "local_path_used_percent": null,
+    "containerd_used_percent": null,
+    "recent_pod_evictions": 0,
+    "recent_container_restarts": 0,
+    "recent_kubelet_storage_warnings": 0,
+    "preflight_passed": true
+  },
+  "telemetry": {
+    "raw_files": [
+      "data/raw/v0.8.0/v0.8.0-M0-L32/load_profile_commanded.csv",
+      "data/raw/v0.8.0/v0.8.0-M0-L32/load_profile_applied.csv",
+      "data/raw/v0.8.0/v0.8.0-M0-L32/rpc_telemetry.csv",
+      "data/raw/v0.8.0/v0.8.0-M0-L32/validator_metrics.csv",
+      "data/raw/v0.8.0/v0.8.0-M0-L32/container_metrics.csv",
+      "data/raw/v0.8.0/v0.8.0-M0-L32/pod_metrics.csv",
+      "data/raw/v0.8.0/v0.8.0-M0-L32/node_metrics.csv",
+      "data/raw/v0.8.0/v0.8.0-M0-L32/kubernetes_events.jsonl"
+    ],
+    "processed_files": [
+      "data/processed/v0.8.0/v0.8.0-M0-L32/aligned_timeseries.csv",
+      "data/processed/v0.8.0/v0.8.0-M0-L32/resampled_timeseries.csv"
+    ],
+    "summary_file": "data/processed/v0.8.0/v0.8.0-M0-L32/summary.json"
+  },
+  "abort_policy": {
+    "abort_conditions_declared": [
+      "DiskPressure=True",
+      "validator pod eviction",
+      "validator container restart during run",
+      "persistent RPC unavailable",
+      "sustained connection refused",
+      "rapidly increasing err_per_sec",
+      "unbounded inflight growth",
+      "severe latency runaway",
+      "disk free-space below declared threshold",
+      "telemetry collection failure"
+    ],
+    "abort_triggered": false,
+    "abort_reason": null
+  },
+  "run_verdict": {
+    "status": "PASS",
+    "scientifically_usable": true,
+    "notes": "Example metadata only. Replace timing, preflight values, telemetry files, and verdict with real run values after executing M0-L32."
+  }
+}
