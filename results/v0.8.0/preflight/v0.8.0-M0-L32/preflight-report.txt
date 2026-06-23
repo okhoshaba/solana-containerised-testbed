@@ -1,9 +1,9 @@
 # v0.8.0 preflight report
 
 run_id: v0.8.0-M0-L32
-timestamp_utc: 2026-06-23T15:00:04Z
+timestamp_utc: 2026-06-23T17:31:21Z
 branch: v0.8.0-dynamic-load-system-identification
-commit_sha: e5959fd53615
+commit_sha: 29fe6e3be8b7
 working_tree_clean: true
 rpc_url: http://127.0.0.1:18899
 local_path_dir: /opt/local-path-provisioner
@@ -29,23 +29,23 @@ k8s-worker-02   Ready    <none>          20d   v1.36.1   192.168.122.103   <none
 
 ## Node conditions
 Name:               k8s-cp-01
-  MemoryPressure       False   Tue, 23 Jun 2026 17:56:21 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
-  DiskPressure         False   Tue, 23 Jun 2026 17:56:21 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
-  PIDPressure          False   Tue, 23 Jun 2026 17:56:21 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
-  Ready                True    Tue, 23 Jun 2026 17:56:21 +0300   Wed, 03 Jun 2026 06:56:02 +0300   KubeletReady                 kubelet is posting ready status
+  MemoryPressure       False   Tue, 23 Jun 2026 20:29:29 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Tue, 23 Jun 2026 20:29:29 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Tue, 23 Jun 2026 20:29:29 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Tue, 23 Jun 2026 20:29:29 +0300   Wed, 03 Jun 2026 06:56:02 +0300   KubeletReady                 kubelet is posting ready status
 Name:               k8s-worker-01
-  MemoryPressure       False   Tue, 23 Jun 2026 17:54:31 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
-  DiskPressure         False   Tue, 23 Jun 2026 17:54:31 +0300   Sat, 20 Jun 2026 16:30:29 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
-  PIDPressure          False   Tue, 23 Jun 2026 17:54:31 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
-  Ready                True    Tue, 23 Jun 2026 17:54:31 +0300   Wed, 03 Jun 2026 07:02:04 +0300   KubeletReady                 kubelet is posting ready status
+  MemoryPressure       False   Tue, 23 Jun 2026 20:27:36 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Tue, 23 Jun 2026 20:27:36 +0300   Sat, 20 Jun 2026 16:30:29 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Tue, 23 Jun 2026 20:27:36 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Tue, 23 Jun 2026 20:27:36 +0300   Wed, 03 Jun 2026 07:02:04 +0300   KubeletReady                 kubelet is posting ready status
 Name:               k8s-worker-02
-  MemoryPressure       False   Tue, 23 Jun 2026 17:54:36 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
-  DiskPressure         False   Tue, 23 Jun 2026 17:54:36 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
-  PIDPressure          False   Tue, 23 Jun 2026 17:54:36 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
-  Ready                True    Tue, 23 Jun 2026 17:54:36 +0300   Wed, 03 Jun 2026 07:02:16 +0300   KubeletReady                 kubelet is posting ready status
+  MemoryPressure       False   Tue, 23 Jun 2026 20:27:44 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Tue, 23 Jun 2026 20:27:44 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Tue, 23 Jun 2026 20:27:44 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Tue, 23 Jun 2026 20:27:44 +0300   Wed, 03 Jun 2026 07:02:16 +0300   KubeletReady                 kubelet is posting ready status
 
 ## Validator pods
-solana-observability   solana-validator-0                                    1/1   Running     0     3d1h
+solana-observability   solana-validator-0                                    1/1   Running     0     3d4h
 
 ## Pods overview
 NAMESPACE              NAME                                                  READY   STATUS      RESTARTS   AGE     IP                NODE            NOMINATED NODE   READINESS GATES
@@ -63,10 +63,10 @@ kube-system            kube-proxy-crjg6                                      1/1
 kube-system            kube-proxy-l4s4l                                      1/1     Running     0          20d     192.168.122.101   k8s-cp-01       <none>           <none>
 kube-system            kube-scheduler-k8s-cp-01                              1/1     Running     0          20d     192.168.122.101   k8s-cp-01       <none>           <none>
 local-path-storage     local-path-provisioner-6d76485965-6rncq               1/1     Running     0          20d     192.168.36.193    k8s-worker-01   <none>           <none>
-solana-observability   controlled-load-knee-step-candidate-tztl2             0/1     Completed   0          5d16h   192.168.118.81    k8s-worker-02   <none>           <none>
-solana-observability   solana-loadgen2-5ccbc58fbb-wtr78                      1/1     Running     0          6d1h    192.168.118.75    k8s-worker-02   <none>           <none>
+solana-observability   controlled-load-knee-step-candidate-tztl2             0/1     Completed   0          5d18h   192.168.118.81    k8s-worker-02   <none>           <none>
+solana-observability   solana-loadgen2-5ccbc58fbb-wtr78                      1/1     Running     0          6d4h    192.168.118.75    k8s-worker-02   <none>           <none>
 solana-observability   solana-monitor-f995c8b9d-95vmp                        1/1     Running     0          19d     192.168.118.65    k8s-worker-02   <none>           <none>
-solana-observability   solana-validator-0                                    1/1     Running     0          3d1h    192.168.36.204    k8s-worker-01   <none>           <none>
+solana-observability   solana-validator-0                                    1/1     Running     0          3d4h    192.168.36.204    k8s-worker-01   <none>           <none>
 solana-observability   wallet-init-ngm2v                                     0/1     Completed   0          19d     <none>            k8s-worker-02   <none>           <none>
 solana-observability   wallet-transfer-validation-kvm-20260604035307-vcv2b   0/1     Completed   0          19d     <none>            k8s-worker-02   <none>           <none>
 
@@ -80,5 +80,4 @@ Filesystem           Size  Used Avail Use% Mounted on
 {"jsonrpc":"2.0","result":"ok","id":1}
 
 ## Recent Kubernetes events
-NAMESPACE     LAST SEEN   TYPE      REASON      OBJECT                         MESSAGE
-kube-system   16m         Warning   Unhealthy   pod/kube-apiserver-k8s-cp-01   Readiness probe failed: HTTP probe failed with statuscode: 500
+
