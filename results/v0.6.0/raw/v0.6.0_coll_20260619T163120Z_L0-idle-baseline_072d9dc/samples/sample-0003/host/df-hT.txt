@@ -1,0 +1,12 @@
+Filesystem          Type      Size  Used Avail Use% Mounted on
+devtmpfs            devtmpfs   95G     0   95G   0% /dev
+tmpfs               tmpfs      95G   84K   95G   1% /dev/shm
+tmpfs               tmpfs      38G  957M   37G   3% /run
+/dev/mapper/cs-root xfs        70G   16G   55G  22% /
+/dev/loop1          squashfs   14M   14M     0 100% /var/lib/snapd/snap/kubectl/3804
+/dev/loop0          squashfs   64M   64M     0 100% /var/lib/snapd/snap/core20/2866
+/dev/loop2          squashfs   50M   50M     0 100% /var/lib/snapd/snap/snapd/26865
+/dev/mapper/cs-home xfs       856G  109G  747G  13% /home
+/dev/sda1           xfs       960M  909M   52M  95% /boot
+tmpfs               tmpfs      19G   56K   19G   1% /run/user/42
+tmpfs               tmpfs      19G   44K   19G   1% /run/user/1000

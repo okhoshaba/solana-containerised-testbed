@@ -1,0 +1,1 @@
+Error from server (BadRequest): previous terminated container "wallet-transfer-validation" in pod "wallet-transfer-validation-kvm-20260604035307-vcv2b" not found

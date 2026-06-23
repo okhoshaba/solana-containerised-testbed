@@ -1,0 +1,5 @@
+# command: git branch --show-current
+# started_utc: 2026-06-20T09:34:28Z
+v0.6.0-controlled-load-experiments
+# finished_utc: 2026-06-20T09:34:28Z
+# exit_code: 0

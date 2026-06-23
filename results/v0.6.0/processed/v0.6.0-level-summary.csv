@@ -1,0 +1,5 @@
+load_level,target_lambda,run_count,valid_runs,clean_runs,sent_delta_mean,sent_delta_std,ok_delta_mean,ok_delta_std,err_delta_total,achieved_tps_mean,achieved_tps_std
+L0,,1,1,1,,,,,,,
+L1,1,5,5,5,71.600000,0.489898,71.600000,0.489898,0,1.193333,0.008165
+L2,2,5,5,5,138.600000,4.800000,138.600000,4.800000,0,2.310000,0.080000
+L3,4,5,5,5,277.000000,0.894427,277.000000,0.894427,0,4.616667,0.014907

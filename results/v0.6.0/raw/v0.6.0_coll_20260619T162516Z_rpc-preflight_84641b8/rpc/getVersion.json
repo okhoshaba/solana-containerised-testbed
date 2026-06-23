@@ -1,0 +1,5 @@
+# command: curl -sS -m 5 http://127.0.0.1:18899 -H Content-Type: application/json -d {"jsonrpc":"2.0","id":1,"method":"getVersion"}
+# started_utc: 2026-06-19T16:25:19Z
+{"jsonrpc":"2.0","result":{"feature-set":3241752014,"solana-core":"1.18.25"},"id":1}
+# finished_utc: 2026-06-19T16:25:19Z
+# exit_code: 0

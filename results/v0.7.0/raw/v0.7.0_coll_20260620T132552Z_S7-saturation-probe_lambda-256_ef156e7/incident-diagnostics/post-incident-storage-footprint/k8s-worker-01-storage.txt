@@ -1,0 +1,97 @@
+=== identity ===
+k8s-worker-01
+Sun Jun 21 03:20:29 AM UTC 2026
+
+=== df ===
+Filesystem                        Type  Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4   48G   17G   29G  38% /
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4   48G   17G   29G  38% /
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4   48G   17G   29G  38% /
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4   48G   17G   29G  38% /
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4   48G   17G   29G  38% /
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4   48G   17G   29G  38% /
+
+=== top /opt ===
+4.0K	/opt/containerd/bin
+4.0K	/opt/containerd/lib
+12K	/opt/containerd
+278M	/opt/cni
+278M	/opt/cni/bin
+7.1G	/opt/local-path-provisioner
+7.1G	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc
+7.4G	/opt
+
+=== top /var/lib ===
+4.0K	/var/lib/misc
+4.0K	/var/lib/os-prober
+4.0K	/var/lib/plymouth
+4.0K	/var/lib/private
+4.0K	/var/lib/python
+4.0K	/var/lib/tpm
+4.0K	/var/lib/ubuntu-drivers-common
+4.0K	/var/lib/ubuntu-release-upgrader
+4.0K	/var/lib/udisks2
+4.0K	/var/lib/unattended-upgrades
+4.0K	/var/lib/upower
+4.0K	/var/lib/usb_modeswitch
+8.0K	/var/lib/apport
+8.0K	/var/lib/landscape
+8.0K	/var/lib/logrotate
+8.0K	/var/lib/sudo
+8.0K	/var/lib/vim
+12K	/var/lib/calico
+12K	/var/lib/sgml-base
+12K	/var/lib/update-manager
+16K	/var/lib/grub
+16K	/var/lib/xml-core
+20K	/var/lib/polkit-1
+20K	/var/lib/update-notifier
+28K	/var/lib/cni
+28K	/var/lib/pam
+36K	/var/lib/PackageKit
+68K	/var/lib/swcatalog
+116K	/var/lib/ucf
+148K	/var/lib/snapd
+216K	/var/lib/cloud
+340K	/var/lib/kubelet
+728K	/var/lib/systemd
+1.9M	/var/lib/fwupd
+3.9M	/var/lib/command-not-found
+6.4M	/var/lib/ubuntu-advantage
+29M	/var/lib/dpkg
+183M	/var/lib/apt
+2.5G	/var/lib/containerd
+2.7G	/var/lib
+
+=== top containerd ===
+4.0K	/var/lib/containerd/io.containerd.sandbox.controller.v1.shim
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.blockfile
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.btrfs
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.erofs
+4.0K	/var/lib/containerd/tmpmounts
+8.0K	/var/lib/containerd/io.containerd.grpc.v1.introspection
+8.0K	/var/lib/containerd/io.containerd.snapshotter.v1.native
+40K	/var/lib/containerd/io.containerd.runtime.v2.task
+132K	/var/lib/containerd/io.containerd.grpc.v1.cri
+916K	/var/lib/containerd/io.containerd.metadata.v1.bolt
+654M	/var/lib/containerd/io.containerd.content.v1.content
+1.8G	/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs
+2.5G	/var/lib/containerd
+
+=== top kubelet ===
+4.0K	/var/lib/kubelet/checkpoints
+4.0K	/var/lib/kubelet/device-plugins
+4.0K	/var/lib/kubelet/plugins
+4.0K	/var/lib/kubelet/plugins_registry
+4.0K	/var/lib/kubelet/pod-resources
+16K	/var/lib/kubelet/image_manager
+16K	/var/lib/kubelet/pki
+252K	/var/lib/kubelet/pods
+340K	/var/lib/kubelet
+
+=== local-path validator ledger ===
+84K	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/snapshot
+9.9M	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/accounts
+2.9G	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc/rocksdb
+7.1G	/opt/local-path-provisioner
+7.1G	/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc

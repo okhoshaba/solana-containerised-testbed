@@ -1,0 +1,15 @@
+# command: lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT,MODEL
+# started_utc: 2026-06-19T15:13:19Z
+NAME         SIZE TYPE FSTYPE      MOUNTPOINT                       MODEL
+loop0       63.8M loop squashfs    /var/lib/snapd/snap/core20/2866  
+loop1       13.2M loop squashfs    /var/lib/snapd/snap/kubectl/3804 
+loop2       49.3M loop squashfs    /var/lib/snapd/snap/snapd/26865  
+sda          931G disk                                              PERC H710
+├─sda1         1G part xfs         /boot                            
+└─sda2       930G part LVM2_member                                  
+  ├─cs-root   70G lvm  xfs         /                                
+  ├─cs-swap    4G lvm  swap        [SWAP]                           
+  └─cs-home  856G lvm  xfs         /home                            
+sr0         1024M rom                                               HL-DT-ST DVD-ROM DU70N
+# finished_utc: 2026-06-19T15:13:19Z
+# exit_code: 0

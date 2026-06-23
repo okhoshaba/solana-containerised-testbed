@@ -1,0 +1,71 @@
+Name:             solana-loadgen2-5ccbc58fbb-wtr78
+Namespace:        solana-observability
+Priority:         0
+Service Account:  default
+Node:             k8s-worker-02/192.168.122.103
+Start Time:       Wed, 17 Jun 2026 16:27:00 +0300
+Labels:           app.kubernetes.io/component=controlled-load
+                  app.kubernetes.io/name=solana-loadgen2
+                  app.kubernetes.io/part-of=solana-containerised-testbed
+                  pod-template-hash=5ccbc58fbb
+Annotations:      cni.projectcalico.org/containerID: 3dda48b6c83e085366bde5ef8cbe8ac568373bd930dbea393355ef677f62c1d6
+                  cni.projectcalico.org/podIP: 192.168.118.75/32
+                  cni.projectcalico.org/podIPs: 192.168.118.75/32
+Status:           Running
+IP:               192.168.118.75
+IPs:
+  IP:           192.168.118.75
+Controlled By:  ReplicaSet/solana-loadgen2-5ccbc58fbb
+Containers:
+  loadgen2:
+    Container ID:  containerd://a8d95e6dd1d2c3f6d745f0b56ea7be9c3ea45f2dc1d63dc8bcdd741bb1a1d39e
+    Image:         docker.io/khoshaba/solana-loadgen2:layer1
+    Image ID:      docker.io/khoshaba/solana-loadgen2@sha256:7d3966e848ec4fceae154bab33baab390f31da3b751b883bf3f9fc727942a302
+    Port:          7070/TCP (http-control)
+    Host Port:     0/TCP (http-control)
+    Args:
+      -keypair
+      /run/secrets/solana/payer.json
+      -rpc
+      http://solana-rpc:8899
+      -listen
+      0.0.0.0:7070
+      -workers
+      4
+      -inflight
+      32
+      -lambda
+      0
+      -burst
+      1
+    State:          Running
+      Started:      Wed, 17 Jun 2026 16:27:09 +0300
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /run/secrets/solana from payer-keypair (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-flfsd (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  payer-keypair:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  solana-payer-keypair
+    Optional:    false
+  kube-api-access-flfsd:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              testbed-role=observability
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

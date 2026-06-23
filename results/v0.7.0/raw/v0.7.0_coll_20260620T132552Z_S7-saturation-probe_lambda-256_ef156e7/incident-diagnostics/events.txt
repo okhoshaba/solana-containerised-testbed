@@ -1,0 +1,42 @@
+LAST SEEN   TYPE      REASON             OBJECT                         MESSAGE
+6m38s       Warning   Evicted            pod/solana-validator-0         The node was low on resource: ephemeral-storage. Threshold quantity: 7719071231, available: 7535952Ki. Container validator was using 21976Ki, request is 0, has larger consumption of ephemeral-storage.
+6m38s       Normal    Killing            pod/solana-validator-0         Stopping container validator
+6m35s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m35s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m35s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m35s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m35s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m35s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m35s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m35s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m34s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m34s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m34s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m34s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m34s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m34s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m34s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m34s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m34s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m34s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m33s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m33s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m33s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m33s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m33s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m33s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m33s       Normal    SuccessfulDelete   statefulset/solana-validator   Delete Pod solana-validator-0 in StatefulSet solana-validator successful
+6m33s       Normal    SuccessfulCreate   statefulset/solana-validator   Create Pod solana-validator-0 in StatefulSet solana-validator successful
+6m32s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m32s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m32s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m32s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m32s       Warning   Evicted            pod/solana-validator-0         The node had condition: [DiskPressure].
+6m32s       Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+6m24s       Warning   FailedScheduling   pod/solana-validator-0         0/3 nodes are available: 1 node(s) didn't match Pod's node affinity/selector, 2 node(s) had untolerated taint(s). no new claims to deallocate, preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.
+92s         Normal    Scheduled          pod/solana-validator-0         Successfully assigned solana-observability/solana-validator-0 to k8s-worker-01
+91s         Normal    Pulling            pod/solana-validator-0         Pulling image "docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone"
+56s         Normal    Pulled             pod/solana-validator-0         Successfully pulled image "docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone" in 35.133s (35.133s including waiting). Image size: 376722222 bytes.
+56s         Normal    Created            pod/solana-validator-0         Container created
+56s         Normal    Started            pod/solana-validator-0         Container started
+52s         Warning   Unhealthy          pod/solana-validator-0         Startup probe failed:

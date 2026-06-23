@@ -1,0 +1,7 @@
+# command: kubectl get ds -A -o wide
+# started_utc: 2026-06-19T15:13:21Z
+NAMESPACE     NAME          DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE   CONTAINERS    IMAGES                               SELECTOR
+kube-system   calico-node   3         3         3       3            3           kubernetes.io/os=linux   16d   calico-node   quay.io/calico/node:v3.32.0          k8s-app=calico-node
+kube-system   kube-proxy    3         3         3       3            3           kubernetes.io/os=linux   16d   kube-proxy    registry.k8s.io/kube-proxy:v1.36.1   k8s-app=kube-proxy
+# finished_utc: 2026-06-19T15:13:21Z
+# exit_code: 0

@@ -1,0 +1,7 @@
+# command: kubectl -n solana-observability get endpoints solana-rpc -o wide
+# started_utc: 2026-06-19T16:25:16Z
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME         ENDPOINTS             AGE
+solana-rpc   192.168.36.203:8899   15d
+# finished_utc: 2026-06-19T16:25:16Z
+# exit_code: 0

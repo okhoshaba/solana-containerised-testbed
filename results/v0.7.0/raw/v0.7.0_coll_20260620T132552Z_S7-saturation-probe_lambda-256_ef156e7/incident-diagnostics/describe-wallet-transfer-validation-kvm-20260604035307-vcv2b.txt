@@ -1,0 +1,117 @@
+Name:             wallet-transfer-validation-kvm-20260604035307-vcv2b
+Namespace:        solana-observability
+Priority:         0
+Service Account:  default
+Node:             k8s-worker-02/192.168.122.103
+Start Time:       Thu, 04 Jun 2026 06:52:08 +0300
+Labels:           app.kubernetes.io/component=wallet-transfer-validation
+                  app.kubernetes.io/name=solana-containerised-testbed
+                  app.kubernetes.io/part-of=solana-containerised-testbed
+                  batch.kubernetes.io/controller-uid=bf232e37-71e1-4ef5-9f3b-ba9a0569789e
+                  batch.kubernetes.io/job-name=wallet-transfer-validation-kvm-20260604035307
+                  controller-uid=bf232e37-71e1-4ef5-9f3b-ba9a0569789e
+                  job-name=wallet-transfer-validation-kvm-20260604035307
+                  testbed.solana/stage=observability-core-validation
+Annotations:      cni.projectcalico.org/containerID: e5218fafd2bb062e8f8b64d33cfc85512c2063c734989fedc5795531894a998a
+                  cni.projectcalico.org/podIP: 
+                  cni.projectcalico.org/podIPs: 
+Status:           Succeeded
+IP:               
+IPs:              <none>
+Controlled By:    Job/wallet-transfer-validation-kvm-20260604035307
+Containers:
+  wallet-transfer-validation:
+    Container ID:  containerd://27a87fd1e21618e049234624539f1bf2b9e2a1b87e1355126f16c03a35991949
+    Image:         docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone
+    Image ID:      docker.io/khoshaba/solana-localnet-validator@sha256:4291dabd1160d4862671ab96bf34c9ed0c6e02af8af204c7250b47024a440ae8
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -lc
+      set -eu
+      
+      SOLANA="/opt/solana/bin/solana"
+      SOLANA_KEYGEN="/opt/solana/bin/solana-keygen"
+      SENDER_KEYPAIR="/tmp/sender-validation.json"
+      
+      echo "[INFO] Checking Solana CLI"
+      "${SOLANA}" --version
+      "${SOLANA_KEYGEN}" --version
+      
+      echo "[INFO] Checking Solana cluster version"
+      "${SOLANA}" --url "${SOLANA_URL}" cluster-version
+      
+      echo "[INFO] Creating temporary sender keypair"
+      "${SOLANA_KEYGEN}" new --no-bip39-passphrase --silent --force --outfile "${SENDER_KEYPAIR}"
+      
+      SENDER_PUB="$("${SOLANA_KEYGEN}" pubkey "${SENDER_KEYPAIR}")"
+      
+      echo "[INFO] Sender:   ${SENDER_PUB}"
+      echo "[INFO] Receiver: ${RECEIVER_PUB}"
+      
+      echo "[INFO] Airdropping 2 SOL to sender"
+      "${SOLANA}" --url "${SOLANA_URL}" airdrop 2 "${SENDER_PUB}"
+      
+      echo "[INFO] Sender balance before transfer"
+      "${SOLANA}" --url "${SOLANA_URL}" balance "${SENDER_PUB}"
+      
+      echo "[INFO] Receiver balance before transfer"
+      "${SOLANA}" --url "${SOLANA_URL}" balance "${RECEIVER_PUB}"
+      
+      echo "[INFO] Sending 0.5 SOL from sender to receiver"
+      TRANSFER_OUTPUT="$("${SOLANA}" --url "${SOLANA_URL}" --keypair "${SENDER_KEYPAIR}" transfer                 --allow-unfunded-recipient                 "${RECEIVER_PUB}"                 0.5)"
+      
+      printf '%s\n' "${TRANSFER_OUTPUT}"
+      
+      SIG="$(printf '%s\n' "${TRANSFER_OUTPUT}" | awk '/Signature:/ {print $2; exit}')"
+      
+      if [ -z "${SIG}" ]; then
+        echo "[ERROR] Transaction signature was not found in transfer output"
+        exit 1
+      fi
+      
+      echo "[INFO] Transaction signature: ${SIG}"
+      
+      echo "[INFO] Confirming transaction"
+      "${SOLANA}" --url "${SOLANA_URL}" confirm "${SIG}"
+      
+      echo "[INFO] Sender balance after transfer"
+      "${SOLANA}" --url "${SOLANA_URL}" balance "${SENDER_PUB}"
+      
+      echo "[INFO] Receiver balance after transfer"
+      "${SOLANA}" --url "${SOLANA_URL}" balance "${RECEIVER_PUB}"
+      
+      echo "[INFO] Wallet transfer validation completed successfully"
+      
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 04 Jun 2026 06:52:15 +0300
+      Finished:     Thu, 04 Jun 2026 06:52:22 +0300
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      SOLANA_URL:    http://solana-rpc:8899
+      RECEIVER_PUB:  6avCzMrjUDebRYtSoQ6GPQENjoxDaD2Udik8JzRnKbtb
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cphnk (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-cphnk:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>

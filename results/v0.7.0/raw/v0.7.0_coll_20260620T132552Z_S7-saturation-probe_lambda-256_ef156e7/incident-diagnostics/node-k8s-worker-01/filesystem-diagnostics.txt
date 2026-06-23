@@ -1,0 +1,233 @@
+=== identity ===
+k8s-worker-01
+Sat Jun 20 01:42:39 PM UTC 2026
+
+=== df -hT ===
+Filesystem                        Type   Size  Used Avail Use% Mounted on
+tmpfs                             tmpfs  1.6G  1.9M  1.6G   1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv ext4    48G   11G   35G  24% /
+tmpfs                             tmpfs  7.9G     0  7.9G   0% /dev/shm
+tmpfs                             tmpfs  5.0M     0  5.0M   0% /run/lock
+/dev/mapper/ubuntu--vg-lv--0      ext4    48G   60K   46G   1% /home
+/dev/vda2                         ext4   2.0G  104M  1.7G   6% /boot
+tmpfs                             tmpfs  1.6G   12K  1.6G   1% /run/user/1000
+
+=== df -ih ===
+Filesystem                        Inodes IUsed IFree IUse% Mounted on
+tmpfs                               2.0M  1.1K  2.0M    1% /run
+/dev/mapper/ubuntu--vg-ubuntu--lv   3.1M  125K  3.0M    4% /
+tmpfs                               2.0M     1  2.0M    1% /dev/shm
+tmpfs                               2.0M     3  2.0M    1% /run/lock
+/dev/mapper/ubuntu--vg-lv--0        3.1M    22  3.1M    1% /home
+/dev/vda2                           128K   317  128K    1% /boot
+tmpfs                               400K    32  400K    1% /run/user/1000
+
+=== top-level disk usage ===
+4.0K	/bin.usr-is-merged
+4.0K	/cdrom
+4.0K	/lib.usr-is-merged
+4.0K	/media
+4.0K	/mnt
+4.0K	/sbin.usr-is-merged
+4.0K	/srv
+8.0K	/snap
+16K	/lost+found
+24K	/root
+80K	/tmp
+6.2M	/etc
+997M	/opt
+2.6G	/usr
+3.0G	/var
+11G	/
+
+=== /var disk usage ===
+4.0K	/var/crash
+4.0K	/var/local
+4.0K	/var/mail
+4.0K	/var/opt
+4.0K	/var/snap
+16K	/var/spool
+60K	/var/tmp
+1.9M	/var/backups
+87M	/var/log
+250M	/var/cache
+2.7G	/var/lib
+3.0G	/var
+
+=== /var/lib disk usage ===
+4.0K	/var/lib/boltd
+4.0K	/var/lib/dbus
+4.0K	/var/lib/dhcpcd
+4.0K	/var/lib/git
+4.0K	/var/lib/ieee-data
+4.0K	/var/lib/libuuid
+4.0K	/var/lib/man-db
+4.0K	/var/lib/misc
+4.0K	/var/lib/os-prober
+4.0K	/var/lib/plymouth
+4.0K	/var/lib/private
+4.0K	/var/lib/python
+4.0K	/var/lib/tpm
+4.0K	/var/lib/ubuntu-drivers-common
+4.0K	/var/lib/ubuntu-release-upgrader
+4.0K	/var/lib/udisks2
+4.0K	/var/lib/unattended-upgrades
+4.0K	/var/lib/upower
+4.0K	/var/lib/usb_modeswitch
+8.0K	/var/lib/apport
+8.0K	/var/lib/landscape
+8.0K	/var/lib/logrotate
+8.0K	/var/lib/sudo
+8.0K	/var/lib/vim
+12K	/var/lib/calico
+12K	/var/lib/sgml-base
+12K	/var/lib/update-manager
+16K	/var/lib/grub
+16K	/var/lib/xml-core
+20K	/var/lib/polkit-1
+20K	/var/lib/update-notifier
+28K	/var/lib/cni
+28K	/var/lib/pam
+36K	/var/lib/PackageKit
+68K	/var/lib/swcatalog
+116K	/var/lib/ucf
+148K	/var/lib/snapd
+216K	/var/lib/cloud
+340K	/var/lib/kubelet
+728K	/var/lib/systemd
+1.9M	/var/lib/fwupd
+3.9M	/var/lib/command-not-found
+6.4M	/var/lib/ubuntu-advantage
+29M	/var/lib/dpkg
+183M	/var/lib/apt
+2.5G	/var/lib/containerd
+2.7G	/var/lib
+
+=== /var/lib/kubelet disk usage ===
+4.0K	/var/lib/kubelet/checkpoints
+4.0K	/var/lib/kubelet/device-plugins
+4.0K	/var/lib/kubelet/image_manager/pulling
+4.0K	/var/lib/kubelet/plugins
+4.0K	/var/lib/kubelet/plugins_registry
+4.0K	/var/lib/kubelet/pod-resources
+8.0K	/var/lib/kubelet/image_manager/pulled
+16K	/var/lib/kubelet/image_manager
+16K	/var/lib/kubelet/pki
+48K	/var/lib/kubelet/pods/eedaf65b-6ef8-4f8a-96b2-c2c38876cad6
+60K	/var/lib/kubelet/pods/46ad9a6f-e099-4416-92cf-0dcb52d0bd4c
+68K	/var/lib/kubelet/pods/6b9eaf2a-d46f-4bc6-9d25-5d3fb584f887
+72K	/var/lib/kubelet/pods/75dabba1-3320-45d0-95ac-119fa9e732bb
+252K	/var/lib/kubelet/pods
+340K	/var/lib/kubelet
+
+=== /var/lib/containerd disk usage ===
+4.0K	/var/lib/containerd/io.containerd.content.v1.content/ingest
+4.0K	/var/lib/containerd/io.containerd.sandbox.controller.v1.shim
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.blockfile
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.btrfs
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.erofs
+4.0K	/var/lib/containerd/io.containerd.snapshotter.v1.native/snapshots
+4.0K	/var/lib/containerd/tmpmounts
+8.0K	/var/lib/containerd/io.containerd.grpc.v1.introspection
+8.0K	/var/lib/containerd/io.containerd.snapshotter.v1.native
+36K	/var/lib/containerd/io.containerd.runtime.v2.task/k8s.io
+40K	/var/lib/containerd/io.containerd.runtime.v2.task
+60K	/var/lib/containerd/io.containerd.grpc.v1.cri/containers
+68K	/var/lib/containerd/io.containerd.grpc.v1.cri/sandboxes
+132K	/var/lib/containerd/io.containerd.grpc.v1.cri
+916K	/var/lib/containerd/io.containerd.metadata.v1.bolt
+654M	/var/lib/containerd/io.containerd.content.v1.content
+654M	/var/lib/containerd/io.containerd.content.v1.content/blobs
+1.8G	/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs
+1.8G	/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots
+2.5G	/var/lib/containerd
+
+=== possible local-path storage ===
+/opt/local-path-provisioner
+/opt/local-path-provisioner/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75_solana-observability_validator-ledger-pvc
+
+=== kubelet recent logs ===
+Jun 20 12:43:33 k8s-worker-01 kubelet[3171272]: E0620 12:43:33.268807 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:53730->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 12:45:06 k8s-worker-01 kubelet[3171272]: E0620 12:45:06.365005 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:35740->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 12:50:09 k8s-worker-01 kubelet[3171272]: E0620 12:50:09.611072 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:48432->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 13:04:50 k8s-worker-01 kubelet[3171272]: E0620 13:04:50.662573 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:41140->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 13:06:48 k8s-worker-01 kubelet[3171272]: E0620 13:06:48.413020 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:58060->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 13:08:23 k8s-worker-01 kubelet[3171272]: E0620 13:08:23.171194 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:52328->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 13:10:01 k8s-worker-01 kubelet[3171272]: E0620 13:10:01.238119 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:51064->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 13:14:52 k8s-worker-01 kubelet[3171272]: E0620 13:14:52.293679 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:47688->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 13:16:48 k8s-worker-01 kubelet[3171272]: I0620 13:16:48.079158 3171272 image_gc_manager.go:395] "Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold" usage=85 highThreshold=85 amountToFree=2107283046 lowThreshold=80
+Jun 20 13:16:48 k8s-worker-01 kubelet[3171272]: E0620 13:16:48.079573 3171272 kubelet.go:1725] "Image garbage collection failed once. Stats initialization may not have completed yet" err="Insufficient free disk space on the node's image filesystem (85% of 47.9 GiB used). Failed to free sufficient space by deleting unused images (freed 0 bytes). Investigate disk usage, as it could be used by active images, logs, volumes, or other data."
+Jun 20 13:20:12 k8s-worker-01 kubelet[3171272]: E0620 13:20:12.061241 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:44248->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 13:21:48 k8s-worker-01 kubelet[3171272]: I0620 13:21:48.109234 3171272 image_gc_manager.go:395] "Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold" usage=85 highThreshold=85 amountToFree=2319443558 lowThreshold=80
+Jun 20 13:21:48 k8s-worker-01 kubelet[3171272]: E0620 13:21:48.109433 3171272 kubelet.go:1721] "Image garbage collection failed multiple times in a row" err="Insufficient free disk space on the node's image filesystem (85% of 47.9 GiB used). Failed to free sufficient space by deleting unused images (freed 0 bytes). Investigate disk usage, as it could be used by active images, logs, volumes, or other data."
+Jun 20 13:22:03 k8s-worker-01 kubelet[3171272]: E0620 13:22:03.411340 3171272 upgradeaware.go:428] "Error proxying data from client to backend" err="readfrom tcp 127.0.0.1:47648->127.0.0.1:43503: websocket: close 1006 (abnormal closure): unexpected EOF"
+Jun 20 13:25:23 k8s-worker-01 kubelet[3171272]: I0620 13:25:23.429585 3171272 eviction_manager.go:381] "Eviction manager: attempting to reclaim" resourceName="ephemeral-storage"
+Jun 20 13:25:23 k8s-worker-01 kubelet[3171272]: I0620 13:25:23.429818 3171272 container_gc.go:86] "Attempting to delete unused containers"
+Jun 20 13:25:23 k8s-worker-01 kubelet[3171272]: I0620 13:25:23.437870 3171272 image_gc_manager.go:460] "Attempting to delete unused images"
+Jun 20 13:25:23 k8s-worker-01 kubelet[3171272]: I0620 13:25:23.504173 3171272 eviction_manager.go:392] "Eviction manager: must evict pod(s) to reclaim" resourceName="ephemeral-storage"
+Jun 20 13:25:23 k8s-worker-01 kubelet[3171272]: I0620 13:25:23.504584 3171272 eviction_manager.go:410] "Eviction manager: pods ranked for eviction" pods=["solana-observability/solana-validator-0","local-path-storage/local-path-provisioner-6d76485965-6rncq","kube-system/calico-node-2zb4j","kube-system/kube-proxy-47b92"]
+Jun 20 13:25:25 k8s-worker-01 kubelet[3171272]: I0620 13:25:25.935368 3171272 scope.go:122] "RemoveContainer" containerID="1636e63169694b9a1b00ac0f4d2c20ee1b90f808931a0cae3f1c65da19b09d24"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.399699 3171272 eviction_manager.go:635] "Eviction manager: pod is evicted successfully" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.399780 3171272 eviction_manager.go:213] "Eviction manager: pods evicted, waiting for pod to be cleaned up" pods=["solana-observability/solana-validator-0"]
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.433320 3171272 scope.go:122] "RemoveContainer" containerID="1636e63169694b9a1b00ac0f4d2c20ee1b90f808931a0cae3f1c65da19b09d24"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: E0620 13:25:26.434617 3171272 remote_runtime.go:569] "ContainerStatus from runtime service failed" err="rpc error: code = NotFound desc = an error occurred when try to find container \"1636e63169694b9a1b00ac0f4d2c20ee1b90f808931a0cae3f1c65da19b09d24\": not found" containerID="1636e63169694b9a1b00ac0f4d2c20ee1b90f808931a0cae3f1c65da19b09d24"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.434737 3171272 pod_container_deletor.go:53] "DeleteContainer returned error" containerID={"Type":"containerd","ID":"1636e63169694b9a1b00ac0f4d2c20ee1b90f808931a0cae3f1c65da19b09d24"} err="failed to get container status \"1636e63169694b9a1b00ac0f4d2c20ee1b90f808931a0cae3f1c65da19b09d24\": rpc error: code = NotFound desc = an error occurred when try to find container \"1636e63169694b9a1b00ac0f4d2c20ee1b90f808931a0cae3f1c65da19b09d24\": not found"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.515031 3171272 reconciler_common.go:163] "operationExecutor.UnmountVolume started for volume \"kubernetes.io/projected/dcf0f199-ec39-496f-afd3-cb2a3d519c84-kube-api-access-lb222\" (UniqueName: \"kubernetes.io/projected/dcf0f199-ec39-496f-afd3-cb2a3d519c84-kube-api-access-lb222\") pod \"dcf0f199-ec39-496f-afd3-cb2a3d519c84\" (UID: \"dcf0f199-ec39-496f-afd3-cb2a3d519c84\") "
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.515125 3171272 reconciler_common.go:163] "operationExecutor.UnmountVolume started for volume \"kubernetes.io/configmap/dcf0f199-ec39-496f-afd3-cb2a3d519c84-validator-geyser-config\" (UniqueName: \"kubernetes.io/configmap/dcf0f199-ec39-496f-afd3-cb2a3d519c84-validator-geyser-config\") pod \"dcf0f199-ec39-496f-afd3-cb2a3d519c84\" (UID: \"dcf0f199-ec39-496f-afd3-cb2a3d519c84\") "
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.515172 3171272 reconciler_common.go:163] "operationExecutor.UnmountVolume started for volume \"kubernetes.io/host-path/dcf0f199-ec39-496f-afd3-cb2a3d519c84-pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75\" (UniqueName: \"kubernetes.io/host-path/dcf0f199-ec39-496f-afd3-cb2a3d519c84-pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75\") pod \"dcf0f199-ec39-496f-afd3-cb2a3d519c84\" (UID: \"dcf0f199-ec39-496f-afd3-cb2a3d519c84\") "
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.515310 3171272 operation_generator.go:781] UnmountVolume.TearDown succeeded for volume "kubernetes.io/host-path/dcf0f199-ec39-496f-afd3-cb2a3d519c84-pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75" pod "dcf0f199-ec39-496f-afd3-cb2a3d519c84" (UID: "dcf0f199-ec39-496f-afd3-cb2a3d519c84"). InnerVolumeSpecName "pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75". PluginName "kubernetes.io/host-path", VolumeGIDValue ""
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.522148 3171272 operation_generator.go:781] UnmountVolume.TearDown succeeded for volume "kubernetes.io/configmap/dcf0f199-ec39-496f-afd3-cb2a3d519c84-validator-geyser-config" pod "dcf0f199-ec39-496f-afd3-cb2a3d519c84" (UID: "dcf0f199-ec39-496f-afd3-cb2a3d519c84"). InnerVolumeSpecName "validator-geyser-config". PluginName "kubernetes.io/configmap", VolumeGIDValue ""
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.522711 3171272 operation_generator.go:781] UnmountVolume.TearDown succeeded for volume "kubernetes.io/projected/dcf0f199-ec39-496f-afd3-cb2a3d519c84-kube-api-access-lb222" pod "dcf0f199-ec39-496f-afd3-cb2a3d519c84" (UID: "dcf0f199-ec39-496f-afd3-cb2a3d519c84"). InnerVolumeSpecName "kube-api-access-lb222". PluginName "kubernetes.io/projected", VolumeGIDValue ""
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.571497 3171272 allocation_manager.go:619] "Pod admission denied" podUID="92310f90-a932-4f98-a3f8-245a91d0100e" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.615831 3171272 reconciler_common.go:299] "Volume detached for volume \"pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75\" (UniqueName: \"kubernetes.io/host-path/dcf0f199-ec39-496f-afd3-cb2a3d519c84-pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75\") on node \"k8s-worker-01\" DevicePath \"\""
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.615918 3171272 reconciler_common.go:299] "Volume detached for volume \"kube-api-access-lb222\" (UniqueName: \"kubernetes.io/projected/dcf0f199-ec39-496f-afd3-cb2a3d519c84-kube-api-access-lb222\") on node \"k8s-worker-01\" DevicePath \"\""
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.616045 3171272 reconciler_common.go:299] "Volume detached for volume \"validator-geyser-config\" (UniqueName: \"kubernetes.io/configmap/dcf0f199-ec39-496f-afd3-cb2a3d519c84-validator-geyser-config\") on node \"k8s-worker-01\" DevicePath \"\""
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: E0620 13:25:26.618153 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="92310f90-a932-4f98-a3f8-245a91d0100e" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.634864 3171272 allocation_manager.go:619] "Pod admission denied" podUID="da50abdf-7f1a-4e55-b5c1-2e6732b0c36e" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: E0620 13:25:26.680757 3171272 status_manager.go:1187] "Failed to update status for pod" err="failed to patch status \"{\\\"metadata\\\":{\\\"uid\\\":\\\"da50abdf-7f1a-4e55-b5c1-2e6732b0c36e\\\"},\\\"status\\\":{\\\"allocatedResources\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"},\\\"conditions\\\":[{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:26Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"PodReadyToStartContainers\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:26Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"Initialized\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:26Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"Ready\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:26Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"ContainersReady\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:26Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"PodScheduled\\\"}],\\\"containerStatuses\\\":[{\\\"image\\\":\\\"docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone\\\",\\\"imageID\\\":\\\"\\\",\\\"lastState\\\":{},\\\"name\\\":\\\"validator\\\",\\\"ready\\\":false,\\\"restartCount\\\":0,\\\"started\\\":false,\\\"state\\\":{\\\"waiting\\\":{\\\"reason\\\":\\\"ContainerCreating\\\"}},\\\"volumeMounts\\\":[{\\\"mountPath\\\":\\\"/var/lib/solana/ledger\\\",\\\"name\\\":\\\"validator-ledger\\\"},{\\\"mountPath\\\":\\\"/etc/solana/yellowstone-geyser.json\\\",\\\"name\\\":\\\"validator-geyser-config\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"},{\\\"mountPath\\\":\\\"/var/run/secrets/kubernetes.io/serviceaccount\\\",\\\"name\\\":\\\"kube-api-access-2kwj4\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"}]}],\\\"hostIP\\\":\\\"192.168.122.102\\\",\\\"hostIPs\\\":[{\\\"ip\\\":\\\"192.168.122.102\\\"}],\\\"observedGeneration\\\":2,\\\"resources\\\":{\\\"limits\\\":{\\\"cpu\\\":\\\"6\\\",\\\"memory\\\":\\\"12Gi\\\"},\\\"requests\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"}}}}\" for pod \"solana-observability\"/\"solana-validator-0\": pods \"solana-validator-0\" not found" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: E0620 13:25:26.682082 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="da50abdf-7f1a-4e55-b5c1-2e6732b0c36e" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.711368 3171272 allocation_manager.go:619] "Pod admission denied" podUID="f254ceae-547a-4607-961d-011823cadef3" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: E0620 13:25:26.747338 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="f254ceae-547a-4607-961d-011823cadef3" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: E0620 13:25:26.753277 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="f254ceae-547a-4607-961d-011823cadef3" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: I0620 13:25:26.772653 3171272 allocation_manager.go:619] "Pod admission denied" podUID="46c5936a-e75c-48c3-a96f-0293aaca3c51" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:26 k8s-worker-01 kubelet[3171272]: E0620 13:25:26.775596 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="46c5936a-e75c-48c3-a96f-0293aaca3c51" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: E0620 13:25:27.024896 3171272 status_manager.go:1187] "Failed to update status for pod" err="failed to patch status \"{\\\"metadata\\\":{\\\"uid\\\":\\\"46c5936a-e75c-48c3-a96f-0293aaca3c51\\\"},\\\"status\\\":{\\\"allocatedResources\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"},\\\"conditions\\\":[{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"PodReadyToStartContainers\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"Initialized\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"Ready\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"ContainersReady\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"PodScheduled\\\"}],\\\"containerStatuses\\\":[{\\\"image\\\":\\\"docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone\\\",\\\"imageID\\\":\\\"\\\",\\\"lastState\\\":{},\\\"name\\\":\\\"validator\\\",\\\"ready\\\":false,\\\"restartCount\\\":0,\\\"started\\\":false,\\\"state\\\":{\\\"waiting\\\":{\\\"reason\\\":\\\"ContainerCreating\\\"}},\\\"volumeMounts\\\":[{\\\"mountPath\\\":\\\"/var/lib/solana/ledger\\\",\\\"name\\\":\\\"validator-ledger\\\"},{\\\"mountPath\\\":\\\"/etc/solana/yellowstone-geyser.json\\\",\\\"name\\\":\\\"validator-geyser-config\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"},{\\\"mountPath\\\":\\\"/var/run/secrets/kubernetes.io/serviceaccount\\\",\\\"name\\\":\\\"kube-api-access-d7f5b\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"}]}],\\\"hostIP\\\":\\\"192.168.122.102\\\",\\\"hostIPs\\\":[{\\\"ip\\\":\\\"192.168.122.102\\\"}],\\\"observedGeneration\\\":2,\\\"resources\\\":{\\\"limits\\\":{\\\"cpu\\\":\\\"6\\\",\\\"memory\\\":\\\"12Gi\\\"},\\\"requests\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"}}}}\" for pod \"solana-observability\"/\"solana-validator-0\": pods \"solana-validator-0\" not found" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: E0620 13:25:27.027257 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="46c5936a-e75c-48c3-a96f-0293aaca3c51" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.053578 3171272 allocation_manager.go:619] "Pod admission denied" podUID="e27e008c-9db3-4215-a7d1-c379827b48af" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: E0620 13:25:27.098317 3171272 status_manager.go:1187] "Failed to update status for pod" err="failed to patch status \"{\\\"metadata\\\":{\\\"uid\\\":\\\"e27e008c-9db3-4215-a7d1-c379827b48af\\\"},\\\"status\\\":{\\\"allocatedResources\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"},\\\"conditions\\\":[{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"PodReadyToStartContainers\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"Initialized\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"Ready\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"ContainersReady\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:27Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"PodScheduled\\\"}],\\\"containerStatuses\\\":[{\\\"image\\\":\\\"docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone\\\",\\\"imageID\\\":\\\"\\\",\\\"lastState\\\":{},\\\"name\\\":\\\"validator\\\",\\\"ready\\\":false,\\\"restartCount\\\":0,\\\"started\\\":false,\\\"state\\\":{\\\"waiting\\\":{\\\"reason\\\":\\\"ContainerCreating\\\"}},\\\"volumeMounts\\\":[{\\\"mountPath\\\":\\\"/var/lib/solana/ledger\\\",\\\"name\\\":\\\"validator-ledger\\\"},{\\\"mountPath\\\":\\\"/etc/solana/yellowstone-geyser.json\\\",\\\"name\\\":\\\"validator-geyser-config\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"},{\\\"mountPath\\\":\\\"/var/run/secrets/kubernetes.io/serviceaccount\\\",\\\"name\\\":\\\"kube-api-access-7w8pr\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"}]}],\\\"hostIP\\\":\\\"192.168.122.102\\\",\\\"hostIPs\\\":[{\\\"ip\\\":\\\"192.168.122.102\\\"}],\\\"observedGeneration\\\":2,\\\"resources\\\":{\\\"limits\\\":{\\\"cpu\\\":\\\"6\\\",\\\"memory\\\":\\\"12Gi\\\"},\\\"requests\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"}}}}\" for pod \"solana-observability\"/\"solana-validator-0\": pods \"solana-validator-0\" not found" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: E0620 13:25:27.100245 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="e27e008c-9db3-4215-a7d1-c379827b48af" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.118667 3171272 allocation_manager.go:619] "Pod admission denied" podUID="581146f3-3a8c-4d78-8a5e-24ae0b9e3ecd" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: E0620 13:25:27.159343 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="581146f3-3a8c-4d78-8a5e-24ae0b9e3ecd" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.233802 3171272 allocation_manager.go:619] "Pod admission denied" podUID="9e2367cb-33ee-44e5-99f9-40d3046250bb" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.400761 3171272 eviction_manager.go:464] "Eviction manager: pods successfully cleaned up" pods=["solana-observability/solana-validator-0"]
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.566479 3171272 allocation_manager.go:619] "Pod admission denied" podUID="34e859c4-e261-4e2d-8e74-0bd752d5bb75" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.730420 3171272 kubelet_volumes.go:161] "Cleaned up orphaned pod volumes dir" podUID="dcf0f199-ec39-496f-afd3-cb2a3d519c84" path="/var/lib/kubelet/pods/dcf0f199-ec39-496f-afd3-cb2a3d519c84/volumes"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: E0620 13:25:27.745336 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="34e859c4-e261-4e2d-8e74-0bd752d5bb75" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:27 k8s-worker-01 kubelet[3171272]: I0620 13:25:27.905306 3171272 allocation_manager.go:619] "Pod admission denied" podUID="f138d3af-455b-4343-803c-4bf6360a6676" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: E0620 13:25:28.059124 3171272 status_manager.go:1187] "Failed to update status for pod" err="failed to patch status \"{\\\"metadata\\\":{\\\"uid\\\":\\\"f138d3af-455b-4343-803c-4bf6360a6676\\\"},\\\"status\\\":{\\\"allocatedResources\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"},\\\"conditions\\\":[{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:28Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"PodReadyToStartContainers\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:28Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"Initialized\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:28Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"Ready\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:28Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"ContainersReady\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:28Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"PodScheduled\\\"}],\\\"containerStatuses\\\":[{\\\"image\\\":\\\"docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone\\\",\\\"imageID\\\":\\\"\\\",\\\"lastState\\\":{},\\\"name\\\":\\\"validator\\\",\\\"ready\\\":false,\\\"restartCount\\\":0,\\\"started\\\":false,\\\"state\\\":{\\\"waiting\\\":{\\\"reason\\\":\\\"ContainerCreating\\\"}},\\\"volumeMounts\\\":[{\\\"mountPath\\\":\\\"/var/lib/solana/ledger\\\",\\\"name\\\":\\\"validator-ledger\\\"},{\\\"mountPath\\\":\\\"/etc/solana/yellowstone-geyser.json\\\",\\\"name\\\":\\\"validator-geyser-config\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"},{\\\"mountPath\\\":\\\"/var/run/secrets/kubernetes.io/serviceaccount\\\",\\\"name\\\":\\\"kube-api-access-7c2ph\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"}]}],\\\"hostIP\\\":\\\"192.168.122.102\\\",\\\"hostIPs\\\":[{\\\"ip\\\":\\\"192.168.122.102\\\"}],\\\"observedGeneration\\\":2,\\\"resources\\\":{\\\"limits\\\":{\\\"cpu\\\":\\\"6\\\",\\\"memory\\\":\\\"12Gi\\\"},\\\"requests\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"}}}}\" for pod \"solana-observability\"/\"solana-validator-0\": pods \"solana-validator-0\" not found" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: E0620 13:25:28.061607 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="f138d3af-455b-4343-803c-4bf6360a6676" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: I0620 13:25:28.203747 3171272 allocation_manager.go:619] "Pod admission denied" podUID="00e4df9b-cfd5-4ad5-97c6-108738ddba90" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: E0620 13:25:28.348124 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="00e4df9b-cfd5-4ad5-97c6-108738ddba90" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: I0620 13:25:28.503592 3171272 allocation_manager.go:619] "Pod admission denied" podUID="961a3a4b-413b-4fe4-bcc0-1479b90cebec" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: E0620 13:25:28.511665 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="00e4df9b-cfd5-4ad5-97c6-108738ddba90" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: E0620 13:25:28.717711 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="00e4df9b-cfd5-4ad5-97c6-108738ddba90" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: E0620 13:25:28.721004 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="961a3a4b-413b-4fe4-bcc0-1479b90cebec" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: E0620 13:25:28.723835 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="00e4df9b-cfd5-4ad5-97c6-108738ddba90" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: I0620 13:25:28.793774 3171272 allocation_manager.go:619] "Pod admission denied" podUID="d479489f-b4d3-4b1f-b14a-ea511ea53eab" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:28 k8s-worker-01 kubelet[3171272]: E0620 13:25:28.947419 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="d479489f-b4d3-4b1f-b14a-ea511ea53eab" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: I0620 13:25:29.109465 3171272 allocation_manager.go:619] "Pod admission denied" podUID="7046a8fa-13e6-4983-ae61-2694d33f2e16" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: E0620 13:25:29.254208 3171272 status_manager.go:1187] "Failed to update status for pod" err="failed to patch status \"{\\\"metadata\\\":{\\\"uid\\\":\\\"7046a8fa-13e6-4983-ae61-2694d33f2e16\\\"},\\\"status\\\":{\\\"allocatedResources\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"},\\\"conditions\\\":[{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:29Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"PodReadyToStartContainers\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:29Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"Initialized\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:29Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"Ready\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:29Z\\\",\\\"observedGeneration\\\":2,\\\"reason\\\":\\\"PodFailed\\\",\\\"status\\\":\\\"False\\\",\\\"type\\\":\\\"ContainersReady\\\"},{\\\"lastProbeTime\\\":null,\\\"lastTransitionTime\\\":\\\"2026-06-20T13:25:29Z\\\",\\\"observedGeneration\\\":2,\\\"status\\\":\\\"True\\\",\\\"type\\\":\\\"PodScheduled\\\"}],\\\"containerStatuses\\\":[{\\\"image\\\":\\\"docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone\\\",\\\"imageID\\\":\\\"\\\",\\\"lastState\\\":{},\\\"name\\\":\\\"validator\\\",\\\"ready\\\":false,\\\"restartCount\\\":0,\\\"started\\\":false,\\\"state\\\":{\\\"waiting\\\":{\\\"reason\\\":\\\"ContainerCreating\\\"}},\\\"volumeMounts\\\":[{\\\"mountPath\\\":\\\"/var/lib/solana/ledger\\\",\\\"name\\\":\\\"validator-ledger\\\"},{\\\"mountPath\\\":\\\"/etc/solana/yellowstone-geyser.json\\\",\\\"name\\\":\\\"validator-geyser-config\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"},{\\\"mountPath\\\":\\\"/var/run/secrets/kubernetes.io/serviceaccount\\\",\\\"name\\\":\\\"kube-api-access-fgmsl\\\",\\\"readOnly\\\":true,\\\"recursiveReadOnly\\\":\\\"Disabled\\\"}]}],\\\"hostIP\\\":\\\"192.168.122.102\\\",\\\"hostIPs\\\":[{\\\"ip\\\":\\\"192.168.122.102\\\"}],\\\"observedGeneration\\\":2,\\\"resources\\\":{\\\"limits\\\":{\\\"cpu\\\":\\\"6\\\",\\\"memory\\\":\\\"12Gi\\\"},\\\"requests\\\":{\\\"cpu\\\":\\\"2\\\",\\\"memory\\\":\\\"4Gi\\\"}}}}\" for pod \"solana-observability\"/\"solana-validator-0\": pods \"solana-validator-0\" not found" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: E0620 13:25:29.258127 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="7046a8fa-13e6-4983-ae61-2694d33f2e16" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: I0620 13:25:29.352211 3171272 allocation_manager.go:619] "Pod admission denied" podUID="54fd7af8-8e32-46e0-b87d-21de62cb7ced" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: E0620 13:25:29.446740 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="54fd7af8-8e32-46e0-b87d-21de62cb7ced" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: I0620 13:25:29.561301 3171272 allocation_manager.go:619] "Pod admission denied" podUID="2565fb15-8434-4a82-a435-1780f116106d" pod="solana-observability/solana-validator-0" reason="Evicted" message="The node had condition: [DiskPressure]. " operation="add"
+Jun 20 13:25:29 k8s-worker-01 kubelet[3171272]: E0620 13:25:29.565201 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="2565fb15-8434-4a82-a435-1780f116106d" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:37 k8s-worker-01 kubelet[3171272]: E0620 13:25:37.780311 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="2565fb15-8434-4a82-a435-1780f116106d" pod="solana-observability/solana-validator-0"
+Jun 20 13:25:37 k8s-worker-01 kubelet[3171272]: E0620 13:25:37.783212 3171272 status_manager.go:1164] "Failed to get status for pod" err="pods \"solana-validator-0\" is forbidden: User \"system:node:k8s-worker-01\" cannot get resource \"pods\" in API group \"\" in the namespace \"solana-observability\": no relationship found between node 'k8s-worker-01' and this object" podUID="2565fb15-8434-4a82-a435-1780f116106d" pod="solana-observability/solana-validator-0"
+Jun 20 13:26:48 k8s-worker-01 kubelet[3171272]: I0620 13:26:48.134700 3171272 image_gc_manager.go:395] "Disk usage on image filesystem is over the high threshold, trying to free bytes down to the low threshold" usage=85 highThreshold=85 amountToFree=2554283622 lowThreshold=80
+Jun 20 13:26:48 k8s-worker-01 kubelet[3171272]: I0620 13:26:48.134820 3171272 image_gc_manager.go:529] "Removing image to free bytes" imageID="sha256:71e72a4c76195744ec8372a56f5917569a5e5971a35cf8b337ed604395c4f142" size=376722222 runtimeHandler=""
+Jun 20 13:26:48 k8s-worker-01 kubelet[3171272]: E0620 13:26:48.569706 3171272 kubelet.go:1721] "Image garbage collection failed multiple times in a row" err="Insufficient free disk space on the node's image filesystem (85% of 47.9 GiB used). Failed to free sufficient space by deleting unused images (freed 376722222 bytes). Investigate disk usage, as it could be used by active images, logs, volumes, or other data."
+Jun 20 13:30:29 k8s-worker-01 kubelet[3171272]: I0620 13:30:29.283280 3171272 reconciler_common.go:251] "operationExecutor.VerifyControllerAttachedVolume started for volume \"validator-geyser-config\" (UniqueName: \"kubernetes.io/configmap/75dabba1-3320-45d0-95ac-119fa9e732bb-validator-geyser-config\") pod \"solana-validator-0\" (UID: \"75dabba1-3320-45d0-95ac-119fa9e732bb\") " pod="solana-observability/solana-validator-0"
+Jun 20 13:30:29 k8s-worker-01 kubelet[3171272]: I0620 13:30:29.283564 3171272 reconciler_common.go:251] "operationExecutor.VerifyControllerAttachedVolume started for volume \"pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75\" (UniqueName: \"kubernetes.io/host-path/75dabba1-3320-45d0-95ac-119fa9e732bb-pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75\") pod \"solana-validator-0\" (UID: \"75dabba1-3320-45d0-95ac-119fa9e732bb\") " pod="solana-observability/solana-validator-0"
+Jun 20 13:30:29 k8s-worker-01 kubelet[3171272]: I0620 13:30:29.283684 3171272 reconciler_common.go:251] "operationExecutor.VerifyControllerAttachedVolume started for volume \"kube-api-access-4fgxt\" (UniqueName: \"kubernetes.io/projected/75dabba1-3320-45d0-95ac-119fa9e732bb-kube-api-access-4fgxt\") pod \"solana-validator-0\" (UID: \"75dabba1-3320-45d0-95ac-119fa9e732bb\") " pod="solana-observability/solana-validator-0"
+Jun 20 13:31:09 k8s-worker-01 kubelet[3171272]: I0620 13:31:09.493114 3171272 pod_startup_latency_tracker.go:148] "Observed pod startup duration" pod="solana-observability/solana-validator-0" podStartSLOduration=297.359600056 podStartE2EDuration="5m32.493076263s" totalImagesPullingTime="35.133476207s" totalInitContainerRuntime="0s" isStatefulPod=true podCreationTimestamp="2026-06-20 13:25:37 +0000 UTC" imagePullSessionsCount=1 imagePullSessionsStartsCount=0 observedRunningTime="2026-06-20 13:31:05.62534715 +0000 UTC m=+889558.079585038" watchObservedRunningTime="2026-06-20 13:31:09.493076263 +0000 UTC m=+889561.947313962"

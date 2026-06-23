@@ -1,0 +1,5 @@
+# command: git log -1 --oneline
+# started_utc: 2026-06-19T15:13:19Z
+987d221 Ignore generated preprint PDF
+# finished_utc: 2026-06-19T15:13:19Z
+# exit_code: 0

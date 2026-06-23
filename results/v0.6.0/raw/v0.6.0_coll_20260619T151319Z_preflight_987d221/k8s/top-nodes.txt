@@ -1,0 +1,5 @@
+# command: kubectl top nodes
+# started_utc: 2026-06-19T15:13:21Z
+error: Metrics API not available
+# finished_utc: 2026-06-19T15:13:21Z
+# exit_code: 1

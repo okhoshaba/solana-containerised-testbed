@@ -1,0 +1,16 @@
+# command: ip -br link
+# started_utc: 2026-06-19T15:13:19Z
+lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP> 
+eno1             UP             c8:1f:66:cf:61:40 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+eno2             UP             c8:1f:66:cf:61:41 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+eno3             UP             c8:1f:66:cf:61:42 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+eno4             DOWN           c8:1f:66:cf:61:43 <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+enp65s0f0        UP             a0:36:9f:50:d3:30 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+enp65s0f1        UP             a0:36:9f:50:d3:32 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+virbr1           DOWN           52:54:00:46:35:42 <NO-CARRIER,BROADCAST,MULTICAST,UP> 
+virbr0           UP             52:54:00:77:a4:82 <BROADCAST,MULTICAST,UP,LOWER_UP> 
+vnet12           UNKNOWN        fe:54:00:45:d3:4f <BROADCAST,MULTICAST,UP,LOWER_UP> 
+vnet14           UNKNOWN        fe:54:00:41:27:bc <BROADCAST,MULTICAST,UP,LOWER_UP> 
+vnet16           UNKNOWN        fe:54:00:93:5f:5a <BROADCAST,MULTICAST,UP,LOWER_UP> 
+# finished_utc: 2026-06-19T15:13:19Z
+# exit_code: 0

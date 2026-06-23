@@ -1,0 +1,5 @@
+# command: git log -1 --oneline
+# started_utc: 2026-06-21T03:24:54Z
+9c2f081 Add v0.7.0 storage preflight guard
+# finished_utc: 2026-06-21T03:24:54Z
+# exit_code: 0

@@ -1,0 +1,25 @@
+# command: ethtool vnet16
+# started_utc: 2026-06-19T15:13:19Z
+netlink error: Operation not permitted
+Settings for vnet16:
+	Supported ports: [  ]
+	Supported link modes:   Not reported
+	Supported pause frame use: No
+	Supports auto-negotiation: No
+	Supported FEC modes: Not reported
+	Advertised link modes:  Not reported
+	Advertised pause frame use: No
+	Advertised auto-negotiation: No
+	Advertised FEC modes: Not reported
+	Speed: 10Mb/s
+	Duplex: Full
+	Auto-negotiation: off
+	Port: Twisted Pair
+	PHYAD: 0
+	Transceiver: internal
+	MDI-X: Unknown
+        Current message level: 0x00000000 (0)
+                              
+	Link detected: yes
+# finished_utc: 2026-06-19T15:13:19Z
+# exit_code: 0

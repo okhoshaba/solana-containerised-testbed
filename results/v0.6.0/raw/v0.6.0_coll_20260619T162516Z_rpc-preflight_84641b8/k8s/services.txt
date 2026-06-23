@@ -1,0 +1,6 @@
+# command: kubectl -n solana-observability get svc solana-rpc -o wide
+# started_utc: 2026-06-19T16:25:16Z
+NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+solana-rpc   ClusterIP   10.96.72.163   <none>        8899/TCP   15d   app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+# finished_utc: 2026-06-19T16:25:16Z
+# exit_code: 0

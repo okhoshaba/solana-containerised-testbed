@@ -1,0 +1,24 @@
+# command: ethtool enp65s0f1
+# started_utc: 2026-06-19T15:13:19Z
+netlink error: Operation not permitted
+Settings for enp65s0f1:
+	Supported ports: [ FIBRE ]
+	Supported link modes:   10000baseT/Full
+	Supported pause frame use: Symmetric
+	Supports auto-negotiation: No
+	Supported FEC modes: Not reported
+	Advertised link modes:  10000baseT/Full
+	Advertised pause frame use: Symmetric
+	Advertised auto-negotiation: No
+	Advertised FEC modes: Not reported
+	Speed: 10000Mb/s
+	Duplex: Full
+	Auto-negotiation: off
+	Port: Direct Attach Copper
+	PHYAD: 0
+	Transceiver: internal
+        Current message level: 0x00000007 (7)
+                               drv probe link
+	Link detected: yes
+# finished_utc: 2026-06-19T15:13:19Z
+# exit_code: 0

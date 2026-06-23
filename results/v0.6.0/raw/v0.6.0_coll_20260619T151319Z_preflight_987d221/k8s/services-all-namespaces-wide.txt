@@ -1,0 +1,12 @@
+# command: kubectl get svc -A -o wide
+# started_utc: 2026-06-19T15:13:20Z
+NAMESPACE              NAME                        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                  AGE    SELECTOR
+default                kubernetes                  ClusterIP   10.96.0.1        <none>        443/TCP                  16d    <none>
+kube-system            kube-dns                    ClusterIP   10.96.0.10       <none>        53/UDP,53/TCP,9153/TCP   16d    k8s-app=kube-dns
+solana-observability   solana-geyser-grpc          ClusterIP   10.96.199.115    <none>        10000/TCP                15d    app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+solana-observability   solana-loadgen2             ClusterIP   10.110.23.96     <none>        7070/TCP                 2d1h   app.kubernetes.io/name=solana-loadgen2
+solana-observability   solana-metrics              ClusterIP   10.110.176.165   <none>        9464/TCP                 15d    app.kubernetes.io/component=monitor,app.kubernetes.io/name=solana-containerised-testbed
+solana-observability   solana-rpc                  ClusterIP   10.96.72.163     <none>        8899/TCP                 15d    app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+solana-observability   solana-validator-headless   ClusterIP   None             <none>        8899/TCP,10000/TCP       15d    app.kubernetes.io/component=validator,app.kubernetes.io/name=solana-containerised-testbed
+# finished_utc: 2026-06-19T15:13:21Z
+# exit_code: 0

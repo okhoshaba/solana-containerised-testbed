@@ -1,0 +1,21 @@
+NAMESPACE              NAME                                                  READY   STATUS      RESTARTS   AGE     IP                NODE            NOMINATED NODE   READINESS GATES
+kube-system            calico-kube-controllers-6b9b5f7c4-dqdht               1/1     Running     0          17d     192.168.184.65    k8s-cp-01       <none>           <none>
+kube-system            calico-node-2zb4j                                     1/1     Running     0          17d     192.168.122.102   k8s-worker-01   <none>           <none>
+kube-system            calico-node-q2bmv                                     1/1     Running     0          17d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            calico-node-qtzkl                                     1/1     Running     0          17d     192.168.122.103   k8s-worker-02   <none>           <none>
+kube-system            coredns-589f44dc88-g4tlt                              1/1     Running     0          17d     192.168.184.67    k8s-cp-01       <none>           <none>
+kube-system            coredns-589f44dc88-tp8nv                              1/1     Running     0          17d     192.168.184.66    k8s-cp-01       <none>           <none>
+kube-system            etcd-k8s-cp-01                                        1/1     Running     0          17d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            kube-apiserver-k8s-cp-01                              1/1     Running     0          17d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            kube-controller-manager-k8s-cp-01                     1/1     Running     0          17d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            kube-proxy-47b92                                      1/1     Running     0          17d     192.168.122.102   k8s-worker-01   <none>           <none>
+kube-system            kube-proxy-crjg6                                      1/1     Running     0          17d     192.168.122.103   k8s-worker-02   <none>           <none>
+kube-system            kube-proxy-l4s4l                                      1/1     Running     0          17d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            kube-scheduler-k8s-cp-01                              1/1     Running     0          17d     192.168.122.101   k8s-cp-01       <none>           <none>
+local-path-storage     local-path-provisioner-6d76485965-6rncq               1/1     Running     0          17d     192.168.36.193    k8s-worker-01   <none>           <none>
+solana-observability   controlled-load-knee-step-candidate-tztl2             0/1     Completed   0          2d14h   192.168.118.81    k8s-worker-02   <none>           <none>
+solana-observability   solana-loadgen2-5ccbc58fbb-wtr78                      1/1     Running     0          2d23h   192.168.118.75    k8s-worker-02   <none>           <none>
+solana-observability   solana-monitor-f995c8b9d-95vmp                        1/1     Running     0          16d     192.168.118.65    k8s-worker-02   <none>           <none>
+solana-observability   solana-validator-0                                    0/1     Pending     0          12s     <none>            <none>          <none>           <none>
+solana-observability   wallet-init-ngm2v                                     0/1     Completed   0          16d     <none>            k8s-worker-02   <none>           <none>
+solana-observability   wallet-transfer-validation-kvm-20260604035307-vcv2b   0/1     Completed   0          16d     <none>            k8s-worker-02   <none>           <none>

@@ -1,0 +1,5 @@
+# command: git status --short
+# started_utc: 2026-06-19T16:31:20Z
+?? results/v0.6.0/raw/v0.6.0_coll_20260619T163120Z_L0-idle-baseline_072d9dc/
+# finished_utc: 2026-06-19T16:31:20Z
+# exit_code: 0

@@ -1,0 +1,1 @@
+Error from server (BadRequest): previous terminated container "wallet-init" in pod "wallet-init-ngm2v" not found

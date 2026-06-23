@@ -1,0 +1,11 @@
+# command: kubectl get pv,pvc -A
+# started_utc: 2026-06-19T15:13:21Z
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                              STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+persistentvolume/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75   20Gi       RWO            Delete           Bound    solana-observability/validator-ledger-pvc          local-path     <unset>                          15d
+persistentvolume/pvc-f81c9457-6b59-4ee1-a8c5-388312e42112   2Gi        RWO            Delete           Bound    solana-observability/controlled-load-results-pvc   local-path     <unset>                          2d1h
+
+NAMESPACE              NAME                                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+solana-observability   persistentvolumeclaim/controlled-load-results-pvc   Bound    pvc-f81c9457-6b59-4ee1-a8c5-388312e42112   2Gi        RWO            local-path     <unset>                 2d1h
+solana-observability   persistentvolumeclaim/validator-ledger-pvc          Bound    pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75   20Gi       RWO            local-path     <unset>                 15d
+# finished_utc: 2026-06-19T15:13:21Z
+# exit_code: 0
