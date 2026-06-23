@@ -1,0 +1,7 @@
+NAME                                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE     VOLUMEMODE
+persistentvolumeclaim/controlled-load-results-pvc   Bound    pvc-f81c9457-6b59-4ee1-a8c5-388312e42112   2Gi        RWO            local-path     <unset>                 3d14h   Filesystem
+persistentvolumeclaim/validator-ledger-pvc          Bound    pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75   20Gi       RWO            local-path     <unset>                 17d     Filesystem
+
+NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                              STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE     VOLUMEMODE
+persistentvolume/pvc-1d0869fe-87d0-4f48-9602-28930cf7ee75   20Gi       RWO            Delete           Bound    solana-observability/validator-ledger-pvc          local-path     <unset>                          17d     Filesystem
+persistentvolume/pvc-f81c9457-6b59-4ee1-a8c5-388312e42112   2Gi        RWO            Delete           Bound    solana-observability/controlled-load-results-pvc   local-path     <unset>                          3d14h   Filesystem

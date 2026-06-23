@@ -1,0 +1,75 @@
+Name:               k8s-worker-01
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=k8s-worker-01
+                    kubernetes.io/os=linux
+                    testbed-role=validator
+Annotations:        node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.122.102/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 192.168.36.192
+                    projectcalico.org/Interfaces: [{"name":"enp1s0","addresses":["192.168.122.102"]}]
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 03 Jun 2026 07:01:40 +0300
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  k8s-worker-01
+  AcquireTime:     <unset>
+  RenewTime:       Sun, 21 Jun 2026 07:08:44 +0300
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Wed, 03 Jun 2026 07:02:28 +0300   Wed, 03 Jun 2026 07:02:28 +0300   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Sun, 21 Jun 2026 07:08:42 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Sun, 21 Jun 2026 07:08:42 +0300   Sat, 20 Jun 2026 16:30:29 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Sun, 21 Jun 2026 07:08:42 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Sun, 21 Jun 2026 07:08:42 +0300   Wed, 03 Jun 2026 07:02:04 +0300   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.122.102
+  Hostname:    k8s-worker-01
+Capacity:
+  cpu:                8
+  ephemeral-storage:  50254368Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             16375632Ki
+  pods:               110
+Allocatable:
+  cpu:                8
+  ephemeral-storage:  46314425473
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             16273232Ki
+  pods:               110
+System Info:
+  Machine ID:                 c877367a00764da9884cd7335fa77f58
+  System UUID:                c877367a-0076-4da9-884c-d7335fa77f58
+  Boot ID:                    76cd5cf3-bc5c-4a06-9e11-3738a45379f4
+  Kernel Version:             6.8.0-124-generic
+  OS Image:                   Ubuntu 24.04.4 LTS
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://2.2.1
+  Kubelet Version:            v1.36.1
+  Kube-Proxy Version:         
+PodCIDR:                      192.168.1.0/24
+PodCIDRs:                     192.168.1.0/24
+Non-terminated Pods:          (4 in total)
+  Namespace                   Name                                       CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                       ------------  ----------  ---------------  -------------  ---
+  kube-system                 calico-node-2zb4j                          250m (3%)     0 (0%)      0 (0%)           0 (0%)         18d
+  kube-system                 kube-proxy-47b92                           0 (0%)        0 (0%)      0 (0%)           0 (0%)         18d
+  local-path-storage          local-path-provisioner-6d76485965-6rncq    0 (0%)        0 (0%)      0 (0%)           0 (0%)         17d
+  solana-observability        solana-validator-0                         2 (25%)       6 (75%)     4Gi (25%)        12Gi (77%)     14h
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests     Limits
+  --------           --------     ------
+  cpu                2250m (28%)  6 (75%)
+  memory             4Gi (25%)    12Gi (77%)
+  ephemeral-storage  0 (0%)       0 (0%)
+  hugepages-1Gi      0 (0%)       0 (0%)
+  hugepages-2Mi      0 (0%)       0 (0%)
+Events:              <none>
