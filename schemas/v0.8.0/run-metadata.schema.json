@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/v0.8.0/run-metadata.schema.json",
+  "title": "v0.8.0 Dynamic Load System Identification Run Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project",
+    "stage",
+    "run_id",
+    "experiment_class",
+    "profile_type",
+    "git",
+    "timing",
+    "sampling",
+    "load_profile",
+    "safety_preflight",
+    "telemetry",
+    "abort_policy",
+    "run_verdict"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "v0.8.0-run-metadata-1"
+    },
+    "project": {
+      "type": "string",
+      "const": "Solana Containerised Testbed"
+    },
+    "stage": {
+      "type": "string",
+      "const": "v0.8.0 dynamic load system identification"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^v0\\.8\\.0-[A-Z0-9]+-[A-Za-z0-9._-]+$"
+    },
+    "experiment_class": {
+      "type": "string",
+      "enum": [
+        "M0-baseline-steady-state",
+        "M1-step-response",
+        "M2-step-down-recovery",
+        "M3-ramp",
+        "M4-pulse-burst-recovery",
+        "M5-sinusoidal",
+        "M6-chirp",
+        "M7-multisine",
+        "M8-prbs-like",
+        "M9-boundary-reference"
+      ]
+    },
+    "profile_type": {
+      "type": "string",
+      "enum": [
+        "steady_state",
+        "step",
+        "step_down",
+        "ramp_up",
+        "ramp_down",
+        "ramp_up_down",
+        "pulse",
+        "sine",
+        "chirp",
+        "multisine",
+        "prbs_like",
+        "boundary_reference"
+      ]
+    },
+    "git": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "branch",
+        "commit_sha",
+        "working_tree_clean"
+      ],
+      "properties": {
+        "branch": {
+          "type": "string",
+          "const": "v0.8.0-dynamic-load-system-identification"
+        },
+        "commit_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{7,40}$"
+        },
+        "working_tree_clean": {
+          "type": "boolean"
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start_time_utc",
+        "end_time_utc",
+        "duration_seconds"
+      ],
+      "properties": {
+        "start_time_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_time_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "sampling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_sampling_interval_seconds",
+        "actual_sampling_interval_seconds",
+        "resampling_used"
+      ],
+      "properties": {
+        "target_sampling_interval_seconds": {
+          "type": "number",
+          "enum": [1, 5]
+        },
+        "actual_sampling_interval_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "resampling_used": {
+          "type": "boolean"
+        }
+      }
+    },
+    "load_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lambda_min",
+        "lambda_max",
+        "lambda_nominal",
+        "parameters",
+        "commanded_signal_file",
+        "applied_signal_file"
+      ],
+      "properties": {
+        "lambda_min": {
+          "type": "number",
+          "minimum": 0
+        },
+        "lambda_max": {
+          "type": "number",
+          "minimum": 0
+        },
+        "lambda_nominal": {
+          "type": "number",
+          "minimum": 0
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "commanded_signal_file": {
+          "type": "string"
+        },
+        "applied_signal_file": {
+          "type": "string"
+        }
+      }
+    },
+    "safety_preflight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "disk_pressure",
+        "validator_pod_ready",
+        "rpc_healthy",
+        "root_filesystem_used_percent",
+        "local_path_used_percent",
+        "containerd_used_percent",
+        "recent_pod_evictions",
+        "recent_container_restarts",
+        "recent_kubelet_storage_warnings",
+        "preflight_passed"
+      ],
+      "properties": {
+        "disk_pressure": {
+          "type": "boolean"
+        },
+        "validator_pod_ready": {
+          "type": "boolean"
+        },
+        "rpc_healthy": {
+          "type": "boolean"
+        },
+        "root_filesystem_used_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "local_path_used_percent": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "containerd_used_percent": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "recent_pod_evictions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "recent_container_restarts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "recent_kubelet_storage_warnings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "preflight_passed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_files",
+        "processed_files",
+        "summary_file"
+      ],
+      "properties": {
+        "raw_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "processed_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "summary_file": {
+          "type": "string"
+        }
+      }
+    },
+    "abort_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "abort_conditions_declared",
+        "abort_triggered",
+        "abort_reason"
+      ],
+      "properties": {
+        "abort_conditions_declared": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "abort_triggered": {
+          "type": "boolean"
+        },
+        "abort_reason": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "run_verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "scientifically_usable",
+        "notes"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "PASS_WITH_WARNINGS",
+            "FAIL",
+            "ABORTED",
+            "INVALID"
+          ]
+        },
+        "scientifically_usable": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
