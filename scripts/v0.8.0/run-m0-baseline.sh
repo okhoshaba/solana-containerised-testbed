@@ -30,18 +30,18 @@ if [ "$CURRENT_BRANCH" != "$EXPECTED_BRANCH" ]; then
 fi
 
 case "$RUN_ID" in
-  v0.8.0-M0-L32)
+  v0.8.0-M0-L32|v0.8.0-M0-L32-*)
     RATE="32"
     ;;
-  v0.8.0-M0-L64)
+  v0.8.0-M0-L64|v0.8.0-M0-L64-*)
     RATE="64"
     ;;
-  v0.8.0-M0-L128)
+  v0.8.0-M0-L128|v0.8.0-M0-L128-*)
     RATE="128"
     ;;
   *)
     echo "ERROR: unsupported M0 run_id: $RUN_ID"
-    echo "Allowed: v0.8.0-M0-L32, v0.8.0-M0-L64, v0.8.0-M0-L128"
+    echo "Allowed prefixes: v0.8.0-M0-L32, v0.8.0-M0-L64, v0.8.0-M0-L128"
     exit 2
     ;;
 esac
@@ -183,7 +183,7 @@ spec:
             steady \\
             --rate "${RATE}" \\
             --duration "${DURATION}" \\
-            > /work/results/collect_csv.csv
+            | tee /work/results/collect_csv.csv
         volumeMounts:
         - name: results
           mountPath: /work/results
@@ -216,9 +216,20 @@ else
 fi
 
 COPY_OK="false"
+COPY_METHOD="none"
+LOG_COPY_ERR="${RUN_DIR}/kubectl-logs-copy.err"
+
 if [ -n "$POD_NAME" ]; then
   if kubectl -n "$NAMESPACE" cp "${POD_NAME}:/work/results/collect_csv.csv" "${RAW_DIR}/collect_csv.csv" -c tools >/dev/null 2>&1; then
     COPY_OK="true"
+    COPY_METHOD="kubectl_cp"
+  else
+    if kubectl -n "$NAMESPACE" logs "$POD_NAME" -c tools > "${RAW_DIR}/collect_csv.csv" 2> "$LOG_COPY_ERR"; then
+      if [ -s "${RAW_DIR}/collect_csv.csv" ]; then
+        COPY_OK="true"
+        COPY_METHOD="kubectl_logs"
+      fi
+    fi
   fi
 fi
 
@@ -226,7 +237,7 @@ END_TIME_UTC="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 END_EPOCH="$(date -u +%s)"
 ACTUAL_DURATION="$((END_EPOCH - START_EPOCH))"
 
-export END_TIME_UTC ACTUAL_DURATION JOB_OK COPY_OK PREFLIGHT_SUMMARY RUN_SUMMARY RUN_METADATA JOB_NAME JOB_LOG JOB_YAML POD_YAML MANIFEST
+export END_TIME_UTC ACTUAL_DURATION JOB_OK COPY_OK COPY_METHOD PREFLIGHT_SUMMARY RUN_SUMMARY RUN_METADATA JOB_NAME JOB_LOG JOB_YAML POD_YAML MANIFEST
 
 python3 - <<'PY'
 import csv
@@ -257,6 +268,7 @@ summary = {
     "sample_seconds": int(os.environ["SAMPLE"]),
     "job_ok": job_ok,
     "copy_ok": copy_ok,
+    "copy_method": os.environ.get("COPY_METHOD", "none"),
     "collect_csv_rows": rows,
     "status": "PASS" if pass_run else "FAIL"
 }
