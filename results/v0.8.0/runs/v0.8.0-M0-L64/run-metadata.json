@@ -1,0 +1,79 @@
+{
+  "abort_policy": {
+    "abort_conditions_declared": [
+      "preflight failure",
+      "Kubernetes Job failure",
+      "collect_csv output missing",
+      "collect_csv output empty",
+      "RPC unavailable",
+      "DiskPressure=True",
+      "validator pod not ready"
+    ],
+    "abort_reason": null,
+    "abort_triggered": false
+  },
+  "experiment_class": "M0-baseline-steady-state",
+  "git": {
+    "branch": "v0.8.0-dynamic-load-system-identification",
+    "commit_sha": "eddeedc348a2",
+    "working_tree_clean": true
+  },
+  "load_profile": {
+    "applied_signal_file": "data/raw/v0.8.0/v0.8.0-M0-L64/load_profile_applied.csv",
+    "commanded_signal_file": "data/raw/v0.8.0/v0.8.0-M0-L64/load_profile_commanded.csv",
+    "lambda_max": 64.0,
+    "lambda_min": 64.0,
+    "lambda_nominal": 64.0,
+    "parameters": {
+      "duration_seconds": 900,
+      "implementation": "collect_csv.py steady",
+      "profile": "steady",
+      "rate": 64.0,
+      "sample_seconds": 5
+    }
+  },
+  "profile_type": "steady_state",
+  "project": "Solana Containerised Testbed",
+  "run_id": "v0.8.0-M0-L64",
+  "run_verdict": {
+    "notes": "M0 steady-state baseline run generated using collect_csv.py steady.",
+    "scientifically_usable": true,
+    "status": "PASS"
+  },
+  "safety_preflight": {
+    "containerd_used_percent": null,
+    "disk_pressure": false,
+    "local_path_used_percent": null,
+    "preflight_passed": true,
+    "recent_container_restarts": 0,
+    "recent_kubelet_storage_warnings": 0,
+    "recent_pod_evictions": 0,
+    "root_filesystem_used_percent": 22.0,
+    "rpc_healthy": true,
+    "validator_pod_ready": true
+  },
+  "sampling": {
+    "actual_sampling_interval_seconds": 5,
+    "resampling_used": false,
+    "target_sampling_interval_seconds": 5
+  },
+  "schema_version": "v0.8.0-run-metadata-1",
+  "stage": "v0.8.0 dynamic load system identification",
+  "telemetry": {
+    "processed_files": [],
+    "raw_files": [
+      "data/raw/v0.8.0/v0.8.0-M0-L64/load_profile_commanded.csv",
+      "data/raw/v0.8.0/v0.8.0-M0-L64/load_profile_applied.csv",
+      "data/raw/v0.8.0/v0.8.0-M0-L64/collect_csv.csv",
+      "results/v0.8.0/runs/v0.8.0-M0-L64/job.log",
+      "results/v0.8.0/runs/v0.8.0-M0-L64/job.yaml",
+      "results/v0.8.0/runs/v0.8.0-M0-L64/pod.yaml"
+    ],
+    "summary_file": "results/v0.8.0/runs/v0.8.0-M0-L64/run-summary.json"
+  },
+  "timing": {
+    "duration_seconds": 908,
+    "end_time_utc": "2026-06-23T18:28:29Z",
+    "start_time_utc": "2026-06-23T18:13:21Z"
+  }
+}

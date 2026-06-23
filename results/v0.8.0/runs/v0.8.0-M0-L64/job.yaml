@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: m0-v0-8-0-m0-l64
+  namespace: solana-observability
+  labels:
+    app.kubernetes.io/name: m0-v0-8-0-m0-l64
+    app.kubernetes.io/component: v080-m0-baseline
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    solana-testbed-run-id: v0.8.0-M0-L64
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: m0-v0-8-0-m0-l64
+        app.kubernetes.io/component: v080-m0-baseline
+        app.kubernetes.io/part-of: solana-containerised-testbed
+        solana-testbed-run-id: v0.8.0-M0-L64
+    spec:
+      restartPolicy: Never
+      nodeSelector:
+        testbed-role: observability
+      containers:
+      - name: tools
+        image: docker.io/khoshaba/solana-controlled-load-tools:layer1
+        imagePullPolicy: IfNotPresent
+        command:
+        - bash
+        - -lc
+        - |
+          set -euo pipefail
+          mkdir -p /work/results
+          python3 /work/scripts/collect_csv.py \
+            --loadgen-url "http://solana-loadgen2:7070" \
+            --prom-url "http://solana-metrics:9464" \
+            --rate-key "lambda" \
+            --sample "5" \
+            --timeout "1080" \
+            steady \
+            --rate "64" \
+            --duration "900" \
+            | tee /work/results/collect_csv.csv
+        volumeMounts:
+        - name: results
+          mountPath: /work/results
+      volumes:
+      - name: results
+        emptyDir: {}

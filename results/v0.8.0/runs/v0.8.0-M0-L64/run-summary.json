@@ -1,0 +1,14 @@
+{
+  "collect_csv_rows": 181,
+  "copy_method": "kubectl_logs",
+  "copy_ok": true,
+  "duration_actual_seconds": 908,
+  "duration_requested_seconds": 900,
+  "experiment_class": "M0-baseline-steady-state",
+  "job_ok": true,
+  "profile_type": "steady_state",
+  "rate": 64.0,
+  "run_id": "v0.8.0-M0-L64",
+  "sample_seconds": 5,
+  "status": "PASS"
+}

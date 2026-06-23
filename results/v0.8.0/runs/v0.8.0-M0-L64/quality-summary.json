@@ -12,10 +12,10 @@
       "inflight": {
         "count": 175,
         "max": 1.0,
-        "mean": 0.08,
+        "mean": 0.15428571428571428,
         "min": 0.0,
         "missing": 0,
-        "std": 0.27207166060754495
+        "std": 0.3622589227246115
       },
       "lat_p99": {
         "count": 0,
@@ -27,38 +27,38 @@
       },
       "sent_total": {
         "count": 175,
-        "max": 224983.0,
-        "mean": 211032.91428571427,
-        "min": 197082.0,
+        "max": 299035.0,
+        "mean": 271132.59428571427,
+        "min": 243231.0,
         "missing": 0,
-        "std": 8123.9509058214435
+        "std": 16247.973157804907
       },
       "u_ach": {
         "count": 175,
-        "max": 32.157266,
-        "mean": 31.999225765714286,
-        "min": 31.900064,
+        "max": 64.101004,
+        "mean": 64.00037849714288,
+        "min": 63.811321,
         "missing": 0,
-        "std": 0.09520987221256078
+        "std": 0.0912704044836428
       },
       "u_cmd": {
         "count": 175,
-        "max": 32.0,
-        "mean": 32.0,
-        "min": 32.0,
+        "max": 64.0,
+        "mean": 64.0,
+        "min": 64.0,
         "missing": 0,
         "std": 0.0
       }
     },
     "rows": 175,
     "time": {
-      "duration_seconds": 871.918,
+      "duration_seconds": 871.9390000000001,
       "interval_count": 174,
-      "interval_max_seconds": 5.015999999999991,
-      "interval_mean_seconds": 5.011022988505748,
+      "interval_max_seconds": 5.024000000000001,
+      "interval_mean_seconds": 5.01114367816092,
       "interval_min_seconds": 5.0049999999999955,
-      "t_sec_first": 30.1,
-      "t_sec_last": 902.018
+      "t_sec_first": 30.102,
+      "t_sec_last": 902.041
     },
     "warmup_exclusion_seconds": 30.0,
     "window_name": "analysis_window"
@@ -73,7 +73,7 @@
     "inflight",
     "err_per_sec"
   ],
-  "csv_path": "data/raw/v0.8.0/v0.8.0-M0-L32-R2/collect_csv.csv",
+  "csv_path": "data/raw/v0.8.0/v0.8.0-M0-L64/collect_csv.csv",
   "full_window": {
     "metrics": {
       "err_per_sec": {
@@ -87,10 +87,10 @@
       "inflight": {
         "count": 181,
         "max": 1.0,
-        "mean": 0.07734806629834254,
+        "mean": 0.14917127071823205,
         "min": 0.0,
         "missing": 0,
-        "std": 0.2678839619418909
+        "std": 0.3572454469860536
       },
       "lat_p99": {
         "count": 0,
@@ -102,38 +102,38 @@
       },
       "sent_total": {
         "count": 181,
-        "max": 224983.0,
-        "mean": 210551.85082872928,
-        "min": 196120.0,
+        "max": 299035.0,
+        "mean": 270170.453038674,
+        "min": 241306.0,
         "missing": 0,
-        "std": 8401.692382745929
+        "std": 16803.47552291404
       },
       "u_ach": {
         "count": 181,
-        "max": 32.157266,
-        "mean": 31.99951533149171,
-        "min": 31.900064,
+        "max": 64.101004,
+        "mean": 63.82383880110499,
+        "min": 32.0,
         "missing": 0,
-        "std": 0.09490735729647423
+        "std": 2.380316439359284
       },
       "u_cmd": {
         "count": 181,
-        "max": 32.0,
-        "mean": 32.0,
-        "min": 32.0,
+        "max": 64.0,
+        "mean": 64.0,
+        "min": 64.0,
         "missing": 0,
         "std": 0.0
       }
     },
     "rows": 181,
     "time": {
-      "duration_seconds": 901.985,
+      "duration_seconds": 902.008,
       "interval_count": 180,
-      "interval_max_seconds": 5.015999999999991,
-      "interval_mean_seconds": 5.011027777777778,
+      "interval_max_seconds": 5.024000000000001,
+      "interval_mean_seconds": 5.011155555555556,
       "interval_min_seconds": 5.0049999999999955,
       "t_sec_first": 0.033,
-      "t_sec_last": 902.018
+      "t_sec_last": 902.041
     },
     "warmup_exclusion_seconds": 0.0,
     "window_name": "full_window"
@@ -146,5 +146,5 @@
     ]
   },
   "rows": 181,
-  "run_id": "v0.8.0-M0-L32-R2"
+  "run_id": "v0.8.0-M0-L64"
 }
