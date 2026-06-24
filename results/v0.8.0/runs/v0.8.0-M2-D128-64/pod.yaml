@@ -1,0 +1,175 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/containerID: 05e83d559aee415ba433edf695307d145cd18e3a485614126bedad79374567f1
+    cni.projectcalico.org/podIP: ""
+    cni.projectcalico.org/podIPs: ""
+  creationTimestamp: "2026-06-24T02:49:02Z"
+  generateName: m1-v0-8-0-m2-d128-64-
+  generation: 1
+  labels:
+    app.kubernetes.io/component: v080-m1-step-response
+    app.kubernetes.io/name: m1-v0-8-0-m2-d128-64
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    batch.kubernetes.io/controller-uid: 3fbe32c8-9c8e-42fe-8e31-14c035ff6f0b
+    batch.kubernetes.io/job-name: m1-v0-8-0-m2-d128-64
+    controller-uid: 3fbe32c8-9c8e-42fe-8e31-14c035ff6f0b
+    job-name: m1-v0-8-0-m2-d128-64
+    solana-testbed-run-id: v0.8.0-M2-D128-64
+  name: m1-v0-8-0-m2-d128-64-2vt7q
+  namespace: solana-observability
+  ownerReferences:
+  - apiVersion: batch/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Job
+    name: m1-v0-8-0-m2-d128-64
+    uid: 3fbe32c8-9c8e-42fe-8e31-14c035ff6f0b
+  resourceVersion: "2897128"
+  uid: acd47bb5-5e7c-4599-9572-3f89c681d318
+spec:
+  containers:
+  - command:
+    - bash
+    - -lc
+    - |
+      set -euo pipefail
+      mkdir -p /work/results
+      python3 /work/scripts/collect_csv.py \
+        --loadgen-url "http://solana-loadgen2:7070" \
+        --prom-url "http://solana-metrics:9464" \
+        --rate-key "lambda" \
+        --sample "5" \
+        --timeout "810" \
+        step \
+        --levels "128 64" \
+        --hold "300" \
+        --warmup "30" \
+        | tee /work/results/collect_csv.csv
+    image: docker.io/khoshaba/solana-controlled-load-tools:layer1
+    imagePullPolicy: IfNotPresent
+    name: tools
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /work/results
+      name: results
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-zpczc
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: k8s-worker-02
+  nodeSelector:
+    testbed-role: observability
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Never
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - emptyDir: {}
+    name: results
+  - name: kube-api-access-zpczc
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-24T02:59:07Z"
+    observedGeneration: 1
+    status: "False"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-24T02:49:02Z"
+    observedGeneration: 1
+    reason: PodCompleted
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-24T02:59:05Z"
+    observedGeneration: 1
+    reason: PodCompleted
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-24T02:59:05Z"
+    observedGeneration: 1
+    reason: PodCompleted
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-24T02:49:02Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://72422d46a5875540f14519b3dca0da0c11d41f9126ebee47307e74edb4f028fd
+    image: docker.io/khoshaba/solana-controlled-load-tools:layer1
+    imageID: docker.io/khoshaba/solana-controlled-load-tools@sha256:816088d04078755072d95d4c5430a5c0cba6199a0308e6915dad5ffb1e990e5d
+    lastState: {}
+    name: tools
+    ready: false
+    resources: {}
+    restartCount: 0
+    started: false
+    state:
+      terminated:
+        containerID: containerd://72422d46a5875540f14519b3dca0da0c11d41f9126ebee47307e74edb4f028fd
+        exitCode: 0
+        finishedAt: "2026-06-24T02:59:05Z"
+        reason: Completed
+        startedAt: "2026-06-24T02:49:03Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        uid: 0
+    volumeMounts:
+    - mountPath: /work/results
+      name: results
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-zpczc
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.168.122.103
+  hostIPs:
+  - ip: 192.168.122.103
+  observedGeneration: 1
+  phase: Succeeded
+  podIP: 192.168.118.93
+  podIPs:
+  - ip: 192.168.118.93
+  qosClass: BestEffort
+  resources: {}
+  startTime: "2026-06-24T02:49:02Z"

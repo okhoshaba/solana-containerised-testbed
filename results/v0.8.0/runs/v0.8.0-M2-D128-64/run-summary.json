@@ -1,0 +1,19 @@
+{
+  "collect_csv_rows": 108,
+  "copy_method": "kubectl_logs",
+  "copy_ok": true,
+  "duration_actual_seconds": 607,
+  "duration_requested_seconds": 630,
+  "experiment_class": "M2-step-down-recovery",
+  "hold_seconds": 300,
+  "job_ok": true,
+  "levels": [
+    128.0,
+    64.0
+  ],
+  "profile_type": "step",
+  "run_id": "v0.8.0-M2-D128-64",
+  "sample_seconds": 5,
+  "status": "PASS",
+  "warmup_seconds": 30
+}

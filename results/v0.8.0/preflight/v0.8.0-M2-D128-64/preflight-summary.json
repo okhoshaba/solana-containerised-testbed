@@ -1,0 +1,25 @@
+{
+  "artifacts": {
+    "report_txt": "results/v0.8.0/preflight/v0.8.0-M2-D128-64/preflight-report.txt"
+  },
+  "git": {
+    "branch": "v0.8.0-dynamic-load-system-identification",
+    "commit_sha": "8982b876b68d",
+    "working_tree_clean": true
+  },
+  "rpc_url": "http://127.0.0.1:18899",
+  "run_id": "v0.8.0-M2-D128-64",
+  "safety_preflight": {
+    "containerd_used_percent": null,
+    "disk_pressure": false,
+    "local_path_used_percent": null,
+    "preflight_passed": true,
+    "recent_container_restarts": 0,
+    "recent_kubelet_storage_warnings": 0,
+    "recent_pod_evictions": 0,
+    "root_filesystem_used_percent": 22.0,
+    "rpc_healthy": true,
+    "validator_pod_ready": true
+  },
+  "timestamp_utc": "2026-06-24T02:49:43Z"
+}
