@@ -1,0 +1,83 @@
+{
+  "abort_policy": {
+    "abort_conditions_declared": [
+      "preflight failure",
+      "Kubernetes Job failure",
+      "collect_csv output missing",
+      "collect_csv output empty",
+      "RPC unavailable",
+      "DiskPressure=True",
+      "validator pod not ready"
+    ],
+    "abort_reason": null,
+    "abort_triggered": false
+  },
+  "experiment_class": "M2-step-down-recovery",
+  "git": {
+    "branch": "v0.8.0-dynamic-load-system-identification",
+    "commit_sha": "ac6469940ee7",
+    "working_tree_clean": true
+  },
+  "load_profile": {
+    "applied_signal_file": "data/raw/v0.8.0/v0.8.0-M2-D128-32/load_profile_applied.csv",
+    "commanded_signal_file": "data/raw/v0.8.0/v0.8.0-M2-D128-32/load_profile_commanded.csv",
+    "lambda_max": 128.0,
+    "lambda_min": 32.0,
+    "lambda_nominal": null,
+    "parameters": {
+      "hold_seconds": 300,
+      "implementation": "collect_csv.py step",
+      "levels": [
+        128.0,
+        32.0
+      ],
+      "profile": "step",
+      "sample_seconds": 5,
+      "warmup_seconds": 30
+    }
+  },
+  "profile_type": "step",
+  "project": "Solana Containerised Testbed",
+  "run_id": "v0.8.0-M2-D128-32",
+  "run_verdict": {
+    "notes": "Step-response/recovery run generated using collect_csv.py step.",
+    "scientifically_usable": true,
+    "status": "PASS"
+  },
+  "safety_preflight": {
+    "containerd_used_percent": null,
+    "disk_pressure": false,
+    "local_path_used_percent": null,
+    "preflight_passed": true,
+    "recent_container_restarts": 0,
+    "recent_kubelet_storage_warnings": 0,
+    "recent_pod_evictions": 0,
+    "root_filesystem_used_percent": 22.0,
+    "rpc_healthy": true,
+    "validator_pod_ready": true
+  },
+  "sampling": {
+    "actual_sampling_interval_seconds": 5,
+    "resampling_used": false,
+    "target_sampling_interval_seconds": 5
+  },
+  "schema_version": "v0.8.0-run-metadata-1",
+  "stage": "v0.8.0 dynamic load system identification",
+  "telemetry": {
+    "processed_files": [],
+    "raw_files": [
+      "data/raw/v0.8.0/v0.8.0-M2-D128-32/load_profile_commanded.csv",
+      "data/raw/v0.8.0/v0.8.0-M2-D128-32/load_profile_applied.csv",
+      "data/raw/v0.8.0/v0.8.0-M2-D128-32/collect_csv.csv",
+      "results/v0.8.0/runs/v0.8.0-M2-D128-32/job.log",
+      "results/v0.8.0/runs/v0.8.0-M2-D128-32/job.yaml",
+      "results/v0.8.0/runs/v0.8.0-M2-D128-32/pod.yaml"
+    ],
+    "summary_file": "results/v0.8.0/runs/v0.8.0-M2-D128-32/run-summary.json"
+  },
+  "timing": {
+    "duration_seconds": 608,
+    "end_time_utc": "2026-06-24T03:33:16Z",
+    "start_time_utc": "2026-06-24T03:23:08Z"
+  }
+}
