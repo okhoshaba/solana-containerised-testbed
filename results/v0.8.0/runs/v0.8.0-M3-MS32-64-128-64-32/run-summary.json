@@ -1,0 +1,24 @@
+{
+  "collect_csv_rows": 150,
+  "copy_method": "kubectl_logs",
+  "copy_ok": true,
+  "duration_requested_seconds": 930.0,
+  "experiment_class": "M3-multi-step-load-profile",
+  "hold_seconds": 180.0,
+  "job_ok": true,
+  "lambda_max": 128.0,
+  "lambda_min": 32.0,
+  "level_count": 5,
+  "levels": [
+    32.0,
+    64.0,
+    128.0,
+    64.0,
+    32.0
+  ],
+  "profile_type": "multi_step",
+  "run_id": "v0.8.0-M3-MS32-64-128-64-32",
+  "sample_seconds": 5.0,
+  "status": "PASS",
+  "warmup_seconds": 30.0
+}
