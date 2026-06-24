@@ -1,0 +1,1753 @@
+{
+  "files": [
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L128/collect_csv.csv",
+      "sha256": "b8975155c8bfe5fbe7875e48a1bb3dd36f799b02607d68da08dbeaf74173a002",
+      "size_bytes": 12711
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L128/load_profile_applied.csv",
+      "sha256": "ef93e655e8639247a696fb8bc7a3e15ba843e7f96839f62a8ca12218fb8ff75b",
+      "size_bytes": 5809
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L128/load_profile_commanded.csv",
+      "sha256": "ef93e655e8639247a696fb8bc7a3e15ba843e7f96839f62a8ca12218fb8ff75b",
+      "size_bytes": 5809
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L32-R2/collect_csv.csv",
+      "sha256": "85735d69bec5b239c05082d6f645a2c90a4869de9996d3a8116ed5ed6f5801b0",
+      "size_bytes": 12350
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L32-R2/load_profile_applied.csv",
+      "sha256": "002f99b5401e4b99208c6290a47353ddaed712e1a0166ad6bcfe639505e8c793",
+      "size_bytes": 5628
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L32-R2/load_profile_commanded.csv",
+      "sha256": "002f99b5401e4b99208c6290a47353ddaed712e1a0166ad6bcfe639505e8c793",
+      "size_bytes": 5628
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L32/load_profile_applied.csv",
+      "sha256": "8f7cd82913b513bb9d98e21022f1e8ab75f5810f2a10b38d0de4a3a4e258de9f",
+      "size_bytes": 5628
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L32/load_profile_commanded.csv",
+      "sha256": "8f7cd82913b513bb9d98e21022f1e8ab75f5810f2a10b38d0de4a3a4e258de9f",
+      "size_bytes": 5628
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L64/collect_csv.csv",
+      "sha256": "320c57db9977eeb9bba4f81de0d9960ea756f908499fd7e78bd59cfea864b7a8",
+      "size_bytes": 12350
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L64/load_profile_applied.csv",
+      "sha256": "187e347b08971b8f50713520724a32d3f1ca714219e052aca2265db336cde890",
+      "size_bytes": 5628
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 182,
+      "path": "data/raw/v0.8.0/v0.8.0-M0-L64/load_profile_commanded.csv",
+      "sha256": "187e347b08971b8f50713520724a32d3f1ca714219e052aca2265db336cde890",
+      "size_bytes": 5628
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 109,
+      "path": "data/raw/v0.8.0/v0.8.0-M1-S32-128/collect_csv.csv",
+      "sha256": "67ac5d5cdd295e672ffeb209eb8ac5476121b443b75d912e6b74ceea79a34e95",
+      "size_bytes": 7610
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M1-S32-128/load_profile_applied.csv",
+      "sha256": "e3ea65f0637980344c3eee6280b165295c205f3a0c27871bcffee13297111439",
+      "size_bytes": 4934
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M1-S32-128/load_profile_commanded.csv",
+      "sha256": "e3ea65f0637980344c3eee6280b165295c205f3a0c27871bcffee13297111439",
+      "size_bytes": 4934
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 109,
+      "path": "data/raw/v0.8.0/v0.8.0-M1-S32-64/collect_csv.csv",
+      "sha256": "2dc560662f99e78a8343840b9f9b1116f3059a3ee6b8d3166f34d2c517588c57",
+      "size_bytes": 7394
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M1-S32-64/load_profile_applied.csv",
+      "sha256": "ddf3c108febe5f69dc41a40027d870b3e69ebec4c089ab78a266366e53edff40",
+      "size_bytes": 4873
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M1-S32-64/load_profile_commanded.csv",
+      "sha256": "ddf3c108febe5f69dc41a40027d870b3e69ebec4c089ab78a266366e53edff40",
+      "size_bytes": 4873
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 109,
+      "path": "data/raw/v0.8.0/v0.8.0-M1-S64-128/collect_csv.csv",
+      "sha256": "7efb15b69541ebe570ade615d6d55e8809e8e3c810e142187a5f9af840da5d28",
+      "size_bytes": 7611
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M1-S64-128/load_profile_applied.csv",
+      "sha256": "79057e51f781fc8c78d9c773c966c293c83a94e7280c87d55c3e62e5267ab769",
+      "size_bytes": 4934
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M1-S64-128/load_profile_commanded.csv",
+      "sha256": "79057e51f781fc8c78d9c773c966c293c83a94e7280c87d55c3e62e5267ab769",
+      "size_bytes": 4934
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 109,
+      "path": "data/raw/v0.8.0/v0.8.0-M2-D128-32/collect_csv.csv",
+      "sha256": "102b6d454d5a11d47f10288f5ac09956fd909a8322ec510f1c4411644718343c",
+      "size_bytes": 7610
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M2-D128-32/load_profile_applied.csv",
+      "sha256": "e96dc8010483cb8995d5d10941d431340cf9cd4991f80188ec2485f92a90b2f1",
+      "size_bytes": 4939
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M2-D128-32/load_profile_commanded.csv",
+      "sha256": "e96dc8010483cb8995d5d10941d431340cf9cd4991f80188ec2485f92a90b2f1",
+      "size_bytes": 4939
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 109,
+      "path": "data/raw/v0.8.0/v0.8.0-M2-D128-64/collect_csv.csv",
+      "sha256": "a7313ae2551a74e2aa305a5df3776b01913dd76f3e89aa81da5f8e5ce4271fe8",
+      "size_bytes": 7610
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M2-D128-64/load_profile_applied.csv",
+      "sha256": "f6ab62107ce7178e954a4e98ea6b09e90f5f4c8ef64ce0212aa3cb303a25eeec",
+      "size_bytes": 4939
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M2-D128-64/load_profile_commanded.csv",
+      "sha256": "f6ab62107ce7178e954a4e98ea6b09e90f5f4c8ef64ce0212aa3cb303a25eeec",
+      "size_bytes": 4939
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 109,
+      "path": "data/raw/v0.8.0/v0.8.0-M2-D64-32/collect_csv.csv",
+      "sha256": "1225349c7b16f350b99c4b7d6f4b4415269a1782cf033f918a82b6e27cf70075",
+      "size_bytes": 7503
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M2-D64-32/load_profile_applied.csv",
+      "sha256": "f2532879007902b9827122221739eb8ca1ee0ff9066363f5c923db34e2369150",
+      "size_bytes": 4873
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 128,
+      "path": "data/raw/v0.8.0/v0.8.0-M2-D64-32/load_profile_commanded.csv",
+      "sha256": "f2532879007902b9827122221739eb8ca1ee0ff9066363f5c923db34e2369150",
+      "size_bytes": 4873
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 151,
+      "path": "data/raw/v0.8.0/v0.8.0-M3-MS32-128-64-128-32/collect_csv.csv",
+      "sha256": "f13d07e1648d51c978845bf8450f643615cd9450e461af6af7f6b89219af28e1",
+      "size_bytes": 10521
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 6,
+      "path": "data/raw/v0.8.0/v0.8.0-M3-MS32-128-64-128-32/load_profile_applied.csv",
+      "sha256": "37911c5e568d3ee6641be4049f9be1fce8bba682ea033824bfa877656f120f87",
+      "size_bytes": 154
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 6,
+      "path": "data/raw/v0.8.0/v0.8.0-M3-MS32-128-64-128-32/load_profile_commanded.csv",
+      "sha256": "37911c5e568d3ee6641be4049f9be1fce8bba682ea033824bfa877656f120f87",
+      "size_bytes": 154
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 151,
+      "path": "data/raw/v0.8.0/v0.8.0-M3-MS32-64-128-64-32/collect_csv.csv",
+      "sha256": "db40042f9d2673ec2b06afaf89b62a66f1d36ab24f41ccc342a24fcac16d0601",
+      "size_bytes": 10461
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 6,
+      "path": "data/raw/v0.8.0/v0.8.0-M3-MS32-64-128-64-32/load_profile_applied.csv",
+      "sha256": "cdfb37263849190e45858ff4c09bcfec0c3594edde1e935297b2660151074fab",
+      "size_bytes": 153
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 6,
+      "path": "data/raw/v0.8.0/v0.8.0-M3-MS32-64-128-64-32/load_profile_commanded.csv",
+      "sha256": "cdfb37263849190e45858ff4c09bcfec0c3594edde1e935297b2660151074fab",
+      "size_bytes": 153
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 79,
+      "path": "data/raw/v0.8.0/v0.8.0-M4-SINE-L80-A48-T720/collect_csv.csv",
+      "sha256": "deb72a2b2c2f7115793d769156612cce22f66d126764e51fd55ef941adb733da",
+      "size_bytes": 5499
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 14,
+      "path": "data/raw/v0.8.0/v0.8.0-M4-SINE-L80-A48-T720/load_profile_applied.csv",
+      "sha256": "4a88fed58267044911522e0ff0e66823b18d6ea6f0d8fcc227b26e1a82942a6f",
+      "size_bytes": 318
+    },
+    {
+      "group": "raw_dataset",
+      "kind": "csv",
+      "line_count": 14,
+      "path": "data/raw/v0.8.0/v0.8.0-M4-SINE-L80-A48-T720/load_profile_commanded.csv",
+      "sha256": "4a88fed58267044911522e0ff0e66823b18d6ea6f0d8fcc227b26e1a82942a6f",
+      "size_bytes": 318
+    },
+    {
+      "group": "experiment_docs",
+      "kind": "text",
+      "line_count": 769,
+      "path": "docs/experiments/v0.8.0-dynamic-load-system-identification.md",
+      "sha256": "aca6182d9d14c170e315f38addfda307dc952e42b0a44be4d423f91d9be83936",
+      "size_bytes": 21005
+    },
+    {
+      "group": "experiment_docs",
+      "kind": "text",
+      "line_count": 325,
+      "path": "docs/experiments/v0.8.0-run-matrix.md",
+      "sha256": "8e28530cfd79cb5cc93a96690034543ad86b475dd0c7f54e098ff0534be1769e",
+      "size_bytes": 8942
+    },
+    {
+      "group": "examples",
+      "kind": "json",
+      "line_count": 85,
+      "path": "examples/v0.8.0/run-metadata/v0.8.0-M0-L32.example.json",
+      "sha256": "3f92819355e3f594842c9ae3bdc897911e525ee5ec09dec801ac86250158f8dc",
+      "size_bytes": 3008
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 99,
+      "path": "results/v0.8.0/preflight/v0.8.0-M0-L128/preflight-report.txt",
+      "sha256": "317ea4a15e512073e10effffc087a09cd42631487937bba4cb8dca670bdb463a",
+      "size_bytes": 9864
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M0-L128/preflight-summary.json",
+      "sha256": "d566e127b6bebc58146338889b5a972a8115280ab5052f43e31bdd07ae3eb718",
+      "size_bytes": 727
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 90,
+      "path": "results/v0.8.0/preflight/v0.8.0-M0-L32-R2/preflight-report.txt",
+      "sha256": "5168185b970586740c17e5e8908bab31e23d4551a1cddaf427b8a5d13b06f642",
+      "size_bytes": 8512
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M0-L32-R2/preflight-summary.json",
+      "sha256": "40dd149ca6ef53a76827b58b8fc7b65b7fb5ebc4ebf7ef5070c3e26fcc542b9c",
+      "size_bytes": 731
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 83,
+      "path": "results/v0.8.0/preflight/v0.8.0-M0-L32/preflight-report.txt",
+      "sha256": "df262591de598b17ca8262a9cbc7f27dd6d7f0fccd5e80ffe99d33cab1ddccf2",
+      "size_bytes": 7384
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M0-L32/preflight-summary.json",
+      "sha256": "2507f1cd4a928f23e6b5100ab83db5488a8a6ced8ee1dcde6e2543ffcb3714e6",
+      "size_bytes": 725
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 97,
+      "path": "results/v0.8.0/preflight/v0.8.0-M0-L64/preflight-report.txt",
+      "sha256": "2a8a52fc289f1f4fe6bc51017439859e7ab0168cc6b2697f7624f5df811c30b8",
+      "size_bytes": 9580
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M0-L64/preflight-summary.json",
+      "sha256": "c060e08f8e9c5c0f70d97880a825ba57f35f468e5314c1f2e8ef2b9263a50c2f",
+      "size_bytes": 725
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 95,
+      "path": "results/v0.8.0/preflight/v0.8.0-M1-S32-128/preflight-report.txt",
+      "sha256": "b4686736e6527665191cbd3fa60530b016f11025de11ad0eb2987717a0c97ec5",
+      "size_bytes": 9419
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M1-S32-128/preflight-summary.json",
+      "sha256": "9e510d831e2ff603cfe0787ef77fefabc75cdcae4c4df97835ced3bddf187f30",
+      "size_bytes": 733
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 100,
+      "path": "results/v0.8.0/preflight/v0.8.0-M1-S32-64/preflight-report.txt",
+      "sha256": "31f42107f8b503eece3ba4fae7cd16c54d1f730fa92f30ea4f29b4d27d432467",
+      "size_bytes": 10008
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M1-S32-64/preflight-summary.json",
+      "sha256": "a81d4cdc608d4afd703b83e3e87421325fd2f581adb911f5815b8ceab4a3aabc",
+      "size_bytes": 731
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 88,
+      "path": "results/v0.8.0/preflight/v0.8.0-M1-S64-128/preflight-report.txt",
+      "sha256": "9453ee5896312a3a0214a2a733353ca8c9d325458a1757578f787399f6a980bc",
+      "size_bytes": 8259
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M1-S64-128/preflight-summary.json",
+      "sha256": "d1d75d6549a018bf8dcecb66581e09a67bba8a247a12492f9651ef69b85eff42",
+      "size_bytes": 733
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 111,
+      "path": "results/v0.8.0/preflight/v0.8.0-M2-D128-32/preflight-report.txt",
+      "sha256": "17421a8bbe19d1c43ee1037fc600ebe174d6bff721a13067ca08ca2fa62bc6c0",
+      "size_bytes": 11817
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M2-D128-32/preflight-summary.json",
+      "sha256": "12922a86bbc8c48f05473a56a2fd7b0de0067e34e0be53bf19302e7f20622f3f",
+      "size_bytes": 733
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 102,
+      "path": "results/v0.8.0/preflight/v0.8.0-M2-D128-64/preflight-report.txt",
+      "sha256": "17b31ba61b7f708ea62edf5331d0cd304e896333467435fff393cac604693bed",
+      "size_bytes": 10478
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M2-D128-64/preflight-summary.json",
+      "sha256": "d2033b82eef0d445c297aab1f431699b2f2c9082135663d9acede64c201e2887",
+      "size_bytes": 733
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 109,
+      "path": "results/v0.8.0/preflight/v0.8.0-M2-D64-32/preflight-report.txt",
+      "sha256": "8c8dd9b0cce2c7d5f01804e9b1e51ae5ccaa0a1cb2db38c4ce1193325a54bfa1",
+      "size_bytes": 11535
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M2-D64-32/preflight-summary.json",
+      "sha256": "6711104a4d115a55553082ecaf5693301592a710bce1c40fe373ac64869078d9",
+      "size_bytes": 731
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 100,
+      "path": "results/v0.8.0/preflight/v0.8.0-M3-MS32-128-64-128-32/preflight-report.txt",
+      "sha256": "64bbdf4ebd7777c12a70450856cd82de8716a77517fda7c5017459ae08c51d8d",
+      "size_bytes": 10388
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M3-MS32-128-64-128-32/preflight-summary.json",
+      "sha256": "d3421a29cb50fb4e333c184c38ad0eda12421346452f989d81017eb6d4ccb51a",
+      "size_bytes": 755
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 93,
+      "path": "results/v0.8.0/preflight/v0.8.0-M3-MS32-64-128-64-32/preflight-report.txt",
+      "sha256": "2bb629cde2f1a7f1606c5eae1e39f582548a6e44b552af4f468ebde9e6b7b79d",
+      "size_bytes": 9136
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M3-MS32-64-128-64-32/preflight-summary.json",
+      "sha256": "65b0405f3a39a40165dae44ac7cf0879eb92c4d0a8112f745c50732749b79a33",
+      "size_bytes": 753
+    },
+    {
+      "group": "preflight_results",
+      "kind": "text",
+      "line_count": 108,
+      "path": "results/v0.8.0/preflight/v0.8.0-M4-SINE-L80-A48-T720/preflight-report.txt",
+      "sha256": "f1f7500164d45eda00e9cd397573cc06ed3b6decd17773480f6c0c91805c61eb",
+      "size_bytes": 11725
+    },
+    {
+      "group": "preflight_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/preflight/v0.8.0-M4-SINE-L80-A48-T720/preflight-summary.json",
+      "sha256": "6b51b6f5cbfdfb667d397d0881768c563dd81de63eaa58b85c2da1ea2cb30da1",
+      "size_bytes": 754
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 96,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L128/job-status.yaml",
+      "sha256": "ffb1d92e3ad8dfdd1ddee14998b699a13b89579ca0f0ce1adfe2fe102a7d18b4",
+      "size_bytes": 4318
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L128/job.log",
+      "sha256": "b8975155c8bfe5fbe7875e48a1bb3dd36f799b02607d68da08dbeaf74173a002",
+      "size_bytes": 12711
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 49,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L128/job.yaml",
+      "sha256": "285992ec9c292b3b1b12c004393ecbd2c1448f762ba1654cb8f359d6cf47133d",
+      "size_bytes": 1464
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L128/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 174,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L128/pod.yaml",
+      "sha256": "bf6001972d2078974d5ab17d619dd47696a8ce33ce553f90a0c09f2e92fb305b",
+      "size_bytes": 5046
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 150,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L128/quality-summary.json",
+      "sha256": "1053583caacf0e338bd7ffb6024d811c31e06f0b3704942226aed6d65d789cef",
+      "size_bytes": 3342
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 24,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L128/quality-summary.md",
+      "sha256": "b616ca9fd9bd05688bf670a9ea4138a050a1894c7d73dea928de29b346288cfc",
+      "size_bytes": 845
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 79,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L128/run-metadata.json",
+      "sha256": "5249ca0500e6741b293163dc8831d622f811b77f15d2490ffacfff60903f050e",
+      "size_bytes": 2497
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 14,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L128/run-summary.json",
+      "sha256": "a9c458912055fdbd08439dfc0597c5c6d326412d1b8fa3bc165afef1efe35ef0",
+      "size_bytes": 344
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 96,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32-R2/job-status.yaml",
+      "sha256": "fb9d4564379a38a9b1791e56ba8122450d46134bcfd523b8cd3717ab94a29b69",
+      "size_bytes": 4340
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32-R2/job.log",
+      "sha256": "85735d69bec5b239c05082d6f645a2c90a4869de9996d3a8116ed5ed6f5801b0",
+      "size_bytes": 12350
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 49,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32-R2/job.yaml",
+      "sha256": "85c5bfcd49f66063bfac07d1ef6cf190d75d4b6f031bf930ef89b2f81d99149a",
+      "size_bytes": 1473
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32-R2/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 174,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32-R2/pod.yaml",
+      "sha256": "2346a3d8e1c0eed030f2d5dbc487479782f81917f2c200953db375e6188a92ea",
+      "size_bytes": 5059
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 150,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32-R2/quality-summary.json",
+      "sha256": "d0e7baa6b72c44cf51a50fbfaa15a61e97c564801915b65a98e54c82109274b3",
+      "size_bytes": 3324
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 24,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32-R2/quality-summary.md",
+      "sha256": "31e360d53d60e11fd8ded6746062fea6c43ae381b7aaae267b4632fe7e4db670",
+      "size_bytes": 819
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 79,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32-R2/run-metadata.json",
+      "sha256": "0010c678b087592514823ad74ba7405cca288fbbfcf0f0483b02292dc540da22",
+      "size_bytes": 2513
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 14,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32-R2/run-summary.json",
+      "sha256": "84d1ff163aa20b48afed6fe223eb5543a382db01ecb97b869b943f5c0a12dbb4",
+      "size_bytes": 345
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 96,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32/job-status.yaml",
+      "sha256": "87b25295f79b00c19ced3b3c8f3dc25c5093eb3fd6e7b70668bdb41b0e9d9f56",
+      "size_bytes": 4301
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32/job.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 49,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32/job.yaml",
+      "sha256": "6c8058d62f5dd5e19e4549e2fa640f1ce8484e532b550a74e5c419598689a485",
+      "size_bytes": 1454
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 174,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32/pod.yaml",
+      "sha256": "2ce4f4cb8f281efe14a14db20d9bc99fb475bd0c4e43c3d6f4c0b144c581f93d",
+      "size_bytes": 5034
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 79,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32/run-metadata.json",
+      "sha256": "0de1538ea7f97c9fcf4a1ea449147b771c369b60cccb60c24a6e66f07421d251",
+      "size_bytes": 2535
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 13,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L32/run-summary.json",
+      "sha256": "c5e5005d9ca53631862ac10ca9890ac0be3da082782d0dc5d5bc1db1036713f3",
+      "size_bytes": 308
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 96,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L64/job-status.yaml",
+      "sha256": "2bec232c1763a4e592344b6fe8d572430c080b3f11b91e2b9eff5d48fa762608",
+      "size_bytes": 4304
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L64/job.log",
+      "sha256": "320c57db9977eeb9bba4f81de0d9960ea756f908499fd7e78bd59cfea864b7a8",
+      "size_bytes": 12350
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 49,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L64/job.yaml",
+      "sha256": "9426e2bf3c9661ecb6aeaf940178e005a2c47982726f511aa91f55af82024d6a",
+      "size_bytes": 1458
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L64/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 174,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L64/pod.yaml",
+      "sha256": "8d89402242f5010c55264b314f8f7f866fbf269b7e153e5c6787b4012ea4c17e",
+      "size_bytes": 5038
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 150,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L64/quality-summary.json",
+      "sha256": "1abdf6fe06e55416cf9cf907cdae9e513ed9409fb03360948d623989bfd53c12",
+      "size_bytes": 3332
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 24,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L64/quality-summary.md",
+      "sha256": "e167fba4f5ec96efd102c52aef9cb24d55ab14f18638a707fd61997bc3458213",
+      "size_bytes": 837
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 79,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L64/run-metadata.json",
+      "sha256": "bdda0bf463f969909973dcfe5f5928407bb0e53de077faca15e33849c704110c",
+      "size_bytes": 2483
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 14,
+      "path": "results/v0.8.0/runs/v0.8.0-M0-L64/run-summary.json",
+      "sha256": "adf9ed1dcf6decd7db143a3ab8be7b5a4c06d89537543b6bc927d8c16a87e55f",
+      "size_bytes": 342
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 97,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-128/job-status.yaml",
+      "sha256": "71772174593fe36e77b8f697920bcfddc20dd242d245cd6f7e30a4c71987b4c6",
+      "size_bytes": 4420
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-128/job.log",
+      "sha256": "67ac5d5cdd295e672ffeb209eb8ac5476121b443b75d912e6b74ceea79a34e95",
+      "size_bytes": 7610
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 50,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-128/job.yaml",
+      "sha256": "fdb8e0793b8594c992eec6bff34c40fd86fe4d943548d0458d662914bde31d28",
+      "size_bytes": 1515
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-128/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 175,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-128/pod.yaml",
+      "sha256": "bdd1542b8f9c0df06be05b31dc138d92157a3da2c25bcc6fec7f9c11d2eba6ad",
+      "size_bytes": 5094
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 83,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-128/run-metadata.json",
+      "sha256": "25099136629a2e5b7fb2dc073a939f359c9909bd8e6a3bb80a1e4eea166e0609",
+      "size_bytes": 2553
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 19,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-128/run-summary.json",
+      "sha256": "583aef4b874104af9bc7c9e8ccd2636ce0320676dc071cb847913d1c7b9ee2c3",
+      "size_bytes": 400
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 92,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-128/step-response-summary.json",
+      "sha256": "91db9a2108f1d13e3817132e8d50b0fff95c26f2ed43ab1d4a98d4cbf63369ce",
+      "size_bytes": 1951
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 46,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-128/step-response-summary.md",
+      "sha256": "8c4aa26bf723833349eac61d24049837552f32f6ebfddfe32bee9be790b1f99b",
+      "size_bytes": 843
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 97,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-64/job-status.yaml",
+      "sha256": "ee5d7b2cdf49151bb787f6305d9da5aa04618f9e440259eea5baf1f52dbde064",
+      "size_bytes": 4406
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-64/job.log",
+      "sha256": "2dc560662f99e78a8343840b9f9b1116f3059a3ee6b8d3166f34d2c517588c57",
+      "size_bytes": 7394
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 50,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-64/job.yaml",
+      "sha256": "db80d572b199a7ad5950ea285e7675d8dc0e4cb807712e6d45a7a68f7de7278a",
+      "size_bytes": 1509
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-64/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 175,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-64/pod.yaml",
+      "sha256": "8754580d49e136ef4b820256480b665d1d7dd053c8fdbc939bc57954c6a8ffcd",
+      "size_bytes": 5086
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 83,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-64/run-metadata.json",
+      "sha256": "30c0a066bc814ff52ac875e643f99ff7cfec01dc7588fdad12c6484d4596301a",
+      "size_bytes": 2541
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 19,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-64/run-summary.json",
+      "sha256": "86e50237701b44b463a445c0c51a4f39238654407d867895a55f1dd697cf0e0b",
+      "size_bytes": 398
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 92,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-64/step-response-summary.json",
+      "sha256": "9de0a845e801ef3f914d003b7764e244e5bc2f2f371f40938a50a2f0dff9069b",
+      "size_bytes": 1941
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 46,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S32-64/step-response-summary.md",
+      "sha256": "0f2053193b7c6f70237255c557ef0c5e3f01af7a7d9c4a5e734dae399d843a54",
+      "size_bytes": 836
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 97,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S64-128/job-status.yaml",
+      "sha256": "5051ede60a886a26b26f6a108fb01838f74a656df7360a3fa3c45524c1dbc3c8",
+      "size_bytes": 4420
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S64-128/job.log",
+      "sha256": "7efb15b69541ebe570ade615d6d55e8809e8e3c810e142187a5f9af840da5d28",
+      "size_bytes": 7611
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 50,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S64-128/job.yaml",
+      "sha256": "1751acab2bd6bdffa81ce7a071b19a0343be0cedceb5cef93dc8b4ac00d8149f",
+      "size_bytes": 1515
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S64-128/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 175,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S64-128/pod.yaml",
+      "sha256": "0a46817851a0c41801a621f4201208e3cfd39913334bb103e5476127ff81c835",
+      "size_bytes": 5094
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 83,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S64-128/run-metadata.json",
+      "sha256": "a2c386b089857d6d907f2a2b9c2838af07538eac3bbb66683dcc22c33ad2c895",
+      "size_bytes": 2553
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 19,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S64-128/run-summary.json",
+      "sha256": "6fe7ad75fb397360b3d6057909df6d8a71fac5314bcdf487acad3b6e184ede22",
+      "size_bytes": 400
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 92,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S64-128/step-response-summary.json",
+      "sha256": "00c989bacb9ed549ef6bf58391dca674d907db20a88760c9a85e1a527df25ca2",
+      "size_bytes": 1947
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 46,
+      "path": "results/v0.8.0/runs/v0.8.0-M1-S64-128/step-response-summary.md",
+      "sha256": "6944aa316dd8d655b9de07c5910e762a629b7cc1d2b14de6f8c8631ca099de51",
+      "size_bytes": 839
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 97,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-32/job-status.yaml",
+      "sha256": "f6b7f56e47712b8540519045637b3ea2f489efc6c26c90676fcadaec3a77ea99",
+      "size_bytes": 4420
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-32/job.log",
+      "sha256": "102b6d454d5a11d47f10288f5ac09956fd909a8322ec510f1c4411644718343c",
+      "size_bytes": 7610
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 50,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-32/job.yaml",
+      "sha256": "0406242bc30e302368679298cb1e8495ed2f220079987e0affd9666e5148ad67",
+      "size_bytes": 1515
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-32/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 175,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-32/pod.yaml",
+      "sha256": "5be4dd7bd8dc9a69a9e6c15f44c9b07cf80e5a518bdcc00c6298392b6fc9ec0e",
+      "size_bytes": 5094
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 83,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-32/run-metadata.json",
+      "sha256": "fb743fc08c822750fed94b40caaca867f545d28f584d3b988a832073689f6f66",
+      "size_bytes": 2564
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 19,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-32/run-summary.json",
+      "sha256": "21cb0875120d0909f8f74fa7c5a40190c2967778f820eb98a46203e4f2ab74da",
+      "size_bytes": 405
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 92,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-32/step-response-summary.json",
+      "sha256": "2847fb1a96493d69fd1f76425da0428014dee0382c21d291c2dcee91b5748a23",
+      "size_bytes": 1950
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 46,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-32/step-response-summary.md",
+      "sha256": "9c582f22bbc762c3184407a7fdae4e2541bbe4e042e68d632785443a8047437e",
+      "size_bytes": 842
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 97,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-64/job-status.yaml",
+      "sha256": "2a22ef1ee2d33514f5e358ef8ba549a8d1146d6989361bd0d5204e1ab2595af4",
+      "size_bytes": 4420
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-64/job.log",
+      "sha256": "a7313ae2551a74e2aa305a5df3776b01913dd76f3e89aa81da5f8e5ce4271fe8",
+      "size_bytes": 7610
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 50,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-64/job.yaml",
+      "sha256": "a0ac189bebd532cd8e12e6d1b2cf3a10229bf955ce1eb34822094ae81229339b",
+      "size_bytes": 1515
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-64/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 175,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-64/pod.yaml",
+      "sha256": "9c76c584e63a0f6c2502eadd4b197d8461d85a3a0ebe994fab3f1397620c1c24",
+      "size_bytes": 5094
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 83,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-64/run-metadata.json",
+      "sha256": "f9c15a6c3ba9609f3e3d4cd6080675ad3584f1fecd134911d638a67288ac0e21",
+      "size_bytes": 2564
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 19,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-64/run-summary.json",
+      "sha256": "25896484ac0f8bf9c1bed9cb1f2366e1f8412eb4a3585282e625fce531c086f8",
+      "size_bytes": 405
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 92,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-64/step-response-summary.json",
+      "sha256": "b619e3e664da598f2f2b89ee907144253241ca9ab8a6aa1806c0e0de36510732",
+      "size_bytes": 1944
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 46,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D128-64/step-response-summary.md",
+      "sha256": "2ba148d2dfe9e559f0e656884dca91cc37959a78981896783691c9901132d9bc",
+      "size_bytes": 836
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 97,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D64-32/job-status.yaml",
+      "sha256": "ce73d6608c94c3d453a69c9ee3c54095f0977630cda11559981b66e422c87d36",
+      "size_bytes": 4406
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D64-32/job.log",
+      "sha256": "1225349c7b16f350b99c4b7d6f4b4415269a1782cf033f918a82b6e27cf70075",
+      "size_bytes": 7503
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 50,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D64-32/job.yaml",
+      "sha256": "671e0a28aaccd874d907108b32dfa7fa952961e453d827b5af8b6ca49b903ef6",
+      "size_bytes": 1509
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D64-32/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 175,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D64-32/pod.yaml",
+      "sha256": "27dcc6c7bba9c2b811ae720c4a40fc4bc126d38b83b232d3542df76d2edbfecf",
+      "size_bytes": 5086
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 83,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D64-32/run-metadata.json",
+      "sha256": "29cd412e2dbffde76d4da317ae395e114d7ac89dacf9336e6fe881c22f9364dd",
+      "size_bytes": 2552
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 19,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D64-32/run-summary.json",
+      "sha256": "10b5fe031b8954de13815abdfc24196f378b1501e1de8273671c897135d15016",
+      "size_bytes": 403
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 92,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D64-32/step-response-summary.json",
+      "sha256": "b8f6e0b34f50da36b707ef1135718ea76753037653beff138cb2fca576114a02",
+      "size_bytes": 1948
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 46,
+      "path": "results/v0.8.0/runs/v0.8.0-M2-D64-32/step-response-summary.md",
+      "sha256": "dcff4d2c6a3ebe2db96b777dd4937f1a440a972728a5124b11da4e713def9d9d",
+      "size_bytes": 842
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 78,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32/job-status.yaml",
+      "sha256": "ef8fa813245a6e64687a06dd92ae25d53fe6920bea101d51115ea83e3976c2a7",
+      "size_bytes": 3895
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32/job.log",
+      "sha256": "f13d07e1648d51c978845bf8450f643615cd9450e461af6af7f6b89219af28e1",
+      "size_bytes": 10521
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 31,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32/job.yaml",
+      "sha256": "f797916db1380f437bd18c50d08b9e3498ca2f73494e6cc07c4c92bce25d0b96",
+      "size_bytes": 1224
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 284,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32/multistep-summary.json",
+      "sha256": "5b327230edb85c58941819b1768da9f79c350b0d0c3fc7e52a8652d26e966960",
+      "size_bytes": 6868
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 23,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32/multistep-summary.md",
+      "sha256": "5f51e8dd7e95656cfc50590f30ba6f8e09bb29047e9f8d8e0218f40e0ae1eb6f",
+      "size_bytes": 899
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 157,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32/pod.yaml",
+      "sha256": "a893db549c1526944e28818b48a8b205040f82f9e3373aa32d39908fd47d1d5d",
+      "size_bytes": 4945
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32/run-metadata.json",
+      "sha256": "1a1198e74885b75790d34ad85a5ea2357dd46377d3420497dcfccbf000d86d2f",
+      "size_bytes": 781
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 24,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32/run-summary.json",
+      "sha256": "1fa2e29ac6e6fb56a4d6fb59013a60090ce587e55816012b6aa5a2a298935eac",
+      "size_bytes": 497
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 78,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-64-128-64-32/job-status.yaml",
+      "sha256": "29bf823442d19048b8782ee8c56908eca36ac3dfc852bdca4392476fbce2d890",
+      "size_bytes": 3885
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-64-128-64-32/job.log",
+      "sha256": "db40042f9d2673ec2b06afaf89b62a66f1d36ab24f41ccc342a24fcac16d0601",
+      "size_bytes": 10461
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 31,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-64-128-64-32/job.yaml",
+      "sha256": "1f712480f5d47a3541cfe5377898523d620ebf231c3e38717c9a3c93229e5501",
+      "size_bytes": 1220
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-64-128-64-32/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 284,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-64-128-64-32/multistep-summary.json",
+      "sha256": "2b859418c9b1a0ed4cf4c660335dfd16767d5e56935842f86c346ed27cc0e46f",
+      "size_bytes": 6856
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 23,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-64-128-64-32/multistep-summary.md",
+      "sha256": "ab5b1b8d3362e0a54f332087d5ba1decd07293a6a00f4db3b0082653f8d71198",
+      "size_bytes": 893
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 157,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-64-128-64-32/pod.yaml",
+      "sha256": "a21c2fa1379af365163a28f90539f12369a31d813b0a2ecc10a9057420cdcb36",
+      "size_bytes": 4938
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 25,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-64-128-64-32/run-metadata.json",
+      "sha256": "5dbb4d10ce96b0310e1256189cd4871034b2b7288d3b4793d2bc82e27640459c",
+      "size_bytes": 776
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 24,
+      "path": "results/v0.8.0/runs/v0.8.0-M3-MS32-64-128-64-32/run-summary.json",
+      "sha256": "e6681fafacd94dbcffe73814ab23e1472b7508f69ad61fccb1e25145a3f81a5e",
+      "size_bytes": 495
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 78,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/job-status.yaml",
+      "sha256": "6fec4d018acee684cebfcd5f9d5147534dc53f7bb5feed0e2c585f8d0967ff48",
+      "size_bytes": 3939
+    },
+    {
+      "group": "run_results",
+      "kind": "log",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/job.log",
+      "sha256": "deb72a2b2c2f7115793d769156612cce22f66d126764e51fd55ef941adb733da",
+      "size_bytes": 5499
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 31,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/job.yaml",
+      "sha256": "547b68cc5dcbce7a467f521f860bc5fba368c5fb67c681b97349f19cd5990ac8",
+      "size_bytes": 1247
+    },
+    {
+      "group": "run_results",
+      "kind": "err",
+      "line_count": null,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/kubectl-logs-copy.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 700,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/multistep-summary.json",
+      "sha256": "bcffa0b5d1f674c0e56ccc11c61a01fa8fc6e0155f73b45bb5aa8b8d0392b1b6",
+      "size_bytes": 16897
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 31,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/multistep-summary.md",
+      "sha256": "47d9bbbe55c0e67376857afb9701071c4f19be6a04d56c34eb9d9bd7b2aa7d8e",
+      "size_bytes": 1680
+    },
+    {
+      "group": "run_results",
+      "kind": "yaml",
+      "line_count": 157,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/pod.yaml",
+      "sha256": "32745ffed74dc267529b3540f20a4e7f1fd147e3e1577a1c1acd05a56efb1d2f",
+      "size_bytes": 4965
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 33,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/run-metadata.json",
+      "sha256": "b1b8bcc44c14cd6da8e1f3fff368e7e28475dd299ec5c49c585a86b0435b71ea",
+      "size_bytes": 886
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 32,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/run-summary.json",
+      "sha256": "001d3b92959bd7240d783e8488a1696be7a61d922fc17eacb211848365a32a23",
+      "size_bytes": 583
+    },
+    {
+      "group": "run_results",
+      "kind": "json",
+      "line_count": 226,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-summary.json",
+      "sha256": "96972fbf7f3f8b75aa248c091d5b3e5e534e614ce3f70627ce65d246a2d9040a",
+      "size_bytes": 5332
+    },
+    {
+      "group": "run_results",
+      "kind": "text",
+      "line_count": 40,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-summary.md",
+      "sha256": "90464460f6a702a8b3a78f70fdd10449ed52514bc278ec7bd0f53e3d3306220b",
+      "size_bytes": 945
+    },
+    {
+      "group": "run_results",
+      "kind": "csv",
+      "line_count": 79,
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-timeseries.csv",
+      "sha256": "412a26a7bf67c49a4b49313d8625e4b2f2a3fcfa88ad9cde05386d2126a8b589",
+      "size_bytes": 6968
+    },
+    {
+      "group": "aggregate_summaries",
+      "kind": "json",
+      "line_count": 94,
+      "path": "results/v0.8.0/summary/v0.8.0-dynamic-id-summary.json",
+      "sha256": "5312c60ee774e055c3d10e05eaebc42eca628e55df6a4da64b34411da699d50f",
+      "size_bytes": 2882
+    },
+    {
+      "group": "aggregate_summaries",
+      "kind": "text",
+      "line_count": 54,
+      "path": "results/v0.8.0/summary/v0.8.0-dynamic-id-summary.md",
+      "sha256": "af0ac4ec123d33f9f2bae3eeed6491062f387e22b016a48270e4460163af4820",
+      "size_bytes": 2618
+    },
+    {
+      "group": "aggregate_summaries",
+      "kind": "json",
+      "line_count": 247,
+      "path": "results/v0.8.0/summary/v0.8.0-m0-m1-m2-summary.json",
+      "sha256": "d47d416d3d4c1d6de277003a5333e85188b9acf757be985f35bdcc692a815475",
+      "size_bytes": 8321
+    },
+    {
+      "group": "aggregate_summaries",
+      "kind": "text",
+      "line_count": 48,
+      "path": "results/v0.8.0/summary/v0.8.0-m0-m1-m2-summary.md",
+      "sha256": "5ea350e99fbe65c6038bcc55ba69712be8c975f1bf221121add54aaee7861f1d",
+      "size_bytes": 2565
+    },
+    {
+      "group": "aggregate_summaries",
+      "kind": "json",
+      "line_count": 167,
+      "path": "results/v0.8.0/summary/v0.8.0-m0-m1-summary.json",
+      "sha256": "e270cd3e0df1c54a2b7200141c8c7ef477c68979372670ca3174405c4f84deec",
+      "size_bytes": 5456
+    },
+    {
+      "group": "aggregate_summaries",
+      "kind": "text",
+      "line_count": 38,
+      "path": "results/v0.8.0/summary/v0.8.0-m0-m1-summary.md",
+      "sha256": "d1870919bb8f4d035707a0faf7bd0e4e63b817b97dea6fa69f8d80fe896113eb",
+      "size_bytes": 1863
+    },
+    {
+      "group": "aggregate_summaries",
+      "kind": "json",
+      "line_count": 176,
+      "path": "results/v0.8.0/summary/v0.8.0-m3-summary.json",
+      "sha256": "0d6476e6593bbfea0e479ad9713738b586368be0c8cd83c4eb032d833060cf28",
+      "size_bytes": 5204
+    },
+    {
+      "group": "aggregate_summaries",
+      "kind": "text",
+      "line_count": 44,
+      "path": "results/v0.8.0/summary/v0.8.0-m3-summary.md",
+      "sha256": "18e8e6e0ca04f4370a6c380323b30e9916d05fe7d5a9cdb624231d9e0c351e85",
+      "size_bytes": 2424
+    },
+    {
+      "group": "schemas",
+      "kind": "json",
+      "line_count": 309,
+      "path": "schemas/v0.8.0/run-metadata.schema.json",
+      "sha256": "37c55806e297644f5853664a5bc1ccd66d26c36f29b11d9d4b5a2766dabbd5fa",
+      "size_bytes": 7052
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 204,
+      "path": "scripts/v0.8.0/build-m0-m1-m2-summary.py",
+      "sha256": "65347994290abc1d7ec264e9b6903046757cf13155f3cc2e73fc875654f668b6",
+      "size_bytes": 8508
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 210,
+      "path": "scripts/v0.8.0/build-m0-m1-summary.py",
+      "sha256": "448ccd2a6a45d734cba13279fc90f119632a274bffc3c1849de727e1a224af45",
+      "size_bytes": 8413
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 166,
+      "path": "scripts/v0.8.0/build-m3-summary.py",
+      "sha256": "c62da047d5fbe1003f3106524401515c16999d4e4e0ed4e5860beebbfde4df06",
+      "size_bytes": 6336
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 282,
+      "path": "scripts/v0.8.0/build-v0.8.0-artifact-inventory.py",
+      "sha256": "ba7254b9111ca160f3c4e5b525a1f3463474a4963911807b7502b2813172a2f5",
+      "size_bytes": 8265
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 247,
+      "path": "scripts/v0.8.0/build-v0.8.0-dynamic-id-summary.py",
+      "sha256": "f5a591c291083f6b4765bc13eaca7972e7323d352307157bf56c9b6f0969bf0f",
+      "size_bytes": 11051
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 102,
+      "path": "scripts/v0.8.0/inspect-loadgen-v0.8.0.sh",
+      "sha256": "f96c3ae720aa77529d26e067d564a377e83ef186e93523f921eb9eb52563638f",
+      "size_bytes": 2808
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 75,
+      "path": "scripts/v0.8.0/preflight-v0.8.0-with-rpc-port-forward.sh",
+      "sha256": "c6e27460e9521fe48c3e63ad4e6f0b9c2c7f0c08661c628df0b536d9b78ef399",
+      "size_bytes": 1725
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 265,
+      "path": "scripts/v0.8.0/preflight-v0.8.0.sh",
+      "sha256": "babc6f774c6fc397ad8db8e2ced34dddc9f4ab06b5f0ce0c52164e2749114dd2",
+      "size_bytes": 7744
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 375,
+      "path": "scripts/v0.8.0/run-m0-baseline.sh",
+      "sha256": "3e5625981ce48a60fa990be82098484f178d6c1a91650d9c2bfd9ab671b0a463",
+      "size_bytes": 11633
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 424,
+      "path": "scripts/v0.8.0/run-m1-step-response.sh",
+      "sha256": "6b150854c2a3776157f7f5af9de73df9aad339a0f3ceade387f6d2f13832a251",
+      "size_bytes": 12923
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 293,
+      "path": "scripts/v0.8.0/run-m3-multistep.sh",
+      "sha256": "04b2c02fd1a082dee2b8a3fdbca0c11e1d3438fc0abb0b427049c1364d52fb39",
+      "size_bytes": 8435
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 287,
+      "path": "scripts/v0.8.0/run-m4-sine.sh",
+      "sha256": "b5fb6f21d4994553c7efddd8b9a54fea174ca4c1bd1fbdb53253b80308e0c524",
+      "size_bytes": 8366
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 245,
+      "path": "scripts/v0.8.0/summarize-collect-csv.py",
+      "sha256": "9cf455b7f84c191de52ba3f0b7f0c06b3bee9187fb9b4c41724e776225de7ad1",
+      "size_bytes": 7357
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 288,
+      "path": "scripts/v0.8.0/summarize-multistep.py",
+      "sha256": "922aedc2969fdbba6e7a6ac023b49091378cd91586078cc54670e0ce865cc776",
+      "size_bytes": 9586
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 462,
+      "path": "scripts/v0.8.0/summarize-sine.py",
+      "sha256": "d32c4c5edce33bdeadd0b55883caf194d0a912819c99454b35cdded40a9f5ebf",
+      "size_bytes": 15109
+    },
+    {
+      "group": "experiment_scripts",
+      "kind": "script",
+      "line_count": 256,
+      "path": "scripts/v0.8.0/summarize-step-response.py",
+      "sha256": "2f50f65518ca90baec9bd1aae38d18711302a454a69e3eb8b61690d1c67ef101",
+      "size_bytes": 7803
+    }
+  ],
+  "generated_at_utc": "2026-06-24T10:39:36Z",
+  "groups": {
+    "aggregate_summaries": {
+      "description": "Aggregate summaries for M0-M4 and v0.8.0 dynamic identification.",
+      "file_count": 8,
+      "size_bytes": 31333
+    },
+    "examples": {
+      "description": "v0.8.0 metadata examples.",
+      "file_count": 1,
+      "size_bytes": 3008
+    },
+    "experiment_docs": {
+      "description": "v0.8.0 experiment and run-matrix documentation.",
+      "file_count": 2,
+      "size_bytes": 29947
+    },
+    "experiment_scripts": {
+      "description": "v0.8.0 runners, summarizers and aggregation scripts.",
+      "file_count": 16,
+      "size_bytes": 136062
+    },
+    "preflight_results": {
+      "description": "Per-run preflight reports and summaries.",
+      "file_count": 26,
+      "size_bytes": 137669
+    },
+    "raw_dataset": {
+      "description": "Raw experimental CSVs and commanded/applied load profiles.",
+      "file_count": 38,
+      "size_bytes": 214850
+    },
+    "release_docs": {
+      "description": "v0.8.0 release documentation if present.",
+      "file_count": 0,
+      "size_bytes": 0
+    },
+    "run_results": {
+      "description": "Per-run summaries, metadata, Kubernetes Job/Pod captures and derived run-level outputs.",
+      "file_count": 117,
+      "size_bytes": 358574
+    },
+    "schemas": {
+      "description": "v0.8.0 metadata schemas.",
+      "file_count": 1,
+      "size_bytes": 7052
+    }
+  },
+  "purpose": "Artifact inventory and checksums for software and dataset publication.",
+  "scope": {
+    "excludes": [
+      "self-referential inventory outputs",
+      ".git",
+      "__pycache__",
+      "temporary/editor files"
+    ],
+    "includes": [
+      "data/raw/v0.8.0",
+      "results/v0.8.0/runs",
+      "results/v0.8.0/preflight",
+      "results/v0.8.0/summary",
+      "scripts/v0.8.0",
+      "schemas/v0.8.0",
+      "examples/v0.8.0",
+      "docs/experiments/v0.8.0-*",
+      "docs/releases/*v0.8.0* if present"
+    ]
+  },
+  "stage": "v0.8.0 dynamic load system identification",
+  "totals": {
+    "csv_file_count": 39,
+    "file_count": 209,
+    "json_file_count": 58,
+    "markdown_file_count": 19,
+    "script_file_count": 16,
+    "size_bytes": 918495
+  }
+}
