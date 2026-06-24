@@ -1,0 +1,176 @@
+{
+  "generated_at_utc": "2026-06-24T06:06:07Z",
+  "limitations": [
+    "lat_p99 is missing in collect_csv outputs.",
+    "Settling-time estimates are limited by 5-second sampling resolution.",
+    "M3 remains within the confirmed safe range lambda=32..128."
+  ],
+  "overall_verdict": {
+    "all_observed_err_per_sec_zero": true,
+    "latency_telemetry_missing": true,
+    "m3_complete": true,
+    "max_inflight": 1.0,
+    "scientific_use": [
+      "usable for throughput tracking under multi-step load profiles",
+      "usable for preliminary closed-loop controller signal design",
+      "not yet sufficient for latency-constrained MPC because lat_p99 is missing"
+    ],
+    "status": "PASS"
+  },
+  "runs": [
+    {
+      "err_per_sec_max": 0.0,
+      "inflight_max": 1.0,
+      "lat_p99_count": 0,
+      "levels": [
+        32.0,
+        64.0,
+        128.0,
+        64.0,
+        32.0
+      ],
+      "rows": 150,
+      "run_id": "v0.8.0-M3-MS32-64-128-64-32",
+      "segment_count": 5,
+      "segments": [
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": -0.014328300000002514,
+          "final_window_u_ach_mean": 32.0143283,
+          "first_u_ach": 32.0,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 0,
+          "settling_time_seconds": 0.0,
+          "u_cmd": 32.0
+        },
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": 0.009066999999994607,
+          "final_window_u_ach_mean": 63.990933000000005,
+          "first_u_ach": 59.3939,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 1,
+          "settling_time_seconds": 5.013000000000005,
+          "u_cmd": 64.0
+        },
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": 0.006528299999985165,
+          "final_window_u_ach_mean": 127.99347170000001,
+          "first_u_ach": 118.816022,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 2,
+          "settling_time_seconds": 5.011999999999944,
+          "u_cmd": 128.0
+        },
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": 0.006452000000003011,
+          "final_window_u_ach_mean": 63.993548,
+          "first_u_ach": 73.17334,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 3,
+          "settling_time_seconds": 5.01400000000001,
+          "u_cmd": 64.0
+        },
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": -0.009470700000001386,
+          "final_window_u_ach_mean": 32.0094707,
+          "first_u_ach": 36.605732,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 4,
+          "settling_time_seconds": 5.01299999999992,
+          "u_cmd": 32.0
+        }
+      ],
+      "status": "PASS",
+      "warnings": [
+        "lat_p99 missing in collect_csv output"
+      ]
+    },
+    {
+      "err_per_sec_max": 0.0,
+      "inflight_max": 1.0,
+      "lat_p99_count": 0,
+      "levels": [
+        32.0,
+        128.0,
+        64.0,
+        128.0,
+        32.0
+      ],
+      "rows": 150,
+      "run_id": "v0.8.0-M3-MS32-128-64-128-32",
+      "segment_count": 5,
+      "segments": [
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": -0.014419200000006072,
+          "final_window_u_ach_mean": 32.014419200000006,
+          "first_u_ach": 32.0,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 0,
+          "settling_time_seconds": 0.0,
+          "u_cmd": 32.0
+        },
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": 0.01018349999999657,
+          "final_window_u_ach_mean": 127.9898165,
+          "first_u_ach": 114.199014,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 1,
+          "settling_time_seconds": 5.014999999999986,
+          "u_cmd": 128.0
+        },
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": 0.0034498999999996727,
+          "final_window_u_ach_mean": 63.9965501,
+          "first_u_ach": 73.185576,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 2,
+          "settling_time_seconds": 5.0120000000000005,
+          "u_cmd": 64.0
+        },
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": -0.009197800000009693,
+          "final_window_u_ach_mean": 128.0091978,
+          "first_u_ach": 118.811068,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 3,
+          "settling_time_seconds": 5.013000000000034,
+          "u_cmd": 128.0
+        },
+        {
+          "err_per_sec_max": 0.0,
+          "final_tracking_error": -0.0018554999999977895,
+          "final_window_u_ach_mean": 32.0018555,
+          "first_u_ach": 45.744828,
+          "inflight_max": 1.0,
+          "rows": 30,
+          "segment_index": 4,
+          "settling_time_seconds": 5.013000000000034,
+          "u_cmd": 32.0
+        }
+      ],
+      "status": "PASS",
+      "warnings": [
+        "lat_p99 missing in collect_csv output"
+      ]
+    }
+  ],
+  "scope": "M3 multi-step load profiles",
+  "stage": "v0.8.0 dynamic load system identification"
+}

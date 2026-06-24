@@ -1,0 +1,62 @@
+(B[m# v0.8.0 collect_csv.py help inspection
+(B[m
+(B[mtimestamp_utc: 2026-06-23T15:21:21Z
+(B[mbranch: v0.8.0-dynamic-load-system-identification
+(B[mcommit_sha: 3209fcf98c9b
+(B[m
+(B[m## Job status
+(B[mNAME                    STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS   IMAGES                                                   SELECTOR
+collect-csv-help-v080   Complete   1/1           5s         5s    tools        docker.io/khoshaba/solana-controlled-load-tools:layer1   batch.kubernetes.io/controller-uid=1640ecf5-6a85-43ea-a102-71f3d0f35294
+(B[m
+(B[m## Pod status
+(B[mNAME                          READY   STATUS      RESTARTS   AGE   IP               NODE            NOMINATED NODE   READINESS GATES
+collect-csv-help-v080-c965z   0/1     Completed   0          5s    192.168.118.84   k8s-worker-02   <none>           <none>
+(B[m
+(B[m## Logs
+(B[m## collect_csv.py --help
+usage: collect_csv.py [-h] [--loadgen-url LOADGEN_URL] [--prom-url PROM_URL]
+                      [--lat-metric LAT_METRIC] [--lat-quantile LAT_QUANTILE]
+                      [--rate-key RATE_KEY] [--sample SAMPLE]
+                      [--timeout TIMEOUT]
+                      {steady,step} ...
+
+positional arguments:
+  {steady,step}
+
+options:
+  -h, --help            show this help message and exit
+  --loadgen-url LOADGEN_URL
+  --prom-url PROM_URL
+  --lat-metric LAT_METRIC
+  --lat-quantile LAT_QUANTILE
+  --rate-key RATE_KEY
+  --sample SAMPLE
+  --timeout TIMEOUT
+
+## collect_csv.py step --help
+usage: collect_csv.py step [-h] --levels LEVELS --hold HOLD [--warmup WARMUP]
+
+options:
+  -h, --help       show this help message and exit
+  --levels LEVELS
+  --hold HOLD
+  --warmup WARMUP
+
+## /work/scripts listing
+/work/scripts/bootstrap-repo.sh
+/work/scripts/bootstrap-yellowstone-geyser-noavx2.sh
+/work/scripts/build-yellowstone-geyser-noavx2.sh
+/work/scripts/check-host-cpu.sh
+/work/scripts/collect_article_dataset_v0_1.sh
+/work/scripts/collect_csv.py
+/work/scripts/collect_layer0_observability.py
+/work/scripts/import-monitoring-archive.sh
+/work/scripts/k8s-wallet-transfer-validation.sh
+/work/scripts/knee_probe_adaptive.sh
+/work/scripts/knee_step_test.sh
+/work/scripts/run_article_txload_container_v0_2.sh
+/work/scripts/run_article_txload_container_v0_3.sh
+/work/scripts/run_article_txload_container_v0_4.sh
+/work/scripts/run_article_txload_v0_1.sh
+/work/scripts/stage-a-repo-cleanup.sh
+/work/scripts/test-yellowstone-geyser.sh

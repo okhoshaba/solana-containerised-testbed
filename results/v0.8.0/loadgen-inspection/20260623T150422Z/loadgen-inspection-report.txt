@@ -1,0 +1,277 @@
+# v0.8.0 loadgen inspection
+
+timestamp_utc: 2026-06-23T15:04:22Z
+branch: v0.8.0-dynamic-load-system-identification
+commit_sha: 740d15fb524e
+namespace: solana-observability
+loadgen_service: solana-loadgen2
+
+## Service
+NAME              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE    SELECTOR
+solana-loadgen2   ClusterIP   10.110.23.96   <none>        7070/TCP   6d1h   app.kubernetes.io/name=solana-loadgen2
+
+## Service YAML
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"controlled-load","app.kubernetes.io/name":"solana-loadgen2","app.kubernetes.io/part-of":"solana-containerised-testbed"},"name":"solana-loadgen2","namespace":"solana-observability"},"spec":{"ports":[{"name":"http-control","port":7070,"targetPort":"http-control"}],"selector":{"app.kubernetes.io/name":"solana-loadgen2"},"type":"ClusterIP"}}
+  creationTimestamp: "2026-06-17T13:27:00Z"
+  labels:
+    app.kubernetes.io/component: controlled-load
+    app.kubernetes.io/name: solana-loadgen2
+    app.kubernetes.io/part-of: solana-containerised-testbed
+  name: solana-loadgen2
+  namespace: solana-observability
+  resourceVersion: "1990484"
+  uid: bd73ea80-0920-4d9f-86e3-13ec38cb56a3
+spec:
+  clusterIP: 10.110.23.96
+  clusterIPs:
+  - 10.110.23.96
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http-control
+    port: 7070
+    protocol: TCP
+    targetPort: http-control
+  selector:
+    app.kubernetes.io/name: solana-loadgen2
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+
+## Endpoints
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME              ENDPOINTS             AGE
+solana-loadgen2   192.168.118.75:7070   6d1h
+
+## EndpointSlices
+NAME                    ADDRESSTYPE   PORTS   ENDPOINTS        AGE
+solana-loadgen2-8hqct   IPv4          7070    192.168.118.75   6d1h
+
+## Loadgen pods by known label
+NAME                               READY   STATUS    RESTARTS   AGE    IP               NODE            NOMINATED NODE   READINESS GATES
+solana-loadgen2-5ccbc58fbb-wtr78   1/1     Running   0          6d1h   192.168.118.75   k8s-worker-02   <none>           <none>
+
+## Loadgen pod details
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      cni.projectcalico.org/containerID: 3dda48b6c83e085366bde5ef8cbe8ac568373bd930dbea393355ef677f62c1d6
+      cni.projectcalico.org/podIP: 192.168.118.75/32
+      cni.projectcalico.org/podIPs: 192.168.118.75/32
+    creationTimestamp: "2026-06-17T13:27:00Z"
+    generateName: solana-loadgen2-5ccbc58fbb-
+    generation: 1
+    labels:
+      app.kubernetes.io/component: controlled-load
+      app.kubernetes.io/name: solana-loadgen2
+      app.kubernetes.io/part-of: solana-containerised-testbed
+      pod-template-hash: 5ccbc58fbb
+    name: solana-loadgen2-5ccbc58fbb-wtr78
+    namespace: solana-observability
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: solana-loadgen2-5ccbc58fbb
+      uid: 58c1fba7-1b43-4500-bc6a-62987ffdd3e4
+    resourceVersion: "1990542"
+    uid: 91eb3c8e-dc94-4191-ae21-4882de5aa39a
+  spec:
+    containers:
+    - args:
+      - -keypair
+      - /run/secrets/solana/payer.json
+      - -rpc
+      - http://solana-rpc:8899
+      - -listen
+      - 0.0.0.0:7070
+      - -workers
+      - "4"
+      - -inflight
+      - "32"
+      - -lambda
+      - "0"
+      - -burst
+      - "1"
+      image: docker.io/khoshaba/solana-loadgen2:layer1
+      imagePullPolicy: IfNotPresent
+      name: loadgen2
+      ports:
+      - containerPort: 7070
+        name: http-control
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /run/secrets/solana
+        name: payer-keypair
+        readOnly: true
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-flfsd
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: k8s-worker-02
+    nodeSelector:
+      testbed-role: observability
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: payer-keypair
+      secret:
+        defaultMode: 292
+        secretName: solana-payer-keypair
+    - name: kube-api-access-flfsd
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-17T13:27:01Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-17T13:27:00Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-17T13:27:09Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-17T13:27:09Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-06-17T13:27:00Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://a8d95e6dd1d2c3f6d745f0b56ea7be9c3ea45f2dc1d63dc8bcdd741bb1a1d39e
+      image: docker.io/khoshaba/solana-loadgen2:layer1
+      imageID: docker.io/khoshaba/solana-loadgen2@sha256:7d3966e848ec4fceae154bab33baab390f31da3b751b883bf3f9fc727942a302
+      lastState: {}
+      name: loadgen2
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-06-17T13:27:09Z"
+      user:
+        linux:
+          gid: 999
+          supplementalGroups:
+          - 999
+          uid: 999
+      volumeMounts:
+      - mountPath: /run/secrets/solana
+        name: payer-keypair
+        readOnly: true
+        recursiveReadOnly: Disabled
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-flfsd
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.122.103
+    hostIPs:
+    - ip: 192.168.122.103
+    observedGeneration: 1
+    phase: Running
+    podIP: 192.168.118.75
+    podIPs:
+    - ip: 192.168.118.75
+    qosClass: BestEffort
+    resources: {}
+    startTime: "2026-06-17T13:27:00Z"
+kind: List
+metadata:
+  resourceVersion: ""
+
+## Recent loadgen logs
+2026/06/17 13:27:09 loadgen2: payer=BitJ3TcK9QQvKSaHVskK8ASwQypnPouDACPXd1YVv7fc rpc=http://solana-rpc:8899 listen=0.0.0.0:7070 workers=4 inflight=32 lambda=0.00
+
+## HTTP probing through port-forward
+local_url: http://127.0.0.1:17070
+
+### GET /
+404 page not found
+
+
+### GET /health
+
+
+### GET /status
+404 page not found
+
+
+### GET /metrics
+404 page not found
+
+
+### GET /ready
+404 page not found
+
+
+### GET /live
+404 page not found
+
+
+## Port-forward log
+Forwarding from 127.0.0.1:17070 -> 7070
+Forwarding from [::1]:17070 -> 7070
+Handling connection for 17070
+Handling connection for 17070
+Handling connection for 17070
+Handling connection for 17070
+Handling connection for 17070
+Handling connection for 17070

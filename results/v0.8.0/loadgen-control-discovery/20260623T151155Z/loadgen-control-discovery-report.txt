@@ -1,0 +1,835 @@
+(B[m# v0.8.0 loadgen control discovery
+(B[m
+(B[mtimestamp_utc: 2026-06-23T15:11:55Z
+(B[mbranch: v0.8.0-dynamic-load-system-identification
+(B[mcommit_sha: 1552d6871c96
+(B[m
+(B[m## Git status
+(B[m?? results/v0.8.0/loadgen-control-discovery/
+(B[m
+(B[m## solana-loadgen2 service
+(B[mNAME              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE    SELECTOR
+solana-loadgen2   ClusterIP   10.110.23.96   <none>        7070/TCP   6d1h   app.kubernetes.io/name=solana-loadgen2
+(B[m
+(B[m## solana-loadgen2 deployment
+(B[mapiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"controlled-load","app.kubernetes.io/name":"solana-loadgen2","app.kubernetes.io/part-of":"solana-containerised-testbed"},"name":"solana-loadgen2","namespace":"solana-observability"},"spec":{"replicas":1,"selector":{"matchLabels":{"app.kubernetes.io/name":"solana-loadgen2"}},"template":{"metadata":{"labels":{"app.kubernetes.io/component":"controlled-load","app.kubernetes.io/name":"solana-loadgen2","app.kubernetes.io/part-of":"solana-containerised-testbed"}},"spec":{"containers":[{"args":["-keypair","/run/secrets/solana/payer.json","-rpc","http://solana-rpc:8899","-listen","0.0.0.0:7070","-workers","4","-inflight","32","-lambda","0","-burst","1"],"image":"docker.io/khoshaba/solana-loadgen2:layer1","imagePullPolicy":"IfNotPresent","name":"loadgen2","ports":[{"containerPort":7070,"name":"http-control"}],"volumeMounts":[{"mountPath":"/run/secrets/solana","name":"payer-keypair","readOnly":true}]}],"nodeSelector":{"testbed-role":"observability"},"volumes":[{"name":"payer-keypair","secret":{"defaultMode":292,"secretName":"solana-payer-keypair"}}]}}}}
+    creationTimestamp: "2026-06-17T13:27:00Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/component: controlled-load
+      app.kubernetes.io/name: solana-loadgen2
+      app.kubernetes.io/part-of: solana-containerised-testbed
+    name: solana-loadgen2
+    namespace: solana-observability
+    resourceVersion: "1990546"
+    uid: ebcd6960-8b4f-4788-9f88-36282437d3fb
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/name: solana-loadgen2
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/component: controlled-load
+          app.kubernetes.io/name: solana-loadgen2
+          app.kubernetes.io/part-of: solana-containerised-testbed
+      spec:
+        containers:
+        - args:
+          - -keypair
+          - /run/secrets/solana/payer.json
+          - -rpc
+          - http://solana-rpc:8899
+          - -listen
+          - 0.0.0.0:7070
+          - -workers
+          - "4"
+          - -inflight
+          - "32"
+          - -lambda
+          - "0"
+          - -burst
+          - "1"
+          image: docker.io/khoshaba/solana-loadgen2:layer1
+          imagePullPolicy: IfNotPresent
+          name: loadgen2
+          ports:
+          - containerPort: 7070
+            name: http-control
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /run/secrets/solana
+            name: payer-keypair
+            readOnly: true
+        dnsPolicy: ClusterFirst
+        nodeSelector:
+          testbed-role: observability
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: payer-keypair
+          secret:
+            defaultMode: 292
+            secretName: solana-payer-keypair
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2026-06-17T13:27:09Z"
+      lastUpdateTime: "2026-06-17T13:27:09Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-06-17T13:27:00Z"
+      lastUpdateTime: "2026-06-17T13:27:09Z"
+      message: ReplicaSet "solana-loadgen2-5ccbc58fbb" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    terminatingReplicas: 0
+    updatedReplicas: 1
+kind: List
+metadata:
+  resourceVersion: ""
+(B[m
+(B[m## solana-loadgen2 pod args
+(B[msolana-loadgen2-5ccbc58fbb-wtr78
+["-keypair","/run/secrets/solana/payer.json","-rpc","http://solana-rpc:8899","-listen","0.0.0.0:7070","-workers","4","-inflight","32","-lambda","0","-burst","1"]
+(B[m
+(B[m## Existing controlled-load pods
+(B[m(B[mcontrolled-load-knee-step-candidate-tztl2             0/1     Completed   0          5d16h   192.168.118.81   k8s-worker-02   <none>           <none>
+solana-loadgen2-5ccbc58fbb-wtr78                      1/1     Running     0          6d1h    192.168.118.75   k8s-worker-02   <none>           <none>
+(B[m
+(B[m## Existing jobs
+(B[mNAME                                            STATUS     COMPLETIONS   DURATION   AGE     CONTAINERS                   IMAGES                                                                               SELECTOR
+controlled-load-knee-step-candidate             Complete   1/1           4m10s      5d16h   tools                        docker.io/khoshaba/solana-controlled-load-tools:layer1                               batch.kubernetes.io/controller-uid=31f7057d-25d3-4de8-a00e-90c2b6e40aaf
+wallet-init                                     Complete   1/1           58s        19d     wallet-init                  docker.io/khoshaba/solana-wallet-init:v1.18.25-noavx2-ivybridge                      batch.kubernetes.io/controller-uid=b763c5d9-364b-4e45-827a-007c1fb0fed8
+wallet-transfer-validation-kvm-20260604035307   Complete   1/1           17s        19d     wallet-transfer-validation   docker.io/khoshaba/solana-localnet-validator:v1.18.25-noavx2-ivybridge-yellowstone   batch.kubernetes.io/controller-uid=bf232e37-71e1-4ef5-9f3b-ba9a0569789e
+(B[m
+(B[m## Existing controlled-load pod YAML
+(B[m(B[m(B[mselected_pod: controlled-load-knee-step-candidate-tztl2
+(B[mapiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/containerID: e95cb538c2f5ca7af0a0cfc124cabc483465bdcd7dc18cb13144fd251f8e8ce6
+    cni.projectcalico.org/podIP: ""
+    cni.projectcalico.org/podIPs: ""
+  creationTimestamp: "2026-06-17T22:37:37Z"
+  generateName: controlled-load-knee-step-candidate-
+  generation: 1
+  labels:
+    app.kubernetes.io/component: controlled-load
+    app.kubernetes.io/name: controlled-load-knee-step-candidate
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    batch.kubernetes.io/controller-uid: 31f7057d-25d3-4de8-a00e-90c2b6e40aaf
+    batch.kubernetes.io/job-name: controlled-load-knee-step-candidate
+    controller-uid: 31f7057d-25d3-4de8-a00e-90c2b6e40aaf
+    job-name: controlled-load-knee-step-candidate
+  name: controlled-load-knee-step-candidate-tztl2
+  namespace: solana-observability
+  ownerReferences:
+  - apiVersion: batch/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Job
+    name: controlled-load-knee-step-candidate
+    uid: 31f7057d-25d3-4de8-a00e-90c2b6e40aaf
+  resourceVersion: "2043828"
+  uid: 358e642d-6d52-4186-98d2-66a359cee392
+spec:
+  containers:
+  - command:
+    - bash
+    - -lc
+    - |
+      set -euo pipefail
+      mkdir -p /work/results
+      OUT="/work/results/knee_step_candidate_$(date -u +%Y%m%dT%H%M%SZ).csv"
+      echo "[controlled-load] writing ${OUT}" >&2
+      python3 /work/scripts/collect_csv.py \
+        --loadgen-url "${LOADGEN_URL}" \
+        --prom-url "${PROM_URL}" \
+        --rate-key "${RATE_KEY}" \
+        --sample "${SAMPLE}" \
+        step \
+        --levels "${LEVELS_STR}" \
+        --hold "${HOLD}" \
+        --warmup "${WARMUP}" \
+        > "${OUT}"
+      echo "[controlled-load] completed ${OUT}" >&2
+    env:
+    - name: LOADGEN_URL
+      value: http://solana-loadgen2:7070
+    - name: PROM_URL
+      value: http://solana-metrics:9464
+    - name: RATE_KEY
+      value: lambda
+    - name: LEVELS_STR
+      value: 1 2 4 8
+    - name: HOLD
+      value: "60"
+    - name: SAMPLE
+      value: "5"
+    - name: WARMUP
+      value: "0"
+    - name: EXPERIMENT_ID
+      value: controlled-load-layer1-candidate
+    image: docker.io/khoshaba/solana-controlled-load-tools:layer1
+    imagePullPolicy: IfNotPresent
+    name: tools
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /work/results
+      name: results
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-tg4zm
+      readOnly: true
+    workingDir: /work
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: k8s-worker-02
+  nodeSelector:
+    testbed-role: observability
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Never
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: results
+    persistentVolumeClaim:
+      claimName: controlled-load-results-pvc
+  - name: kube-api-access-tg4zm
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-17T22:41:46Z"
+    observedGeneration: 1
+    status: "False"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-17T22:37:37Z"
+    observedGeneration: 1
+    reason: PodCompleted
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-17T22:41:45Z"
+    observedGeneration: 1
+    reason: PodCompleted
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-17T22:41:45Z"
+    observedGeneration: 1
+    reason: PodCompleted
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-17T22:37:37Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://5ca8a9942d34ccb8e68ecf0fce34c20e420c7087c0ee460b4bff7edc6ca96574
+    image: docker.io/khoshaba/solana-controlled-load-tools:layer1
+    imageID: docker.io/khoshaba/solana-controlled-load-tools@sha256:816088d04078755072d95d4c5430a5c0cba6199a0308e6915dad5ffb1e990e5d
+    lastState: {}
+    name: tools
+    ready: false
+    resources: {}
+    restartCount: 0
+    started: false
+    state:
+      terminated:
+        containerID: containerd://5ca8a9942d34ccb8e68ecf0fce34c20e420c7087c0ee460b4bff7edc6ca96574
+        exitCode: 0
+        finishedAt: "2026-06-17T22:41:44Z"
+        reason: Completed
+        startedAt: "2026-06-17T22:37:38Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        uid: 0
+    volumeMounts:
+    - mountPath: /work/results
+      name: results
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-tg4zm
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.168.122.103
+  hostIPs:
+  - ip: 192.168.122.103
+  observedGeneration: 1
+  phase: Succeeded
+  podIP: 192.168.118.81
+  podIPs:
+  - ip: 192.168.118.81
+  qosClass: BestEffort
+  resources: {}
+  startTime: "2026-06-17T22:37:37Z"
+(B[m
+(B[m## Existing controlled-load pod logs
+(B[m(B[m[controlled-load] writing /work/results/knee_step_candidate_20260617T223738Z.csv
+[controlled-load] completed /work/results/knee_step_candidate_20260617T223738Z.csv
+(B[m
+(B[m## Repository search: loadgen and control endpoints
+(B[m(B[m./article-upload/technical-report.tex:152:  \item \textbf{Controlled exposure}: RPC and future Geyser/metrics ports should be bound to localhost on the host machine.
+./article-upload/technical-report.tex:222:The official \texttt{solanalabs/solana:v1.18.25} image was also unsuitable on this host, confirming that the issue was not caused by the custom container wrapper but by the binary/runtime compatibility of the prebuilt Solana release on this hardware.
+./article/technical-report.tex:152:  \item \textbf{Controlled exposure}: RPC and future Geyser/metrics ports should be bound to localhost on the host machine.
+./article/technical-report.tex:222:The official \texttt{solanalabs/solana:v1.18.25} image was also unsuitable on this host, confirming that the issue was not caused by the custom container wrapper but by the binary/runtime compatibility of the prebuilt Solana release on this hardware.
+./docs/research-program/00-current-state-v0.2.0.md:59:curl -s http://127.0.0.1:9464/metrics | head -n 40
+./docs/research-program/02-dataset-layer0-observability.md:28:Metrics: http://127.0.0.1:9464/metrics
+./docs/research-program/02-dataset-layer0-observability.md:85:- `/metrics` is reachable
+./docs/research-program/03-kubernetes-observability-core.md:34:The environment should provide stable service names, explicit RPC/gRPC/metrics endpoints,
+./docs/research-program/05-mpc-adaptive-control.md:28:inflight transactions
+./docs/research-program/05-mpc-adaptive-control.md:37:lambda adjustment
+./docs/research-program/05-mpc-adaptive-control.md:38:workers adjustment
+./docs/research-program/05-mpc-adaptive-control.md:39:inflight adjustment
+./docs/research-program/06-single-agent-rl.md:25:- knee probe adaptive script
+./docs/research-program/07-marl-extension.md:12:- inflight/backpressure controller
+./docs/research-program/adr/ADR-0004-agave-as-separate-research-branch.md:15:Agave will be treated as a separate research branch and not introduced into the current baseline until the observability and controlled-load layers are established.
+./docs/research-program/04-controlled-load-layer1.md:60:## Existing controlled-load workflow
+./docs/research-program/04-controlled-load-layer1.md:62:The current Layer 1 implementation is based on the existing controlled-load workflow prepared before this stage.
+./docs/research-program/04-controlled-load-layer1.md:66:- `loadgen2`;
+./docs/research-program/04-controlled-load-layer1.md:68:- `knee_step_test.sh`;
+./docs/research-program/04-controlled-load-layer1.md:69:- `knee_probe_adaptive.sh`;
+./docs/research-program/04-controlled-load-layer1.md:72:- controlled-load dashboard code.
+./docs/research-program/04-controlled-load-layer1.md:80:- containerisation of the `loadgen2` transaction load generator;
+./docs/research-program/04-controlled-load-layer1.md:83:- optional knee-probe execution to identify useful load ranges;
+./docs/research-program/04-controlled-load-layer1.md:137:timestamp_utc, experiment_id, phase, level_index, lambda_target, workers, burst,
+./docs/research-program/04-controlled-load-layer1.md:138:inflight, sample, duration_seconds, submitted_tps, accepted_tps, error_rate,
+./docs/research-program/04-controlled-load-layer1.md:168:For the current `loadgen2` implementation, the default rate-control key should be compatible with the load generator API. If `loadgen2` expects `lambda`, the scripts should use:
+./docs/research-program/04-controlled-load-layer1.md:171:RATE_KEY=lambda
+./docs/research-program/04-controlled-load-layer1.md:176:The controlled-load extension may add:
+./docs/research-program/04-controlled-load-layer1.md:189:The controlled-load workload should not be scheduled on the validator node unless explicitly required.
+./docs/research-program/04-controlled-load-layer1.md:201:The first controlled-load runs should focus on observable metrics already available from the current system:
+./docs/research-program/04-controlled-load-layer1.md:214:The controlled-load experiment should not be interpreted as a public Solana benchmark.
+./docs/research-program/04-controlled-load-layer1.md:220:Each controlled-load run should produce an evidence directory such as:
+./docs/research-program/04-controlled-load-layer1.md:223:results/controlled-load-layer1/<experiment-id>/
+./docs/research-program/04-controlled-load-layer1.md:263:The first controlled-load experiment is successful if:
+./docs/research-program/04-controlled-load-layer1.md:267:- the requested controlled-load levels are executed;
+./docs/research-program/04-controlled-load-layer1.md:282:loadgen2/
+./docs/research-program/04-controlled-load-layer1.md:286:k8s/controlled-load/
+./docs/research-program/04-controlled-load-layer1.md:296:scripts/knee_step_test.sh
+./docs/research-program/04-controlled-load-layer1.md:297:scripts/knee_probe_adaptive.sh
+./docs/research-program/04-controlled-load-layer1.md:304:containers/Dockerfile.loadgen2
+./docs/research-program/04-controlled-load-layer1.md:311:k8s/controlled-load/
+./docs/research-program/04-controlled-load-layer1.md:322:5. clean the step-load and knee-probe scripts;
+./docs/research-program/04-controlled-load-layer1.md:326:9. execute a small controlled-load experiment in Kubernetes;
+./docs/yellowstone-geyser.md:81:Port 10000 is listening:
+./docs/yellowstone-geyser.md:87:    curl -s http://127.0.0.1:9464/metrics | head -n 40
+./docs/releases/v0.3.0-kubernetes-observability-core.md:188:http://127.0.0.1:9464/metrics
+./docs/releases/v0.3.0-kubernetes-observability-core.md:283:The Kubernetes Observability Core prepares the project for later controlled-load and controller-oriented stages, but those stages are not part of this release.
+./docs/releases/v0.5.0-controlled-load-layer1.md:1:# Solana Containerised Testbed v0.5.0-controlled-load-layer1
+./docs/releases/v0.5.0-controlled-load-layer1.md:37:- loadgen2, a controlled Solana transaction load generator;
+./docs/releases/v0.5.0-controlled-load-layer1.md:38:- CSV collection tooling for controlled-load experiments;
+./docs/releases/v0.5.0-controlled-load-layer1.md:39:- knee-step and adaptive probe execution scripts;
+./docs/releases/v0.5.0-controlled-load-layer1.md:40:- controlled-load dashboard code;
+./docs/releases/v0.5.0-controlled-load-layer1.md:43:- Kubernetes manifests for the controlled-load layer;
+./docs/releases/v0.5.0-controlled-load-layer1.md:52:- docker.io/khoshaba/solana-loadgen2:layer1
+./docs/releases/v0.5.0-controlled-load-layer1.md:53:- docker.io/khoshaba/solana-controlled-load-tools:layer1
+./docs/releases/v0.5.0-controlled-load-layer1.md:57:The controlled-load layer uses the existing solana-observability namespace and adds:
+./docs/releases/v0.5.0-controlled-load-layer1.md:59:- solana-loadgen2 Deployment;
+./docs/releases/v0.5.0-controlled-load-layer1.md:60:- solana-loadgen2 ClusterIP Service on port 7070;
+./docs/releases/v0.5.0-controlled-load-layer1.md:61:- controlled-load-results-pvc;
+./docs/releases/v0.5.0-controlled-load-layer1.md:62:- controlled-load-knee-step Job definition;
+./docs/releases/v0.5.0-controlled-load-layer1.md:72:- loadgen2 starts successfully;
+./docs/releases/v0.5.0-controlled-load-layer1.md:75:- lambda=1 produces accepted transactions;
+./docs/releases/v0.5.0-controlled-load-layer1.md:84:- solana-loadgen2 Deployment reaches 1/1 Ready;
+./docs/releases/v0.5.0-controlled-load-layer1.md:85:- solana-loadgen2 Service is reachable inside the cluster;
+./docs/releases/v0.5.0-controlled-load-layer1.md:86:- controlled-load-knee-step Job completes successfully;
+./docs/releases/v0.5.0-controlled-load-layer1.md:88:- target_lambda returns to 0;
+./docs/releases/v0.5.0-controlled-load-layer1.md:100:- rate_key: lambda
+./docs/releases/v0.5.0-controlled-load-layer1.md:104:- target_lambda: 0
+./docs/releases/v0.5.0-controlled-load-layer1.md:108:- inflight: 0
+./docs/releases/v0.5.0-controlled-load-layer1.md:113:data/raw/controlled-load-layer1/20260617T223738Z/knee_step_candidate_20260617T223738Z.csv
+./docs/releases/v0.5.0-controlled-load-layer1.md:117:- results/controlled-load-layer1/20260617T223738Z/summary_by_level.csv
+./docs/releases/v0.5.0-controlled-load-layer1.md:125:- .env.controlled-load;
+./docs/releases/v0.5.0-controlled-load-layer1.md:134:- automated knee-point detection as a validated research result;
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:1:# v0.5.0-controlled-load-layer1 Release Checklist
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:11:- [x] Candidate raw CSV copied into `data/raw/controlled-load-layer1/`.
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:12:- [x] Derived per-level summary created in `results/controlled-load-layer1/`.
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:30:- [ ] `.env.controlled-load`;
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:51:- [ ] Confirm final version string: `v0.5.0-controlled-load-layer1`.
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:53:  - `docker.io/khoshaba/solana-loadgen2:layer1`;
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:54:  - `docker.io/khoshaba/solana-controlled-load-tools:layer1`.
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:58:kubectl kustomize k8s/controlled-load >/tmp/controlled-load-rendered.yaml
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:64:ls -l data/raw/controlled-load-layer1/20260617T223738Z/
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:65:ls -l results/controlled-load-layer1/20260617T223738Z/
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:73:v0.5.0-controlled-load-layer1
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:79:Solana Containerised Testbed v0.5.0-controlled-load-layer1
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:85:docs/releases/v0.5.0-controlled-load-layer1.md
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:95:docs/zenodo/v0.5.0-controlled-load-layer1-software-metadata.md
+./docs/releases/v0.5.0-controlled-load-layer1-checklist.md:116:2. Create Git tag `v0.5.0-controlled-load-layer1`.
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:9:This release documents the v0.7.0 saturation and knee-point analysis stage of the Solana Containerised Testbed.
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:11:The goal was to extend the repeated controlled-load experiments from v0.6.0 and identify the first observable saturation, instability, or knee-point boundary under progressively increasing transaction load.
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:15:The starting point was the validated v0.6.0 repeated controlled-load experiment set, where controlled load levels were executed repeatedly and summarised using raw and processed experiment artifacts.
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:17:The v0.7.0 stage continued from that point with higher target_lambda levels and additional diagnostics.
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:23:    S6 target_lambda=128
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:27:    S7 target_lambda=256
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:29:However, this boundary was not a clean steady-state throughput knee. It was an infrastructure stability boundary caused by validator-node storage pressure.
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:33:| Level | Lambda | Runs | Valid | Clean | err_delta_total | final_inflight_mean | sample_inflight_max | achieved_tps_mean |
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:46:    S2-S6, up to target_lambda=128
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:50:    S7, target_lambda=256
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:63:    loadgen2 connection refused
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:65:    final_inflight=4
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:75:The full saturation/knee analysis was documented in:
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:77:    docs/experiments/v0.7.0-saturation-knee-point-analysis.md
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:85:The post-incident validation run at S7 target_lambda=256 completed without new errors:
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:88:    final_inflight=0
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:95:v0.7.0 did not find a clean Solana/RPC throughput knee.
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:99:    clean stable region: S2-S6, up to target_lambda=128
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:100:    mixed boundary region: S7, target_lambda=256
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:109:    scripts/load/06-v070-controlled-load-run.sh
+./docs/releases/v0.7.0-saturation-knee-point-analysis.md:133:The goal of v0.7.1 should be to remove the storage-pressure boundary before attempting S8 target_lambda=512 or higher.
+./docs/csv-schema-controlled-load-v1.md:21:t_iso,t_sec,u_cmd,sent_total,u_ach,lat_p99,inflight,err_per_sec
+./docs/csv-schema-controlled-load-v1.md:31:inflight	In-flight, pending or outstanding transaction count reported by the load generator.
+./docs/csv-schema-controlled-load-v1.md:37:timestamp_utc, experiment_id, phase, level_index, lambda_target, workers, burst,
+./docs/csv-schema-controlled-load-v1.md:38:inflight, sample, duration_seconds, submitted_tps, accepted_tps, error_rate,
+./docs/csv-schema-controlled-load-v1.md:48:commanded workload: lambda_target, workers, burst;
+./docs/csv-schema-controlled-load-v1.md:49:load-generator state: inflight, sample, duration_seconds;
+./docs/csv-schema-controlled-load-v1.md:59:The current legacy output is retained temporarily because it matches the existing knee_step_test.sh and knee_probe_adaptive.sh workflow.
+./docs/validation/controlled-load-layer1-k8s-smoke.md:9:The controlled-load components were deployed into the existing `solana-observability` namespace.
+./docs/validation/controlled-load-layer1-k8s-smoke.md:15:- `solana-loadgen2` Deployment;
+./docs/validation/controlled-load-layer1-k8s-smoke.md:16:- `solana-loadgen2` ClusterIP Service on port `7070`;
+./docs/validation/controlled-load-layer1-k8s-smoke.md:17:- `controlled-load-results-pvc`;
+./docs/validation/controlled-load-layer1-k8s-smoke.md:18:- `controlled-load-knee-step` Job;
+./docs/validation/controlled-load-layer1-k8s-smoke.md:28:The controlled-load Job completed successfully.
+./docs/validation/controlled-load-layer1-k8s-smoke.md:32:target_lambda: 0
+./docs/validation/controlled-load-layer1-k8s-smoke.md:36:inflight: 0
+./docs/validation/controlled-load-layer1-k8s-smoke.md:43:t_iso,t_sec,u_cmd,sent_total,u_ach,lat_p99,inflight,err_per_sec
+./docs/validation/controlled-load-layer1-k8s-smoke.md:45:The first observed levels were u_cmd=1.000 followed by u_cmd=2.000, confirming that the Kubernetes Job was able to control loadgen2 through the in-cluster Service.
+./docs/validation/controlled-load-layer1-candidate-run.md:19:The controlled-load components ran in the existing solana-observability namespace.
+./docs/validation/controlled-load-layer1-candidate-run.md:23:- solana-loadgen2 Deployment;
+./docs/validation/controlled-load-layer1-candidate-run.md:24:- solana-loadgen2 ClusterIP Service on port 7070;
+./docs/validation/controlled-load-layer1-candidate-run.md:25:- controlled-load-results-pvc;
+./docs/validation/controlled-load-layer1-candidate-run.md:32:The candidate run used the following controlled-load configuration:
+./docs/validation/controlled-load-layer1-candidate-run.md:34:- experiment_id: controlled-load-layer1-candidate
+./docs/validation/controlled-load-layer1-candidate-run.md:38:- rate_key: lambda
+./docs/validation/controlled-load-layer1-candidate-run.md:42:data/raw/controlled-load-layer1/20260617T223738Z/knee_step_candidate_20260617T223738Z.csv
+./docs/validation/controlled-load-layer1-candidate-run.md:46:results/controlled-load-layer1/20260617T223738Z/summary_by_level.csv
+./docs/validation/controlled-load-layer1-candidate-run.md:50:After the run, loadgen2 reported:
+./docs/validation/controlled-load-layer1-candidate-run.md:52:- target_lambda: 0
+./docs/validation/controlled-load-layer1-candidate-run.md:56:- inflight: 0
+./docs/validation/controlled-load-layer1-candidate-run.md:59:The Kubernetes Job completed successfully and wrote the candidate CSV to the controlled-load results PVC.
+./docs/validation/controlled-load-layer1-candidate-run.md:63:The run confirms that the Kubernetes controlled-load layer can:
+./docs/validation/controlled-load-layer1-candidate-run.md:65:- control loadgen2 through the in-cluster Service;
+./docs/validation/controlled-load-layer1-candidate-run.md:67:- collect CSV telemetry from loadgen2 and Prometheus-compatible metrics;
+./docs/validation/controlled-load-layer1-candidate-run.md:69:- return to a safe idle state with target_lambda=0.
+./docs/validation/controlled-load-layer1-candidate-run.md:71:This run is treated as candidate validation evidence for the planned v0.5.0-controlled-load-layer1 software release and the associated preprint.
+./docs/zenodo/v0.5.0-controlled-load-layer1-software-metadata.md:15:Solana Containerised Testbed v0.5.0-controlled-load-layer1
+./docs/zenodo/v0.5.0-controlled-load-layer1-software-metadata.md:19:v0.5.0-controlled-load-layer1
+./docs/zenodo/v0.5.0-controlled-load-layer1-software-metadata.md:35:The release adds the loadgen2 transaction load generator, controlled-load CSV collection tooling, execution scripts, container definitions, local smoke-test wiring, Kubernetes manifests, PVC-backed result persistence, and validation notes.
+./docs/zenodo/v0.5.0-controlled-load-layer1-software-metadata.md:37:The Kubernetes controlled-load layer was validated using the existing solana-observability namespace, the in-cluster solana-rpc:8899 Service, the solana-metrics:9464 Service, and a manually created runtime Secret for the payer keypair. The payer keypair and Kubernetes Secret material are not included in the repository.
+./docs/zenodo/controlled-load-layer1-preprint-metadata.md:34:The implementation introduces a containerised transaction load generator, CSV collection tooling, Kubernetes manifests, PVC-backed result persistence, and validation procedures for local and in-cluster controlled-load execution.
+./docs/zenodo/controlled-load-layer1-preprint-metadata.md:36:The controlled-load layer was validated through a Kubernetes Deployment, ClusterIP Service, PVC, and Job running in the existing `solana-observability` namespace. A candidate Kubernetes run using load levels `1 2 4 8`, 60 seconds per level, and 5 second sampling demonstrated that the layer can control transaction submission through an in-cluster Service, collect telemetry, persist results, and return to a safe idle state.
+./docs/zenodo/controlled-load-layer1-preprint-metadata.md:41:target_lambda: 0
+./docs/zenodo/controlled-load-layer1-preprint-metadata.md:45:inflight: 0
+./docs/zenodo/controlled-load-layer1-preprint-metadata.md:68:- Title: Solana Containerised Testbed v0.5.0-controlled-load-layer1
+./docs/zenodo/controlled-load-layer1-preprint-metadata.md:85:data/raw/controlled-load-layer1/20260617T223738Z/knee_step_candidate_20260617T223738Z.csv
+./docs/zenodo/controlled-load-layer1-preprint-metadata.md:91:results/controlled-load-layer1/20260617T223738Z/summary_by_level.csv
+./docs/experiments/v0.6.0-controlled-load-experiments.md:15:The results of this stage validate controlled-load experimentation on the Dell-based environment. They do not yet claim clean-server reproducibility.
+./docs/experiments/v0.6.0-controlled-load-experiments.md:31:- preparation of data for later saturation and knee-point analysis in v0.7.0.
+./docs/experiments/v0.6.0-controlled-load-experiments.md:88:6. Repeated controlled-load runs can be executed.
+./docs/experiments/v0.6.0-controlled-load-experiments.md:91:9. The results can later support v0.7.0 saturation and knee-point analysis.
+./docs/experiments/v0.6.0-controlled-load-experiments.md:95:Because v0.5.1 clean-server deployment validation is deferred, this stage validates controlled-load experimentation on the existing Dell server only. Full clean-server reproducibility remains a separate later validation stage.
+./docs/experiments/v0.6.0-controlled-load-results.md:5:This document summarises the results of the v0.6.0 repeated controlled-load experiment stage of the Solana Containerised Testbed.
+./docs/experiments/v0.6.0-controlled-load-results.md:9:Saturation and knee-point analysis are reserved for the later v0.7.0 stage.
+./docs/experiments/v0.6.0-controlled-load-results.md:20:- solana-loadgen2 controlled load generator;
+./docs/experiments/v0.6.0-controlled-load-results.md:23:- load generator control through the solana-loadgen2 service.
+./docs/experiments/v0.6.0-controlled-load-results.md:31:The loadgen2 component exposes a simple HTTP control interface:
+./docs/experiments/v0.6.0-controlled-load-results.md:33:    GET  /health
+./docs/experiments/v0.6.0-controlled-load-results.md:39:    {"lambda": 1}
+./docs/experiments/v0.6.0-controlled-load-results.md:41:At the end of every controlled-load run, the run script returns the generator to:
+./docs/experiments/v0.6.0-controlled-load-results.md:43:    target_lambda=0
+./docs/experiments/v0.6.0-controlled-load-results.md:51:| Level | Target lambda | Meaning | Repetitions |
+./docs/experiments/v0.6.0-controlled-load-results.md:58:The repeated-load levels therefore contain 15 controlled-load runs in total.
+./docs/experiments/v0.6.0-controlled-load-results.md:68:| Level | Target lambda | Run count | Clean runs | Mean accepted delta | Error delta total | Rate estimate |
+./docs/experiments/v0.6.0-controlled-load-results.md:81:1. The repository contains a dedicated v0.6.0-controlled-load-experiments branch.
+./docs/experiments/v0.6.0-controlled-load-results.md:86:6. Three controlled-load levels were executed.
+./docs/experiments/v0.6.0-controlled-load-results.md:87:7. Each controlled-load level was repeated five times.
+./docs/experiments/v0.6.0-controlled-load-results.md:88:8. All repeated controlled-load runs returned to target_lambda=0.
+./docs/experiments/v0.6.0-controlled-load-results.md:89:9. All repeated controlled-load runs ended with final_inflight=0.
+./docs/experiments/v0.6.0-controlled-load-results.md:90:10. The repeated controlled-load runs reported zero error delta.
+./docs/experiments/v0.6.0-controlled-load-results.md:96:The results show that the testbed can execute repeated controlled-load transaction experiments at increasing commanded load levels.
+./docs/experiments/v0.6.0-controlled-load-results.md:101:    clean_runs=5 for each controlled-load level
+./docs/experiments/v0.6.0-controlled-load-results.md:103:This supports the conclusion that the controlled-load workflow is repeatable under the tested conditions.
+./docs/experiments/v0.6.0-controlled-load-results.md:115:5. This stage does not yet perform knee-point analysis.
+./docs/experiments/v0.6.0-controlled-load-results.md:119:The v0.6.0 stage successfully establishes a repeatable controlled-load experiment workflow for the Solana Containerised Testbed.
+./docs/experiments/v0.6.0-controlled-load-results.md:121:The project can now proceed to v0.7.0, where the experimental objective changes from repeatability validation to saturation and knee-point analysis.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:5:This document summarises the v0.7.0 saturation and knee-point analysis for the Solana Containerised Testbed.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:7:The goal of this stage was to extend the repeated controlled-load experiments from v0.6.0 and identify the first observable saturation, instability, or knee-point boundary under progressively increasing transaction load.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:13:    infrastructure -> observability -> controlled load -> saturation/knee analysis
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:20:    final_inflight=0
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:28:| Level | target_lambda | Interpretation |
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:41:| Level | Lambda | Runs | Valid | Clean | err_delta_total | final_inflight_mean | sample_inflight_max | sample_err_per_sec_max | achieved_tps_mean |
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:54:    S2 lambda=8
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:55:    S3 lambda=16
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:56:    S4 lambda=32
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:57:    S5 lambda=64
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:58:    S6 lambda=128
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:65:- final_inflight_mean remained zero;
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:67:- sample_inflight_max remained very low.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:69:This means that no sustained saturation or queue accumulation was observed up to and including target_lambda=128.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:73:S7 used target_lambda=256.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:82:    final_inflight=4
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:92:    target_lambda=256
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:96:    loadgen2 reports connection refused
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:98:    final_inflight remains non-zero
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:104:The post-incident validation run at S7 target_lambda=256 completed without new errors:
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:111:    final_inflight=0
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:126:The v0.7.0 experiment did not identify a clean throughput knee in the strict sense.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:130:    clean stable region: S2-S6, up to target_lambda=128
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:131:    mixed boundary region: S7, target_lambda=256
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:136:    The first observed boundary is not a pure Solana/RPC throughput knee.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:141:Further high-load experiments, including S8 target_lambda=512, should not be executed until the storage design is improved.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:154:The v0.7.0 stage successfully extended the controlled-load methodology from v0.6.0 and identified the first meaningful boundary.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:156:The testbed remained clean and stable through S6 target_lambda=128.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:158:At S7 target_lambda=256, the experiment exposed a mixed boundary: several clean runs, one storage-pressure failure, and one successful post-incident validation run.
+./docs/experiments/v0.7.0-saturation-knee-point-analysis.md:160:The appropriate conclusion is that v0.7.0 found a storage-pressure infrastructure boundary rather than a clean steady-state transaction throughput knee.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:5:During the v0.7.0 saturation/knee-point analysis, the first instability boundary appeared at S7 with target_lambda=256.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:7:This was not a clean steady-state throughput knee. The observed failure was caused by Kubernetes node storage pressure on the validator node.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:13:    v0.7.0_coll_20260620T132552Z_S7-saturation-probe_lambda-256_ef156e7
+./docs/experiments/v0.7.0-storage-pressure-incident.md:18:    target_lambda=256
+./docs/experiments/v0.7.0-storage-pressure-incident.md:26:    final_target_lambda=0
+./docs/experiments/v0.7.0-storage-pressure-incident.md:27:    final_inflight=4
+./docs/experiments/v0.7.0-storage-pressure-incident.md:57:The S7 failure should be interpreted as a testbed storage-pressure boundary rather than a pure Solana/RPC saturation knee.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:61:    target_lambda=256
+./docs/experiments/v0.7.0-storage-pressure-incident.md:65:    loadgen2 reports connection refused
+./docs/experiments/v0.7.0-storage-pressure-incident.md:67:    final_inflight remains non-zero
+./docs/experiments/v0.7.0-storage-pressure-incident.md:73:- S2 lambda=8 completed cleanly across five runs.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:74:- S3 lambda=16 completed cleanly across five runs.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:75:- S4 lambda=32 completed cleanly across five runs.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:76:- S5 lambda=64 completed cleanly across five runs.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:77:- S6 lambda=128 completed cleanly across five runs.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:78:- S7 lambda=256 produced one clean pilot but later exposed a storage-pressure instability.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:80:Therefore, the current knee-point candidate is not a clean throughput knee. It is an infrastructure stability boundary caused by node image-filesystem / ephemeral-storage pressure.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:130:After the storage-pressure incident, a dedicated S7 post-incident validation run was executed with target_lambda=256.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:139:    final_target_lambda=0
+./docs/experiments/v0.7.0-storage-pressure-incident.md:140:    final_inflight=0
+./docs/experiments/v0.7.0-storage-pressure-incident.md:144:    sample_inflight_max=1
+./docs/experiments/v0.7.0-storage-pressure-incident.md:148:The final_last_err field still contained the previous connection-refused error. This is interpreted as a sticky loadgen2 diagnostic field rather than a new validation-run failure, because err_delta remained zero throughout the run.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:158:The loadgen2 field final_last_err can retain the previous error message even when a later run completes without new errors. Therefore, final_last_err is treated as a diagnostic field, not as a mandatory clean/fail criterion.
+./docs/experiments/v0.7.0-storage-pressure-incident.md:163:    final_inflight=0
+./docs/experiments/v0.7.1-go-no-go.md:5:This document records the minimal go/no-go decision for high-load continuation after the v0.7.0 saturation/knee-point analysis and the observed DiskPressure incident on the validator node.
+./docs/experiments/v0.7.1-go-no-go.md:11:The v0.6.0 repeated controlled-load experiments and the v0.7.0 saturation/knee-point analysis established the following empirical interpretation:
+./docs/experiments/v0.7.1-go-no-go.md:13:* S2-S6, up to `target_lambda=128`, form the clean stable operating region.
+./docs/experiments/v0.7.1-go-no-go.md:14:* S7, `target_lambda=256`, is a mixed boundary region.
+./docs/experiments/v0.7.1-go-no-go.md:15:* The observed S7 failure was not interpreted as a clean steady-state transaction throughput knee.
+./docs/experiments/v0.7.1-go-no-go.md:20:The resulting interpretation is that v0.7.0 identified a storage-pressure infrastructure boundary rather than a pure transaction throughput knee.
+./docs/experiments/v0.7.1-go-no-go.md:40:S8 target_lambda=512: NO-GO
+./docs/experiments/v0.7.1-go-no-go.md:107:target_lambda = 16, 32, 64, 128
+./docs/experiments/v0.7.1-go-no-go.md:113:target_lambda = 256
+./docs/experiments/v0.7.1-go-no-go.md:119:target_lambda = 512
+./docs/experiments/v0.7.1-storage-inventory.md:11:The v0.7.0 saturation and knee-point analysis found a clean stable region through S6 target_lambda=128.
+./docs/experiments/v0.7.1-storage-inventory.md:13:At S7 target_lambda=256, the experiment exposed a mixed boundary region. One S7 run failed because the validator node entered DiskPressure / ephemeral-storage pressure. The validator pod was evicted, RPC became unavailable, and loadgen2 reported connection-refused errors.
+./docs/experiments/v0.7.1-storage-inventory.md:129:S8 target_lambda=512 should not be attempted until the storage decision is explicit.
+./docs/experiments/v0.7.1-storage-inventory.md:145:Before further high-load testing, especially S8 target_lambda=512, the project should either redesign storage isolation or explicitly accept the current storage-pressure risk.
+./docs/experiments/v0.7.1-storage-redesign-high-load-readiness.md:7:The v0.7.0 saturation and knee-point analysis showed clean behaviour through S6 target_lambda=128, but S7 target_lambda=256 exposed a validator-node storage-pressure incident. The validator pod was evicted under DiskPressure, causing RPC unavailability and loadgen connection-refused errors.
+./docs/experiments/v0.7.1-storage-redesign-high-load-readiness.md:9:The purpose of v0.7.1 is to improve high-load readiness before attempting S8 target_lambda=512 or higher.
+./docs/experiments/v0.7.1-storage-redesign-high-load-readiness.md:15:    clean stable region: S2-S6, up to target_lambda=128
+./docs/experiments/v0.7.1-storage-redesign-high-load-readiness.md:16:    mixed boundary region: S7, target_lambda=256
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:15:v0.6.0 repeated controlled-load experiments and v0.7.0 saturation/knee-point analysis showed that:
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:17:- S2-S6, up to target_lambda=128, form the clean stable region.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:18:- S7, target_lambda=256, is a mixed boundary region.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:19:- The S7 incident exposed an infrastructure/storage-pressure boundary rather than a clean steady-state transaction throughput knee.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:20:- S8, target_lambda=512, remains NO-GO under the current storage layout.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:26:- How does the system respond over time when target_lambda changes?
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:28:- How do latency, inflight transactions, errors, and RPC health evolve during transients?
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:36:    target_lambda(t) -> Solana/Kubernetes testbed -> y(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:40:    u(t) = target_lambda(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:48:      inflight(t),
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:63:- target_lambda(t) -> achieved_tps(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:64:- target_lambda(t) -> ok_per_sec(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:65:- target_lambda(t) -> p95_latency(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:66:- target_lambda(t) -> p99_latency(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:67:- target_lambda(t) -> err_per_sec(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:68:- target_lambda(t) -> inflight(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:76:| Region | target_lambda | Status |
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:87:    lambda_min = lambda_0 - A >= 0
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:88:    lambda_max = lambda_0 + A <= allowed_limit
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:105:Before any v0.8.0 run, especially near or above target_lambda=128, the following must be checked:
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:118:S8 target_lambda=512 must not be executed in this stage.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:149:| Run class | target_lambda | Purpose |
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:160:- inflight(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:174:- Observe latency and inflight transient behaviour.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:198:- Observe whether latency and inflight queues decay promptly.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:212:- inflight decay time
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:225:- Identify whether latency and inflight grow linearly, sublinearly, or nonlinearly.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:251:- Detect latency spikes and inflight accumulation.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:276:    target_lambda(t) = lambda_0 + A * sin(2*pi*f*t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:280:- lambda_0 is the mean load.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:299:| Profile | lambda_0 | A | Range | Status |
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:335:- target_lambda_commanded_continuous(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:336:- target_lambda_applied_integer(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:357:- Keep lambda_max <= 128 for safe baseline chirp.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:392:    target_lambda in {32, 64, 96, 128}
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:396:    target_lambda in {64, 96, 128}
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:400:    target_lambda in {64, 128, 256}
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:464:- Container/runtime interference.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:517:- target_lambda_commanded_continuous(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:518:- target_lambda_applied_integer(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:533:- inflight(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:635:- target_lambda range
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:673:- unbounded inflight growth.
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:699:    target_lambda(t) -> achieved_tps(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:703:    target_lambda(t) -> ok_per_sec(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:704:    target_lambda(t) -> p95_latency(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:705:    target_lambda(t) -> p99_latency(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:706:    target_lambda(t) -> err_per_sec(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:707:    target_lambda(t) -> inflight(t)
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:736:- S8 target_lambda=512 experiments
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:743:- interpreting infrastructure/storage failures as clean throughput knees
+./docs/experiments/v0.8.0-dynamic-load-system-identification.md:750:2. Add support for step, ramp, pulse, sine, and PRBS-like target_lambda(t).
+./docs/experiments/v0.8.0-run-matrix.md:15:This run matrix does not authorise S8 target_lambda=512.
+./docs/experiments/v0.8.0-run-matrix.md:21:| Region | target_lambda | Status |
+./docs/experiments/v0.8.0-run-matrix.md:32:    lambda_0 - A >= 0
+./docs/experiments/v0.8.0-run-matrix.md:33:    lambda_0 + A <= allowed_limit
+./docs/experiments/v0.8.0-run-matrix.md:66:| 1 | M0-L32 | lambda=32 | 10-15 min | GO | low-load baseline |
+./docs/experiments/v0.8.0-run-matrix.md:67:| 2 | M0-L64 | lambda=64 | 10-15 min | GO | medium-load baseline |
+./docs/experiments/v0.8.0-run-matrix.md:68:| 3 | M0-L128 | lambda=128 | 10-15 min | GO | upper clean-stable baseline |
+./docs/experiments/v0.8.0-run-matrix.md:110:- inflight transient.
+./docs/experiments/v0.8.0-run-matrix.md:125:- inflight decay time;
+./docs/experiments/v0.8.0-run-matrix.md:171:| Order | Run ID | lambda_0 | A | Range | Period | Cycles | Status |
+./docs/experiments/v0.8.0-run-matrix.md:180:| Run ID | lambda_0 | A | Range | Period | Cycles | Status |
+./docs/experiments/v0.8.0-run-matrix.md:187:- target_lambda_commanded_continuous(t);
+./docs/experiments/v0.8.0-run-matrix.md:188:- target_lambda_applied_integer(t).
+./docs/experiments/v0.8.0-run-matrix.md:209:- target_lambda(t) -> achieved_tps(t);
+./docs/experiments/v0.8.0-run-matrix.md:210:- target_lambda(t) -> ok_per_sec(t);
+./docs/experiments/v0.8.0-run-matrix.md:211:- target_lambda(t) -> p95_latency(t);
+./docs/experiments/v0.8.0-run-matrix.md:212:- target_lambda(t) -> p99_latency(t);
+./docs/experiments/v0.8.0-run-matrix.md:213:- target_lambda(t) -> err_per_sec(t);
+./docs/experiments/v0.8.0-run-matrix.md:214:- target_lambda(t) -> inflight(t).
+./docs/experiments/v0.8.0-run-matrix.md:246:    target_lambda in {32, 64, 96, 128}
+./docs/experiments/v0.8.0-run-matrix.md:260:    target_lambda in {64, 128, 256}
+./docs/experiments/v0.8.0-run-matrix.md:272:    lambda_max <= 128
+./docs/experiments/v0.8.0-run-matrix.md:301:- S8 target_lambda=512;
+./docs/experiments/v0.8.0-run-matrix.md:302:- uncontrolled run above target_lambda=256;
+./docs/experiments/v0.8.0-run-matrix.md:303:- sine profile with lambda_max > 128 before safe sine validation;
+./monitor/README.md:19:    http://127.0.0.1:9464/metrics
+./monitor/README.md:58:    curl -s http://127.0.0.1:9464/metrics | head -n 40
+./monitor/internal/metrics/collector.go:51:func (c *Collector) Handler() http.Handler {
+./monitor/internal/metrics/collector.go:52:	return promhttp.HandlerFor(c.registry, promhttp.HandlerOpts{})
+./monitor/main.go:25:	"solana-latency-research/internal/metrics"
+./monitor/main.go:145:	mux.Handle("/metrics", col.Handler())
+./paper/synthetic-benchmarks-solana/README-for-article.txt:28:- scripts/run_article_txload_container_v0_4.sh
+./paper/synthetic-benchmarks-solana/main.tex:375:For the empirical pilot reported in \cref{sec:empirical-pilot}, the \texttt{txload-low} and \texttt{txload-medium} profiles were implemented by the shell workload driver \path{scripts/run_article_txload_container_v0_4.sh}. The script parameterises a single transaction workload by profile name, duration, target rate, and output directory. It executes inside the running validator container through \texttt{podman exec}, creates temporary payer and recipient keypairs, funds the payer by a local airdrop, and then submits a sequence of \texttt{solana transfer} commands to the local RPC endpoint. Thus, these profiles are not abstract labels in the results section: they are concrete workload perturbations applied to the validator localnet.
+./paper/synthetic-benchmarks-solana/main.tex:407:The transaction-load runs were generated by \path{scripts/run_article_txload_container_v0_4.sh}. Each workload run begins by creating two temporary keypairs inside the validator container: a payer and a recipient. The payer receives a local airdrop, after which the script repeatedly invokes \texttt{solana transfer} against \texttt{http://127.0.0.1:8899}. Each attempted transaction transfers \texttt{0.000001} SOL from the payer to the recipient using \texttt{--allow-unfunded-recipient}. Operationally, the workload is therefore a sequence of simple value-transfer transactions. It does not exercise SPL-token instructions, application smart-contract logic, a heterogeneous transaction mix, or a separate read-only RPC-pressure workload. The script records each attempt in \texttt{txload\_metrics.csv}, including the sequence number, profile, configured rate, exit code, elapsed command time, extracted transaction signature, and transfer log path, and writes a \texttt{txload\_summary.json} file with attempted, successful, and failed transaction totals.
+./paper/synthetic-benchmarks-solana/main.tex:1263:implementation: scripts/run_article_txload_container_v0_4.sh
+./paper/synthetic-benchmarks-solana/metadata.md:33:This version explicitly documents the transaction-load mechanism used in the empirical pilot. The controlled workload profiles `txload-low` and `txload-medium` were implemented using `scripts/run_article_txload_container_v0_4.sh`. The script creates temporary payer and recipient keypairs inside the validator container, funds the payer account through a local airdrop, and then sequentially submits native SOL transfer transactions through the local RPC endpoint. Each transfer sends 0.000001 SOL from the payer to the recipient and records workload-side evidence including timestamps, sequence numbers, exit codes, durations, signatures, per-transfer logs, and a summary JSON.
+./paper/synthetic-benchmarks-solana/metadata.md:52:- `scripts/run_article_txload_container_v0_4.sh` — workload script used for sequential native SOL transfer generation.
+./paper/yellowstone-geyser-v0.2.0/yellowstone-geyser-observability-extension-v0.2.0.tex:156:  \item knee-point probing;
+./paper/yellowstone-geyser-v0.2.0/yellowstone-geyser-observability-extension-v0.2.0.tex:213:Inside the validator container, the Yellowstone/Geyser gRPC service listens on:
+./paper/yellowstone-geyser-v0.2.0/yellowstone-geyser-observability-extension-v0.2.0.tex:266:http://127.0.0.1:9464/metrics
+./paper/yellowstone-geyser-v0.2.0/yellowstone-geyser-observability-extension-v0.2.0.tex:272:curl -s http://127.0.0.1:9464/metrics | head -n 40
+./paper/yellowstone-geyser-v0.2.0/yellowstone-geyser-observability-extension-v0.2.0.tex:363:curl -s http://127.0.0.1:9464/metrics | head -n 40
+./paper/yellowstone-geyser-v0.2.0/yellowstone-geyser-observability-extension-v0.2.0.tex:385:  \item the Yellowstone/Geyser gRPC port listens on port \texttt{10000};
+./paper/kubernetes-observability-core-v0.3.0/main.tex:252:The monitor exposed Prometheus-compatible metrics through the metrics Service. Slot interval metrics were observed through the \texttt{/metrics} endpoint.
+./paper/kubernetes-observability-core-v0.3.0/main.tex:273:The implementation is also future-controller-ready in a limited sense. It provides stable service names, explicit RPC/gRPC/metrics endpoints, resettable validator state, resource specifications, and a path toward node placement policies in a future multi-node cluster. However, it does not yet implement a control policy, workload generator, or learning agent.
+./paper/kubernetes-observability-core-v0.3.0/main.tex:279:The monitor validation confirmed metrics availability and slot interval observations, but the current release does not claim a complete controlled-load dataset layer. Transaction-latency datasets and workload-response experiments are reserved for later stages.
+./paper/kubernetes-observability-core-v0.3.0/main.tex:290:  \item an MPC baseline after controlled-load data collection;
+./paper/kubernetes-observability-core-v0.3.0/main.tex:298:This work reports the successful migration of the Solana Containerised Testbed Observability Core from a Compose-based microservice deployment to a Kubernetes-based deployment. The validator StatefulSet, ledger PersistentVolumeClaim, wallet-init Job, monitor Deployment, and stable Services for RPC, Yellowstone/Geyser gRPC, and metrics were implemented and validated. A wallet transfer validation Job confirmed that a simple SOL transaction can be executed through the Kubernetes RPC endpoint. The release remains limited to the observation stage and provides a reproducible foundation for future controlled-load and controller-oriented research.
+./paper/kvm-multinode-v0.4.0/listings/reset-kubeadm-cluster.yml:45:        - /var/run/calico
+./paper/kvm-multinode-v0.4.0/listings/site-create-cluster.yml:4:- import_playbook: 60-join-workers.yml
+./paper/kvm-multinode-v0.4.0/main.tex:117:The cluster creation entry point initialises the control plane, installs Calico, joins the workers, applies node labels, and installs the local-path provisioner.
+./paper/kvm-multinode-v0.4.0/main.tex:236:\lstinputlisting{evidence/metrics-after-wallet-transfer.txt}
+./paper/preprints/controlled-load-layer1-preprint-outline.md:11:The implementation introduces a containerised transaction load generator, CSV collection tooling, Kubernetes manifests, PVC-backed result persistence, and validation procedures for local and in-cluster controlled-load execution. A candidate Kubernetes run using load levels `1 2 4 8` demonstrates that the controlled-load layer can drive transaction submission through an in-cluster Service, collect telemetry, persist results, and return to a safe idle state.
+./paper/preprints/controlled-load-layer1-preprint-outline.md:46:- `loadgen2` role;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:48:- `lambda` as target transaction rate;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:57:- `loadgen2/`;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:59:- knee-step and probe scripts;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:62:- `k8s/controlled-load/`;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:71:- `solana-loadgen2` Deployment;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:72:- `solana-loadgen2` Service;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:73:- `controlled-load-results-pvc`;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:74:- `controlled-load-knee-step` Job;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:92:- rate_key: lambda
+./paper/preprints/controlled-load-layer1-preprint-outline.md:96:- target_lambda: 0
+./paper/preprints/controlled-load-layer1-preprint-outline.md:100:- inflight: 0
+./paper/preprints/controlled-load-layer1-preprint-outline.md:110:- inflight behaviour;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:132:- no validated knee-point detector yet;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:143:- longer controlled-load experiments;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:146:- saturation/knee-point estimation;
+./paper/preprints/controlled-load-layer1-preprint-outline.md:157:- Planned software release: v0.5.0-controlled-load-layer1
+./paper/preprints/controlled-load-layer1-preprint-outline.md:163:data/raw/controlled-load-layer1/20260617T223738Z/knee_step_candidate_20260617T223738Z.csv
+./paper/preprints/controlled-load-layer1-preprint-outline.md:166:results/controlled-load-layer1/20260617T223738Z/summary_by_level.csv
+./paper/preprints/controlled-load-layer1-preprint.md:10:The implementation introduces a containerised transaction load generator, CSV collection tooling, Kubernetes manifests, PVC-backed result persistence, and validation procedures for local and in-cluster controlled-load execution. The controlled-load layer runs inside the existing `solana-observability` namespace and uses the in-cluster Solana RPC and metrics Services already validated by the observability baseline.
+./paper/preprints/controlled-load-layer1-preprint.md:12:A candidate Kubernetes run using commanded load levels of `1`, `2`, `4`, and `8` transactions per second demonstrates that the controlled-load layer can drive transaction submission through an in-cluster Service, collect telemetry, persist results, and return to a safe idle state. The achieved mean rates were `1.015567`, `1.895051`, `3.822429`, and `7.664078` transactions per second respectively, with zero observed error rate in the derived per-level summary. After the run, `loadgen2` reported `sent_total=1401`, `ok_total=1401`, `err_total=0`, `inflight=0`, and an empty `last_err`.
+./paper/preprints/controlled-load-layer1-preprint.md:28:The contribution of this stage is a working controlled-load layer that can be executed locally and inside Kubernetes while preserving repository hygiene and avoiding private key material in Git.
+./paper/preprints/controlled-load-layer1-preprint.md:32:The controlled-load layer builds on the previously validated Kubernetes Observability Core baseline. The relevant baseline properties are:
+./paper/preprints/controlled-load-layer1-preprint.md:44:The controlled-load work deliberately reuses this validated environment instead of creating a separate cluster. This keeps the experimental sequence explicit:
+./paper/preprints/controlled-load-layer1-preprint.md:52:Controlled Load Layer 1 introduces transaction load generation at a defined target rate. The central runtime component is `loadgen2`, a transaction load generator with an HTTP control interface.
+./paper/preprints/controlled-load-layer1-preprint.md:54:The control model is intentionally simple. A target transaction rate is expressed through `lambda`, and the load generator exposes a control endpoint on port `7070`. Supporting scripts and CSV collection tooling are used to execute step-based load schedules and record runtime telemetry.
+./paper/preprints/controlled-load-layer1-preprint.md:58:- `loadgen2`, the controlled transaction load generator;
+./paper/preprints/controlled-load-layer1-preprint.md:60:- knee-step and probe execution scripts;
+./paper/preprints/controlled-load-layer1-preprint.md:61:- a controlled-load dashboard script;
+./paper/preprints/controlled-load-layer1-preprint.md:70:The Kubernetes implementation runs in the existing `solana-observability` namespace. This namespace already contains the Solana observability baseline services required by the controlled-load layer.
+./paper/preprints/controlled-load-layer1-preprint.md:72:The controlled-load manifests add:
+./paper/preprints/controlled-load-layer1-preprint.md:74:- `solana-loadgen2` Deployment;
+./paper/preprints/controlled-load-layer1-preprint.md:75:- `solana-loadgen2` ClusterIP Service on port `7070`;
+./paper/preprints/controlled-load-layer1-preprint.md:76:- `controlled-load-results-pvc`;
+./paper/preprints/controlled-load-layer1-preprint.md:77:- `controlled-load-knee-step` Job;
+./paper/preprints/controlled-load-layer1-preprint.md:80:The Deployment runs the load generator with `lambda=0` by default, which means that the controlled-load endpoint is available but not actively generating transaction load until a Job or operator changes the target rate.
+./paper/preprints/controlled-load-layer1-preprint.md:82:The Job controls `loadgen2` through the in-cluster Service:
+./paper/preprints/controlled-load-layer1-preprint.md:85:http://solana-loadgen2:7070
+./paper/preprints/controlled-load-layer1-preprint.md:100:The experiment output is written into the `controlled-load-results-pvc` PVC and can be copied out after completion for archival or analysis.
+./paper/preprints/controlled-load-layer1-preprint.md:108:Second, a Kubernetes smoke test confirmed that the Deployment, Service, PVC, Secret mount, and Job execution path worked inside the cluster. The Job completed successfully, wrote a CSV file to the PVC, and returned the load generator to `target_lambda=0`.
+./paper/preprints/controlled-load-layer1-preprint.md:116:rate_key: lambda
+./paper/preprints/controlled-load-layer1-preprint.md:119:The objective of this candidate run was to validate controlled-load operation and data collection, not to establish a final saturation model.
+./paper/preprints/controlled-load-layer1-preprint.md:123:The candidate run used a four-level knee-step schedule with commanded load levels of `1`, `2`, `4`, and `8` transactions per second. Each level was held for 60 seconds, and the collector sampled every 5 seconds. The generated raw CSV and derived summary are stored in the repository; the exact paths are listed in the Data and software availability section.
+./paper/preprints/controlled-load-layer1-preprint.md:127:| u_cmd | n | sent_delta | u_ach_mean | err/s | max_inflight | p99_n |
+./paper/preprints/controlled-load-layer1-preprint.md:136:The results show that the controlled-load layer was able to increase submitted transaction load according to the configured schedule. The achieved rates tracked the commanded levels closely enough for a first validation run: approximately `1.02`, `1.90`, `3.82`, and `7.66` transactions per second for commanded levels `1`, `2`, `4`, and `8`.
+./paper/preprints/controlled-load-layer1-preprint.md:138:No errors were observed in the derived per-level summary. The post-run `loadgen2` state reported `sent_total=1401`, `ok_total=1401`, `err_total=0`, `inflight=0`, `target_lambda=0`, and an empty `last_err`. This confirms that the run completed, accepted transactions matched submitted transactions at the cumulative counter level, and the system returned to an idle state after the experiment.
+./paper/preprints/controlled-load-layer1-preprint.md:140:The current candidate run should be interpreted as validation evidence rather than a general benchmark. It validates the experimental path from Kubernetes Job to `loadgen2`, Solana RPC, metrics collection, PVC persistence, and repository-level evidence capture. It does not yet establish saturation limits, knee points, or production performance claims.
+./paper/preprints/controlled-load-layer1-preprint.md:149:Solana Containerised Testbed v0.5.0-controlled-load-layer1
+./paper/preprints/controlled-load-layer1-preprint.md:156:v0.5.0-controlled-load-layer1
+./paper/preprints/controlled-load-layer1-preprint.md:162:k8s/controlled-load/
+./paper/preprints/controlled-load-layer1-preprint.md:168:docker.io/khoshaba/solana-loadgen2:layer1
+./paper/preprints/controlled-load-layer1-preprint.md:169:docker.io/khoshaba/solana-controlled-load-tools:layer1
+./paper/preprints/controlled-load-layer1-preprint.md:179:The controlled-load manifests can be rendered with:
+./paper/preprints/controlled-load-layer1-preprint.md:182:kubectl kustomize k8s/controlled-load
+./paper/preprints/controlled-load-layer1-preprint.md:188:kubectl apply -k k8s/controlled-load
+./paper/preprints/controlled-load-layer1-preprint.md:199:Second, the current run does not provide validated saturation or knee-point detection. The load levels were deliberately modest (`1`, `2`, `4`, and `8` transactions per second) so that the first candidate run could validate the control and measurement path before higher-load experiments.
+./paper/preprints/controlled-load-layer1-preprint.md:211:- longer controlled-load experiments;
+./paper/preprints/controlled-load-layer1-preprint.md:215:- saturation and knee-point estimation;
+./paper/preprints/controlled-load-layer1-preprint.md:218:- publication of larger controlled-load datasets as separate archival records.
+./paper/preprints/controlled-load-layer1-preprint.md:222:Software release: Solana Containerised Testbed `v0.5.0-controlled-load-layer1`.
+./paper/preprints/controlled-load-layer1-preprint.md:230:- directory: `data/raw/controlled-load-layer1/20260617T223738Z/`
+./paper/preprints/controlled-load-layer1-preprint.md:231:- file: `knee_step_candidate_20260617T223738Z.csv`
+./paper/preprints/controlled-load-layer1-preprint.md:235:- directory: `results/controlled-load-layer1/20260617T223738Z/`
+./paper/preprints/controlled-load-layer1-preprint.md:242:Oleksandr Khoshaba. Solana Containerised Testbed `v0.5.0-controlled-load-layer1`. Zenodo. DOI: `10.5281/zenodo.20742321`. URL: `https://doi.org/10.5281/zenodo.20742321`.
+./scripts/bootstrap-yellowstone-geyser-noavx2.sh:118:Port 10000 is listening:
+./scripts/bootstrap-yellowstone-geyser-noavx2.sh:124:    curl -s http://127.0.0.1:9464/metrics | head -n 40
+./scripts/collect_layer0_observability.py:383:    buckets = sorted(buckets_by_le.items(), key=lambda item: item[0])
+./scripts/collect_layer0_observability.py:493:        default="http://127.0.0.1:9464/metrics",
+./scripts/collect_csv.py:9:DEFAULT_RATE_KEY = "lambda"
+./scripts/collect_csv.py:18:CAND_INFLIGHT = ["inflight", "in_flight", "inFlight", "pending", "outstanding"]
+./scripts/collect_csv.py:88:    Returns: sent_total (int), inflight, err_per_sec, u_ach_reported
+./scripts/collect_csv.py:120:    print("t_iso,t_sec,u_cmd,sent_total,u_ach,lat_p99,inflight,err_per_sec")
+./scripts/collect_csv.py:123:             lat_p99: Optional[float], inflight: Optional[float], err_psec: Optional[float]):
+./scripts/collect_csv.py:138:        f(inflight, "%.3f"),
+./scripts/collect_csv.py:146:    # returns: sent_total, inflight, err_psec, lat_p99, u_ach
+./scripts/collect_csv.py:147:    sent_total = inflight = err_psec = None
+./scripts/collect_csv.py:154:        sent_total, inflight, err_psec, u_ach_reported = parse_stats(stats_text)
+./scripts/collect_csv.py:160:        metrics_text = http_get(prom_url + "/metrics", timeout=timeout)
+./scripts/collect_csv.py:177:    return sent_total, inflight, err_psec, lat_p99, u_ach
+./scripts/collect_csv.py:194:        sent_total, inflight, err_psec, lat_p99, u_ach = sample_once(
+./scripts/collect_csv.py:199:        emit_row(t_iso, t_sec, args.rate, sent_total, u_ach, lat_p99, inflight, err_psec)
+./scripts/collect_csv.py:228:            sent_total, inflight, err_psec, lat_p99, u_ach = sample_once(
+./scripts/collect_csv.py:233:            emit_row(t_iso, t_sec, u, sent_total, u_ach, lat_p99, inflight, err_psec)
+./scripts/knee_probe_adaptive.sh:9:RATE_KEY="${RATE_KEY:-lambda}"
+./scripts/knee_probe_adaptive.sh:25:EXPERIMENT_ID="${EXPERIMENT_ID:-knee_probe_$(date -u +%Y%m%dT%H%M%SZ)}"
+./scripts/knee_probe_adaptive.sh:83:    --workers "${WORKERS}" \
+./scripts/knee_probe_adaptive.sh:172:print(f'HOLD=60 SAMPLE=2 LEVELS_STR="{" ".join(str(x) for x in seq)}" bash scripts/knee_step_test.sh')
+./scripts/knee_step_test.sh:7:RATE_KEY="${RATE_KEY:-lambda}"
+./scripts/knee_step_test.sh:17:EXPERIMENT_ID="${EXPERIMENT_ID:-knee_step_$(date -u +%Y%m%dT%H%M%SZ)}"
+./scripts/knee_step_test.sh:23:echo "[knee_step_test] experiment_id=${EXPERIMENT_ID}" >&2
+./scripts/knee_step_test.sh:24:echo "[knee_step_test] out=${OUT}" >&2
+./scripts/knee_step_test.sh:25:echo "[knee_step_test] levels=${LEVELS_STR}" >&2
+./scripts/knee_step_test.sh:37:  --workers "${WORKERS}" \
+./scripts/knee_step_test.sh:46:echo "[knee_step_test] wrote ${OUT}" >&2
+./scripts/load/00-v060-preflight.sh:80:run_cmd "listening tcp udp" "$OUT_DIR/host/ss-listening.txt" ss -lntup
+./scripts/load/02-v060-l0-idle-baseline.sh:115:  ss -lntup > "$dir/ss-listening.txt" 2>&1 || true
+./scripts/load/03-v060-l1-low-controlled-load.sh:9:RUN_KIND="${RUN_KIND:-low-controlled-load}"
+./scripts/load/03-v060-l1-low-controlled-load.sh:17:LOADGEN_SERVICE="${LOADGEN_SERVICE:-solana-loadgen2}"
+./scripts/load/03-v060-l1-low-controlled-load.sh:30:RUN_ID="${STAGE}_${HOST_SHORT}_${TS_UTC}_${LOAD_LEVEL}-${RUN_KIND}_lambda-${TARGET_LAMBDA}_${GIT_SHA}"
+./scripts/load/03-v060-l1-low-controlled-load.sh:35:exec > >(tee "$OUT_DIR/logs/l1-low-controlled-load.stdout.log") 2> >(tee "$OUT_DIR/logs/l1-low-controlled-load.stderr.log" >&2)
+./scripts/load/03-v060-l1-low-controlled-load.sh:66:target_lambda=$TARGET_LAMBDA
+./scripts/load/03-v060-l1-low-controlled-load.sh:112:loadgen_set_lambda() {
+./scripts/load/03-v060-l1-low-controlled-load.sh:118:    -d "{\"lambda\":${value}}" \
+./scripts/load/03-v060-l1-low-controlled-load.sh:160:timestamp_utc,elapsed_seconds,sample_index,target_lambda,sent_total,ok_total,err_total,inflight,inflight_max,sent_per_sec,err_per_sec,last_err
+./scripts/load/03-v060-l1-low-controlled-load.sh:182:        "target_lambda": "",
+./scripts/load/03-v060-l1-low-controlled-load.sh:186:        "inflight": "",
+./scripts/load/03-v060-l1-low-controlled-load.sh:187:        "inflight_max": "",
+./scripts/load/03-v060-l1-low-controlled-load.sh:197:    "target_lambda": data.get("target_lambda", ""),
+./scripts/load/03-v060-l1-low-controlled-load.sh:201:    "inflight": data.get("inflight", ""),
+./scripts/load/03-v060-l1-low-controlled-load.sh:202:    "inflight_max": data.get("inflight_max", ""),
+./scripts/load/03-v060-l1-low-controlled-load.sh:219:    echo "Returning loadgen lambda to 0..."
+./scripts/load/03-v060-l1-low-controlled-load.sh:221:    loadgen_set_lambda 0 "$OUT_DIR/loadgen/final/set-lambda-0.cleanup.txt" || true
+./scripts/load/03-v060-l1-low-controlled-load.sh:276:echo "Ensuring safe initial lambda=0..."
+./scripts/load/03-v060-l1-low-controlled-load.sh:277:loadgen_set_lambda 0 "$OUT_DIR/loadgen/set-lambda-0-before.txt"
+./scripts/load/03-v060-l1-low-controlled-load.sh:282:echo "Setting target lambda=${TARGET_LAMBDA}..."
+./scripts/load/03-v060-l1-low-controlled-load.sh:283:loadgen_set_lambda "$TARGET_LAMBDA" "$OUT_DIR/loadgen/set-lambda-${TARGET_LAMBDA}.txt"
+./scripts/load/03-v060-l1-low-controlled-load.sh:285:loadgen_get_stats "$OUT_DIR/loadgen/stats-after-set-lambda-${TARGET_LAMBDA}.json"
+./scripts/load/03-v060-l1-low-controlled-load.sh:327:echo "Returning lambda to 0..."
+./scripts/load/03-v060-l1-low-controlled-load.sh:328:loadgen_set_lambda 0 "$OUT_DIR/loadgen/set-lambda-0-after.txt"
+./scripts/load/03-v060-l1-low-controlled-load.sh:375:    f.write(f"final_target_lambda={final.get('target_lambda', '')}\n")
+./scripts/load/03-v060-l1-low-controlled-load.sh:376:    f.write(f"final_inflight={final.get('inflight', '')}\n")
+./scripts/load/03-v060-l1-low-controlled-load.sh:380:cat > "$OUT_DIR/summary/run.env" <<SUMMARY
+./scripts/load/03-v060-l1-low-controlled-load.sh:385:target_lambda=$TARGET_LAMBDA
+./scripts/load/03-v060-l1-low-controlled-load.sh:392:cat "$OUT_DIR/summary/run.env" "$OUT_DIR/summary/summary.env" > "$OUT_DIR/summary/combined-summary.env"
+./scripts/load/04-v060-summarise-runs.py:19:    "target_lambda",
+./scripts/load/04-v060-summarise-runs.py:32:    "final_target_lambda",
+./scripts/load/04-v060-summarise-runs.py:33:    "final_inflight",
+./scripts/load/05-v060-summarise-levels.py:47:        target = row.get("target_lambda", "")
+./scripts/load/05-v060-summarise-levels.py:86:                and row.get("final_target_lambda", "") in {"", "0", "0.0"}
+./scripts/load/05-v060-summarise-levels.py:87:                and row.get("final_inflight", "") in {"", "0", "0.0"}
+./scripts/load/05-v060-summarise-levels.py:94:            "target_lambda": target,
+./scripts/load/05-v060-summarise-levels.py:111:        "target_lambda",
+./scripts/load/06-v070-controlled-load-run.sh:9:RUN_KIND="${RUN_KIND:-low-controlled-load}"
+./scripts/load/06-v070-controlled-load-run.sh:17:LOADGEN_SERVICE="${LOADGEN_SERVICE:-solana-loadgen2}"
+./scripts/load/06-v070-controlled-load-run.sh:30:RUN_ID="${STAGE}_${HOST_SHORT}_${TS_UTC}_${LOAD_LEVEL}-${RUN_KIND}_lambda-${TARGET_LAMBDA}_${GIT_SHA}"
+./scripts/load/06-v070-controlled-load-run.sh:35:exec > >(tee "$OUT_DIR/logs/l1-low-controlled-load.stdout.log") 2> >(tee "$OUT_DIR/logs/l1-low-controlled-load.stderr.log" >&2)
+./scripts/load/06-v070-controlled-load-run.sh:66:target_lambda=$TARGET_LAMBDA
+./scripts/load/06-v070-controlled-load-run.sh:112:loadgen_set_lambda() {
+./scripts/load/06-v070-controlled-load-run.sh:118:    -d "{\"lambda\":${value}}" \

@@ -1,0 +1,22 @@
+(B[m# v0.8.0 collect_csv.py steady help inspection
+(B[m
+(B[mtimestamp_utc: 2026-06-23T15:24:45Z
+(B[mbranch: v0.8.0-dynamic-load-system-identification
+(B[mcommit_sha: 9aca4ce05df6
+(B[m
+(B[m## Job status
+(B[mNAME                           STATUS     COMPLETIONS   DURATION   AGE   CONTAINERS   IMAGES                                                   SELECTOR
+collect-csv-steady-help-v080   Complete   1/1           4s         5s    tools        docker.io/khoshaba/solana-controlled-load-tools:layer1   batch.kubernetes.io/controller-uid=c3494985-af04-45ac-adb6-e95b0741bf9f
+(B[m
+(B[m## Pod status
+(B[mNAME                                 READY   STATUS      RESTARTS   AGE   IP               NODE            NOMINATED NODE   READINESS GATES
+collect-csv-steady-help-v080-9nsbh   0/1     Completed   0          5s    192.168.118.85   k8s-worker-02   <none>           <none>
+(B[m
+(B[m## Logs
+(B[m## collect_csv.py steady --help
+usage: collect_csv.py steady [-h] --rate RATE --duration DURATION
+
+options:
+  -h, --help           show this help message and exit
+  --rate RATE
+  --duration DURATION

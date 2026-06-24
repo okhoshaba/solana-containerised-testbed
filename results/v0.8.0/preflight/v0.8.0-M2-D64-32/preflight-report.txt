@@ -1,0 +1,109 @@
+# v0.8.0 preflight report
+
+run_id: v0.8.0-M2-D64-32
+timestamp_utc: 2026-06-24T03:09:43Z
+branch: v0.8.0-dynamic-load-system-identification
+commit_sha: dd66b4406972
+working_tree_clean: true
+rpc_url: http://127.0.0.1:18899
+local_path_dir: /opt/local-path-provisioner
+containerd_dir: /var/lib/containerd
+
+## Summary
+disk_pressure: false
+validator_pod_ready: true
+rpc_healthy: true
+root_filesystem_used_percent: 22
+local_path_used_percent: null
+containerd_used_percent: null
+recent_pod_evictions: 0
+recent_container_restarts: 0
+recent_kubelet_storage_warnings: 0
+preflight_passed: true
+
+## Kubernetes nodes
+NAME            STATUS   ROLES           AGE   VERSION   INTERNAL-IP       EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION              CONTAINER-RUNTIME
+k8s-cp-01       Ready    control-plane   20d   v1.36.1   192.168.122.101   <none>        Ubuntu 24.04.4 LTS   6.8.0-124-generic (amd64)   containerd://2.2.1
+k8s-worker-01   Ready    <none>          20d   v1.36.1   192.168.122.102   <none>        Ubuntu 24.04.4 LTS   6.8.0-124-generic (amd64)   containerd://2.2.1
+k8s-worker-02   Ready    <none>          20d   v1.36.1   192.168.122.103   <none>        Ubuntu 24.04.4 LTS   6.8.0-124-generic (amd64)   containerd://2.2.1
+
+## Node conditions
+Name:               k8s-cp-01
+  MemoryPressure       False   Wed, 24 Jun 2026 06:06:12 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Wed, 24 Jun 2026 06:06:12 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Wed, 24 Jun 2026 06:06:12 +0300   Wed, 03 Jun 2026 06:44:14 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Wed, 24 Jun 2026 06:06:12 +0300   Wed, 03 Jun 2026 06:56:02 +0300   KubeletReady                 kubelet is posting ready status
+Name:               k8s-worker-01
+  MemoryPressure       False   Wed, 24 Jun 2026 06:05:21 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Wed, 24 Jun 2026 06:05:21 +0300   Tue, 23 Jun 2026 23:24:56 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Wed, 24 Jun 2026 06:05:21 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Wed, 24 Jun 2026 06:05:21 +0300   Wed, 03 Jun 2026 07:02:04 +0300   KubeletReady                 kubelet is posting ready status
+Name:               k8s-worker-02
+  MemoryPressure       False   Wed, 24 Jun 2026 06:04:21 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Wed, 24 Jun 2026 06:04:21 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Wed, 24 Jun 2026 06:04:21 +0300   Wed, 03 Jun 2026 07:01:40 +0300   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Wed, 24 Jun 2026 06:04:21 +0300   Wed, 03 Jun 2026 07:02:16 +0300   KubeletReady                 kubelet is posting ready status
+
+## Validator pods
+solana-observability   solana-validator-0                                    1/1   Running     0     6h49m
+
+## Pods overview
+NAMESPACE              NAME                                                  READY   STATUS      RESTARTS   AGE     IP                NODE            NOMINATED NODE   READINESS GATES
+kube-system            calico-kube-controllers-6b9b5f7c4-dqdht               1/1     Running     0          20d     192.168.184.65    k8s-cp-01       <none>           <none>
+kube-system            calico-node-2zb4j                                     1/1     Running     0          20d     192.168.122.102   k8s-worker-01   <none>           <none>
+kube-system            calico-node-q2bmv                                     1/1     Running     0          20d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            calico-node-qtzkl                                     1/1     Running     0          20d     192.168.122.103   k8s-worker-02   <none>           <none>
+kube-system            coredns-589f44dc88-g4tlt                              1/1     Running     0          20d     192.168.184.67    k8s-cp-01       <none>           <none>
+kube-system            coredns-589f44dc88-tp8nv                              1/1     Running     0          20d     192.168.184.66    k8s-cp-01       <none>           <none>
+kube-system            etcd-k8s-cp-01                                        1/1     Running     0          20d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            kube-apiserver-k8s-cp-01                              1/1     Running     0          20d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            kube-controller-manager-k8s-cp-01                     1/1     Running     0          20d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            kube-proxy-47b92                                      1/1     Running     0          20d     192.168.122.102   k8s-worker-01   <none>           <none>
+kube-system            kube-proxy-crjg6                                      1/1     Running     0          20d     192.168.122.103   k8s-worker-02   <none>           <none>
+kube-system            kube-proxy-l4s4l                                      1/1     Running     0          20d     192.168.122.101   k8s-cp-01       <none>           <none>
+kube-system            kube-scheduler-k8s-cp-01                              1/1     Running     0          20d     192.168.122.101   k8s-cp-01       <none>           <none>
+local-path-storage     local-path-provisioner-6d76485965-6rncq               1/1     Running     0          20d     192.168.36.193    k8s-worker-01   <none>           <none>
+solana-observability   controlled-load-knee-step-candidate-tztl2             0/1     Completed   0          6d4h    192.168.118.81    k8s-worker-02   <none>           <none>
+solana-observability   m0-v0-8-0-m0-l128-vxtdz                               0/1     Completed   0          8h      192.168.118.89    k8s-worker-02   <none>           <none>
+solana-observability   m0-v0-8-0-m0-l32-l7nqh                                0/1     Completed   0          9h      192.168.118.86    k8s-worker-02   <none>           <none>
+solana-observability   m0-v0-8-0-m0-l32-r2-5nstj                             0/1     Completed   0          9h      192.168.118.87    k8s-worker-02   <none>           <none>
+solana-observability   m0-v0-8-0-m0-l64-5jkdc                                0/1     Completed   0          8h      192.168.118.88    k8s-worker-02   <none>           <none>
+solana-observability   m1-v0-8-0-m1-s32-128-pdgrh                            0/1     Completed   0          39m     192.168.118.92    k8s-worker-02   <none>           <none>
+solana-observability   m1-v0-8-0-m1-s32-64-wk8x4                             0/1     Completed   0          8h      192.168.118.90    k8s-worker-02   <none>           <none>
+solana-observability   m1-v0-8-0-m1-s64-128-gs658                            0/1     Completed   0          53m     192.168.118.91    k8s-worker-02   <none>           <none>
+solana-observability   m1-v0-8-0-m2-d128-64-2vt7q                            0/1     Completed   0          19m     192.168.118.93    k8s-worker-02   <none>           <none>
+solana-observability   solana-loadgen2-5ccbc58fbb-wtr78                      1/1     Running     0          6d13h   192.168.118.75    k8s-worker-02   <none>           <none>
+solana-observability   solana-monitor-f995c8b9d-95vmp                        1/1     Running     0          19d     192.168.118.65    k8s-worker-02   <none>           <none>
+solana-observability   solana-validator-0                                    1/1     Running     0          6h49m   192.168.36.205    k8s-worker-01   <none>           <none>
+solana-observability   wallet-init-ngm2v                                     0/1     Completed   0          19d     <none>            k8s-worker-02   <none>           <none>
+solana-observability   wallet-transfer-validation-kvm-20260604035307-vcv2b   0/1     Completed   0          19d     <none>            k8s-worker-02   <none>           <none>
+
+## Filesystem usage
+Filesystem           Size  Used Avail Use% Mounted on
+/dev/mapper/cs-root   70G   16G   55G  22% /
+/opt/local-path-provisioner not found
+/var/lib/containerd not found
+
+## RPC getHealth response
+{"jsonrpc":"2.0","result":"ok","id":1}
+
+## Recent Kubernetes events
+NAMESPACE              LAST SEEN   TYPE     REASON             OBJECT                           MESSAGE
+solana-observability   53m         Normal   Scheduled          pod/m1-v0-8-0-m1-s64-128-gs658   Successfully assigned solana-observability/m1-v0-8-0-m1-s64-128-gs658 to k8s-worker-02
+solana-observability   53m         Normal   SuccessfulCreate   job/m1-v0-8-0-m1-s64-128         Created pod: m1-v0-8-0-m1-s64-128-gs658
+solana-observability   53m         Normal   Started            pod/m1-v0-8-0-m1-s64-128-gs658   Container started
+solana-observability   53m         Normal   Created            pod/m1-v0-8-0-m1-s64-128-gs658   Container created
+solana-observability   53m         Normal   Pulled             pod/m1-v0-8-0-m1-s64-128-gs658   Container image "docker.io/khoshaba/solana-controlled-load-tools:layer1" already present on machine and can be accessed by the pod
+solana-observability   43m         Normal   Completed          job/m1-v0-8-0-m1-s64-128         Job completed
+solana-observability   39m         Normal   SuccessfulCreate   job/m1-v0-8-0-m1-s32-128         Created pod: m1-v0-8-0-m1-s32-128-pdgrh
+solana-observability   39m         Normal   Scheduled          pod/m1-v0-8-0-m1-s32-128-pdgrh   Successfully assigned solana-observability/m1-v0-8-0-m1-s32-128-pdgrh to k8s-worker-02
+solana-observability   39m         Normal   Started            pod/m1-v0-8-0-m1-s32-128-pdgrh   Container started
+solana-observability   39m         Normal   Created            pod/m1-v0-8-0-m1-s32-128-pdgrh   Container created
+solana-observability   39m         Normal   Pulled             pod/m1-v0-8-0-m1-s32-128-pdgrh   Container image "docker.io/khoshaba/solana-controlled-load-tools:layer1" already present on machine and can be accessed by the pod
+solana-observability   29m         Normal   Completed          job/m1-v0-8-0-m1-s32-128         Job completed
+solana-observability   19m         Normal   Scheduled          pod/m1-v0-8-0-m2-d128-64-2vt7q   Successfully assigned solana-observability/m1-v0-8-0-m2-d128-64-2vt7q to k8s-worker-02
+solana-observability   19m         Normal   SuccessfulCreate   job/m1-v0-8-0-m2-d128-64         Created pod: m1-v0-8-0-m2-d128-64-2vt7q
+solana-observability   19m         Normal   Pulled             pod/m1-v0-8-0-m2-d128-64-2vt7q   Container image "docker.io/khoshaba/solana-controlled-load-tools:layer1" already present on machine and can be accessed by the pod
+solana-observability   19m         Normal   Created            pod/m1-v0-8-0-m2-d128-64-2vt7q   Container created
+solana-observability   19m         Normal   Started            pod/m1-v0-8-0-m2-d128-64-2vt7q   Container started
+solana-observability   9m53s       Normal   Completed          job/m1-v0-8-0-m2-d128-64         Job completed

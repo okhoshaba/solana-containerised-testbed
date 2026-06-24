@@ -1,0 +1,247 @@
+{
+  "generated_at_utc": "2026-06-24T03:39:58Z",
+  "limitations": [
+    "lat_p99 is missing in collect_csv outputs; current analysis is throughput-oriented.",
+    "Settling-time estimates are limited by 5-second sampling resolution.",
+    "Sub-5-second transient dynamics require finer sampling in later short runs.",
+    "Experiments are limited to the confirmed safe range lambda=32..128."
+  ],
+  "m0": [
+    {
+      "analysis_duration_seconds": 871.918,
+      "analysis_rows": 175,
+      "err_per_sec_max": 0.0,
+      "err_per_sec_mean": 0.0,
+      "expected_rate": 32.0,
+      "inflight_max": 1.0,
+      "inflight_mean": 0.08,
+      "lat_p99_count": 0,
+      "lat_p99_missing": 175,
+      "run_id": "v0.8.0-M0-L32-R2",
+      "status": "PASS",
+      "u_ach_max": 32.157266,
+      "u_ach_mean": 31.999225765714286,
+      "u_ach_min": 31.900064,
+      "u_ach_std": 0.09520987221256078,
+      "u_cmd_mean": 32.0,
+      "warnings": [
+        "non-zero inflight observed",
+        "lat_p99 missing in collect_csv output"
+      ]
+    },
+    {
+      "analysis_duration_seconds": 871.9390000000001,
+      "analysis_rows": 175,
+      "err_per_sec_max": 0.0,
+      "err_per_sec_mean": 0.0,
+      "expected_rate": 64.0,
+      "inflight_max": 1.0,
+      "inflight_mean": 0.15428571428571428,
+      "lat_p99_count": 0,
+      "lat_p99_missing": 175,
+      "run_id": "v0.8.0-M0-L64",
+      "status": "PASS",
+      "u_ach_max": 64.101004,
+      "u_ach_mean": 64.00037849714288,
+      "u_ach_min": 63.811321,
+      "u_ach_std": 0.0912704044836428,
+      "u_cmd_mean": 64.0,
+      "warnings": [
+        "non-zero inflight observed",
+        "lat_p99 missing in collect_csv output"
+      ]
+    },
+    {
+      "analysis_duration_seconds": 871.8629999999999,
+      "analysis_rows": 175,
+      "err_per_sec_max": 0.0,
+      "err_per_sec_mean": 0.0,
+      "expected_rate": 128.0,
+      "inflight_max": 1.0,
+      "inflight_mean": 0.30857142857142855,
+      "lat_p99_count": 0,
+      "lat_p99_missing": 175,
+      "run_id": "v0.8.0-M0-L128",
+      "status": "PASS",
+      "u_ach_max": 128.199609,
+      "u_ach_mean": 128.0004736857143,
+      "u_ach_min": 127.842111,
+      "u_ach_std": 0.09760073794943445,
+      "u_cmd_mean": 128.0,
+      "warnings": [
+        "non-zero inflight observed",
+        "lat_p99 missing in collect_csv output"
+      ]
+    }
+  ],
+  "m1": [
+    {
+      "err_per_sec_max": 0.0,
+      "err_per_sec_mean": 0.0,
+      "final_tracking_error": 0.008160100000011994,
+      "final_window_u_ach_mean": 63.99183989999999,
+      "final_window_u_ach_std": 0.11101772834146727,
+      "first_post_step_u_ach": 59.426326,
+      "inflight_max": 1.0,
+      "inflight_mean": 0.07407407407407407,
+      "initial_post_step_error": 4.573673999999997,
+      "lat_p99_count": 0,
+      "new_level": 64.0,
+      "old_level": 32.0,
+      "overshoot_abs": 0.1153319999999951,
+      "pre_step_u_ach_mean": 31.99945657407407,
+      "pre_step_u_ach_std": 0.09354025785514852,
+      "run_id": "v0.8.0-M1-S32-64",
+      "settling_time_seconds": 5.010999999999967,
+      "status": "PASS",
+      "step_time_seconds": 330.627,
+      "undershoot_abs": 4.573673999999997,
+      "warnings": [
+        "lat_p99 missing in collect_csv output"
+      ]
+    },
+    {
+      "err_per_sec_max": 0.0,
+      "err_per_sec_mean": 0.0,
+      "final_tracking_error": -0.010062500000003638,
+      "final_window_u_ach_mean": 128.0100625,
+      "final_window_u_ach_std": 0.09294497267170873,
+      "first_post_step_u_ach": 118.814429,
+      "inflight_max": 1.0,
+      "inflight_mean": 0.2777777777777778,
+      "initial_post_step_error": 9.185570999999996,
+      "lat_p99_count": 0,
+      "new_level": 128.0,
+      "old_level": 64.0,
+      "overshoot_abs": 0.19226000000000454,
+      "pre_step_u_ach_mean": 64.00267340740741,
+      "pre_step_u_ach_std": 0.07058753692322435,
+      "run_id": "v0.8.0-M1-S64-128",
+      "settling_time_seconds": 5.014999999999986,
+      "status": "PASS",
+      "step_time_seconds": 335.766,
+      "undershoot_abs": 9.185570999999996,
+      "warnings": [
+        "lat_p99 missing in collect_csv output"
+      ]
+    },
+    {
+      "err_per_sec_max": 0.0,
+      "err_per_sec_mean": 0.0,
+      "final_tracking_error": -0.016305200000005016,
+      "final_window_u_ach_mean": 128.0163052,
+      "final_window_u_ach_std": 0.1123841804929285,
+      "first_post_step_u_ach": 114.241655,
+      "inflight_max": 1.0,
+      "inflight_mean": 0.23148148148148148,
+      "initial_post_step_error": 13.758345000000006,
+      "lat_p99_count": 0,
+      "new_level": 128.0,
+      "old_level": 32.0,
+      "overshoot_abs": 0.20743400000000634,
+      "pre_step_u_ach_mean": 31.999584370370364,
+      "pre_step_u_ach_std": 0.09116773264191569,
+      "run_id": "v0.8.0-M1-S32-128",
+      "settling_time_seconds": 5.0090000000000146,
+      "status": "PASS",
+      "step_time_seconds": 330.693,
+      "undershoot_abs": 13.758345000000006,
+      "warnings": [
+        "lat_p99 missing in collect_csv output"
+      ]
+    }
+  ],
+  "m2": [
+    {
+      "err_per_sec_max": 0.0,
+      "err_per_sec_mean": 0.0,
+      "final_tracking_error": -0.003832700000003797,
+      "final_window_u_ach_mean": 64.0038327,
+      "final_window_u_ach_std": 0.09958494536720557,
+      "first_post_step_u_ach": 73.161332,
+      "inflight_max": 1.0,
+      "inflight_mean": 0.2962962962962963,
+      "initial_post_step_error": -9.161332000000002,
+      "lat_p99_count": 0,
+      "new_level": 64.0,
+      "old_level": 128.0,
+      "overshoot_abs": 9.161332000000002,
+      "pre_step_u_ach_mean": 128.00423049999998,
+      "pre_step_u_ach_std": 0.09893877439289206,
+      "run_id": "v0.8.0-M2-D128-64",
+      "settling_time_seconds": 5.01400000000001,
+      "status": "PASS",
+      "step_time_seconds": 330.717,
+      "undershoot_abs": 0.1809080000000023,
+      "warnings": [
+        "lat_p99 missing in collect_csv output"
+      ]
+    },
+    {
+      "err_per_sec_max": 0.0,
+      "err_per_sec_mean": 0.0,
+      "final_tracking_error": -0.011984999999995694,
+      "final_window_u_ach_mean": 32.011984999999996,
+      "final_window_u_ach_std": 0.10972105334691114,
+      "first_post_step_u_ach": 36.600981,
+      "inflight_max": 1.0,
+      "inflight_mean": 0.12037037037037036,
+      "initial_post_step_error": -4.600980999999997,
+      "lat_p99_count": 0,
+      "new_level": 32.0,
+      "old_level": 64.0,
+      "overshoot_abs": 4.600980999999997,
+      "pre_step_u_ach_mean": 64.00025203703704,
+      "pre_step_u_ach_std": 0.07433180169741248,
+      "run_id": "v0.8.0-M2-D64-32",
+      "settling_time_seconds": 5.0120000000000005,
+      "status": "PASS",
+      "step_time_seconds": 335.763,
+      "undershoot_abs": 0.10320899999999966,
+      "warnings": [
+        "lat_p99 missing in collect_csv output"
+      ]
+    },
+    {
+      "err_per_sec_max": 0.0,
+      "err_per_sec_mean": 0.0,
+      "final_tracking_error": 0.00015570000000053597,
+      "final_window_u_ach_mean": 31.9998443,
+      "final_window_u_ach_std": 0.10375018498623437,
+      "first_post_step_u_ach": 45.745114,
+      "inflight_max": 1.0,
+      "inflight_mean": 0.2037037037037037,
+      "initial_post_step_error": -13.745114000000001,
+      "lat_p99_count": 0,
+      "new_level": 32.0,
+      "old_level": 128.0,
+      "overshoot_abs": 13.745114000000001,
+      "pre_step_u_ach_mean": 127.99856587037038,
+      "pre_step_u_ach_std": 0.10699538076699114,
+      "run_id": "v0.8.0-M2-D128-32",
+      "settling_time_seconds": 5.010999999999967,
+      "status": "PASS",
+      "step_time_seconds": 330.713,
+      "undershoot_abs": 0.09906399999999849,
+      "warnings": [
+        "lat_p99 missing in collect_csv output"
+      ]
+    }
+  ],
+  "overall_verdict": {
+    "all_observed_err_per_sec_zero": true,
+    "latency_telemetry_missing": true,
+    "m0_complete": true,
+    "m1_complete": true,
+    "m2_complete": true,
+    "scientific_use": [
+      "usable for throughput steady-state analysis",
+      "usable for upward and downward throughput step-response analysis",
+      "usable as an initial dataset for transfer-function identification of u_cmd -> u_ach",
+      "not yet sufficient for latency-response modelling because lat_p99 is missing"
+    ],
+    "status": "PASS"
+  },
+  "scope": "M0 steady-state, M1 upward step-response, and M2 step-down/recovery experiments",
+  "stage": "v0.8.0 dynamic load system identification"
+}

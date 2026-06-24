@@ -1,0 +1,78 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"batch/v1","kind":"Job","metadata":{"annotations":{},"labels":{"app.kubernetes.io/name":"solana-controlled-load-m3","testbed.run_id":"v0.8.0-M3-MS32-64-128-64-32","testbed.stage":"v0.8.0"},"name":"m3-v0-8-0-m3-ms32-64-128-64-32","namespace":"solana-observability"},"spec":{"backoffLimit":0,"template":{"metadata":{"labels":{"app.kubernetes.io/name":"solana-controlled-load-m3","testbed.run_id":"v0.8.0-M3-MS32-64-128-64-32","testbed.stage":"v0.8.0"}},"spec":{"containers":[{"args":["set -eu\nmkdir -p /work/results\npython3 /work/scripts/collect_csv.py                 --loadgen-url http://solana-loadgen2:7070                 --prom-url http://solana-metrics:9464                 --rate-key lambda                 --sample 5                 --timeout 5                 step                 --levels '32 64 128 64 32'                 --hold 180                 --warmup 30                 | tee /work/results/collect_csv.csv\n"],"command":["/bin/sh","-lc"],"image":"docker.io/khoshaba/solana-controlled-load-tools:layer1","imagePullPolicy":"IfNotPresent","name":"collect"}],"restartPolicy":"Never"}}}}
+  creationTimestamp: "2026-06-24T05:14:11Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/name: solana-controlled-load-m3
+    testbed.run_id: v0.8.0-M3-MS32-64-128-64-32
+    testbed.stage: v0.8.0
+  name: m3-v0-8-0-m3-ms32-64-128-64-32
+  namespace: solana-observability
+  resourceVersion: "2911617"
+  uid: 34242601-6d45-4fdb-9a9b-9f81a94ecdf9
+spec:
+  backoffLimit: 0
+  completionMode: NonIndexed
+  completions: 1
+  manualSelector: false
+  parallelism: 1
+  podReplacementPolicy: TerminatingOrFailed
+  selector:
+    matchLabels:
+      batch.kubernetes.io/controller-uid: 34242601-6d45-4fdb-9a9b-9f81a94ecdf9
+  suspend: false
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: solana-controlled-load-m3
+        batch.kubernetes.io/controller-uid: 34242601-6d45-4fdb-9a9b-9f81a94ecdf9
+        batch.kubernetes.io/job-name: m3-v0-8-0-m3-ms32-64-128-64-32
+        controller-uid: 34242601-6d45-4fdb-9a9b-9f81a94ecdf9
+        job-name: m3-v0-8-0-m3-ms32-64-128-64-32
+        testbed.run_id: v0.8.0-M3-MS32-64-128-64-32
+        testbed.stage: v0.8.0
+    spec:
+      containers:
+      - args:
+        - |
+          set -eu
+          mkdir -p /work/results
+          python3 /work/scripts/collect_csv.py                 --loadgen-url http://solana-loadgen2:7070                 --prom-url http://solana-metrics:9464                 --rate-key lambda                 --sample 5                 --timeout 5                 step                 --levels '32 64 128 64 32'                 --hold 180                 --warmup 30                 | tee /work/results/collect_csv.csv
+        command:
+        - /bin/sh
+        - -lc
+        image: docker.io/khoshaba/solana-controlled-load-tools:layer1
+        imagePullPolicy: IfNotPresent
+        name: collect
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  completionTime: "2026-06-24T05:29:23Z"
+  conditions:
+  - lastProbeTime: "2026-06-24T05:29:23Z"
+    lastTransitionTime: "2026-06-24T05:29:23Z"
+    message: Reached expected number of succeeded pods
+    reason: CompletionsReached
+    status: "True"
+    type: SuccessCriteriaMet
+  - lastProbeTime: "2026-06-24T05:29:23Z"
+    lastTransitionTime: "2026-06-24T05:29:23Z"
+    message: Reached expected number of succeeded pods
+    reason: CompletionsReached
+    status: "True"
+    type: Complete
+  ready: 0
+  startTime: "2026-06-24T05:14:11Z"
+  succeeded: 1
+  terminating: 0
+  uncountedTerminatedPods: {}

@@ -1,0 +1,97 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"batch/v1","kind":"Job","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"v080-m1-step-response","app.kubernetes.io/name":"m1-v0-8-0-m2-d64-32","app.kubernetes.io/part-of":"solana-containerised-testbed","solana-testbed-run-id":"v0.8.0-M2-D64-32"},"name":"m1-v0-8-0-m2-d64-32","namespace":"solana-observability"},"spec":{"backoffLimit":0,"template":{"metadata":{"labels":{"app.kubernetes.io/component":"v080-m1-step-response","app.kubernetes.io/name":"m1-v0-8-0-m2-d64-32","app.kubernetes.io/part-of":"solana-containerised-testbed","solana-testbed-run-id":"v0.8.0-M2-D64-32"}},"spec":{"containers":[{"command":["bash","-lc","set -euo pipefail\nmkdir -p /work/results\npython3 /work/scripts/collect_csv.py \\\n  --loadgen-url \"http://solana-loadgen2:7070\" \\\n  --prom-url \"http://solana-metrics:9464\" \\\n  --rate-key \"lambda\" \\\n  --sample \"5\" \\\n  --timeout \"810\" \\\n  step \\\n  --levels \"64 32\" \\\n  --hold \"300\" \\\n  --warmup \"30\" \\\n  | tee /work/results/collect_csv.csv\n"],"image":"docker.io/khoshaba/solana-controlled-load-tools:layer1","imagePullPolicy":"IfNotPresent","name":"tools","volumeMounts":[{"mountPath":"/work/results","name":"results"}]}],"nodeSelector":{"testbed-role":"observability"},"restartPolicy":"Never","volumes":[{"emptyDir":{},"name":"results"}]}}}}
+  creationTimestamp: "2026-06-24T03:09:02Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/component: v080-m1-step-response
+    app.kubernetes.io/name: m1-v0-8-0-m2-d64-32
+    app.kubernetes.io/part-of: solana-containerised-testbed
+    solana-testbed-run-id: v0.8.0-M2-D64-32
+  name: m1-v0-8-0-m2-d64-32
+  namespace: solana-observability
+  resourceVersion: "2899083"
+  uid: 8470ef9b-fd67-46b0-ad83-d21cead3e7aa
+spec:
+  backoffLimit: 0
+  completionMode: NonIndexed
+  completions: 1
+  manualSelector: false
+  parallelism: 1
+  podReplacementPolicy: TerminatingOrFailed
+  selector:
+    matchLabels:
+      batch.kubernetes.io/controller-uid: 8470ef9b-fd67-46b0-ad83-d21cead3e7aa
+  suspend: false
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: v080-m1-step-response
+        app.kubernetes.io/name: m1-v0-8-0-m2-d64-32
+        app.kubernetes.io/part-of: solana-containerised-testbed
+        batch.kubernetes.io/controller-uid: 8470ef9b-fd67-46b0-ad83-d21cead3e7aa
+        batch.kubernetes.io/job-name: m1-v0-8-0-m2-d64-32
+        controller-uid: 8470ef9b-fd67-46b0-ad83-d21cead3e7aa
+        job-name: m1-v0-8-0-m2-d64-32
+        solana-testbed-run-id: v0.8.0-M2-D64-32
+    spec:
+      containers:
+      - command:
+        - bash
+        - -lc
+        - |
+          set -euo pipefail
+          mkdir -p /work/results
+          python3 /work/scripts/collect_csv.py \
+            --loadgen-url "http://solana-loadgen2:7070" \
+            --prom-url "http://solana-metrics:9464" \
+            --rate-key "lambda" \
+            --sample "5" \
+            --timeout "810" \
+            step \
+            --levels "64 32" \
+            --hold "300" \
+            --warmup "30" \
+            | tee /work/results/collect_csv.csv
+        image: docker.io/khoshaba/solana-controlled-load-tools:layer1
+        imagePullPolicy: IfNotPresent
+        name: tools
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /work/results
+          name: results
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        testbed-role: observability
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: results
+status:
+  completionTime: "2026-06-24T03:19:13Z"
+  conditions:
+  - lastProbeTime: "2026-06-24T03:19:13Z"
+    lastTransitionTime: "2026-06-24T03:19:13Z"
+    message: Reached expected number of succeeded pods
+    reason: CompletionsReached
+    status: "True"
+    type: SuccessCriteriaMet
+  - lastProbeTime: "2026-06-24T03:19:13Z"
+    lastTransitionTime: "2026-06-24T03:19:13Z"
+    message: Reached expected number of succeeded pods
+    reason: CompletionsReached
+    status: "True"
+    type: Complete
+  ready: 0
+  startTime: "2026-06-24T03:09:02Z"
+  succeeded: 1
+  terminating: 0
+  uncountedTerminatedPods: {}

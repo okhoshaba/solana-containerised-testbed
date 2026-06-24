@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: m4-v0-8-0-m4-sine-l80-a48-t720
+  namespace: solana-observability
+  labels:
+    app.kubernetes.io/name: solana-controlled-load-m4
+    testbed.stage: v0.8.0
+    testbed.run_id: v0.8.0-M4-SINE-L80-A48-T720
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: solana-controlled-load-m4
+        testbed.stage: v0.8.0
+        testbed.run_id: v0.8.0-M4-SINE-L80-A48-T720
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: collect
+          image: docker.io/khoshaba/solana-controlled-load-tools:layer1
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -lc
+          args:
+            - |
+              set -eu
+              mkdir -p /work/results
+              python3 /work/scripts/collect_csv.py                 --loadgen-url http://solana-loadgen2:7070                 --prom-url http://solana-metrics:9464                 --rate-key lambda                 --sample 5                 --timeout 5                 step                 --levels '80 104 122 128 122 104 80 56 38 32 38 56 80'                 --hold 60                 --warmup 30                 | tee /work/results/collect_csv.csv
