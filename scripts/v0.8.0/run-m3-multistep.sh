@@ -69,7 +69,7 @@ echo "== Preflight =="
 if [[ -x scripts/v0.8.0/preflight-v0.8.0-with-rpc-port-forward.sh ]]; then
   set +e
   RUN_ID="$RUN_ID" PREFLIGHT_DIR="$PREFLIGHT_DIR" \
-    scripts/v0.8.0/preflight-v0.8.0-with-rpc-port-forward.sh
+    scripts/v0.8.0/preflight-v0.8.0-with-rpc-port-forward.sh "$RUN_ID"
   PREFLIGHT_STATUS=$?
   set -e
 else
