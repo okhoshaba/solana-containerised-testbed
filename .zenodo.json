@@ -1,6 +1,6 @@
 {
-  "title": "Solana Containerised Testbed v0.4.0: Dedicated KVM Multi-Node Kubernetes Deployment",
-  "description": "Version 0.4.0 validates the Solana Kubernetes Observability Core on a dedicated KVM-based multi-node Kubernetes cluster. The release includes kubeadm-based Kubernetes deployment, containerd runtime, Calico CNI, local-path storage, Ansible automation, workload placement for validator and observability components, RPC validation, metrics validation, and wallet transfer telemetry evidence.",
+  "title": "Solana Containerised Testbed v0.8.0: Dynamic Load System Identification",
+  "description": "Version 0.8.0 extends the Solana Containerised Testbed with controlled dynamic-load experiments for throughput-channel system identification. The release includes steady-state baselines, upward step-response experiments, step-down recovery experiments, multi-step load profiles, and a low-frequency sine-approximation profile within the confirmed safe lambda range 32..128. It provides v0.8.0 experiment runners, preflight checks, run-level summarizers, aggregate summaries, artifact inventory, checksums, and dataset documentation. The resulting dataset supports initial modelling of the u_cmd(t) -> u_ach(t) throughput channel. Latency-constrained modelling is deferred because lat_p99 is missing in the current collect_csv outputs.",
   "creators": [
     {
       "name": "Khoshaba, Oleksandr",
@@ -11,46 +11,37 @@
   "keywords": [
     "Solana",
     "Kubernetes",
-    "kubeadm",
-    "KVM",
-    "libvirt",
-    "Ansible",
-    "observability",
-    "Yellowstone",
-    "Geyser",
-    "no-AVX2",
-    "containerisation",
+    "containerised testbed",
+    "controlled load",
+    "dynamic load",
+    "system identification",
+    "throughput modelling",
+    "step response",
+    "multi-step profile",
+    "sine approximation",
+    "frequency response",
+    "PID",
+    "MPC",
     "dataset generation",
-    "latency measurement"
+    "reproducibility"
   ],
   "upload_type": "software",
-  "version": "0.4.0",
+  "version": "0.8.0",
   "related_identifiers": [
     {
       "identifier": "10.5281/zenodo.20551170",
-      "relation": "isIdenticalTo",
-      "scheme": "doi"
-    },
-    {
-      "identifier": "10.5281/zenodo.20337744",
       "relation": "isNewVersionOf",
       "scheme": "doi"
     },
     {
-      "identifier": "10.5281/zenodo.20340310",
-      "relation": "isSupplementTo",
+      "identifier": "10.5281/zenodo.20095383",
+      "relation": "isNewVersionOf",
       "scheme": "doi"
     },
     {
       "identifier": "https://github.com/okhoshaba/solana-containerised-testbed",
       "relation": "isSupplementTo",
       "scheme": "url"
-    },
-    {
-      "identifier": "10.5281/zenodo.20561100",
-      "relation": "isDocumentedBy",
-      "scheme": "doi"
     }
-  ],
-  "doi": "10.5281/zenodo.20551170"
+  ]
 }

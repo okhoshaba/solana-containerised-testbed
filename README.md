@@ -43,6 +43,8 @@ Software identifiers:
 - Software v0.2.0 DOI: `10.5281/zenodo.20132465`
 - Software v0.3.0 DOI: `10.5281/zenodo.20337744`
 - Software v0.4.0 DOI: `10.5281/zenodo.20551170`
+- Software v0.8.0 DOI: `TBD`
+- Dataset v0.8.0 DOI: `TBD`
 
 Technical reports and notes:
 
@@ -260,7 +262,7 @@ Citation metadata is provided in:
 - `CITATION.cff`
 - `.zenodo.json`
 
-The software and technical report identifiers will be updated after the `v0.4.0` Zenodo publication.
+The v0.8.0 software and dataset identifiers are currently prepared as `TBD` placeholders and will be replaced after Zenodo publication.
 
 ## License
 
