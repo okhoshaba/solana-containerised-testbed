@@ -421,4 +421,4 @@ if [ "$JOB_OK" != "true" ] || [ "$COPY_OK" != "true" ]; then
 fi
 
 echo
-echo "M1 step-response run completed: $RUN_ID"
+echo "step-response / recovery run completed: $RUN_ID"
