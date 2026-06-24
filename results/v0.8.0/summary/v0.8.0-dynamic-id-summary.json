@@ -1,0 +1,94 @@
+{
+  "completed_experiment_classes": {
+    "M0_steady_state_baselines": {
+      "complete": true,
+      "rates": [
+        32.0,
+        64.0,
+        128.0
+      ],
+      "runs": 3
+    },
+    "M1_upward_step_response": {
+      "complete": true,
+      "runs": 3,
+      "steps": [
+        "32->64",
+        "64->128",
+        "32->128"
+      ]
+    },
+    "M2_step_down_recovery": {
+      "complete": true,
+      "runs": 3,
+      "steps": [
+        "128->64",
+        "64->32",
+        "128->32"
+      ]
+    },
+    "M3_multi_step_profiles": {
+      "complete": true,
+      "profiles": [
+        "32 -> 64 -> 128 -> 64 -> 32",
+        "32 -> 128 -> 64 -> 128 -> 32"
+      ],
+      "runs": 2
+    },
+    "M4_sine_approximation": {
+      "complete": true,
+      "period_seconds": 720.0,
+      "profile": "80 -> 104 -> 122 -> 128 -> 122 -> 104 -> 80 -> 56 -> 38 -> 32 -> 38 -> 56 -> 80",
+      "runs": 1
+    }
+  },
+  "generated_at_utc": "2026-06-24T06:36:06Z",
+  "inputs": {
+    "m0_m1_m2_summary": "results/v0.8.0/summary/v0.8.0-m0-m1-m2-summary.json",
+    "m3_summary": "results/v0.8.0/summary/v0.8.0-m3-summary.json",
+    "m4_sine_summary": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-summary.json"
+  },
+  "overall_verdict": {
+    "latency_channel_ready_for_modelling": false,
+    "reason_latency_not_ready": "lat_p99 is missing in collect_csv outputs",
+    "status": "PASS",
+    "throughput_channel_ready_for_initial_modelling": true
+  },
+  "recommended_next_steps": [
+    "Create an offline modelling script/notebook for u_cmd -> u_ach using M0-M4 datasets.",
+    "Estimate a simple discrete-time first-order or near-unity-gain model at 5-second sampling.",
+    "Optionally run short SAMPLE=1 or SAMPLE=2 refinement experiments before final transfer-function fitting.",
+    "Fix or extend latency telemetry collection before latency-constrained MPC."
+  ],
+  "runtime_health": {
+    "all_observed_err_per_sec_zero": true,
+    "latency_telemetry_missing": true,
+    "m4_inflight_max": 1.0
+  },
+  "stage": "v0.8.0 dynamic load system identification",
+  "throughput_identification_findings": {
+    "m4_frequency_response": {
+      "best_cross_correlation_lag_samples": 0,
+      "gain_peak_to_peak": 1.0021191875000002,
+      "gain_sinusoidal_fit": 0.9982939973673405,
+      "phase_diff_deg": -0.6116651239364181,
+      "phase_lag_seconds": 1.2233302478728363,
+      "zero_lag_correlation": 0.9995393346367549
+    },
+    "m4_tracking_error": {
+      "mae": 0.42126301282051204,
+      "max_absolute_error": 3.441975999999997,
+      "rmse": 0.9973400479287388
+    },
+    "safe_lambda_range": [
+      32,
+      128
+    ],
+    "steady_state_gain": "approximately 1 within lambda=32..128",
+    "step_response_settling_time_seconds": {
+      "max_observed": 5.014999999999986,
+      "mean_observed": 5.012642857142849,
+      "note": "limited by 5-second sampling resolution"
+    }
+  }
+}
