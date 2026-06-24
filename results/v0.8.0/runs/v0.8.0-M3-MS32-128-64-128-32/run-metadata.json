@@ -1,0 +1,25 @@
+{
+  "created_at_utc": "2026-06-24T05:55:45Z",
+  "duration_requested_seconds": 930.0,
+  "experiment_class": "M3 multi-step load profile",
+  "hold_seconds": 180.0,
+  "lambda_max": 128.0,
+  "lambda_min": 32.0,
+  "level_count": 5,
+  "levels": [
+    32.0,
+    128.0,
+    64.0,
+    128.0,
+    32.0
+  ],
+  "notes": "M3 multi-step profile generated using collect_csv.py step with more than two levels.",
+  "preflight_dir": "results/v0.8.0/preflight/v0.8.0-M3-MS32-128-64-128-32",
+  "profile_type": "multi_step",
+  "raw_dir": "data/raw/v0.8.0/v0.8.0-M3-MS32-128-64-128-32",
+  "run_dir": "results/v0.8.0/runs/v0.8.0-M3-MS32-128-64-128-32",
+  "run_id": "v0.8.0-M3-MS32-128-64-128-32",
+  "sample_seconds": 5.0,
+  "stage": "v0.8.0 dynamic load system identification",
+  "warmup_seconds": 30.0
+}

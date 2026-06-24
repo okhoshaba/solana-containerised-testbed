@@ -1,0 +1,284 @@
+{
+  "consecutive_samples_required": 3,
+  "csv_path": "data/raw/v0.8.0/v0.8.0-M3-MS32-128-64-128-32/collect_csv.csv",
+  "final_window_samples": 10,
+  "global_metrics": {
+    "err_per_sec_max": 0.0,
+    "inflight_max": 1.0,
+    "lat_p99_count": 0
+  },
+  "levels": [
+    32.0,
+    128.0,
+    64.0,
+    128.0,
+    32.0
+  ],
+  "quality_verdict": {
+    "status": "PASS",
+    "warnings": [
+      "lat_p99 missing in collect_csv output"
+    ]
+  },
+  "rows": 150,
+  "run_id": "v0.8.0-M3-MS32-128-64-128-32",
+  "segment_count": 5,
+  "segments": [
+    {
+      "duration_seconds": 145.358,
+      "end_index": 29,
+      "end_t_sec": 180.407,
+      "err_per_sec": {
+        "count": 30,
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "std": 0.0
+      },
+      "final_tracking_error": -0.014419200000006072,
+      "final_window_u_ach": {
+        "count": 10,
+        "max": 32.144544,
+        "mean": 32.014419200000006,
+        "min": 31.914604,
+        "std": 0.10148443455120562
+      },
+      "first_u_ach": 32.0,
+      "inflight": {
+        "count": 30,
+        "max": 1.0,
+        "mean": 0.06666666666666667,
+        "min": 0.0,
+        "std": 0.2537081317024625
+      },
+      "initial_tracking_error": 0.0,
+      "lat_p99": {
+        "count": 0,
+        "max": null,
+        "mean": null,
+        "min": null,
+        "std": null
+      },
+      "overshoot_abs": 0.14454400000000334,
+      "rows": 30,
+      "segment_index": 0,
+      "settling_time_seconds": 0.0,
+      "start_index": 0,
+      "start_t_sec": 35.049,
+      "u_ach": {
+        "count": 30,
+        "max": 32.144544,
+        "mean": 32.00351956666666,
+        "min": 31.905289,
+        "std": 0.09669305462476578
+      },
+      "u_cmd": 32.0,
+      "undershoot_abs": 0.09471100000000021
+    },
+    {
+      "duration_seconds": 145.35899999999998,
+      "end_index": 59,
+      "end_t_sec": 360.784,
+      "err_per_sec": {
+        "count": 30,
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "std": 0.0
+      },
+      "final_tracking_error": 0.01018349999999657,
+      "final_window_u_ach": {
+        "count": 10,
+        "max": 128.164676,
+        "mean": 127.9898165,
+        "min": 127.848226,
+        "std": 0.11043169180311796
+      },
+      "first_u_ach": 114.199014,
+      "inflight": {
+        "count": 30,
+        "max": 1.0,
+        "mean": 0.3,
+        "min": 0.0,
+        "std": 0.46609159969939895
+      },
+      "initial_tracking_error": 13.800985999999995,
+      "lat_p99": {
+        "count": 0,
+        "max": null,
+        "mean": null,
+        "min": null,
+        "std": null
+      },
+      "overshoot_abs": 0.18126399999999876,
+      "rows": 30,
+      "segment_index": 1,
+      "settling_time_seconds": 5.014999999999986,
+      "start_index": 30,
+      "start_t_sec": 215.425,
+      "u_ach": {
+        "count": 30,
+        "max": 128.181264,
+        "mean": 127.53406593333334,
+        "min": 114.199014,
+        "std": 2.5205940182259696
+      },
+      "u_cmd": 128.0,
+      "undershoot_abs": 13.800985999999995
+    },
+    {
+      "duration_seconds": 145.35999999999996,
+      "end_index": 89,
+      "end_t_sec": 541.165,
+      "err_per_sec": {
+        "count": 30,
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "std": 0.0
+      },
+      "final_tracking_error": 0.0034498999999996727,
+      "final_window_u_ach": {
+        "count": 10,
+        "max": 64.054905,
+        "mean": 63.9965501,
+        "min": 63.822967,
+        "std": 0.09016523626154353
+      },
+      "first_u_ach": 73.185576,
+      "inflight": {
+        "count": 30,
+        "max": 1.0,
+        "mean": 0.13333333333333333,
+        "min": 0.0,
+        "std": 0.3457459036417604
+      },
+      "initial_tracking_error": -9.185575999999998,
+      "lat_p99": {
+        "count": 0,
+        "max": null,
+        "mean": null,
+        "min": null,
+        "std": null
+      },
+      "overshoot_abs": 9.185575999999998,
+      "rows": 30,
+      "segment_index": 2,
+      "settling_time_seconds": 5.0120000000000005,
+      "start_index": 60,
+      "start_t_sec": 395.805,
+      "u_ach": {
+        "count": 30,
+        "max": 73.185576,
+        "mean": 64.30603299999999,
+        "min": 63.822967,
+        "std": 1.679351447760917
+      },
+      "u_cmd": 64.0,
+      "undershoot_abs": 0.17703300000000155
+    },
+    {
+      "duration_seconds": 145.37900000000002,
+      "end_index": 119,
+      "end_t_sec": 721.566,
+      "err_per_sec": {
+        "count": 30,
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "std": 0.0
+      },
+      "final_tracking_error": -0.009197800000009693,
+      "final_window_u_ach": {
+        "count": 10,
+        "max": 128.240741,
+        "mean": 128.0091978,
+        "min": 127.777919,
+        "std": 0.1314552734116593
+      },
+      "first_u_ach": 118.811068,
+      "inflight": {
+        "count": 30,
+        "max": 1.0,
+        "mean": 0.3,
+        "min": 0.0,
+        "std": 0.46609159969939895
+      },
+      "initial_tracking_error": 9.188931999999994,
+      "lat_p99": {
+        "count": 0,
+        "max": null,
+        "mean": null,
+        "min": null,
+        "std": null
+      },
+      "overshoot_abs": 0.24074100000001408,
+      "rows": 30,
+      "segment_index": 3,
+      "settling_time_seconds": 5.013000000000034,
+      "start_index": 90,
+      "start_t_sec": 576.187,
+      "u_ach": {
+        "count": 30,
+        "max": 128.240741,
+        "mean": 127.69724563333335,
+        "min": 118.811068,
+        "std": 1.6815435301604633
+      },
+      "u_cmd": 128.0,
+      "undershoot_abs": 9.188931999999994
+    },
+    {
+      "duration_seconds": 145.36699999999996,
+      "end_index": 149,
+      "end_t_sec": 901.953,
+      "err_per_sec": {
+        "count": 30,
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "std": 0.0
+      },
+      "final_tracking_error": -0.0018554999999977895,
+      "final_window_u_ach": {
+        "count": 10,
+        "max": 32.13073,
+        "mean": 32.0018555,
+        "min": 31.916619,
+        "std": 0.09998450046910023
+      },
+      "first_u_ach": 45.744828,
+      "inflight": {
+        "count": 30,
+        "max": 1.0,
+        "mean": 0.06666666666666667,
+        "min": 0.0,
+        "std": 0.2537081317024625
+      },
+      "initial_tracking_error": -13.744827999999998,
+      "lat_p99": {
+        "count": 0,
+        "max": null,
+        "mean": null,
+        "min": null,
+        "std": null
+      },
+      "overshoot_abs": 13.744827999999998,
+      "rows": 30,
+      "segment_index": 4,
+      "settling_time_seconds": 5.013000000000034,
+      "start_index": 120,
+      "start_t_sec": 756.586,
+      "u_ach": {
+        "count": 30,
+        "max": 45.744828,
+        "mean": 32.4599139,
+        "min": 31.905385,
+        "std": 2.5109881612742977
+      },
+      "u_cmd": 32.0,
+      "undershoot_abs": 0.094615000000001
+    }
+  ],
+  "tolerance_abs": 1.0
+}
