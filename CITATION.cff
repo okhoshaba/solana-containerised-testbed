@@ -2,6 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software, please cite it using the metadata from this file."
 title: "Solana Containerised Testbed v0.8.0: Dynamic Load System Identification"
 version: "0.8.0"
+doi: "10.5281/zenodo.20828274"
 type: software
 authors:
   - family-names: "Khoshaba"

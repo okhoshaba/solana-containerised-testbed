@@ -1,47 +1,58 @@
 {
-  "title": "Solana Containerised Testbed v0.8.0: Dynamic Load System Identification",
-  "description": "Version 0.8.0 extends the Solana Containerised Testbed with controlled dynamic-load experiments for throughput-channel system identification. The release includes steady-state baselines, upward step-response experiments, step-down recovery experiments, multi-step load profiles, and a low-frequency sine-approximation profile within the confirmed safe lambda range 32..128. It provides v0.8.0 experiment runners, preflight checks, run-level summarizers, aggregate summaries, artifact inventory, checksums, and dataset documentation. The resulting dataset supports initial modelling of the u_cmd(t) -> u_ach(t) throughput channel. Latency-constrained modelling is deferred because lat_p99 is missing in the current collect_csv outputs.",
-  "creators": [
-    {
-      "name": "Khoshaba, Oleksandr",
-      "orcid": "0000-0001-5375-6280"
-    }
-  ],
-  "license": "Apache-2.0",
-  "keywords": [
-    "Solana",
-    "Kubernetes",
-    "containerised testbed",
-    "controlled load",
-    "dynamic load",
-    "system identification",
-    "throughput modelling",
-    "step response",
-    "multi-step profile",
-    "sine approximation",
-    "frequency response",
-    "PID",
-    "MPC",
-    "dataset generation",
-    "reproducibility"
-  ],
-  "upload_type": "software",
-  "version": "0.8.0",
-  "related_identifiers": [
-    {
-      "identifier": "10.5281/zenodo.20551170",
-      "relation": "isNewVersionOf",
-      "scheme": "doi"
-    },
-    {
-      "identifier": "10.5281/zenodo.20095383",
-      "relation": "isNewVersionOf",
-      "scheme": "doi"
-    },
-    {
-      "identifier": "https://github.com/okhoshaba/solana-containerised-testbed",
-      "relation": "isSupplementTo",
-      "scheme": "url"
-    }
-  ]
+    "title": "Solana Containerised Testbed v0.8.0: Dynamic Load System Identification",
+    "description": "Version 0.8.0 extends the Solana Containerised Testbed with controlled dynamic-load experiments for throughput-channel system identification. The release includes steady-state baselines, upward step-response experiments, step-down recovery experiments, multi-step load profiles, and a low-frequency sine-approximation profile within the confirmed safe lambda range 32..128. It provides v0.8.0 experiment runners, preflight checks, run-level summarizers, aggregate summaries, artifact inventory, checksums, and dataset documentation. The resulting dataset supports initial modelling of the u_cmd(t) -> u_ach(t) throughput channel. Latency-constrained modelling is deferred because lat_p99 is missing in the current collect_csv outputs.",
+    "creators": [
+        {
+            "name": "Khoshaba, Oleksandr",
+            "orcid": "0000-0001-5375-6280"
+        }
+    ],
+    "license": "Apache-2.0",
+    "keywords": [
+        "Solana",
+        "Kubernetes",
+        "containerised testbed",
+        "controlled load",
+        "dynamic load",
+        "system identification",
+        "throughput modelling",
+        "step response",
+        "multi-step profile",
+        "sine approximation",
+        "frequency response",
+        "PID",
+        "MPC",
+        "dataset generation",
+        "reproducibility"
+    ],
+    "upload_type": "software",
+    "version": "0.8.0",
+    "related_identifiers": [
+        {
+            "identifier": "10.5281/zenodo.20828274",
+            "relation": "isIdenticalTo",
+            "scheme": "doi"
+        },
+        {
+            "identifier": "10.5281/zenodo.20551170",
+            "relation": "isNewVersionOf",
+            "scheme": "doi"
+        },
+        {
+            "identifier": "10.5281/zenodo.20095383",
+            "relation": "isNewVersionOf",
+            "scheme": "doi"
+        },
+        {
+            "identifier": "https://github.com/okhoshaba/solana-containerised-testbed",
+            "relation": "isSupplementTo",
+            "scheme": "url"
+        },
+        {
+            "identifier": "10.5281/zenodo.20834551",
+            "relation": "isSupplementedBy",
+            "scheme": "doi"
+        }
+    ],
+    "doi": "10.5281/zenodo.20828274"
 }
