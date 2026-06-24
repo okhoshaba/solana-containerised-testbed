@@ -1,0 +1,32 @@
+{
+  "collect_csv_rows": 78,
+  "copy_method": "kubectl_logs",
+  "copy_ok": true,
+  "duration_requested_seconds": 810.0,
+  "experiment_class": "M4-sine-approximation",
+  "hold_seconds": 60.0,
+  "job_ok": true,
+  "lambda_max": 128.0,
+  "lambda_min": 32.0,
+  "level_count": 13,
+  "levels": [
+    80.0,
+    104.0,
+    122.0,
+    128.0,
+    122.0,
+    104.0,
+    80.0,
+    56.0,
+    38.0,
+    32.0,
+    38.0,
+    56.0,
+    80.0
+  ],
+  "profile_type": "sine_approx_stepwise",
+  "run_id": "v0.8.0-M4-SINE-L80-A48-T720",
+  "sample_seconds": 5.0,
+  "status": "PASS",
+  "warmup_seconds": 30.0
+}
