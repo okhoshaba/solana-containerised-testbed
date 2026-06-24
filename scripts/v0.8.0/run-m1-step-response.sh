@@ -46,8 +46,25 @@ case "$RUN_ID" in
     LAMBDA_MIN="32"
     LAMBDA_MAX="128"
     ;;
+  v0.8.0-M2-D128-64)
+    LEVELS="128 64"
+    LAMBDA_MIN="64"
+    LAMBDA_MAX="128"
+    ;;
+  v0.8.0-M2-D64-32)
+    LEVELS="64 32"
+    LAMBDA_MIN="32"
+    LAMBDA_MAX="64"
+    ;;
+  v0.8.0-M2-D128-32)
+    LEVELS="128 32"
+    LAMBDA_MIN="32"
+    LAMBDA_MAX="128"
+    ;;
   *)
-    echo "ERROR: unsupported M1 run_id: $RUN_ID"
+    echo "ERROR: unsupported step-response run_id: $RUN_ID"
+    echo "Allowed M1: v0.8.0-M1-S32-64, v0.8.0-M1-S64-128, v0.8.0-M1-S32-128"
+    echo "Allowed M2: v0.8.0-M2-D128-64, v0.8.0-M2-D64-32, v0.8.0-M2-D128-32"
     exit 2
     ;;
 esac
@@ -95,7 +112,7 @@ PY
 DURATION_REQUESTED="$((WARMUP + HOLD * LEVEL_COUNT))"
 COLLECT_TIMEOUT="$((DURATION_REQUESTED + 180))"
 
-echo "== v0.8.0 M1 step-response run =="
+echo "== v0.8.0 step-response / recovery run =="
 echo "run_id:      $RUN_ID"
 echo "levels:      $LEVELS"
 echo "warmup:      $WARMUP"
@@ -290,7 +307,7 @@ pass_run = job_ok and copy_ok and rows > 0
 
 summary = {
     "run_id": run_id,
-    "experiment_class": "M1-step-response",
+    "experiment_class": "M1-step-response" if run_id.startswith("v0.8.0-M1-") else "M2-step-down-recovery",
     "profile_type": "step",
     "levels": [float(x) for x in os.environ["LEVELS"].split()],
     "warmup_seconds": int(os.environ["WARMUP"]),
@@ -316,7 +333,7 @@ metadata = {
     "project": "Solana Containerised Testbed",
     "stage": "v0.8.0 dynamic load system identification",
     "run_id": run_id,
-    "experiment_class": "M1-step-response",
+    "experiment_class": "M1-step-response" if run_id.startswith("v0.8.0-M1-") else "M2-step-down-recovery",
     "profile_type": "step",
     "git": preflight["git"],
     "timing": {
@@ -373,7 +390,7 @@ metadata = {
     "run_verdict": {
         "status": "PASS" if pass_run else "FAIL",
         "scientifically_usable": bool(pass_run),
-        "notes": "M1 step-response run generated using collect_csv.py step."
+        "notes": "Step-response/recovery run generated using collect_csv.py step."
     }
 }
 
