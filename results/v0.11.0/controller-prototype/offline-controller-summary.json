@@ -1,18 +1,22 @@
 {
-  "controller": "p",
+  "controller": "pi",
   "controller_parameters": {
-    "kp": 0.1
+    "ki": 0.002,
+    "kp": 0.1,
+    "ts": 1.0
   },
   "hold": 12,
   "metrics": {
-    "final_error": -4.263256414560601e-14,
-    "mae": 0.18853725054591308,
-    "max_abs_command_change": 35.2,
-    "max_abs_error": 4.603072000000012,
-    "mean_abs_command_change": 2.494915254228768,
-    "mean_error": 0.056630989846506455,
+    "anti_windup_freeze_count": 12,
+    "anti_windup_freeze_fraction": 0.2,
+    "final_error": 0.06174337936708696,
+    "mae": 0.20474238505264944,
+    "max_abs_command_change": 35.263999999999996,
+    "max_abs_error": 4.594358501030513,
+    "mean_abs_command_change": 2.496066228218929,
+    "mean_error": 0.056873506477442014,
     "n": 60,
-    "rmse": 0.7312995588765588,
+    "rmse": 0.7264389755730982,
     "saturation_count": 12,
     "saturation_fraction": 0.2
   },

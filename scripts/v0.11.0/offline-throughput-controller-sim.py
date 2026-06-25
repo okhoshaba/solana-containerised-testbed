@@ -37,9 +37,13 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--plant", default="transition",
                    choices=["unity", "transition"])
     p.add_argument("--controller", default="feedforward",
-                   choices=["feedforward", "p"])
+                   choices=["feedforward", "p", "pi"])
     p.add_argument("--kp", type=float, default=0.10,
-                   help="Proportional gain for P-only controller.")
+                   help="Proportional gain for P-only and PI controllers.")
+    p.add_argument("--ki", type=float, default=0.002,
+                   help="Integral gain for PI controller.")
+    p.add_argument("--ts", type=float, default=1.0,
+                   help="Discrete simulation sampling interval.")
     p.add_argument("--hold", type=int, default=12,
                    help="Number of samples per reference segment.")
     p.add_argument("--out-dir", default="results/v0.11.0/controller-prototype")
@@ -81,7 +85,12 @@ def plant_step(plant: str, y_prev: float, u_cmd: float) -> float:
     raise ValueError(f"unknown plant: {plant}")
 
 
-def metrics(errors: List[float], u_cmds: List[float], saturation_flags: List[bool]) -> Dict[str, float | int]:
+def metrics(
+    errors: List[float],
+    u_cmds: List[float],
+    saturation_flags: List[bool],
+    anti_windup_flags: List[bool],
+) -> Dict[str, float | int]:
     n = len(errors)
     rmse = math.sqrt(sum(e * e for e in errors) / n)
     mae = sum(abs(e) for e in errors) / n
@@ -103,6 +112,8 @@ def metrics(errors: List[float], u_cmds: List[float], saturation_flags: List[boo
         "final_error": final_error,
         "saturation_count": sum(1 for x in saturation_flags if x),
         "saturation_fraction": sum(1 for x in saturation_flags if x) / n,
+        "anti_windup_freeze_count": sum(1 for x in anti_windup_flags if x),
+        "anti_windup_freeze_fraction": sum(1 for x in anti_windup_flags if x) / n,
         "mean_abs_command_change": sum(command_changes) / len(command_changes) if command_changes else 0.0,
         "max_abs_command_change": max(command_changes) if command_changes else 0.0,
     }
@@ -116,16 +127,29 @@ def run_sim(args: argparse.Namespace) -> Dict[str, object]:
         raise RuntimeError("empty reference profile")
 
     y = refs[0]
+    integral = 0.0
     rows: List[Dict[str, object]] = []
 
     for k, r in enumerate(refs):
         # Controller uses the previous simulated plant output as feedback.
         e_feedback = r - y
+        anti_windup_freeze = False
 
         if args.controller == "feedforward":
             u_raw = r
         elif args.controller == "p":
             u_raw = r + args.kp * e_feedback
+        elif args.controller == "pi":
+            integral_candidate = integral + args.ts * e_feedback
+            u_raw_candidate = r + args.kp * e_feedback + args.ki * integral_candidate
+
+            candidate_sat = saturate(u_raw_candidate)
+            if bool(candidate_sat["saturated"]):
+                anti_windup_freeze = True
+            else:
+                integral = integral_candidate
+
+            u_raw = r + args.kp * e_feedback + args.ki * integral
         else:
             raise ValueError(f"unknown controller: {args.controller}")
 
@@ -144,6 +168,9 @@ def run_sim(args: argparse.Namespace) -> Dict[str, object]:
             "r": r,
             "y": y,
             "e": e,
+            "e_feedback": e_feedback,
+            "integral": integral,
+            "anti_windup_freeze": anti_windup_freeze,
             "u_raw": u_raw,
             "u_cmd": u_cmd,
             "saturated": saturated,
@@ -153,6 +180,7 @@ def run_sim(args: argparse.Namespace) -> Dict[str, object]:
         [float(row["e"]) for row in rows],
         [float(row["u_cmd"]) for row in rows],
         [bool(row["saturated"]) for row in rows],
+        [bool(row["anti_windup_freeze"]) for row in rows],
     )
 
     return {
@@ -162,7 +190,9 @@ def run_sim(args: argparse.Namespace) -> Dict[str, object]:
         "profile": args.profile,
         "hold": args.hold,
         "controller_parameters": {
-            "kp": args.kp if args.controller == "p" else None,
+            "kp": args.kp if args.controller in ("p", "pi") else None,
+            "ki": args.ki if args.controller == "pi" else None,
+            "ts": args.ts if args.controller == "pi" else None,
         },
         "safe_bounds": {
             "u_min": U_MIN,
@@ -199,6 +229,9 @@ def write_outputs(result: Dict[str, object], out_dir: Path) -> None:
         "r",
         "y",
         "e",
+        "e_feedback",
+        "integral",
+        "anti_windup_freeze",
         "u_raw",
         "u_cmd",
         "saturated",
@@ -223,11 +256,15 @@ def main() -> int:
     print(f"controller: {result['controller']}")
     print(f"plant:      {result['plant']}")
     print(f"profile:    {result['profile']}")
-    if result["controller"] == "p":
+    if result["controller"] in ("p", "pi"):
         print(f"kp:         {result['controller_parameters']['kp']:.6f}")
+    if result["controller"] == "pi":
+        print(f"ki:         {result['controller_parameters']['ki']:.6f}")
+        print(f"ts:         {result['controller_parameters']['ts']:.6f}")
     print(f"rmse:       {m['rmse']:.6f}")
     print(f"mae:        {m['mae']:.6f}")
     print(f"sat_count:  {m['saturation_count']}")
+    print(f"aw_count:   {m['anti_windup_freeze_count']}")
     return 0
 
 
