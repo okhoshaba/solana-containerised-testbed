@@ -1,0 +1,106 @@
+{
+  "stage": "v0.9.0-offline-throughput-modelling",
+  "target_channel": "u_cmd(t) -> u_ach(t)",
+  "software_doi": "10.5281/zenodo.20828274",
+  "dataset_doi": "10.5281/zenodo.20834551",
+  "source_reports": [
+    "results/v0.9.0/modelling/unity-baseline-summary.md",
+    "results/v0.9.0/modelling/transition-first-sample-summary.md"
+  ],
+  "input_data": {
+    "root": "data/raw/v0.8.0",
+    "collect_csv_files": 12,
+    "total_samples": 1569,
+    "columns_used": [
+      "t_sec",
+      "u_cmd",
+      "u_ach"
+    ]
+  },
+  "unity_baseline_model": {
+    "equation": "y[k] = u[k]",
+    "full_sample_metrics": {
+      "n": 1569,
+      "rmse": 2.044515,
+      "mae": 0.243630,
+      "max_abs_error": 64.000000,
+      "mean_error": -0.061057
+    },
+    "settled_sample_metrics": {
+      "n": 1531,
+      "rmse": 0.094648,
+      "mae": 0.085025,
+      "max_abs_error": 0.293260,
+      "mean_error": 0.000204
+    },
+    "settled_sample_exclusion_rule": [
+      "exclude the first row of each run",
+      "exclude the first row after each change in u_cmd"
+    ],
+    "interpretation": "The unity-gain model is highly accurate for settled throughput samples in the safe range lambda = 32..128."
+  },
+  "transition_first_sample_model": {
+    "transition_rows": 26,
+    "upward_transitions": 13,
+    "downward_transitions": 13,
+    "observed_boundary_dt_seconds_approx": 35.02,
+    "alpha_definition": "alpha = (u_ach[k] - u_ach[k-1]) / (u_cmd[k] - u_ach[k-1])",
+    "alpha_metrics": {
+      "all": {
+        "n": 26,
+        "mean": 0.856154,
+        "min": 0.848629,
+        "max": 0.861736
+      },
+      "upward": {
+        "n": 13,
+        "mean": 0.855481,
+        "min": 0.848629,
+        "max": 0.857413
+      },
+      "downward": {
+        "n": 13,
+        "mean": 0.856827,
+        "min": 0.854102,
+        "max": 0.861736
+      }
+    },
+    "first_recorded_post_transition_error": {
+      "all": {
+        "n": 26,
+        "mean": -0.004269,
+        "min": -13.800986,
+        "max": 13.745114
+      },
+      "upward": {
+        "n": 13,
+        "mean": -6.007425,
+        "min": -13.800986,
+        "max": -0.878283
+      },
+      "downward": {
+        "n": 13,
+        "mean": 5.998886,
+        "min": 0.836479,
+        "max": 13.745114
+      }
+    },
+    "derived_model": {
+      "alpha": 0.856154,
+      "equation_incremental": "y[k] = y[k-1] + 0.856154 * (u[k] - y[k-1])",
+      "equation_arx_like": "y[k] = 0.143846 * y[k-1] + 0.856154 * u[k]"
+    },
+    "interpretation": "By the first recorded post-transition sample, approximately 85.6% of the throughput transition has occurred."
+  },
+  "main_conclusion": {
+    "steady_state": "For settled samples, the throughput channel is well represented by u_ach[k] approximately equal to u_cmd[k].",
+    "transition": "Transition behaviour is concentrated in boundary samples and is consistent with a first-order lag-like response.",
+    "control_implication": "For initial throughput control, the steady-state plant can be treated as near-unity gain, while command transitions may use a simple first-order correction."
+  },
+  "limitations": [
+    "Throughput-only modelling.",
+    "Latency-constrained modelling is out of scope because usable lat_p99 values are missing.",
+    "The transition analysis uses the first recorded post-transition sample, not sub-5-second dynamics.",
+    "The observed boundary interval is approximately 35 seconds, so denser transition sampling is needed for finer dynamic identification."
+  ]
+}
