@@ -1,0 +1,94 @@
+{
+  "stage": "v0.10.0-throughput-controller-preparation",
+  "purpose": "Prepare throughput-control problem definition, safety bounds, PID baseline structure and MPC formulation before live closed-loop experiments.",
+  "source_stage": "v0.9.0-offline-throughput-modelling",
+  "source_artifacts": [
+    "docs/experiments/v0.9.0-offline-throughput-modelling.md",
+    "docs/experiments/v0.9.0-offline-throughput-modelling-methodological-note.md",
+    "results/v0.9.0/modelling/README.md",
+    "results/v0.9.0/modelling/unity-baseline-summary.md",
+    "results/v0.9.0/modelling/transition-first-sample-summary.md",
+    "results/v0.9.0/modelling/throughput-modelling-summary.json"
+  ],
+  "persistent_identifiers": {
+    "software_v0_8_0_doi": "10.5281/zenodo.20828274",
+    "dataset_v0_8_0_doi": "10.5281/zenodo.20834551"
+  },
+  "control_problem": {
+    "objective": "throughput tracking",
+    "reference": "r[k]",
+    "controlled_variable": "y[k] = u_ach[k]",
+    "manipulated_variable": "u[k] = u_cmd[k]",
+    "measured_output_source": "collect_csv.csv -> u_ach"
+  },
+  "plant_model": {
+    "safe_range": {
+      "u_min": 32,
+      "u_max": 128
+    },
+    "settled_operation": {
+      "model": "u_ach[k] ~= u_cmd[k]",
+      "steady_state_gain": 1.0,
+      "settled_rmse": 0.094648,
+      "settled_mae": 0.085025,
+      "settled_max_abs_error": 0.293260,
+      "settled_mean_error": 0.000204
+    },
+    "boundary_transition": {
+      "alpha": 0.856154,
+      "a": 0.143846,
+      "b": 0.856154,
+      "incremental_equation": "y[k] = y[k-1] + 0.856154 * (u[k] - y[k-1])",
+      "arx_like_equation": "y[k] = 0.143846 * y[k-1] + 0.856154 * u[k]",
+      "observed_boundary_dt_seconds_approx": 35.02,
+      "interpretation": "Boundary-transition coefficients describe the first recorded post-transition sample, not sub-5-second dynamics."
+    }
+  },
+  "safety_policy": {
+    "command_saturation": {
+      "lower_bound": 32,
+      "upper_bound": 128,
+      "rule": "u_cmd[k] = min(max(u_raw[k], 32), 128)"
+    },
+    "excluded_ranges": [
+      {
+        "lambda": 256,
+        "reason": "Only future cautious boundary/reference use; not part of initial controller preparation."
+      },
+      {
+        "lambda": 512,
+        "reason": "Excluded due to previously identified storage-pressure risk."
+      }
+    ]
+  },
+  "pid_baseline": {
+    "error": "e[k] = r[k] - y[k]",
+    "recommended_initial_mode": "P-only or PI-only",
+    "derivative_action": "Avoid aggressive derivative action in initial preparation.",
+    "incremental_pid_structure": "u_raw[k] = u_cmd[k-1] + Kp*(e[k]-e[k-1]) + Ki*Ts*e[k] + Kd/Ts*(e[k]-2e[k-1]+e[k-2])",
+    "anti_windup_required": true,
+    "minimum_anti_windup_policy": "Freeze integral term when command saturation is active."
+  },
+  "mpc_formulation": {
+    "model": "y[k+1] = a*y[k] + b*u[k]",
+    "a": 0.143846,
+    "b": 0.856154,
+    "objective": "minimise sum q*(y[k+i]-r[k+i])^2 + rho*(u[k+i]-u[k+i-1])^2",
+    "constraints": [
+      "32 <= u[k+i] <= 128"
+    ],
+    "optional_future_constraints": [
+      "|u[k+i] - u[k+i-1]| <= delta_u_max"
+    ],
+    "latency_constraints": "disabled until usable latency telemetry is available"
+  },
+  "out_of_scope": [
+    "live closed-loop Kubernetes experiments",
+    "latency-constrained MPC",
+    "reinforcement learning",
+    "MARL",
+    "automatic expansion beyond lambda=128",
+    "lambda=512 experiments"
+  ],
+  "next_expected_stage": "v0.11.0-throughput-controller-prototype"
+}
