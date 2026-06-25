@@ -1,17 +1,20 @@
 {
-  "controller": "feedforward",
+  "controller": "p",
+  "controller_parameters": {
+    "kp": 0.1
+  },
   "hold": 12,
   "metrics": {
-    "final_error": -2.5114417212535045e-09,
-    "mae": 0.35843022008727865,
-    "max_abs_command_change": 32.0,
-    "max_abs_error": 4.603072000361266,
-    "mean_abs_command_change": 2.169491525423729,
-    "mean_error": 7.0369784073894456e-12,
+    "final_error": -4.263256414560601e-14,
+    "mae": 0.18853725054591308,
+    "max_abs_command_change": 35.2,
+    "max_abs_error": 4.603072000000012,
+    "mean_abs_command_change": 2.494915254228768,
+    "mean_error": 0.056630989846506455,
     "n": 60,
-    "rmse": 1.2009983606842705,
-    "saturation_count": 0,
-    "saturation_fraction": 0.0
+    "rmse": 0.7312995588765588,
+    "saturation_count": 12,
+    "saturation_fraction": 0.2
   },
   "plant": "transition",
   "plant_parameters": {

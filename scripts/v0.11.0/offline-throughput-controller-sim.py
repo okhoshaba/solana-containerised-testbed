@@ -37,7 +37,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--plant", default="transition",
                    choices=["unity", "transition"])
     p.add_argument("--controller", default="feedforward",
-                   choices=["feedforward"])
+                   choices=["feedforward", "p"])
+    p.add_argument("--kp", type=float, default=0.10,
+                   help="Proportional gain for P-only controller.")
     p.add_argument("--hold", type=int, default=12,
                    help="Number of samples per reference segment.")
     p.add_argument("--out-dir", default="results/v0.11.0/controller-prototype")
@@ -117,8 +119,16 @@ def run_sim(args: argparse.Namespace) -> Dict[str, object]:
     rows: List[Dict[str, object]] = []
 
     for k, r in enumerate(refs):
-        # Feed-forward baseline for near-unity plant.
-        u_raw = r
+        # Controller uses the previous simulated plant output as feedback.
+        e_feedback = r - y
+
+        if args.controller == "feedforward":
+            u_raw = r
+        elif args.controller == "p":
+            u_raw = r + args.kp * e_feedback
+        else:
+            raise ValueError(f"unknown controller: {args.controller}")
+
         sat = saturate(u_raw)
         u_cmd = float(sat["u_cmd"])
         saturated = bool(sat["saturated"])
@@ -151,6 +161,9 @@ def run_sim(args: argparse.Namespace) -> Dict[str, object]:
         "plant": args.plant,
         "profile": args.profile,
         "hold": args.hold,
+        "controller_parameters": {
+            "kp": args.kp if args.controller == "p" else None,
+        },
         "safe_bounds": {
             "u_min": U_MIN,
             "u_max": U_MAX,
@@ -210,6 +223,8 @@ def main() -> int:
     print(f"controller: {result['controller']}")
     print(f"plant:      {result['plant']}")
     print(f"profile:    {result['profile']}")
+    if result["controller"] == "p":
+        print(f"kp:         {result['controller_parameters']['kp']:.6f}")
     print(f"rmse:       {m['rmse']:.6f}")
     print(f"mae:        {m['mae']:.6f}")
     print(f"sat_count:  {m['saturation_count']}")
