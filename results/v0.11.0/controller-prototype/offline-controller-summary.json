@@ -1,0 +1,28 @@
+{
+  "controller": "feedforward",
+  "hold": 12,
+  "metrics": {
+    "final_error": -2.5114417212535045e-09,
+    "mae": 0.35843022008727865,
+    "max_abs_command_change": 32.0,
+    "max_abs_error": 4.603072000361266,
+    "mean_abs_command_change": 2.169491525423729,
+    "mean_error": 7.0369784073894456e-12,
+    "n": 60,
+    "rmse": 1.2009983606842705,
+    "saturation_count": 0,
+    "saturation_fraction": 0.0
+  },
+  "plant": "transition",
+  "plant_parameters": {
+    "a": 0.143846,
+    "b": 0.856154,
+    "unity": false
+  },
+  "profile": "multistep",
+  "safe_bounds": {
+    "u_max": 128.0,
+    "u_min": 32.0
+  },
+  "stage": "v0.11.0-throughput-controller-prototype"
+}
