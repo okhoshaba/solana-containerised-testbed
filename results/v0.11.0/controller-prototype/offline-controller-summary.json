@@ -1,0 +1,35 @@
+{
+  "controller": "pi",
+  "controller_parameters": {
+    "ki": 0.002,
+    "kp": 0.1,
+    "ts": 1.0
+  },
+  "hold": 12,
+  "metrics": {
+    "anti_windup_freeze_count": 12,
+    "anti_windup_freeze_fraction": 0.2,
+    "final_error": 0.06174337936708696,
+    "mae": 0.20474238505264944,
+    "max_abs_command_change": 35.263999999999996,
+    "max_abs_error": 4.594358501030513,
+    "mean_abs_command_change": 2.496066228218929,
+    "mean_error": 0.056873506477442014,
+    "n": 60,
+    "rmse": 0.7264389755730982,
+    "saturation_count": 12,
+    "saturation_fraction": 0.2
+  },
+  "plant": "transition",
+  "plant_parameters": {
+    "a": 0.143846,
+    "b": 0.856154,
+    "unity": false
+  },
+  "profile": "multistep",
+  "safe_bounds": {
+    "u_max": 128.0,
+    "u_min": 32.0
+  },
+  "stage": "v0.11.0-throughput-controller-prototype"
+}
