@@ -168,12 +168,23 @@ Current files:
 
 Important note:
 
-The JSON and CSV files represent the most recent simulator run. At the time of this README, that run is:
+The JSON and CSV files represent the most recent simulator run. At the time of this README, that run is the config-driven PI run:
 
+    simulation_name = multistep-pi-transition-ts1
     controller = pi
-    profile = multistep
+    profile = config_piecewise_constant
     plant = transition
+    sample_count = 60
     Kp = 0.10
     Ki = 0.002
     Ts = 1.0
-    hold = 12
+
+This config-driven run is intentionally equivalent to the earlier CLI run:
+
+    --profile multistep
+    --plant transition
+    --controller pi
+    --kp 0.10
+    --ki 0.002
+    --ts 1.0
+    --hold 12

@@ -12,7 +12,7 @@
       "controller_parameters": {
         "ki": null,
         "kp": null,
-        "ts": null
+        "ts": 1.0
       },
       "hold": 12,
       "metrics": {
@@ -37,7 +37,7 @@
       "controller_parameters": {
         "ki": null,
         "kp": 0.1,
-        "ts": null
+        "ts": 1.0
       },
       "hold": 12,
       "metrics": {

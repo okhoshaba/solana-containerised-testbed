@@ -5,7 +5,7 @@
     "kp": 0.1,
     "ts": 1.0
   },
-  "hold": 12,
+  "hold": null,
   "metrics": {
     "anti_windup_freeze_count": 12,
     "anti_windup_freeze_fraction": 0.2,
@@ -26,10 +26,12 @@
     "b": 0.856154,
     "unity": false
   },
-  "profile": "multistep",
+  "profile": "config_piecewise_constant",
   "safe_bounds": {
     "u_max": 128.0,
     "u_min": 32.0
   },
+  "sample_count": 60,
+  "simulation_name": "multistep-pi-transition-ts1",
   "stage": "v0.11.0-throughput-controller-prototype"
 }

@@ -1,0 +1,25 @@
+{
+  "simulation": {
+    "name": "multistep-p-transition-ts1",
+    "time_step_seconds": 1.0,
+    "plant": "transition"
+  },
+  "safe_bounds": {
+    "u_min": 32,
+    "u_max": 128
+  },
+  "reference_profile": {
+    "type": "piecewise_constant",
+    "segments": [
+      {"duration_seconds": 12, "value": 64},
+      {"duration_seconds": 12, "value": 96},
+      {"duration_seconds": 12, "value": 128},
+      {"duration_seconds": 12, "value": 96},
+      {"duration_seconds": 12, "value": 64}
+    ]
+  },
+  "controller": {
+    "type": "p",
+    "kp": 0.10
+  }
+}
