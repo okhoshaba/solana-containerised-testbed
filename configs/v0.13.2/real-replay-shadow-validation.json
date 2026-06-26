@@ -1,0 +1,39 @@
+{
+  "achieved_column": null,
+  "base_runner_config": "configs/v0.13.0/shadow-controller-replay.json",
+  "base_runner_script": "scripts/v0.13.0/run-shadow-controller.py",
+  "command_column": null,
+  "dataset_path": null,
+  "max_rows": 600,
+  "offline_only": true,
+  "output_dir": "results/v0.13.2/real-replay-shadow-mode-validation",
+  "outputs": {
+    "annotated_timeseries_csv": "real-replay-shadow-timeseries.csv",
+    "resolved_runner_config": "runtime-shadow-controller-replay.json",
+    "runner_summary_json": "shadow-controller-summary.json",
+    "runner_timeseries_csv": "shadow-controller-timeseries.csv",
+    "summary_json": "real-replay-shadow-summary.json"
+  },
+  "real_replay_binding_summary": "results/v0.13.1/real-replay-dataset-binding/replay-binding-summary.json",
+  "safety": {
+    "do_not_apply_recommendations": true,
+    "do_not_call_kubectl": true,
+    "do_not_execute_closed_loop_control": true,
+    "do_not_generate_transaction_load": true,
+    "do_not_modify_kubernetes": true,
+    "do_not_start_live_controller": true
+  },
+  "sample_time_seconds": null,
+  "stage": "real replay shadow-mode validation",
+  "time_column_candidates": [
+    "t_rel_sec",
+    "t_sec",
+    "time",
+    "timestamp",
+    "seconds",
+    "elapsed_seconds",
+    "t"
+  ],
+  "timebase_policy": "prefer_real_replay_time_column_for_annotation_and_use_median_dt_for_runner_sample_time",
+  "version": "v0.13.2"
+}

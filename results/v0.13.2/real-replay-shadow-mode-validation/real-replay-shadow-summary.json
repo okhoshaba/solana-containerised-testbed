@@ -1,0 +1,86 @@
+{
+  "decision": "REAL_REPLAY_SHADOW_MODE_VALIDATION_COMPLETE",
+  "generated_at_utc": "2026-06-26T12:25:29.234609+00:00",
+  "interpretation": {
+    "timebase_note": "The annotated timeseries preserves the real replay time column when available. The inherited v0.13.0 runner still writes its internal time_seconds as row index.",
+    "what_this_does_not_validate": "This does not validate live telemetry, Kubernetes actuation, production controller behavior, or closed-loop control.",
+    "what_this_validates": "The v0.13.0 offline shadow-mode runner can be bound to and executed against a real v0.8.0 replay CSV."
+  },
+  "offline_only": true,
+  "outputs": {
+    "annotated_timeseries_csv": "results/v0.13.2/real-replay-shadow-mode-validation/real-replay-shadow-timeseries.csv",
+    "resolved_runner_config": "results/v0.13.2/real-replay-shadow-mode-validation/runtime-shadow-controller-replay.json",
+    "runner_summary_json": "results/v0.13.2/real-replay-shadow-mode-validation/shadow-controller-summary.json",
+    "runner_timeseries_csv": "results/v0.13.2/real-replay-shadow-mode-validation/shadow-controller-timeseries.csv",
+    "summary_json": "results/v0.13.2/real-replay-shadow-mode-validation/real-replay-shadow-summary.json"
+  },
+  "real_replay_dataset": {
+    "achieved_column": "u_ach",
+    "command_column": "u_cmd",
+    "fieldnames": [
+      "t_sec",
+      "t_rel_sec",
+      "u_cmd",
+      "u_ach",
+      "tracking_error",
+      "u_cmd_demeaned",
+      "u_ach_demeaned",
+      "err_per_sec",
+      "inflight"
+    ],
+    "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-timeseries.csv",
+    "row_count": 78,
+    "time_column": "t_rel_sec"
+  },
+  "runner": {
+    "base_runner_config": "configs/v0.13.0/shadow-controller-replay.json",
+    "base_runner_script": "scripts/v0.13.0/run-shadow-controller.py",
+    "resolved_runner_config": "results/v0.13.2/real-replay-shadow-mode-validation/runtime-shadow-controller-replay.json",
+    "runner_decision": "SHADOW_MODE_REPLAY_VALIDATION_COMPLETE",
+    "runner_input": {
+      "achieved_column": "u_ach",
+      "candidate_files_checked": 1,
+      "command_column": "u_cmd",
+      "input_mode": "replay_csv",
+      "source_file": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-timeseries.csv"
+    },
+    "runner_metrics": {
+      "prediction_error_count": 78,
+      "prediction_mae": 29.962706029302662,
+      "prediction_rmse": 35.45878517572348,
+      "u_recommended_max": 466.4926688852248,
+      "u_recommended_mean": 235.52992702333194,
+      "u_recommended_min": 20.0,
+      "y_hat_max": 109.61769529962798,
+      "y_hat_mean": 70.09662378940868,
+      "y_hat_min": 0.0
+    },
+    "runner_rows": 78,
+    "runner_summary": "results/v0.13.2/real-replay-shadow-mode-validation/shadow-controller-summary.json",
+    "runner_timeseries": "results/v0.13.2/real-replay-shadow-mode-validation/shadow-controller-timeseries.csv",
+    "runner_version": "v0.13.0"
+  },
+  "safety_constraints": {
+    "closed_loop_control_executed": false,
+    "controller_recommendations_applied": false,
+    "kubectl_invoked": false,
+    "kubernetes_modified": false,
+    "live_controller_started": false,
+    "offline_only": true,
+    "transaction_load_generated": false
+  },
+  "stage": "real replay shadow-mode validation",
+  "timebase": {
+    "max_dt_seconds": 35.029999999999994,
+    "median_dt_seconds": 5.012999999999977,
+    "min_dt_seconds": 5.005999999999972,
+    "sample_time_seconds_selected": 5.012999999999977,
+    "sample_time_selection_reason": "median positive delta from real replay time column",
+    "strictly_increasing": true,
+    "time_column": "t_rel_sec",
+    "time_max": 746.064,
+    "time_min": 0.0,
+    "time_values_count": 78
+  },
+  "version": "v0.13.2"
+}

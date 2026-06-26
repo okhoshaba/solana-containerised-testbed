@@ -1,0 +1,59 @@
+{
+  "controller": {
+    "cooldown_steps": 0,
+    "initial_output": 0.0,
+    "kd": 0.0,
+    "ki": 0.0,
+    "kp": 0.2,
+    "mode": "P",
+    "output_max": 1000.0,
+    "output_min": 0.0,
+    "rate_limit_per_step": 100.0,
+    "setpoint": 100.0
+  },
+  "input": {
+    "achieved_column_candidates": [
+      "u_ach"
+    ],
+    "command_column_candidates": [
+      "u_cmd"
+    ],
+    "max_rows": 78,
+    "mode": "auto_replay_or_synthetic",
+    "replay_search_globs": [
+      "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-timeseries.csv"
+    ]
+  },
+  "offline_only": true,
+  "output": {
+    "output_dir": "results/v0.13.2/real-replay-shadow-mode-validation",
+    "summary_json": "shadow-controller-summary.json",
+    "timeseries_csv": "shadow-controller-timeseries.csv"
+  },
+  "safety": {
+    "abort_on_invalid_number": true,
+    "do_not_apply_recommendations": true,
+    "fail_closed_on_missing_telemetry": true
+  },
+  "simulation": {
+    "initial_y_hat": 0.0,
+    "plant": {
+      "a_y": 0.92,
+      "b_u": 0.08,
+      "delay_steps": 1,
+      "output_max": 1000000000.0,
+      "output_min": 0.0
+    },
+    "sample_time_seconds": 5.012999999999977
+  },
+  "stage": "closed-loop shadow-mode controller validation",
+  "v0.13.2_binding": {
+    "achieved_column": "u_ach",
+    "command_column": "u_cmd",
+    "real_replay_dataset_path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-timeseries.csv",
+    "source_binding_summary": "results/v0.13.1/real-replay-dataset-binding/replay-binding-summary.json",
+    "time_column": "t_rel_sec",
+    "timebase_policy": "prefer_real_replay_time_column_for_annotation_and_use_median_dt_for_runner_sample_time"
+  },
+  "version": "v0.13.0"
+}
