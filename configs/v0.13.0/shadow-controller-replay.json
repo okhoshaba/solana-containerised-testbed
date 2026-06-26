@@ -1,0 +1,71 @@
+{
+  "version": "v0.13.0",
+  "stage": "closed-loop shadow-mode controller validation",
+  "offline_only": true,
+  "input": {
+    "mode": "auto_replay_or_synthetic",
+    "replay_search_globs": [
+      "results/v0.8.0/**/*.csv",
+      "results/v0.9.0/**/*.csv",
+      "results/v0.10.0/**/*.csv",
+      "results/v0.11.0/**/*.csv"
+    ],
+    "max_rows": 600,
+    "command_column_candidates": [
+      "u_cmd",
+      "load",
+      "load_tps",
+      "target_tps",
+      "requested_tps",
+      "send_rate",
+      "tx_rate",
+      "input_rate",
+      "client_rate",
+      "cmd",
+      "u"
+    ],
+    "achieved_column_candidates": [
+      "u_ach",
+      "throughput",
+      "achieved_tps",
+      "observed_tps",
+      "success_tps",
+      "confirmed_tps",
+      "tps",
+      "y"
+    ]
+  },
+  "simulation": {
+    "sample_time_seconds": 1.0,
+    "initial_y_hat": 0.0,
+    "plant": {
+      "a_y": 0.92,
+      "b_u": 0.08,
+      "delay_steps": 1,
+      "output_min": 0.0,
+      "output_max": 1000000000.0
+    }
+  },
+  "controller": {
+    "mode": "P",
+    "setpoint": 100.0,
+    "kp": 0.20,
+    "ki": 0.0,
+    "kd": 0.0,
+    "initial_output": 0.0,
+    "output_min": 0.0,
+    "output_max": 1000.0,
+    "rate_limit_per_step": 100.0,
+    "cooldown_steps": 0
+  },
+  "safety": {
+    "do_not_apply_recommendations": true,
+    "fail_closed_on_missing_telemetry": true,
+    "abort_on_invalid_number": true
+  },
+  "output": {
+    "output_dir": "results/v0.13.0/shadow-mode-validation",
+    "timeseries_csv": "shadow-controller-timeseries.csv",
+    "summary_json": "shadow-controller-summary.json"
+  }
+}

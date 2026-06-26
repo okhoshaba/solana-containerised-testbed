@@ -1,0 +1,64 @@
+{
+  "version": "v0.13.0",
+  "stage": "closed-loop shadow-mode controller validation",
+  "generated_at_utc": "2026-06-26T11:49:03.509537+00:00",
+  "offline_only": true,
+  "live_controller_started": false,
+  "kubernetes_modified": false,
+  "actuator_applied": false,
+  "decision": "SHADOW_MODE_REPLAY_VALIDATION_COMPLETE",
+  "input": {
+    "input_mode": "replay_csv",
+    "source_file": "results/v0.11.0/controller-prototype/offline-controller-traces.csv",
+    "command_column": "u_cmd",
+    "achieved_column": "y",
+    "candidate_files_checked": 2
+  },
+  "sample_time_seconds": 1.0,
+  "plant": {
+    "a_y": 0.92,
+    "b_u": 0.08,
+    "delay_steps": 1,
+    "output_min": 0.0,
+    "output_max": 1000000000.0
+  },
+  "controller": {
+    "mode": "P",
+    "setpoint": 100.0,
+    "kp": 0.2,
+    "ki": 0.0,
+    "kd": 0.0,
+    "initial_output": 0.0,
+    "output_min": 0.0,
+    "output_max": 1000.0,
+    "rate_limit_per_step": 100.0,
+    "cooldown_steps": 0
+  },
+  "rows": 60,
+  "metrics": {
+    "prediction_mae": 28.862401833324345,
+    "prediction_rmse": 32.431386845603015,
+    "prediction_error_count": 60,
+    "y_hat_min": 0.0,
+    "y_hat_max": 108.78250644269765,
+    "y_hat_mean": 73.43791419581721,
+    "u_recommended_min": 20.0,
+    "u_recommended_max": 318.74502965019326,
+    "u_recommended_mean": 250.03167389234966
+  },
+  "safety_notes": [
+    "Controller recommendations were not applied.",
+    "Replay input, not controller output, drives the plant prediction.",
+    "The runner does not call kubectl.",
+    "The runner does not modify Kubernetes.",
+    "The runner does not generate transaction load.",
+    "The current controller mode is intentionally limited to P by default."
+  ],
+  "limitations": [
+    "The default plant coefficients are config values and must be replaced by coefficients derived from the project model before scientific interpretation.",
+    "One-second simulation is valid only when the discrete plant coefficients correspond to a one-second sample time.",
+    "MPC is intentionally out of scope for this stage.",
+    "Live telemetry read-only integration is not implemented in this MVP."
+  ],
+  "recommended_next_step": "Validate against real v0.8.0 replay columns when available, then introduce PI and PID modes gradually."
+}
