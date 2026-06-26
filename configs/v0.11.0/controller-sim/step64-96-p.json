@@ -1,0 +1,33 @@
+{
+  "controller": {
+    "kp": 0.1,
+    "type": "p"
+  },
+  "outputs": {
+    "plot": false,
+    "write_csv": true,
+    "write_json": true
+  },
+  "reference_profile": {
+    "segments": [
+      {
+        "duration_seconds": 24,
+        "value": 64
+      },
+      {
+        "duration_seconds": 36,
+        "value": 96
+      }
+    ],
+    "type": "piecewise_constant"
+  },
+  "safe_bounds": {
+    "u_max": 128,
+    "u_min": 32
+  },
+  "simulation": {
+    "name": "step64-96-p-transition-ts1",
+    "plant": "transition",
+    "time_step_seconds": 1.0
+  }
+}

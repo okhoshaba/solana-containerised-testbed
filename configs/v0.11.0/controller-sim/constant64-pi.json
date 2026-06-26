@@ -1,0 +1,31 @@
+{
+  "controller": {
+    "ki": 0.002,
+    "kp": 0.1,
+    "ts": 1.0,
+    "type": "pi"
+  },
+  "outputs": {
+    "plot": false,
+    "write_csv": true,
+    "write_json": true
+  },
+  "reference_profile": {
+    "segments": [
+      {
+        "duration_seconds": 60,
+        "value": 64
+      }
+    ],
+    "type": "piecewise_constant"
+  },
+  "safe_bounds": {
+    "u_max": 128,
+    "u_min": 32
+  },
+  "simulation": {
+    "name": "constant64-pi-transition-ts1",
+    "plant": "transition",
+    "time_step_seconds": 1.0
+  }
+}

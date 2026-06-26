@@ -1,0 +1,36 @@
+{
+  "controller": {
+    "type": "feedforward"
+  },
+  "outputs": {
+    "plot": false,
+    "write_csv": true,
+    "write_json": true
+  },
+  "reference_profile": {
+    "segments": [
+      {
+        "duration_seconds": 20,
+        "value": 32
+      },
+      {
+        "duration_seconds": 20,
+        "value": 64
+      },
+      {
+        "duration_seconds": 20,
+        "value": 32
+      }
+    ],
+    "type": "piecewise_constant"
+  },
+  "safe_bounds": {
+    "u_max": 128,
+    "u_min": 32
+  },
+  "simulation": {
+    "name": "lower-range-feedforward-transition-ts1",
+    "plant": "transition",
+    "time_step_seconds": 1.0
+  }
+}
