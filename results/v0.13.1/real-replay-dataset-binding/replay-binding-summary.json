@@ -1,0 +1,53 @@
+{
+  "decision": "REAL_REPLAY_BINDING_CANDIDATE_FOUND",
+  "decision_reason": "A suitable real replay CSV was found under the preferred v0.8.0 dataset root.",
+  "generated_at": "2026-06-26T12:04:32.226486+00:00",
+  "offline_only": true,
+  "outputs": {
+    "inventory": "results/v0.13.1/real-replay-dataset-binding/replay-dataset-inventory.json",
+    "summary": "results/v0.13.1/real-replay-dataset-binding/replay-binding-summary.json"
+  },
+  "preferred_candidate_count": 1,
+  "preferred_dataset_version": "v0.8.0",
+  "recommended_binding": {
+    "achieved_column": "u_ach",
+    "binding_confidence": "medium",
+    "command_column": "u_cmd",
+    "controller_recommendations_applied": false,
+    "dataset_path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-timeseries.csv",
+    "dataset_version": "v0.8.0",
+    "kubernetes_invoked": false,
+    "live_telemetry_used": false,
+    "offline_only": true,
+    "row_count": 78,
+    "time_column": null
+  },
+  "safety_constraints": {
+    "closed_loop_control_executed": false,
+    "controller_recommendations_applied": false,
+    "kubectl_invoked": false,
+    "kubernetes_modified": false,
+    "live_controller_started": false,
+    "offline_only": true,
+    "transaction_load_generated": false
+  },
+  "secondary_candidate_count": 0,
+  "secondary_candidates_are_advisory_only": true,
+  "top_preferred_candidates": [
+    {
+      "achieved_column": "u_ach",
+      "binding_confidence": "medium",
+      "command_column": "u_cmd",
+      "controller_recommendations_applied": false,
+      "dataset_path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-timeseries.csv",
+      "dataset_version": "v0.8.0",
+      "kubernetes_invoked": false,
+      "live_telemetry_used": false,
+      "offline_only": true,
+      "row_count": 78,
+      "time_column": null
+    }
+  ],
+  "top_secondary_candidates": [],
+  "version": "v0.13.1"
+}

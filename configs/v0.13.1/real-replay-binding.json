@@ -1,0 +1,53 @@
+{
+  "version": "v0.13.1",
+  "offline_only": true,
+  "preferred_dataset_version": "v0.8.0",
+  "search_roots": [
+    {
+      "path": "results/v0.8.0",
+      "dataset_version": "v0.8.0",
+      "role": "preferred_real_replay"
+    },
+    {
+      "path": "results/v0.6.0",
+      "dataset_version": "v0.6.0",
+      "role": "secondary_candidate"
+    },
+    {
+      "path": "results/v0.7.0",
+      "dataset_version": "v0.7.0",
+      "role": "secondary_candidate"
+    }
+  ],
+  "command_column_candidates": [
+    "u_cmd",
+    "load",
+    "load_tps",
+    "target_tps",
+    "requested_tps",
+    "send_rate",
+    "tx_rate",
+    "input_rate",
+    "client_rate",
+    "cmd",
+    "u"
+  ],
+  "achieved_column_candidates": [
+    "u_ach",
+    "throughput",
+    "achieved_tps",
+    "observed_tps",
+    "success_tps",
+    "confirmed_tps",
+    "tps",
+    "y"
+  ],
+  "time_column_candidates": [
+    "time",
+    "timestamp",
+    "seconds",
+    "elapsed_seconds",
+    "t"
+  ],
+  "output_directory": "results/v0.13.1/real-replay-dataset-binding"
+}
