@@ -1,0 +1,68 @@
+{
+  "stage": "v0.13.5",
+  "title": "shadow-mode validation with refit coefficients and placeholder-vs-fitted model comparison",
+  "offline_only": true,
+  "source_artifacts": {
+    "placeholder_config_path": "configs/v0.13.0/shadow-controller-replay.json",
+    "real_replay_timeseries_path": "results/v0.13.2/real-replay-shadow-mode-validation/real-replay-shadow-timeseries.csv",
+    "v0_13_3_model_fit_summary_path": "results/v0.13.3/model-fit-sanity-review/model-fit-summary.json"
+  },
+  "fitted_model_discovery": {
+    "candidate_globs": [
+      "configs/v0.13.4/**/*.json",
+      "results/v0.13.4/**/*.json",
+      "results/v0.13.4/**/*coeff*.json",
+      "results/v0.13.4/**/*fit*.json",
+      "results/v0.13.4/**/*model*.json"
+    ],
+    "required_numeric_fields_anywhere": [
+      "a_y",
+      "b_u"
+    ]
+  },
+  "replay_columns": {
+    "time_candidates": [
+      "source_time_seconds",
+      "t_sec",
+      "t_rel_sec",
+      "time_seconds",
+      "time"
+    ],
+    "command_candidates": [
+      "u_cmd_replay",
+      "u_cmd",
+      "command",
+      "load_command",
+      "target_load"
+    ],
+    "observed_candidates": [
+      "u_ach_replay",
+      "u_ach",
+      "observed_throughput",
+      "throughput",
+      "achieved_throughput",
+      "y"
+    ]
+  },
+  "controller_policy": {
+    "mode": "P",
+    "setpoint_source": "median_observed",
+    "kp": 0.10,
+    "ki": 0.0,
+    "kd": 0.0,
+    "action_min": 0.0,
+    "action_max": 1000000000.0,
+    "max_step_change": null
+  },
+  "safety_policy": {
+    "prediction_must_be_finite": true,
+    "action_must_be_finite": true,
+    "action_min": 0.0,
+    "action_max": 1000000000.0
+  },
+  "decision_thresholds": {
+    "minimum_rmse_improvement_pct_for_pass": 5.0,
+    "maximum_new_safety_regressions_for_pass": 0,
+    "maximum_action_disagreement_rate_for_pass": 0.50
+  }
+}

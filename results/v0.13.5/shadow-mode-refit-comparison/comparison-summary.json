@@ -1,0 +1,75 @@
+{
+  "actuator_applied": false,
+  "comparison_metrics": {
+    "action_disagreement_count": 78,
+    "action_disagreement_rate": 1.0,
+    "bias_reduction_abs": -121.5000222848769,
+    "fitted_more_aggressive_count": 65,
+    "fitted_more_conservative_count": 13,
+    "mae_improvement_abs": -101.28180564278705,
+    "mae_improvement_pct": -348.0668124541111,
+    "max_abs_action_delta": 33.91340488500906,
+    "mean_abs_action_delta": 13.362404581772056,
+    "rmse_improvement_abs": -124.66149441746754,
+    "rmse_improvement_pct": -366.58653643140315
+  },
+  "decision": {
+    "reason": "Fitted model RMSE improvement is below pass threshold: -366.587%. Action disagreement rate is high: 1.",
+    "recommended_next_step": "Keep fitted coefficients as a candidate, but review action deltas and model-fit evidence before closed-loop preparation.",
+    "status": "caution"
+  },
+  "fitted_model_discovery": {
+    "invalid_candidate_error_count": 1,
+    "selected": "results/v0.13.4/refit-throughput-model/refit-coefficients.json",
+    "valid_candidate_count": 2
+  },
+  "inputs": {
+    "command_column": "u_cmd_replay",
+    "config_path": "configs/v0.13.5/shadow-mode-refit-comparison.json",
+    "fitted_model_source": "results/v0.13.4/refit-throughput-model/refit-coefficients.json",
+    "observed_column": "u_ach_replay",
+    "placeholder_model_source": "configs/v0.13.0/shadow-controller-replay.json",
+    "replay_path": "results/v0.13.2/real-replay-shadow-mode-validation/real-replay-shadow-timeseries.csv",
+    "time_column": "source_time_seconds"
+  },
+  "model_metrics": {
+    "fitted_bias": -130.38018618894728,
+    "fitted_mae": 130.38018618894728,
+    "fitted_mape": 228.3914486196873,
+    "fitted_r2": -22.553650479254017,
+    "fitted_rmse": 158.66751537803125,
+    "placeholder_bias": -8.880163904070377,
+    "placeholder_mae": 29.09838054616022,
+    "placeholder_mape": 41.834162310691255,
+    "placeholder_r2": -0.08191668990721146,
+    "placeholder_rmse": 34.006020960563724,
+    "valid_error_rows": 78
+  },
+  "models": {
+    "fitted": {
+      "a_y": 1.02763034203239,
+      "b_u": -0.03997702623417542,
+      "delay_steps": 15,
+      "y0": 80.0
+    },
+    "placeholder": {
+      "a_y": 0.92,
+      "b_u": 0.08,
+      "delay_steps": 1,
+      "y0": 0.0
+    }
+  },
+  "offline_only": true,
+  "outputs": {
+    "comparison_csv": "results/v0.13.5/shadow-mode-refit-comparison/shadow-mode-comparison.csv",
+    "summary_json": "results/v0.13.5/shadow-mode-refit-comparison/comparison-summary.json"
+  },
+  "safety_metrics": {
+    "fitted_constraint_warning_count": 0,
+    "fitted_new_safety_regressions_vs_placeholder": 0,
+    "fitted_safety_violation_count": 0,
+    "placeholder_constraint_warning_count": 0,
+    "placeholder_safety_violation_count": 0
+  },
+  "stage": "v0.13.5"
+}
