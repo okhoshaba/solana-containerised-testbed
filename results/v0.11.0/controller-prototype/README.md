@@ -29,6 +29,7 @@ Implementation file:
 Current simulator capabilities:
 
 - safe reference profiles;
+- JSON config-driven simulations;
 - unity plant;
 - first-order transition plant;
 - command saturation;
@@ -37,7 +38,8 @@ Current simulator capabilities:
 - PI controller;
 - freeze anti-windup for PI mode;
 - CSV trace output;
-- JSON summary output.
+- JSON summary output;
+- optional PNG plotting when `matplotlib` is available.
 
 ## Plant model used for comparison
 
@@ -188,3 +190,24 @@ This config-driven run is intentionally equivalent to the earlier CLI run:
     --ki 0.002
     --ts 1.0
     --hold 12
+
+## Optional plotting
+
+The simulator supports optional PNG plotting through:
+
+    --plot
+
+or through a config file:
+
+    "outputs": {
+      "plot": true
+    }
+
+Plotting is intentionally optional. If `matplotlib` is not installed, the simulator must still complete successfully and write the JSON and CSV outputs.
+
+In that case, the expected message is similar to:
+
+    plot_png: skipped: matplotlib unavailable: No module named 'matplotlib'
+
+This preserves portability on machines that only provide the Python standard library.
+
