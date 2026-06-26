@@ -1,0 +1,37 @@
+{
+  "stage": "v0.13.4",
+  "title": "real replay throughput model refit",
+  "offline_only": true,
+  "source_artifacts": {
+    "real_replay_timeseries_path": "results/v0.13.2/real-replay-shadow-mode-validation/real-replay-shadow-timeseries.csv"
+  },
+  "replay_columns": {
+    "time_candidates": [
+      "source_time_seconds",
+      "t_sec",
+      "t_rel_sec",
+      "time_seconds",
+      "time"
+    ],
+    "command_candidates": [
+      "u_cmd_replay",
+      "u_cmd",
+      "command",
+      "load_command",
+      "target_load"
+    ],
+    "observed_candidates": [
+      "u_ach_replay",
+      "u_ach",
+      "observed_throughput",
+      "throughput",
+      "achieved_throughput",
+      "y"
+    ]
+  },
+  "model_structure": {
+    "equation": "y[k+1] = a_y * y[k] + b_u * u[k-delay]",
+    "fit_intercept": false,
+    "delay_candidates": [0, 1, 2, 3, 4, 5, 10, 15, 20]
+  }
+}

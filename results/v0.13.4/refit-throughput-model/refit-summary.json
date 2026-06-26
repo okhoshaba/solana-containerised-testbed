@@ -1,0 +1,25 @@
+{
+  "actuator_applied": false,
+  "decision": "REAL_REPLAY_MODEL_REFIT_COMPLETE",
+  "metrics": {
+    "bias": -0.627255234576628,
+    "mae": 3.110984215151178,
+    "mape": 5.195506583982073,
+    "r2": 0.9730152858434464,
+    "rmse": 5.586271591418611
+  },
+  "offline_only": true,
+  "outputs": {
+    "coefficients_json": "results/v0.13.4/refit-throughput-model/refit-coefficients.json",
+    "summary_json": "results/v0.13.4/refit-throughput-model/refit-summary.json",
+    "timeseries_csv": "results/v0.13.4/refit-throughput-model/refit-timeseries.csv"
+  },
+  "selected_model": {
+    "a_y": 1.02763034203239,
+    "b_u": -0.03997702623417542,
+    "delay_steps": 15,
+    "y0": 80.0
+  },
+  "source_replay_path": "results/v0.13.2/real-replay-shadow-mode-validation/real-replay-shadow-timeseries.csv",
+  "stage": "v0.13.4"
+}
