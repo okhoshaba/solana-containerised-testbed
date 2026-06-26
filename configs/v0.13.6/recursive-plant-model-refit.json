@@ -1,0 +1,50 @@
+{
+  "stage": "v0.13.6",
+  "title": "recursive plant model refit with intercept and equilibrium validation",
+  "offline_only": true,
+  "source_artifacts": {
+    "real_replay_timeseries_path": "results/v0.13.2/real-replay-shadow-mode-validation/real-replay-shadow-timeseries.csv",
+    "placeholder_model_path": "configs/v0.13.0/shadow-controller-replay.json",
+    "v0_13_4_refit_coefficients_path": "results/v0.13.4/refit-throughput-model/refit-coefficients.json",
+    "v0_13_5_comparison_summary_path": "results/v0.13.5/shadow-mode-refit-comparison/comparison-summary.json"
+  },
+  "replay_columns": {
+    "time_candidates": [
+      "source_time_seconds",
+      "t_sec",
+      "t_rel_sec",
+      "time_seconds",
+      "time"
+    ],
+    "command_candidates": [
+      "u_cmd_replay",
+      "u_cmd",
+      "command",
+      "load_command",
+      "target_load"
+    ],
+    "observed_candidates": [
+      "u_ach_replay",
+      "u_ach",
+      "observed_throughput",
+      "throughput",
+      "achieved_throughput",
+      "y"
+    ]
+  },
+  "fit_policy": {
+    "delay_candidates": [0, 1, 2, 3, 4, 5, 10, 15, 20],
+    "train_fraction": 0.65,
+    "model_families": [
+      "no_intercept",
+      "intercept",
+      "equilibrium_deviation"
+    ],
+    "selection_metric": "validation_recursive_rmse"
+  },
+  "decision_thresholds": {
+    "minimum_recursive_rmse_improvement_pct_vs_placeholder_for_pass": 5.0,
+    "minimum_recursive_rmse_improvement_pct_vs_v0_13_4_for_pass": 20.0,
+    "maximum_validation_recursive_mape_for_pass": 50.0
+  }
+}

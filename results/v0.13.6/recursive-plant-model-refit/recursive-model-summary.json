@@ -1,0 +1,135 @@
+{
+  "actuator_applied": false,
+  "baseline_comparison": {
+    "baselines": [
+      {
+        "a_y": 0.92,
+        "b_u": 0.08,
+        "c": 0.0,
+        "delay_steps": 1,
+        "family": "v0.13.0_placeholder",
+        "source_path": "configs/v0.13.0/shadow-controller-replay.json",
+        "train_sample_count": null,
+        "u_eq": null,
+        "validation_one_step_metrics": {
+          "bias": -1.721832189230767,
+          "mae": 2.3110390476923075,
+          "mape": 4.30406886548572,
+          "r2": 0.9105239534045703,
+          "rmse": 5.401751025429274,
+          "valid_rows": 26
+        },
+        "validation_recursive_metrics": {
+          "bias": -9.896293177323543,
+          "mae": 12.146220714032838,
+          "mape": 19.99217355318911,
+          "r2": 0.10790414856511032,
+          "rmse": 16.876249223579954,
+          "valid_rows": 27
+        },
+        "y0": 0.0,
+        "y_eq": null
+      },
+      {
+        "a_y": 1.02763034203239,
+        "b_u": -0.03997702623417542,
+        "c": 0.0,
+        "delay_steps": 15,
+        "family": "v0.13.4_no_intercept_refit",
+        "source_path": "results/v0.13.4/refit-throughput-model/refit-coefficients.json",
+        "train_sample_count": null,
+        "u_eq": null,
+        "validation_one_step_metrics": {
+          "bias": -3.124109093704551,
+          "mae": 3.7855868945759252,
+          "mape": 5.798556601678634,
+          "r2": 0.604224885008654,
+          "rmse": 7.543684953864765,
+          "valid_rows": 12
+        },
+        "validation_recursive_metrics": {
+          "bias": -39.5926354024965,
+          "mae": 39.5926354024965,
+          "mape": 69.47985682541433,
+          "r2": -6.64282034679649,
+          "rmse": 49.39659303862327,
+          "valid_rows": 27
+        },
+        "y0": 80.0,
+        "y_eq": null
+      }
+    ],
+    "placeholder_validation_recursive_rmse": 16.876249223579954,
+    "selected_recursive_rmse_improvement_pct_vs_placeholder": 68.58802060656052,
+    "selected_recursive_rmse_improvement_pct_vs_v0_13_4": 89.2681587891063,
+    "selected_validation_recursive_rmse": 5.3011639284964245,
+    "v0_13_4_refit_validation_recursive_rmse": 49.39659303862327
+  },
+  "candidate_count": 27,
+  "decision": {
+    "reason": "Selected model improves recursive validation metrics versus both placeholder and v0.13.4 refit under configured thresholds.",
+    "recommended_next_step": "Use the selected recursive model as the new candidate plant model in a repeat shadow-mode controller comparison stage.",
+    "status": "pass"
+  },
+  "fit_failures": [],
+  "input": {
+    "command_column": "u_cmd_replay",
+    "observed_column": "u_ach_replay",
+    "replay_path": "results/v0.13.2/real-replay-shadow-mode-validation/real-replay-shadow-timeseries.csv",
+    "time_column": "source_time_seconds",
+    "train_fraction": 0.65,
+    "train_rows": 50,
+    "valid_rows": 78,
+    "validation_rows": 28
+  },
+  "offline_only": true,
+  "outputs": {
+    "candidates_csv": "results/v0.13.6/recursive-plant-model-refit/recursive-model-candidates.csv",
+    "selected_model_json": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json",
+    "summary_json": "results/v0.13.6/recursive-plant-model-refit/recursive-model-summary.json",
+    "validation_timeseries_csv": "results/v0.13.6/recursive-plant-model-refit/recursive-model-validation-timeseries.csv"
+  },
+  "selected_model": {
+    "a_y": 0.10889615191767432,
+    "b_u": 0.8845312889194352,
+    "c": 0.0,
+    "delay_steps": 0,
+    "family": "no_intercept",
+    "train_one_step_metrics": {
+      "bias": 0.10111272750841246,
+      "mae": 2.9192442142464845,
+      "mape": 3.607229824605017,
+      "r2": 0.9395714292783384,
+      "rmse": 6.407961975777415,
+      "valid_rows": 49
+    },
+    "train_recursive_metrics": {
+      "bias": 0.10906188985870668,
+      "mae": 3.182779630602911,
+      "mape": 3.948434147249186,
+      "r2": 0.938593546033951,
+      "rmse": 6.459602208558303,
+      "valid_rows": 49
+    },
+    "train_sample_count": 49,
+    "u_eq": 97.04,
+    "validation_one_step_metrics": {
+      "bias": -1.6789754250972049,
+      "mae": 2.0416659028441795,
+      "mape": 3.792300780256609,
+      "r2": 0.9141655433795702,
+      "rmse": 5.234810941749596,
+      "valid_rows": 27
+    },
+    "validation_recursive_metrics": {
+      "bias": -1.8814556821807338,
+      "mae": 2.277032799758361,
+      "mape": 4.204217268662627,
+      "r2": 0.9119757917318732,
+      "rmse": 5.3011639284964245,
+      "valid_rows": 27
+    },
+    "y_eq": 97.16156286
+  },
+  "stage": "v0.13.6"
+}
