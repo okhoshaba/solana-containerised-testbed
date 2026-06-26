@@ -1,0 +1,1892 @@
+{
+  "column_candidates": {
+    "achieved": [
+      "u_ach",
+      "throughput",
+      "achieved_tps",
+      "observed_tps",
+      "success_tps",
+      "confirmed_tps",
+      "tps",
+      "y"
+    ],
+    "command": [
+      "u_cmd",
+      "load",
+      "load_tps",
+      "target_tps",
+      "requested_tps",
+      "send_rate",
+      "tx_rate",
+      "input_rate",
+      "client_rate",
+      "cmd",
+      "u"
+    ],
+    "time": [
+      "time",
+      "timestamp",
+      "seconds",
+      "elapsed_seconds",
+      "t"
+    ]
+  },
+  "config_path": "configs/v0.13.1/real-replay-binding.json",
+  "datasets": [
+    {
+      "binding_confidence": "medium",
+      "column_count": 9,
+      "dataset_version": "v0.8.0",
+      "has_achieved_column": true,
+      "has_command_column": true,
+      "has_time_column": false,
+      "header": [
+        "t_sec",
+        "t_rel_sec",
+        "u_cmd",
+        "u_ach",
+        "tracking_error",
+        "u_cmd_demeaned",
+        "u_ach_demeaned",
+        "err_per_sec",
+        "inflight"
+      ],
+      "matched_columns": {
+        "achieved": "u_ach",
+        "command": "u_cmd",
+        "time": null
+      },
+      "missing_requirements": [],
+      "path": "results/v0.8.0/runs/v0.8.0-M4-SINE-L80-A48-T720/sine-timeseries.csv",
+      "read_error": null,
+      "role": "preferred_real_replay",
+      "row_count": 78,
+      "suitable_for_shadow_replay": true
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": false,
+      "header": [
+        "load_level",
+        "target_lambda",
+        "run_count",
+        "valid_runs",
+        "clean_runs",
+        "sent_delta_mean",
+        "sent_delta_std",
+        "ok_delta_mean",
+        "ok_delta_std",
+        "err_delta_total",
+        "achieved_tps_mean",
+        "achieved_tps_std"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": null
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/processed/v0.6.0-level-summary.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 4,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 21,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": false,
+      "header": [
+        "run_dir",
+        "run_id",
+        "load_level",
+        "run_kind",
+        "target_lambda",
+        "duration_seconds",
+        "sample_interval_seconds",
+        "sample_count",
+        "sent_initial",
+        "sent_final",
+        "sent_delta",
+        "ok_initial",
+        "ok_final",
+        "ok_delta",
+        "err_initial",
+        "err_final",
+        "err_delta",
+        "final_target_lambda",
+        "final_inflight",
+        "final_last_err",
+        "completed_utc"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": null
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/processed/v0.6.0-run-summary.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 18,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260619T173857Z_L1-low-controlled-load_lambda-1_9ec7f22/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260619T175348Z_L1-low-controlled-load_lambda-1_eb311d8/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260619T175511Z_L1-low-controlled-load_lambda-1_eb311d8/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T085631Z_L1-low-controlled-load_lambda-1_74ab09e/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T085851Z_L1-low-controlled-load_lambda-1_74ab09e/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T091739Z_L2-moderate-controlled-load_lambda-2_edf993a/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T092106Z_L2-moderate-controlled-load_lambda-2_edf993a/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T093054Z_L2-moderate-controlled-load_lambda-2_3c7cb9b/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 10,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T093253Z_L2-moderate-controlled-load_lambda-2_3c7cb9b/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T093428Z_L2-moderate-controlled-load_lambda-2_3c7cb9b/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T093939Z_L3-elevated-controlled-load_lambda-4_d645085/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T094434Z_L3-elevated-controlled-load_lambda-4_5b25214/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T094638Z_L3-elevated-controlled-load_lambda-4_5b25214/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T094851Z_L3-elevated-controlled-load_lambda-4_5b25214/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.6.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.6.0/raw/v0.6.0_coll_20260620T095038Z_L3-elevated-controlled-load_lambda-4_5b25214/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 17,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": false,
+      "header": [
+        "load_level",
+        "target_lambda",
+        "run_count",
+        "valid_runs",
+        "clean_runs",
+        "sent_delta_mean",
+        "sent_delta_std",
+        "ok_delta_mean",
+        "ok_delta_std",
+        "err_delta_total",
+        "final_inflight_mean",
+        "sample_inflight_max",
+        "sample_inflight_max_mean",
+        "sample_err_per_sec_max",
+        "sample_sent_per_sec_max",
+        "achieved_tps_mean",
+        "achieved_tps_std"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": null
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/processed/v0.7.0-level-summary.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 6,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 25,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": false,
+      "header": [
+        "run_dir",
+        "run_id",
+        "stage",
+        "load_level",
+        "run_kind",
+        "target_lambda",
+        "duration_seconds",
+        "sample_interval_seconds",
+        "sample_count",
+        "sent_initial",
+        "sent_final",
+        "sent_delta",
+        "ok_initial",
+        "ok_final",
+        "ok_delta",
+        "err_initial",
+        "err_final",
+        "err_delta",
+        "final_target_lambda",
+        "final_inflight",
+        "final_last_err",
+        "sample_inflight_max",
+        "sample_err_per_sec_max",
+        "sample_sent_per_sec_max",
+        "completed_utc"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": null
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/processed/v0.7.0-run-summary.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 30,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T105207Z_S2-saturation-probe_lambda-8_9619a2e/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 10,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T105751Z_S2-saturation-probe_lambda-8_232fcf9/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T110017Z_S2-saturation-probe_lambda-8_232fcf9/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T110155Z_S2-saturation-probe_lambda-8_232fcf9/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T110404Z_S2-saturation-probe_lambda-8_232fcf9/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T111710Z_S3-saturation-probe_lambda-16_12db857/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T112314Z_S3-saturation-probe_lambda-16_8e84682/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T112504Z_S3-saturation-probe_lambda-16_8e84682/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 10,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T112650Z_S3-saturation-probe_lambda-16_8e84682/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T112918Z_S3-saturation-probe_lambda-16_8e84682/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 10,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T113502Z_S4-saturation-probe_lambda-32_09186c8/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T114325Z_S4-saturation-probe_lambda-32_008e22d/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T114508Z_S4-saturation-probe_lambda-32_008e22d/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T114659Z_S4-saturation-probe_lambda-32_008e22d/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T114835Z_S4-saturation-probe_lambda-32_008e22d/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T120218Z_S5-saturation-probe_lambda-64_2d7864a/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T123946Z_S5-saturation-probe_lambda-64_08dc803/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T124118Z_S5-saturation-probe_lambda-64_08dc803/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T124300Z_S5-saturation-probe_lambda-64_08dc803/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T124433Z_S5-saturation-probe_lambda-64_08dc803/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T124936Z_S6-saturation-probe_lambda-128_761b5b8/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T130423Z_S6-saturation-probe_lambda-128_91d309f/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 10,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T130615Z_S6-saturation-probe_lambda-128_91d309f/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T130750Z_S6-saturation-probe_lambda-128_91d309f/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T130928Z_S6-saturation-probe_lambda-128_91d309f/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T131419Z_S7-saturation-probe_lambda-256_4efba19/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T131939Z_S7-saturation-probe_lambda-256_ef156e7/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T132130Z_S7-saturation-probe_lambda-256_ef156e7/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260620T132552Z_S7-saturation-probe_lambda-256_ef156e7/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    },
+    {
+      "binding_confidence": "none",
+      "column_count": 12,
+      "dataset_version": "v0.7.0",
+      "has_achieved_column": false,
+      "has_command_column": false,
+      "has_time_column": true,
+      "header": [
+        "timestamp_utc",
+        "elapsed_seconds",
+        "sample_index",
+        "target_lambda",
+        "sent_total",
+        "ok_total",
+        "err_total",
+        "inflight",
+        "inflight_max",
+        "sent_per_sec",
+        "err_per_sec",
+        "last_err"
+      ],
+      "matched_columns": {
+        "achieved": null,
+        "command": null,
+        "time": "elapsed_seconds"
+      },
+      "missing_requirements": [
+        "command_column",
+        "achieved_column"
+      ],
+      "path": "results/v0.7.0/raw/v0.7.0_coll_20260621T032454Z_S7-post-incident-validation_lambda-256_9c2f081/loadgen/stats_samples.csv",
+      "read_error": null,
+      "role": "secondary_candidate",
+      "row_count": 11,
+      "suitable_for_shadow_replay": false
+    }
+  ],
+  "generated_at": "2026-06-26T12:04:32.226486+00:00",
+  "generated_by": "scripts/v0.13.1/inspect-replay-datasets.py",
+  "offline_only": true,
+  "preferred_dataset_version": "v0.8.0",
+  "search_roots": [
+    {
+      "csv_file_count": 1,
+      "dataset_version": "v0.8.0",
+      "exists": true,
+      "path": "results/v0.8.0",
+      "role": "preferred_real_replay"
+    },
+    {
+      "csv_file_count": 17,
+      "dataset_version": "v0.6.0",
+      "exists": true,
+      "path": "results/v0.6.0",
+      "role": "secondary_candidate"
+    },
+    {
+      "csv_file_count": 32,
+      "dataset_version": "v0.7.0",
+      "exists": true,
+      "path": "results/v0.7.0",
+      "role": "secondary_candidate"
+    }
+  ],
+  "totals": {
+    "all_suitable_candidates": 1,
+    "csv_files_inspected": 50,
+    "preferred_suitable_candidates": 1,
+    "secondary_suitable_candidates": 0
+  },
+  "version": "v0.13.1"
+}
