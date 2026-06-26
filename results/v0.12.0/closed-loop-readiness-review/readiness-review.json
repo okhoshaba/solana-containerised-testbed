@@ -1,0 +1,326 @@
+{
+  "version": "v0.12.0",
+  "stage": "closed-loop readiness review",
+  "generated_at_utc": "2026-06-26T08:57:17.259263+00:00",
+  "live_controller_started": false,
+  "kubernetes_modified": false,
+  "review_only": true,
+  "decision": "CONDITIONAL_GO_FOR_LIMITED_LIVE",
+  "decision_rationale": [
+    "Prior research artefacts are present sufficiently for a review gate.",
+    "Offline modelling artefacts are present.",
+    "Controller simulation/prototype artefacts are present.",
+    "Offline controller safety-check artefacts are present.",
+    "Observability-related prior documentation is at least partially represented.",
+    "Live runbook, manual abort, or rollback documentation is not fully represented."
+  ],
+  "readiness_dimensions": {
+    "artefact_readiness": {
+      "status": "PASS",
+      "required_present": 2,
+      "required_total": 2,
+      "optional_present": 0,
+      "optional_total": 0,
+      "score": 1.0,
+      "missing_required": [],
+      "missing_optional": []
+    },
+    "modelling_readiness": {
+      "status": "PASS",
+      "required_present": 2,
+      "required_total": 2,
+      "optional_present": 0,
+      "optional_total": 0,
+      "score": 1.0,
+      "missing_required": [],
+      "missing_optional": []
+    },
+    "safety_readiness": {
+      "status": "PASS",
+      "required_present": 4,
+      "required_total": 4,
+      "optional_present": 0,
+      "optional_total": 0,
+      "score": 1.0,
+      "missing_required": [],
+      "missing_optional": []
+    },
+    "controller_simulation_readiness": {
+      "status": "PASS",
+      "required_present": 3,
+      "required_total": 3,
+      "optional_present": 0,
+      "optional_total": 0,
+      "score": 1.0,
+      "missing_required": [],
+      "missing_optional": []
+    },
+    "observability_readiness": {
+      "status": "WARN",
+      "required_present": 0,
+      "required_total": 0,
+      "optional_present": 2,
+      "optional_total": 3,
+      "score": 0.667,
+      "missing_required": [],
+      "missing_optional": [
+        "docs/experiments/v0.4.0*"
+      ]
+    },
+    "operational_readiness": {
+      "status": "FAIL",
+      "required_present": 0,
+      "required_total": 0,
+      "optional_present": 0,
+      "optional_total": 3,
+      "score": 0.0,
+      "missing_required": [],
+      "missing_optional": [
+        "docs/runbooks/*closed-loop*live*",
+        "docs/runbooks/*abort*",
+        "docs/runbooks/*rollback*"
+      ]
+    },
+    "reproducibility_readiness": {
+      "status": "PASS",
+      "score": 1.0,
+      "basis": "Versioned documentation, versioned results, and an offline checker are present."
+    }
+  },
+  "checked_artefacts": [
+    {
+      "name": "v0.8.0 experiment documentation",
+      "path_or_glob": "docs/experiments/v0.8.0*",
+      "category": "artefact_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "docs/experiments/v0.8.0-dynamic-load-system-identification.md",
+        "docs/experiments/v0.8.0-run-matrix.md"
+      ]
+    },
+    {
+      "name": "v0.9.0 experiment documentation",
+      "path_or_glob": "docs/experiments/v0.9.0*",
+      "category": "modelling_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "docs/experiments/v0.9.0-offline-throughput-modelling-methodological-note.md",
+        "docs/experiments/v0.9.0-offline-throughput-modelling.md"
+      ]
+    },
+    {
+      "name": "v0.10.0 controller-preparation documentation",
+      "path_or_glob": "docs/experiments/v0.10.0*",
+      "category": "safety_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "docs/experiments/v0.10.0-offline-controller-simulator-spec.md",
+        "docs/experiments/v0.10.0-throughput-controller-preparation-summary.md",
+        "docs/experiments/v0.10.0-throughput-controller-preparation.md"
+      ]
+    },
+    {
+      "name": "v0.11.0 controller-prototype documentation",
+      "path_or_glob": "docs/experiments/v0.11.0*",
+      "category": "controller_simulation_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "docs/experiments/v0.11.0-throughput-controller-prototype-summary.md",
+        "docs/experiments/v0.11.0-throughput-controller-prototype.md"
+      ]
+    },
+    {
+      "name": "v0.8.0 result directory",
+      "path_or_glob": "results/v0.8.0",
+      "category": "artefact_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "results/v0.8.0"
+      ]
+    },
+    {
+      "name": "v0.9.0 result directory",
+      "path_or_glob": "results/v0.9.0",
+      "category": "modelling_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "results/v0.9.0"
+      ]
+    },
+    {
+      "name": "v0.10.0 result directory",
+      "path_or_glob": "results/v0.10.0",
+      "category": "safety_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "results/v0.10.0"
+      ]
+    },
+    {
+      "name": "v0.11.0 result directory",
+      "path_or_glob": "results/v0.11.0",
+      "category": "controller_simulation_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "results/v0.11.0"
+      ]
+    },
+    {
+      "name": "v0.11.0 scripts directory",
+      "path_or_glob": "scripts/v0.11.0",
+      "category": "controller_simulation_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "scripts/v0.11.0"
+      ]
+    },
+    {
+      "name": "offline controller safety checks JSON",
+      "path_or_glob": "results/v0.11.0/controller-prototype/offline-controller-safety-checks.json",
+      "category": "safety_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "results/v0.11.0/controller-prototype/offline-controller-safety-checks.json"
+      ]
+    },
+    {
+      "name": "offline controller safety checks report",
+      "path_or_glob": "results/v0.11.0/controller-prototype/offline-controller-safety-checks.md",
+      "category": "safety_readiness",
+      "required": true,
+      "exists": true,
+      "matches": [
+        "results/v0.11.0/controller-prototype/offline-controller-safety-checks.md"
+      ]
+    },
+    {
+      "name": "observability documentation",
+      "path_or_glob": "docs/experiments/v0.4.0*",
+      "category": "observability_readiness",
+      "required": false,
+      "exists": false,
+      "matches": []
+    },
+    {
+      "name": "controlled-load documentation",
+      "path_or_glob": "docs/experiments/v0.6.0*",
+      "category": "observability_readiness",
+      "required": false,
+      "exists": true,
+      "matches": [
+        "docs/experiments/v0.6.0-controlled-load-experiments.md",
+        "docs/experiments/v0.6.0-controlled-load-results.md"
+      ]
+    },
+    {
+      "name": "saturation analysis documentation",
+      "path_or_glob": "docs/experiments/v0.7.0*",
+      "category": "observability_readiness",
+      "required": false,
+      "exists": true,
+      "matches": [
+        "docs/experiments/v0.7.0-saturation-knee-point-analysis.md",
+        "docs/experiments/v0.7.0-storage-pressure-incident.md"
+      ]
+    },
+    {
+      "name": "live closed-loop runbook",
+      "path_or_glob": "docs/runbooks/*closed-loop*live*",
+      "category": "operational_readiness",
+      "required": false,
+      "exists": false,
+      "matches": []
+    },
+    {
+      "name": "manual abort procedure",
+      "path_or_glob": "docs/runbooks/*abort*",
+      "category": "operational_readiness",
+      "required": false,
+      "exists": false,
+      "matches": []
+    },
+    {
+      "name": "rollback procedure",
+      "path_or_glob": "docs/runbooks/*rollback*",
+      "category": "operational_readiness",
+      "required": false,
+      "exists": false,
+      "matches": []
+    }
+  ],
+  "missing_or_weak_items": [
+    {
+      "category": "observability_readiness",
+      "status": "WARN",
+      "missing_required": [],
+      "missing_optional": [
+        "docs/experiments/v0.4.0*"
+      ]
+    },
+    {
+      "category": "operational_readiness",
+      "status": "FAIL",
+      "missing_required": [],
+      "missing_optional": [
+        "docs/runbooks/*closed-loop*live*",
+        "docs/runbooks/*abort*",
+        "docs/runbooks/*rollback*"
+      ]
+    }
+  ],
+  "required_preconditions_for_live_experiment": [
+    "Define a maximum transaction-generation rate for the live experiment.",
+    "Define minimum and maximum controller output bounds.",
+    "Define a controller output rate limit.",
+    "Define a controller cooldown interval.",
+    "Define a manual abort command and test it before the experiment.",
+    "Define automatic abort thresholds.",
+    "Define a maximum experiment duration.",
+    "Confirm metric capture before enabling live control.",
+    "Document rollback procedure.",
+    "Document post-run audit procedure."
+  ],
+  "recommended_next_stage": "v0.13.0 closed-loop shadow-mode controller validation",
+  "safety_constraints": [
+    "The controller output must be clamped.",
+    "The controller must fail closed, not fail open.",
+    "The controller must not increase load after telemetry loss.",
+    "The first live experiment must be short-duration and supervised.",
+    "The first live experiment must use conservative actuator limits.",
+    "The first live experiment must not be treated as production-like autonomous control."
+  ],
+  "abort_conditions": [
+    "Validator health becomes degraded or unavailable.",
+    "RPC error rate exceeds the configured threshold.",
+    "p95 or p99 transaction latency exceeds the configured threshold.",
+    "Pod restart count increases unexpectedly.",
+    "CPU or memory saturation exceeds the configured threshold.",
+    "Ledger growth rate exceeds the configured threshold.",
+    "Telemetry is missing, stale, or internally inconsistent.",
+    "Controller output attempts to exceed configured bounds."
+  ],
+  "observability_requirements": [
+    "Validator health metrics must be visible before controller activation.",
+    "RPC latency and error metrics must be captured.",
+    "Transaction-generation rate must be captured.",
+    "Controller input, output, setpoint, error, and saturation state must be logged.",
+    "Pod restart and resource saturation metrics must be captured.",
+    "Experiment start, abort, rollback, and end timestamps must be recorded."
+  ],
+  "reproducibility_notes": [
+    "This review is generated by an offline script.",
+    "The script does not call kubectl or modify the cluster.",
+    "The JSON output should be committed together with the review documentation.",
+    "The review result should be treated as a gate, not as a live experiment result."
+  ]
+}
