@@ -1,0 +1,506 @@
+{
+  "best": {
+    "constant64": {
+      "best_by_mae": "feedforward",
+      "best_by_rmse": "feedforward"
+    },
+    "lower-range": {
+      "best_by_mae": "p",
+      "best_by_rmse": "pi"
+    },
+    "multistep": {
+      "best_by_mae": "p",
+      "best_by_rmse": "pi"
+    },
+    "sine-approx": {
+      "best_by_mae": "p",
+      "best_by_rmse": "pi"
+    },
+    "step64-96": {
+      "best_by_mae": "p",
+      "best_by_rmse": "pi"
+    }
+  },
+  "comparison": "offline-controller-profile-coverage",
+  "controllers": [
+    "feedforward",
+    "p",
+    "pi"
+  ],
+  "plant": "transition",
+  "profiles": [
+    "constant64",
+    "step64-96",
+    "multistep",
+    "lower-range",
+    "sine-approx"
+  ],
+  "results": [
+    {
+      "config": "configs/v0.11.0/controller-sim/constant64-feedforward.json",
+      "controller": "feedforward",
+      "controller_case": "feedforward",
+      "controller_parameters": {
+        "ki": null,
+        "kp": null,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": 0.0,
+        "mae": 0.0,
+        "max_abs_command_change": 0.0,
+        "max_abs_error": 0.0,
+        "mean_abs_command_change": 0.0,
+        "mean_error": 0.0,
+        "rmse": 0.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0
+      },
+      "plant": "transition",
+      "profile": "constant64",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "constant64-feedforward-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/constant64-p.json",
+      "controller": "p",
+      "controller_case": "p",
+      "controller_parameters": {
+        "ki": null,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": 0.0,
+        "mae": 0.0,
+        "max_abs_command_change": 0.0,
+        "max_abs_error": 0.0,
+        "mean_abs_command_change": 0.0,
+        "mean_error": 0.0,
+        "rmse": 0.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0
+      },
+      "plant": "transition",
+      "profile": "constant64",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "constant64-p-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/constant64-pi.json",
+      "controller": "pi",
+      "controller_case": "pi",
+      "controller_parameters": {
+        "ki": 0.002,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": 0.0,
+        "mae": 0.0,
+        "max_abs_command_change": 0.0,
+        "max_abs_error": 0.0,
+        "mean_abs_command_change": 0.0,
+        "mean_error": 0.0,
+        "rmse": 0.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0
+      },
+      "plant": "transition",
+      "profile": "constant64",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "constant64-pi-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/step64-96-feedforward.json",
+      "controller": "feedforward",
+      "controller_case": "feedforward",
+      "controller_parameters": {
+        "ki": null,
+        "kp": null,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": 1.4210854715202004e-14,
+        "mae": 0.08960755502710001,
+        "max_abs_command_change": 32.0,
+        "max_abs_error": 4.603072000000012,
+        "mean_abs_command_change": 0.5423728813559322,
+        "mean_error": 0.08960755502710001,
+        "rmse": 0.6004991803303543,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0
+      },
+      "plant": "transition",
+      "profile": "step64-96",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "step64-96-feedforward-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/step64-96-p.json",
+      "controller": "p",
+      "controller_case": "p",
+      "controller_parameters": {
+        "ki": null,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": 1.4210854715202004e-14,
+        "mae": 0.03297656517615266,
+        "max_abs_command_change": 35.2,
+        "max_abs_error": 1.8633792000000113,
+        "mean_abs_command_change": 0.6508474576271187,
+        "mean_error": 0.03297656517615266,
+        "rmse": 0.24097010827399215,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0
+      },
+      "plant": "transition",
+      "profile": "step64-96",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "step64-96-p-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/step64-96-pi.json",
+      "controller": "pi",
+      "controller_case": "pi",
+      "controller_parameters": {
+        "ki": 0.002,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": -0.057986163350207676,
+        "mae": 0.06468679813125439,
+        "max_abs_command_change": 35.263999999999996,
+        "max_abs_error": 1.808585344000008,
+        "mean_abs_command_change": 0.6520344336364139,
+        "mean_error": -0.002819810045283096,
+        "rmse": 0.2378344615287837,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0
+      },
+      "plant": "transition",
+      "profile": "step64-96",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "step64-96-pi-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/multistep-feedforward.json",
+      "controller": "feedforward",
+      "controller_case": "feedforward",
+      "controller_parameters": {
+        "ki": null,
+        "kp": null,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": -2.5114417212535045e-09,
+        "mae": 0.35843022008727865,
+        "max_abs_command_change": 32.0,
+        "max_abs_error": 4.603072000361266,
+        "mean_abs_command_change": 2.169491525423729,
+        "mean_error": 7.0369784073894456e-12,
+        "rmse": 1.2009983606842705,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0
+      },
+      "plant": "transition",
+      "profile": "multistep",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "multistep-feedforward-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/multistep-p.json",
+      "controller": "p",
+      "controller_case": "p",
+      "controller_parameters": {
+        "ki": null,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": -4.263256414560601e-14,
+        "mae": 0.18853725054591308,
+        "max_abs_command_change": 35.2,
+        "max_abs_error": 4.603072000000012,
+        "mean_abs_command_change": 2.494915254228768,
+        "mean_error": 0.056630989846506455,
+        "rmse": 0.7312995588765588,
+        "saturation_count": 12,
+        "saturation_fraction": 0.2
+      },
+      "plant": "transition",
+      "profile": "multistep",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "multistep-p-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/multistep-pi.json",
+      "controller": "pi",
+      "controller_case": "pi",
+      "controller_parameters": {
+        "ki": 0.002,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 12,
+        "anti_windup_freeze_fraction": 0.2,
+        "final_error": 0.06174337936708696,
+        "mae": 0.20474238505264944,
+        "max_abs_command_change": 35.263999999999996,
+        "max_abs_error": 4.594358501030513,
+        "mean_abs_command_change": 2.496066228218929,
+        "mean_error": 0.056873506477442014,
+        "rmse": 0.7264389755730982,
+        "saturation_count": 12,
+        "saturation_fraction": 0.2
+      },
+      "plant": "transition",
+      "profile": "multistep",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "multistep-pi-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/lower-range-feedforward.json",
+      "controller": "feedforward",
+      "controller_case": "feedforward",
+      "controller_parameters": {
+        "ki": null,
+        "kp": null,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": 0.0,
+        "mae": 0.17921511005418841,
+        "max_abs_command_change": 32.0,
+        "max_abs_error": 4.6030720000000045,
+        "mean_abs_command_change": 1.0847457627118644,
+        "mean_error": 9.473903143468002e-16,
+        "rmse": 0.8492340850171118,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0
+      },
+      "plant": "transition",
+      "profile": "lower-range",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "lower-range-feedforward-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/lower-range-p.json",
+      "controller": "p",
+      "controller_case": "p",
+      "controller_parameters": {
+        "ki": null,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": 0.0,
+        "mae": 0.12258412020324047,
+        "max_abs_command_change": 35.2,
+        "max_abs_error": 4.603071999999997,
+        "mean_abs_command_change": 1.193220338983051,
+        "mean_error": -0.056630989850946986,
+        "rmse": 0.6470439387390968,
+        "saturation_count": 15,
+        "saturation_fraction": 0.25
+      },
+      "plant": "transition",
+      "profile": "lower-range",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "lower-range-p-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/lower-range-pi.json",
+      "controller": "pi",
+      "controller_case": "pi",
+      "controller_parameters": {
+        "ki": 0.002,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 3,
+        "anti_windup_freeze_fraction": 0.05,
+        "final_error": -0.05781371126516888,
+        "mae": 0.1551766885184018,
+        "max_abs_command_change": 35.263999999999996,
+        "max_abs_error": 4.611659546682084,
+        "mean_abs_command_change": 1.1964195742879815,
+        "mean_error": -0.09330970043243099,
+        "rmse": 0.6469668215323083,
+        "saturation_count": 3,
+        "saturation_fraction": 0.05
+      },
+      "plant": "transition",
+      "profile": "lower-range",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 60,
+      "simulation_name": "lower-range-pi-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/sine-approx-feedforward.json",
+      "controller": "feedforward",
+      "controller_case": "feedforward",
+      "controller_parameters": {
+        "ki": null,
+        "kp": null,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": 1.8835919490811648e-09,
+        "mae": 0.206786665443083,
+        "max_abs_command_change": 24.0,
+        "max_abs_error": 3.452304000270942,
+        "mean_abs_command_change": 1.238709677419355,
+        "mean_error": -2.0252289873613524e-12,
+        "rmse": 0.7121044286303025,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0
+      },
+      "plant": "transition",
+      "profile": "sine-approx",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 156,
+      "simulation_name": "sine-approx-feedforward-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/sine-approx-p.json",
+      "controller": "p",
+      "controller_case": "p",
+      "controller_parameters": {
+        "ki": null,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "final_error": 4.263256414560601e-14,
+        "mae": 0.08426769701822104,
+        "max_abs_command_change": 26.400000000000006,
+        "max_abs_error": 1.3975343999999978,
+        "mean_abs_command_change": 1.4709677419342642,
+        "mean_error": 2.2773805633336546e-15,
+        "rmse": 0.2997292428745197,
+        "saturation_count": 24,
+        "saturation_fraction": 0.15384615384615385
+      },
+      "plant": "transition",
+      "profile": "sine-approx",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 156,
+      "simulation_name": "sine-approx-p-transition-ts1"
+    },
+    {
+      "config": "configs/v0.11.0/controller-sim/sine-approx-pi.json",
+      "controller": "pi",
+      "controller_case": "pi",
+      "controller_parameters": {
+        "ki": 0.002,
+        "kp": 0.1,
+        "ts": 1.0
+      },
+      "metrics": {
+        "anti_windup_freeze_count": 24,
+        "anti_windup_freeze_fraction": 0.15384615384615385,
+        "final_error": -0.001622941528793831,
+        "mae": 0.11711026825515389,
+        "max_abs_command_change": 26.448081394751632,
+        "max_abs_error": 1.4011333638710823,
+        "mean_abs_command_change": 1.470972856678351,
+        "mean_error": 0.0058252186853759704,
+        "rmse": 0.2995090006835361,
+        "saturation_count": 24,
+        "saturation_fraction": 0.15384615384615385
+      },
+      "plant": "transition",
+      "profile": "sine-approx",
+      "safe_bounds": {
+        "u_max": 128.0,
+        "u_min": 32.0
+      },
+      "sample_count": 156,
+      "simulation_name": "sine-approx-pi-transition-ts1"
+    }
+  ],
+  "stage": "v0.11.0-throughput-controller-prototype"
+}

@@ -1,0 +1,77 @@
+{
+  "controller": {
+    "kp": 0.1,
+    "type": "p"
+  },
+  "outputs": {
+    "plot": false,
+    "write_csv": true,
+    "write_json": true
+  },
+  "reference_profile": {
+    "segments": [
+      {
+        "duration_seconds": 12,
+        "value": 80
+      },
+      {
+        "duration_seconds": 12,
+        "value": 104
+      },
+      {
+        "duration_seconds": 12,
+        "value": 122
+      },
+      {
+        "duration_seconds": 12,
+        "value": 128
+      },
+      {
+        "duration_seconds": 12,
+        "value": 122
+      },
+      {
+        "duration_seconds": 12,
+        "value": 104
+      },
+      {
+        "duration_seconds": 12,
+        "value": 80
+      },
+      {
+        "duration_seconds": 12,
+        "value": 56
+      },
+      {
+        "duration_seconds": 12,
+        "value": 38
+      },
+      {
+        "duration_seconds": 12,
+        "value": 32
+      },
+      {
+        "duration_seconds": 12,
+        "value": 38
+      },
+      {
+        "duration_seconds": 12,
+        "value": 56
+      },
+      {
+        "duration_seconds": 12,
+        "value": 80
+      }
+    ],
+    "type": "piecewise_constant"
+  },
+  "safe_bounds": {
+    "u_max": 128,
+    "u_min": 32
+  },
+  "simulation": {
+    "name": "sine-approx-p-transition-ts1",
+    "plant": "transition",
+    "time_step_seconds": 1.0
+  }
+}

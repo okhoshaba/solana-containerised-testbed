@@ -166,6 +166,10 @@ Current files:
 
 - `offline-controller-summary.json`
 - `offline-controller-traces.csv`
+- `offline-controller-comparison.json`
+- `offline-controller-comparison.md`
+- `offline-controller-profile-coverage.json`
+- `offline-controller-profile-coverage.md`
 - `README.md`
 
 Important note:
@@ -210,4 +214,30 @@ In that case, the expected message is similar to:
     plot_png: skipped: matplotlib unavailable: No module named 'matplotlib'
 
 This preserves portability on machines that only provide the Python standard library.
+
+## Broader profile coverage
+
+The simulator also includes a multi-profile offline coverage runner:
+
+    scripts/v0.11.0/run-controller-profile-coverage.py
+
+This runner evaluates the implemented controller modes across several safe reference profiles:
+
+- `constant64`
+- `step64-96`
+- `multistep`
+- `lower-range`
+- `sine-approx`
+
+The produced artefacts are:
+
+- `offline-controller-profile-coverage.json`
+- `offline-controller-profile-coverage.md`
+
+The profile-coverage result confirms the main controller-selection pattern:
+
+- P-only is generally best by MAE on dynamic profiles;
+- conservative PI is generally best by RMSE, but usually worsens MAE;
+- constant reference is a sanity-check profile where all controllers produce zero error;
+- these offline results still do not justify live closed-loop Kubernetes control.
 
