@@ -52,6 +52,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--hold", type=int, default=12,
                    help="Number of samples per reference segment.")
     p.add_argument("--out-dir", default="results/v0.11.0/controller-prototype")
+    p.add_argument("--plot", action="store_true",
+                   help="Optionally write a PNG plot if matplotlib is available.")
     return p.parse_args()
 
 
@@ -140,6 +142,10 @@ def apply_config(args: argparse.Namespace, cfg: Dict[str, Any]) -> argparse.Name
 
     args.u_min = float(safety_cfg.get("u_min", U_MIN_DEFAULT))
     args.u_max = float(safety_cfg.get("u_max", U_MAX_DEFAULT))
+
+    outputs_cfg = cfg.get("outputs", {})
+    if "plot" in outputs_cfg:
+        args.plot = bool(outputs_cfg["plot"])
 
     args.reference_values = build_reference_from_config(cfg, args.ts)
 
@@ -306,7 +312,68 @@ def run_sim(args: argparse.Namespace) -> Dict[str, object]:
     }
 
 
-def write_outputs(result: Dict[str, object], out_dir: Path) -> None:
+def maybe_write_plot(result: Dict[str, object], out_dir: Path, enabled: bool) -> None:
+    if not enabled:
+        return
+
+    try:
+        import matplotlib.pyplot as plt
+    except Exception as exc:
+        print(f"plot_png: skipped: matplotlib unavailable: {exc}")
+        return
+
+    rows = result["rows"]
+    if not rows:
+        print("plot_png: skipped: empty result rows")
+        return
+
+    plot_dir = out_dir / "plots"
+    plot_dir.mkdir(parents=True, exist_ok=True)
+
+    simulation_name = result.get("simulation_name") or "cli-run"
+    controller = result["controller"]
+    plant = result["plant"]
+    profile = result["profile"]
+
+    safe_name = str(simulation_name).replace("/", "_").replace(" ", "_")
+    plot_path = plot_dir / f"{safe_name}-{controller}-{plant}.png"
+
+    k = [int(row["k"]) for row in rows]
+    r = [float(row["r"]) for row in rows]
+    y = [float(row["y"]) for row in rows]
+    u_raw = [float(row["u_raw"]) for row in rows]
+    u_cmd = [float(row["u_cmd"]) for row in rows]
+    e = [float(row["e"]) for row in rows]
+
+    fig, axes = plt.subplots(3, 1, figsize=(10, 8), sharex=True)
+
+    axes[0].plot(k, r, label="r")
+    axes[0].plot(k, y, label="y")
+    axes[0].set_ylabel("throughput")
+    axes[0].legend()
+    axes[0].grid(True)
+
+    axes[1].plot(k, u_raw, label="u_raw")
+    axes[1].plot(k, u_cmd, label="u_cmd")
+    axes[1].set_ylabel("command")
+    axes[1].legend()
+    axes[1].grid(True)
+
+    axes[2].plot(k, e, label="e")
+    axes[2].set_xlabel("sample")
+    axes[2].set_ylabel("error")
+    axes[2].legend()
+    axes[2].grid(True)
+
+    fig.suptitle(f"{simulation_name} | {controller} | {plant} | {profile}")
+    fig.tight_layout()
+    fig.savefig(plot_path, dpi=150)
+    plt.close(fig)
+
+    print(f"plot_png:    {plot_path}")
+
+
+def write_outputs(result: Dict[str, object], out_dir: Path, plot_enabled: bool) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     summary_json = out_dir / "offline-controller-summary.json"
@@ -344,6 +411,7 @@ def write_outputs(result: Dict[str, object], out_dir: Path) -> None:
 
     print(f"summary_json: {summary_json}")
     print(f"traces_csv:   {traces_csv}")
+    maybe_write_plot(result, out_dir, plot_enabled)
 
 
 def main() -> int:
@@ -352,7 +420,7 @@ def main() -> int:
     args = apply_config(args, cfg)
 
     result = run_sim(args)
-    write_outputs(result, Path(args.out_dir))
+    write_outputs(result, Path(args.out_dir), bool(args.plot))
 
     m = result["metrics"]
     print(f"simulation: {result['simulation_name']}")
