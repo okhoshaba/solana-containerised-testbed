@@ -1,0 +1,30 @@
+{
+  "a_y": 0.10889615191767432,
+  "b_u": 0.8845312889194352,
+  "c": 0.0,
+  "delay_steps": 0,
+  "equation": "y[k+1] = c + a_y*y[k] + b_u*u[k-delay]",
+  "model_type": "no_intercept",
+  "offline_only": true,
+  "selection_metric": "validation_recursive_rmse",
+  "stage": "v0.13.6",
+  "u_eq": 97.04,
+  "validation_one_step_metrics": {
+    "bias": -1.6789754250972049,
+    "mae": 2.0416659028441795,
+    "mape": 3.792300780256609,
+    "r2": 0.9141655433795702,
+    "rmse": 5.234810941749596,
+    "valid_rows": 27
+  },
+  "validation_recursive_metrics": {
+    "bias": -1.8814556821807338,
+    "mae": 2.277032799758361,
+    "mape": 4.204217268662627,
+    "r2": 0.9119757917318732,
+    "rmse": 5.3011639284964245,
+    "valid_rows": 27
+  },
+  "y0_policy": "initialize recursive validation from first observed value of validation segment",
+  "y_eq": 97.16156286
+}
