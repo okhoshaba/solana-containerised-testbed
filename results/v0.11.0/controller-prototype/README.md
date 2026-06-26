@@ -241,3 +241,25 @@ The profile-coverage result confirms the main controller-selection pattern:
 - constant reference is a sanity-check profile where all controllers produce zero error;
 - these offline results still do not justify live closed-loop Kubernetes control.
 
+
+## Offline controller safety checks
+
+The v0.11.11 extension adds conservative offline pass/warn/fail safety checks for the controller profile-coverage results.
+
+Generated artefacts:
+
+- offline-controller-safety-checks.json
+- offline-controller-safety-checks.md
+
+Observed result:
+
+- overall_status: WARN
+- PASS: 14
+- WARN: 1
+- FAIL: 0
+
+The only WARN case is the lower-range profile with the p controller, caused by saturation_fraction > 0.20.
+
+No controller-profile case triggered a FAIL condition.
+
+This safety checker is an offline screening tool only. It is not a live Kubernetes safety supervisor and does not justify live closed-loop control by itself.
