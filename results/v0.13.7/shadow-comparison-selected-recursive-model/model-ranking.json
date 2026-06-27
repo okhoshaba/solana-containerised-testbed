@@ -1,0 +1,65 @@
+{
+  "stage": "v0.13.7",
+  "title": "model ranking for v0.13.7 shadow-mode comparison",
+  "ranking_basis": [
+    "non_finite_prediction_count",
+    "warning_count",
+    "rmse",
+    "mae",
+    "absolute_bias",
+    "max_absolute_error"
+  ],
+  "ranking": [
+    {
+      "rank": 1,
+      "model": "selected_recursive",
+      "rmse": 5.3011639284964245,
+      "mae": 2.277032799758361,
+      "bias": -1.8814556821807338,
+      "median_absolute_error": 0.4867916964844099,
+      "max_absolute_error": 20.971095791472365,
+      "mape": 4.204217268662628,
+      "smape": 4.566172618678308,
+      "r2": 0.9119757917318732,
+      "non_finite_prediction_count": 0,
+      "warning_count": 0
+    },
+    {
+      "rank": 2,
+      "model": "placeholder",
+      "rmse": 16.876249223579954,
+      "mae": 12.146220714032838,
+      "bias": -9.89629317732354,
+      "median_absolute_error": 5.5613712045153,
+      "max_absolute_error": 35.780291546598946,
+      "mape": 19.992173553189108,
+      "smape": 23.105196533684598,
+      "r2": 0.10790414856511055,
+      "non_finite_prediction_count": 0,
+      "warning_count": 0
+    },
+    {
+      "rank": 3,
+      "model": "one_step_refit",
+      "rmse": 49.396593038623266,
+      "mae": 39.59263540249649,
+      "bias": -39.59263540249649,
+      "median_absolute_error": 29.480841182987184,
+      "max_absolute_error": 89.78371216361789,
+      "mape": 69.47985682541433,
+      "smape": 120.11600271798855,
+      "r2": -6.642820346796488,
+      "non_finite_prediction_count": 0,
+      "warning_count": 0
+    }
+  ],
+  "decision": {
+    "status": "pass",
+    "reason": "Selected recursive model is best or materially tied for best on core metrics with no non-finite predictions or warning count in the evaluated shadow window.",
+    "recommended_next_step": "Use selected_recursive as the candidate surrogate plant model for v0.14.0 offline controller simulator.",
+    "selected_recursive_rank": 1,
+    "selected_recursive_rmse_improvement_pct_vs_placeholder": 68.58802060656052,
+    "selected_recursive_rmse_improvement_pct_vs_one_step_refit": 89.2681587891063,
+    "accepted_as_candidate_surrogate_plant_model": true
+  }
+}
