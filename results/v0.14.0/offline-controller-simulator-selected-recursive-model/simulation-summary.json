@@ -1,0 +1,615 @@
+{
+  "stage": "v0.14.0",
+  "title": "offline controller simulator with selected recursive model",
+  "offline_only": true,
+  "inputs": {
+    "config_path": "configs/v0.14.0/offline-controller-simulator-selected-recursive-model.json",
+    "selected_recursive_model_path": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json",
+    "v0_13_7_shadow_comparison_summary_path": "results/v0.13.7/shadow-comparison-selected-recursive-model/shadow-comparison-summary.json",
+    "v0_13_7_model_ranking_path": "results/v0.13.7/shadow-comparison-selected-recursive-model/model-ranking.json",
+    "v0_11_0_safety_checks_path": "results/v0.11.0/controller-prototype/offline-controller-safety-checks.json"
+  },
+  "simulation_policy": {
+    "dt_seconds": 5.0,
+    "steps_per_profile": 80,
+    "initial_y_policy": "model_y_eq_or_profile_initial_y",
+    "actuator_applied": false,
+    "plant_model": "selected_recursive",
+    "plant_equation": "y[k+1] = c + a_y*y[k] + b_u*u[k-delay]",
+    "mode": "offline_closed_loop_simulation"
+  },
+  "safety_policy": {
+    "action_min": 0.0,
+    "action_max": 160.0,
+    "max_step_change": 16.0,
+    "prediction_must_be_finite": true,
+    "warn_saturation_fraction": 0.2,
+    "fail_saturation_fraction": 0.5,
+    "warn_rmse": 8.0,
+    "fail_rmse": 20.0,
+    "warn_max_abs_error": 24.0,
+    "fail_max_abs_error": 48.0
+  },
+  "plant_model": {
+    "source_path": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json",
+    "a_y": 0.10889615191767432,
+    "b_u": 0.8845312889194352,
+    "c": 0.0,
+    "delay_steps": 0,
+    "model_type": "no_intercept",
+    "y_eq": 97.16156286,
+    "u_eq": 97.04
+  },
+  "controller_cases": [
+    {
+      "name": "feedforward",
+      "type": "feedforward_inverse",
+      "kp": 0.0,
+      "ki": 0.0,
+      "anti_windup": false
+    },
+    {
+      "name": "p",
+      "type": "p_with_equilibrium_feedforward",
+      "kp": 0.35,
+      "ki": 0.0,
+      "anti_windup": false
+    },
+    {
+      "name": "pi",
+      "type": "pi_with_equilibrium_feedforward",
+      "kp": 0.3,
+      "ki": 0.015,
+      "anti_windup": true
+    }
+  ],
+  "profiles": [
+    {
+      "name": "hold-y-eq",
+      "type": "constant",
+      "target": 97.16156286,
+      "initial_y": 97.16156286
+    },
+    {
+      "name": "step64-96",
+      "type": "step",
+      "initial_target": 64.0,
+      "target": 96.0,
+      "change_step": 20,
+      "initial_y": 64.0
+    },
+    {
+      "name": "step96-64",
+      "type": "step",
+      "initial_target": 96.0,
+      "target": 64.0,
+      "change_step": 20,
+      "initial_y": 96.0
+    },
+    {
+      "name": "multistep",
+      "type": "multistep",
+      "initial_y": 80.0,
+      "segments": [
+        {
+          "start": 0,
+          "target": 80.0
+        },
+        {
+          "start": 15,
+          "target": 104.0
+        },
+        {
+          "start": 35,
+          "target": 38.0
+        },
+        {
+          "start": 55,
+          "target": 72.0
+        }
+      ]
+    },
+    {
+      "name": "lower-range",
+      "type": "multistep",
+      "initial_y": 64.0,
+      "segments": [
+        {
+          "start": 0,
+          "target": 64.0
+        },
+        {
+          "start": 20,
+          "target": 38.0
+        },
+        {
+          "start": 45,
+          "target": 32.0
+        },
+        {
+          "start": 65,
+          "target": 50.0
+        }
+      ]
+    },
+    {
+      "name": "sine-approx",
+      "type": "sine",
+      "base": 72.0,
+      "amplitude": 24.0,
+      "period_steps": 40,
+      "initial_y": 72.0
+    }
+  ],
+  "case_results": [
+    {
+      "profile": "hold-y-eq",
+      "controller_case": "feedforward",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 0.0,
+        "mae": 0.0,
+        "mean_error": 0.0,
+        "final_error": 0.0,
+        "max_abs_error": 0.0,
+        "mean_abs_command_change": 0.0009892411876952778,
+        "max_abs_command_change": 0.07913929501562222,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 0,
+        "rate_limit_fraction": 0.0,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "hold-y-eq",
+      "controller_case": "p",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 0.05843774554081607,
+        "mae": 0.05842261455296267,
+        "mean_error": 0.05842261455296267,
+        "final_error": 0.0583008056458425,
+        "max_abs_error": 0.0700011826243383,
+        "mean_abs_command_change": 0.0003831493376123873,
+        "max_abs_command_change": 0.024500413918516983,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 0,
+        "rate_limit_fraction": 0.0,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "hold-y-eq",
+      "controller_case": "pi",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 0.020383822353708638,
+        "mae": 0.013069337490940035,
+        "mean_error": 0.013069337490940035,
+        "final_error": 0.0005818264623087543,
+        "max_abs_error": 0.0700011826243383,
+        "mean_abs_command_change": 0.0009969331110553981,
+        "max_abs_command_change": 0.026250443484130415,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 0,
+        "rate_limit_fraction": 0.0,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "step64-96",
+      "controller_case": "feedforward",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 2.009888946463491,
+        "mae": 0.2500168159255175,
+        "mean_error": 0.2500168159255175,
+        "final_error": 0.0,
+        "max_abs_error": 17.84749937728904,
+        "mean_abs_command_change": 0.41025292306867983,
+        "max_abs_command_change": 16.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 2,
+        "rate_limit_fraction": 0.025,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "step64-96",
+      "controller_case": "p",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 2.015825112412778,
+        "mae": 0.3072305110276422,
+        "mean_error": 0.2979605715515352,
+        "final_error": 0.057603821688886114,
+        "max_abs_error": 17.885901925081626,
+        "mean_abs_command_change": 0.4263506266203018,
+        "max_abs_command_change": 16.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 2,
+        "rate_limit_fraction": 0.025,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "step64-96",
+      "controller_case": "pi",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 2.2473659532389734,
+        "mae": 0.8784731877436849,
+        "mean_error": -0.3657618618721153,
+        "final_error": -0.10235327852704756,
+        "max_abs_error": 17.860297626389624,
+        "mean_abs_command_change": 0.5190830273144991,
+        "max_abs_command_change": 16.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 2,
+        "rate_limit_fraction": 0.025,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "step96-64",
+      "controller_case": "feedforward",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 2.009888946463491,
+        "mae": 0.25001681592551783,
+        "mean_error": -0.25001681592551783,
+        "final_error": 0.0,
+        "max_abs_error": 17.84749937728904,
+        "mean_abs_command_change": 0.41057872801741147,
+        "max_abs_command_change": 16.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 2,
+        "rate_limit_fraction": 0.025,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "step96-64",
+      "controller_case": "p",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 2.003891204047148,
+        "mae": 0.29658915758931237,
+        "mean_error": -0.20175361425976107,
+        "final_error": 0.038402547792586006,
+        "max_abs_error": 17.789895555600154,
+        "mean_abs_command_change": 0.4264768162208318,
+        "max_abs_command_change": 16.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 2,
+        "rate_limit_fraction": 0.025,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "step96-64",
+      "controller_case": "pi",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 2.247853173543174,
+        "mae": 0.8863596486398112,
+        "mean_error": 0.3872855398314197,
+        "final_error": 0.10330244523539278,
+        "max_abs_error": 17.828302003638157,
+        "mean_abs_command_change": 0.5195186693709845,
+        "max_abs_command_change": 16.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 2,
+        "rate_limit_fraction": 0.025,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "multistep",
+      "controller_case": "feedforward",
+      "status": "FAIL",
+      "reasons": [
+        "max_abs_error > fail_max_abs_error"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 7.85387322625175,
+        "mae": 1.831939610828968,
+        "mean_error": -0.9857184945457076,
+        "final_error": 0.0,
+        "max_abs_error": 51.84749937728904,
+        "mean_abs_command_change": 1.619006214642253,
+        "max_abs_command_change": 16.000000000000007,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 7,
+        "rate_limit_fraction": 0.0875,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "multistep",
+      "controller_case": "p",
+      "status": "FAIL",
+      "reasons": [
+        "max_abs_error > fail_max_abs_error"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 7.84869785928003,
+        "mae": 1.9225420589652635,
+        "mean_error": -0.9605691485454081,
+        "final_error": 0.04320286626665393,
+        "max_abs_error": 51.785095237126995,
+        "mean_abs_command_change": 1.761657825052847,
+        "max_abs_command_change": 16.000000000000007,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 7,
+        "rate_limit_fraction": 0.0875,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "multistep",
+      "controller_case": "pi",
+      "status": "FAIL",
+      "reasons": [
+        "max_abs_error > fail_max_abs_error"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 8.708365951744023,
+        "mae": 3.586379734703938,
+        "mean_error": 0.10397444369126792,
+        "final_error": 0.02799304311744777,
+        "max_abs_error": 52.46927621853088,
+        "mean_abs_command_change": 2.10999933230095,
+        "max_abs_command_change": 16.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 8,
+        "rate_limit_fraction": 0.1,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "lower-range",
+      "controller_case": "feedforward",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 1.392688465491761,
+        "mae": 0.19618748443222592,
+        "mean_error": -0.10000000000000009,
+        "final_error": 0.0,
+        "max_abs_error": 11.84749937728904,
+        "mean_abs_command_change": 0.6970684125294918,
+        "max_abs_command_change": 16.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 2,
+        "rate_limit_fraction": 0.025,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "lower-range",
+      "controller_case": "p",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 1.4254852783433007,
+        "mae": 0.2871786423985557,
+        "mean_error": -0.04347506268734587,
+        "final_error": 0.030001991122603044,
+        "max_abs_error": 11.809096829496447,
+        "mean_abs_command_change": 0.8666840628111203,
+        "max_abs_command_change": 16.0,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 2,
+        "rate_limit_fraction": 0.025,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "lower-range",
+      "controller_case": "pi",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 1.655804764582801,
+        "mae": 0.8247540775792878,
+        "mean_error": 0.27464386334334573,
+        "final_error": -0.44818303675483406,
+        "max_abs_error": 11.834701128188442,
+        "mean_abs_command_change": 0.9173629455621463,
+        "max_abs_command_change": 16.000000000000004,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 3,
+        "rate_limit_fraction": 0.0375,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "sine-approx",
+      "controller_case": "feedforward",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 3.7261175413410954e-15,
+        "mae": 1.0658141036401502e-15,
+        "mean_error": -7.105427357601002e-16,
+        "final_error": -1.4210854715202004e-14,
+        "max_abs_error": 1.4210854715202004e-14,
+        "mean_abs_command_change": 2.380560448049851,
+        "max_abs_command_change": 4.24453855730988,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 0,
+        "rate_limit_fraction": 0.0,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "sine-approx",
+      "controller_case": "p",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 0.44448703303675,
+        "mae": 0.39662593471072966,
+        "mean_error": 0.04984473862651022,
+        "final_error": -0.5754600498466402,
+        "max_abs_error": 0.7093075016300645,
+        "mean_abs_command_change": 2.3885086462847314,
+        "max_abs_command_change": 5.111471755006804,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 0,
+        "rate_limit_fraction": 0.0,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    },
+    {
+      "profile": "sine-approx",
+      "controller_case": "pi",
+      "status": "PASS",
+      "reasons": [
+        "no safety warnings or failures"
+      ],
+      "metrics": {
+        "count": 80,
+        "rmse": 0.9747807312234248,
+        "mae": 0.870285519019746,
+        "mean_error": 0.09967599718512377,
+        "final_error": -0.7657032417213827,
+        "max_abs_error": 1.5256560022389323,
+        "mean_abs_command_change": 2.491948081697405,
+        "max_abs_command_change": 5.206629265051518,
+        "saturation_count": 0,
+        "saturation_fraction": 0.0,
+        "rate_limit_count": 0,
+        "rate_limit_fraction": 0.0,
+        "anti_windup_freeze_count": 0,
+        "anti_windup_freeze_fraction": 0.0,
+        "non_finite_count": 0
+      }
+    }
+  ],
+  "decision": {
+    "status": "fail",
+    "reason": "At least one simulated controller/profile case failed configured safety thresholds.",
+    "case_counts": {
+      "PASS": 15,
+      "WARN": 0,
+      "FAIL": 3
+    },
+    "accepted_as_initial_offline_controller_simulator": false,
+    "recommended_next_step": "Review controller-ranking.json and simulation-timeseries.csv, then create a follow-up calibration or PID/MPC comparison stage."
+  },
+  "outputs": {
+    "result_dir": "results/v0.14.0/offline-controller-simulator-selected-recursive-model",
+    "summary_json": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-summary.json",
+    "ranking_json": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/controller-ranking.json",
+    "timeseries_csv": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-timeseries.csv",
+    "readme_md": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/README.md",
+    "experiment_doc": "docs/experiments/v0.14.0-offline-controller-simulator-selected-recursive-model.md"
+  }
+}
