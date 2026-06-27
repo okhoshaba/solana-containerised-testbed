@@ -1,0 +1,122 @@
+{
+  "stage": "v0.14.0",
+  "title": "offline controller simulator with selected recursive model",
+  "offline_only": true,
+  "source_artifacts": {
+    "selected_recursive_model_path": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json",
+    "v0_13_7_shadow_comparison_summary_path": "results/v0.13.7/shadow-comparison-selected-recursive-model/shadow-comparison-summary.json",
+    "v0_13_7_model_ranking_path": "results/v0.13.7/shadow-comparison-selected-recursive-model/model-ranking.json",
+    "v0_11_0_safety_checks_path": "results/v0.11.0/controller-prototype/offline-controller-safety-checks.json"
+  },
+  "outputs": {
+    "result_dir": "results/v0.14.0/offline-controller-simulator-selected-recursive-model",
+    "summary_json": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-summary.json",
+    "ranking_json": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/controller-ranking.json",
+    "timeseries_csv": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-timeseries.csv",
+    "readme_md": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/README.md",
+    "experiment_doc": "docs/experiments/v0.14.0-offline-controller-simulator-selected-recursive-model.md"
+  },
+  "simulation_policy": {
+    "dt_seconds": 5.0,
+    "steps_per_profile": 80,
+    "initial_y_policy": "model_y_eq_or_profile_initial_y",
+    "actuator_applied": false,
+    "plant_model": "selected_recursive",
+    "plant_equation": "y[k+1] = c + a_y*y[k] + b_u*u[k-delay]",
+    "mode": "offline_closed_loop_simulation"
+  },
+  "safety_policy": {
+    "action_min": 0.0,
+    "action_max": 160.0,
+    "max_step_change": 16.0,
+    "prediction_must_be_finite": true,
+    "warn_saturation_fraction": 0.20,
+    "fail_saturation_fraction": 0.50,
+    "warn_rmse": 8.0,
+    "fail_rmse": 20.0,
+    "warn_max_abs_error": 24.0,
+    "fail_max_abs_error": 48.0
+  },
+  "controller_cases": [
+    {
+      "name": "feedforward",
+      "type": "feedforward_inverse",
+      "kp": 0.0,
+      "ki": 0.0,
+      "anti_windup": false
+    },
+    {
+      "name": "p",
+      "type": "p_with_equilibrium_feedforward",
+      "kp": 0.35,
+      "ki": 0.0,
+      "anti_windup": false
+    },
+    {
+      "name": "pi",
+      "type": "pi_with_equilibrium_feedforward",
+      "kp": 0.30,
+      "ki": 0.015,
+      "anti_windup": true
+    }
+  ],
+  "profiles": [
+    {
+      "name": "hold-y-eq",
+      "type": "constant",
+      "target": 97.16156286,
+      "initial_y": 97.16156286
+    },
+    {
+      "name": "step64-96",
+      "type": "step",
+      "initial_target": 64.0,
+      "target": 96.0,
+      "change_step": 20,
+      "initial_y": 64.0
+    },
+    {
+      "name": "step96-64",
+      "type": "step",
+      "initial_target": 96.0,
+      "target": 64.0,
+      "change_step": 20,
+      "initial_y": 96.0
+    },
+    {
+      "name": "multistep",
+      "type": "multistep",
+      "initial_y": 80.0,
+      "segments": [
+        {"start": 0, "target": 80.0},
+        {"start": 15, "target": 104.0},
+        {"start": 35, "target": 38.0},
+        {"start": 55, "target": 72.0}
+      ]
+    },
+    {
+      "name": "lower-range",
+      "type": "multistep",
+      "initial_y": 64.0,
+      "segments": [
+        {"start": 0, "target": 64.0},
+        {"start": 20, "target": 38.0},
+        {"start": 45, "target": 32.0},
+        {"start": 65, "target": 50.0}
+      ]
+    },
+    {
+      "name": "sine-approx",
+      "type": "sine",
+      "base": 72.0,
+      "amplitude": 24.0,
+      "period_steps": 40,
+      "initial_y": 72.0
+    }
+  ],
+  "decision_thresholds": {
+    "maximum_fail_cases_for_pass": 0,
+    "maximum_warn_cases_for_pass": 0,
+    "maximum_warn_cases_for_caution": 3
+  }
+}

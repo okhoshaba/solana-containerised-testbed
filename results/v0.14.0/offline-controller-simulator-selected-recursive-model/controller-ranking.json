@@ -1,0 +1,59 @@
+{
+  "stage": "v0.14.0",
+  "title": "controller ranking for v0.14.0 offline controller simulator",
+  "ranking_basis": [
+    "fail_count",
+    "warn_count",
+    "average_rmse",
+    "average_saturation_fraction"
+  ],
+  "ranking": [
+    {
+      "controller_case": "feedforward",
+      "case_count": 6,
+      "pass_count": 5,
+      "warn_count": 0,
+      "fail_count": 1,
+      "average_rmse": 2.2110565974450824,
+      "average_mae": 0.4213601211853717,
+      "average_saturation_fraction": 0.0,
+      "worst_max_abs_error": 51.84749937728904,
+      "rank": 1
+    },
+    {
+      "controller_case": "p",
+      "case_count": 6,
+      "pass_count": 5,
+      "warn_count": 0,
+      "fail_count": 1,
+      "average_rmse": 2.2994707054434707,
+      "average_mae": 0.5447648198740777,
+      "average_saturation_fraction": 0.0,
+      "worst_max_abs_error": 51.785095237126995,
+      "rank": 2
+    },
+    {
+      "controller_case": "pi",
+      "case_count": 6,
+      "pass_count": 5,
+      "warn_count": 0,
+      "fail_count": 1,
+      "average_rmse": 2.642425732781017,
+      "average_mae": 1.1765535841962347,
+      "average_saturation_fraction": 0.0,
+      "worst_max_abs_error": 52.46927621853088,
+      "rank": 3
+    }
+  ],
+  "decision": {
+    "status": "fail",
+    "reason": "At least one simulated controller/profile case failed configured safety thresholds.",
+    "case_counts": {
+      "PASS": 15,
+      "WARN": 0,
+      "FAIL": 3
+    },
+    "accepted_as_initial_offline_controller_simulator": false,
+    "recommended_next_step": "Review controller-ranking.json and simulation-timeseries.csv, then create a follow-up calibration or PID/MPC comparison stage."
+  }
+}
