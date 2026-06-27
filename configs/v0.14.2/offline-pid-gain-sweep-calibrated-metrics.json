@@ -1,0 +1,65 @@
+{
+  "stage": "v0.14.2",
+  "title": "offline PID gain sweep with calibrated metrics",
+  "offline_only": true,
+  "source_artifacts": {
+    "v0_14_0_config_path": "configs/v0.14.0/offline-controller-simulator-selected-recursive-model.json",
+    "v0_14_0_summary_path": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-summary.json",
+    "v0_14_1_config_path": "configs/v0.14.1/offline-simulator-calibration-profile-safety-review.json",
+    "v0_14_1_summary_path": "results/v0.14.1/offline-simulator-calibration-profile-safety-review/calibration-summary.json",
+    "selected_recursive_model_path": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json"
+  },
+  "outputs": {
+    "result_dir": "results/v0.14.2/offline-pid-gain-sweep-calibrated-metrics",
+    "summary_json": "results/v0.14.2/offline-pid-gain-sweep-calibrated-metrics/pid-sweep-summary.json",
+    "candidate_ranking_csv": "results/v0.14.2/offline-pid-gain-sweep-calibrated-metrics/pid-candidate-ranking.csv",
+    "case_metrics_csv": "results/v0.14.2/offline-pid-gain-sweep-calibrated-metrics/pid-case-metrics.csv",
+    "profile_metrics_csv": "results/v0.14.2/offline-pid-gain-sweep-calibrated-metrics/pid-profile-metrics.csv",
+    "readme_md": "results/v0.14.2/offline-pid-gain-sweep-calibrated-metrics/README.md",
+    "experiment_doc": "docs/experiments/v0.14.2-offline-pid-gain-sweep-calibrated-metrics.md"
+  },
+  "sweep_policy": {
+    "reuse_v0_14_0_profiles": true,
+    "reuse_v0_14_0_plant_model": true,
+    "reuse_v0_14_0_safety_policy": true,
+    "reuse_v0_14_1_transient_window_policy": true,
+    "actuator_applied": false,
+    "candidate_selection_basis": [
+      "unexplained_fail_count",
+      "settled_warn_count",
+      "explained_transient_count",
+      "average_settled_rmse",
+      "average_full_rmse",
+      "average_rate_limit_fraction"
+    ]
+  },
+  "gain_grid": {
+    "p": {
+      "kp": [0.10, 0.20, 0.30, 0.35, 0.50, 0.75],
+      "ki": [0.0],
+      "kd": [0.0]
+    },
+    "pi": {
+      "kp": [0.10, 0.20, 0.30, 0.35, 0.50],
+      "ki": [0.005, 0.010, 0.015, 0.030],
+      "kd": [0.0]
+    },
+    "pid": {
+      "kp": [0.10, 0.20, 0.30, 0.35],
+      "ki": [0.005, 0.010, 0.015],
+      "kd": [0.05, 0.10, 0.20]
+    }
+  },
+  "settled_metric_thresholds": {
+    "settled_fail_rmse": 8.0,
+    "settled_fail_max_abs_error": 24.0,
+    "settled_warn_rmse": 4.0,
+    "settled_warn_max_abs_error": 12.0,
+    "maximum_saturation_fraction_for_calibrated_pass": 0.20
+  },
+  "decision_thresholds": {
+    "maximum_unexplained_failures_for_selected_candidate": 0,
+    "maximum_settled_warn_cases_for_selected_candidate": 0,
+    "maximum_candidate_average_settled_rmse_for_pass": 4.0
+  }
+}
