@@ -1,0 +1,74 @@
+{
+  "stage": "v0.13.7",
+  "title": "repeat shadow-mode comparison with selected recursive model",
+  "offline_only": true,
+  "source_artifacts": {
+    "real_replay_timeseries_path": "results/v0.13.2/real-replay-shadow-mode-validation/real-replay-shadow-timeseries.csv",
+    "placeholder_model_path": "configs/v0.13.0/shadow-controller-replay.json",
+    "one_step_refit_model_path": "results/v0.13.4/refit-throughput-model/refit-coefficients.json",
+    "v0_13_5_comparison_summary_path": "results/v0.13.5/shadow-mode-refit-comparison/comparison-summary.json",
+    "selected_recursive_model_path": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json",
+    "v0_13_6_summary_path": "results/v0.13.6/recursive-plant-model-refit/recursive-model-summary.json"
+  },
+  "outputs": {
+    "result_dir": "results/v0.13.7/shadow-comparison-selected-recursive-model",
+    "summary_json": "results/v0.13.7/shadow-comparison-selected-recursive-model/shadow-comparison-summary.json",
+    "ranking_json": "results/v0.13.7/shadow-comparison-selected-recursive-model/model-ranking.json",
+    "timeseries_csv": "results/v0.13.7/shadow-comparison-selected-recursive-model/shadow-comparison-timeseries.csv",
+    "readme_md": "results/v0.13.7/shadow-comparison-selected-recursive-model/README.md",
+    "experiment_doc": "docs/experiments/v0.13.7-shadow-comparison-selected-recursive-model.md"
+  },
+  "replay_columns": {
+    "time_candidates": [
+      "source_time_seconds",
+      "t_sec",
+      "t_rel_sec",
+      "time_seconds",
+      "time"
+    ],
+    "command_candidates": [
+      "u_cmd_replay",
+      "u_cmd",
+      "command",
+      "load_command",
+      "target_load"
+    ],
+    "observed_candidates": [
+      "u_ach_replay",
+      "u_ach",
+      "observed_throughput",
+      "throughput",
+      "achieved_throughput",
+      "y"
+    ]
+  },
+  "evaluation_policy": {
+    "mode": "recursive_shadow_rollout",
+    "train_fraction_from_v0_13_6": 0.65,
+    "evaluation_window": "v0.13.6_validation_segment",
+    "recursive_initialization": "first_observed_value_of_validation_segment",
+    "anti_leakage_rule": "prediction for row i uses previous recursive state and command history only; observed target at row i is not used before prediction"
+  },
+  "controller_policy": {
+    "mode": "P",
+    "setpoint_source": "median_observed_in_evaluation_window",
+    "kp": 0.10,
+    "ki": 0.0,
+    "kd": 0.0,
+    "action_min": 0.0,
+    "action_max": 1000000000.0,
+    "max_step_change": null
+  },
+  "safety_policy": {
+    "prediction_must_be_finite": true,
+    "action_must_be_finite": true,
+    "action_min": 0.0,
+    "action_max": 1000000000.0
+  },
+  "decision_thresholds": {
+    "material_tie_rmse_pct": 2.0,
+    "material_tie_mae_pct": 5.0,
+    "maximum_non_finite_predictions_for_pass": 0,
+    "maximum_warning_count_for_pass": 0
+  }
+}
