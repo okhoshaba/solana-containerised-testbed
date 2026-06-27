@@ -1,0 +1,7 @@
+profile,case_count,original_pass_count,original_warn_count,original_fail_count,calibrated_pass_count,calibrated_settled_warn_count,calibrated_explained_transient_count,calibrated_review_count,calibrated_unexplained_fail_count,max_abs_target_delta,max_original_abs_error,max_settled_abs_error,profile_recommendation
+multistep,3,0,0,3,0,0,3,0,0,66.0,52.46927621853088,8.867557314205271,keep profile but evaluate with transient-aware and settling-window metrics
+step64-96,3,3,0,0,3,0,0,0,0,32.0,17.885901925081626,2.4169727751718995,profile passes calibrated review
+step96-64,3,3,0,0,3,0,0,0,0,32.0,17.84749937728904,2.4394258628615546,profile passes calibrated review
+lower-range,3,3,0,0,3,0,0,0,0,26.0,11.84749937728904,1.63192662277838,profile passes calibrated review
+sine-approx,3,3,0,0,3,0,0,0,0,3.754427160965548,1.5256560022389323,0.05187324082275779,profile passes calibrated review
+hold-y-eq,3,3,0,0,3,0,0,0,0,0.0,0.0700011826243383,0.0700011826243383,profile passes calibrated review

@@ -1,0 +1,37 @@
+{
+  "stage": "v0.14.1",
+  "title": "offline simulator calibration and profile safety review",
+  "offline_only": true,
+  "source_artifacts": {
+    "v0_14_0_config_path": "configs/v0.14.0/offline-controller-simulator-selected-recursive-model.json",
+    "v0_14_0_summary_path": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-summary.json",
+    "v0_14_0_ranking_path": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/controller-ranking.json",
+    "v0_14_0_timeseries_path": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-timeseries.csv",
+    "v0_14_0_failure_analysis_path": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/failure-analysis.md"
+  },
+  "outputs": {
+    "result_dir": "results/v0.14.1/offline-simulator-calibration-profile-safety-review",
+    "summary_json": "results/v0.14.1/offline-simulator-calibration-profile-safety-review/calibration-summary.json",
+    "case_metrics_csv": "results/v0.14.1/offline-simulator-calibration-profile-safety-review/calibrated-case-metrics.csv",
+    "profile_review_csv": "results/v0.14.1/offline-simulator-calibration-profile-safety-review/profile-safety-review.csv",
+    "readme_md": "results/v0.14.1/offline-simulator-calibration-profile-safety-review/README.md",
+    "experiment_doc": "docs/experiments/v0.14.1-offline-simulator-calibration-profile-safety-review.md"
+  },
+  "calibration_policy": {
+    "transient_window_steps_after_target_change": 5,
+    "treat_rate_limited_target_change_as_explained_transient": true,
+    "do_not_reclassify_v0_14_0": true,
+    "actuator_applied": false
+  },
+  "settled_metric_thresholds": {
+    "settled_fail_rmse": 8.0,
+    "settled_fail_max_abs_error": 24.0,
+    "settled_warn_rmse": 4.0,
+    "settled_warn_max_abs_error": 12.0,
+    "maximum_saturation_fraction_for_calibrated_pass": 0.20
+  },
+  "decision_thresholds": {
+    "maximum_unexplained_failures_for_pass": 0,
+    "maximum_review_cases_for_pass": 0
+  }
+}
