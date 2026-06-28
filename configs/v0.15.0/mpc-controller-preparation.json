@@ -1,0 +1,117 @@
+{
+  "stage": "v0.15.0",
+  "experiment": "mpc-controller-preparation",
+  "title": "MPC controller preparation",
+  "offline_only": true,
+  "purpose": "Prepare a formal offline MPC problem specification before implementing or claiming MPC performance.",
+  "non_goals": [
+    "Do not implement a production Kubernetes controller.",
+    "Do not claim MPC superiority over the v0.14.3 baseline.",
+    "Do not run live closed-loop experiments.",
+    "Do not retune the v0.14.3 PID/P-only baseline."
+  ],
+  "source_artifacts": {
+    "selected_recursive_model_path": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json",
+    "v0_14_0_config_path": "configs/v0.14.0/offline-controller-simulator-selected-recursive-model.json",
+    "v0_14_0_summary_path": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-summary.json",
+    "v0_14_1_calibration_summary_path": "results/v0.14.1/offline-simulator-calibration-profile-safety-review/calibration-summary.json",
+    "v0_14_3_baseline_summary_path": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-summary.json"
+  },
+  "reference_baseline": {
+    "source_stage": "v0.14.3",
+    "candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "controller_type": "pid",
+    "effective_controller": "p_only",
+    "kp": 0.35,
+    "ki": 0.0,
+    "kd": 0.0,
+    "role": "fixed_reference_baseline_before_mpc"
+  },
+  "mpc_problem_formulation": {
+    "controlled_output": "predicted_throughput_or_normalized_throughput",
+    "manipulated_input": "controller_command_or_load_control_signal",
+    "state_representation": "derived_from_selected_recursive_plant_model",
+    "prediction_horizon_candidates": [
+      5,
+      10,
+      15,
+      20
+    ],
+    "control_horizon_candidates": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "objective_terms": [
+      "tracking_error_penalty",
+      "control_effort_penalty",
+      "control_delta_penalty",
+      "soft_constraint_violation_penalty"
+    ],
+    "constraint_classes": [
+      "input_bounds",
+      "input_rate_limits",
+      "output_safety_bounds",
+      "saturation_avoidance",
+      "calibrated_transient_handling"
+    ],
+    "candidate_objective_function": {
+      "tracking_error_weight": "to_be_swept_or_selected_in_future_stage",
+      "control_effort_weight": "to_be_swept_or_selected_in_future_stage",
+      "control_delta_weight": "to_be_swept_or_selected_in_future_stage",
+      "soft_constraint_weight": "high_relative_penalty"
+    },
+    "preliminary_horizon_policy": {
+      "initial_prediction_horizon": 10,
+      "initial_control_horizon": 3,
+      "reason": "Middle-of-grid conservative starting point for offline MPC prototype, subject to later validation."
+    }
+  },
+  "preparation_outputs": {
+    "summary_json": "results/v0.15.0/mpc-controller-preparation/mpc-preparation-summary.json",
+    "readme_md": "results/v0.15.0/mpc-controller-preparation/README.md",
+    "experiment_doc": "docs/experiments/v0.15.0-mpc-controller-preparation.md"
+  },
+  "decision_policy": {
+    "allowed_decisions": [
+      "ready_for_offline_mpc_prototype",
+      "blocked"
+    ],
+    "minimum_requirements": [
+      "source artefacts exist",
+      "v0.14.3 baseline is accepted as MPC reference",
+      "MPC variables are specified",
+      "MPC objective terms are specified",
+      "MPC constraints are specified",
+      "offline validation protocol is specified"
+    ]
+  },
+  "offline_validation_protocol": {
+    "mode": "preparation_only_no_mpc_performance_claim",
+    "reference_baseline_stage": "v0.14.3",
+    "reference_baseline_candidate": "p_kp0.350_ki0.000_kd0.000",
+    "comparison_principle": "Future MPC candidates must be compared against the fixed v0.14.3 P-only baseline using the same offline profiles where possible.",
+    "required_future_metrics": [
+      "full_rmse",
+      "full_mae",
+      "full_max_abs_error",
+      "settled_rmse",
+      "settled_mae",
+      "settled_max_abs_error",
+      "overshoot",
+      "undershoot",
+      "rate_limit_fraction",
+      "saturation_fraction",
+      "safety_classification",
+      "recovery_behaviour_after_target_changes"
+    ],
+    "future_offline_mpc_prototype_requirements": [
+      "reuse selected recursive plant model",
+      "reuse v0.14.0 offline simulator constraints where applicable",
+      "reuse v0.14.1 calibrated transient-aware interpretation",
+      "compare against v0.14.3 fixed P-only baseline",
+      "report MPC trade-offs rather than only aggregate score improvements"
+    ]
+  }
+}
