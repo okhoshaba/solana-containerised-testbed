@@ -1,0 +1,72 @@
+{
+  "stage": "v0.15.2",
+  "experiment": "offline-mpc-closed-loop-comparison",
+  "title": "offline MPC closed-loop simulation comparison",
+  "offline_only": true,
+  "purpose": "Evaluate deterministic MPC skeleton candidates in offline closed-loop simulation and compare them against the fixed v0.14.3 P-only baseline.",
+  "simulation_mode": "offline_receding_horizon_surrogate",
+  "v0_15_1_decision": {
+    "status": "ready_for_offline_mpc_simulation",
+    "ready_for_offline_mpc_simulation": true,
+    "reason": "The MPC prototype skeleton defines deterministic candidates, placeholders, constraints, and a fixed reference baseline for the next offline simulation stage."
+  },
+  "reference_baseline": {
+    "source_stage": "v0.14.3",
+    "candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "effective_controller": "p_only",
+    "role": "fixed_reference_baseline_for_mpc_comparison"
+  },
+  "baseline_average_settled_rmse": 0.047925125701007314,
+  "linear_model_used": {
+    "c": -1.8814556821807338,
+    "a_y": 0.10889615191767432,
+    "b_u": 0.8845312889194352,
+    "delay_steps": 0
+  },
+  "candidate_count": 12,
+  "profile_count": 6,
+  "case_count": 72,
+  "selected_mpc_candidate": {
+    "candidate_id": "mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0",
+    "prediction_horizon": "5",
+    "control_horizon": "1",
+    "tracking_error_weight": "1.0",
+    "control_effort_weight": "0.01",
+    "control_delta_weight": "0.1",
+    "soft_constraint_weight": "100.0",
+    "case_count": 6,
+    "pass_count": 2,
+    "settled_warn_count": 3,
+    "explained_transient_count": 0,
+    "unexplained_fail_count": 1,
+    "average_full_rmse": 3.1953812821459353,
+    "average_full_mae": 1.8119155000023677,
+    "average_full_max_abs_error": 16.693033455728127,
+    "average_settled_rmse": 2.8602488632030694,
+    "average_settled_mae": 1.4418061904721784,
+    "average_settled_max_abs_error": 15.886322332759164,
+    "worst_settled_max_abs_error": 40.161482714636776,
+    "average_rate_limit_fraction": 0.0,
+    "average_saturation_fraction": 0.0,
+    "settled_rmse_ratio_vs_baseline": 59.681614213125606,
+    "closed_loop_simulated": true,
+    "performance_claim": false,
+    "rank": 1
+  },
+  "decision": {
+    "status": "fail",
+    "selected_mpc_candidate_id": "mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0",
+    "usable_offline_tradeoff_vs_baseline": false,
+    "reason": "MPC candidates are not yet suitable as baseline competitors under the offline comparison policy."
+  },
+  "performance_claim": false,
+  "live_controller_claim": false,
+  "outputs": {
+    "summary_json": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-comparison-summary.json",
+    "candidate_ranking_csv": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-candidate-ranking.csv",
+    "case_metrics_csv": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-case-metrics.csv",
+    "profile_metrics_csv": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-profile-metrics.csv",
+    "readme_md": "results/v0.15.2/offline-mpc-closed-loop-comparison/README.md",
+    "experiment_doc": "docs/experiments/v0.15.2-offline-mpc-closed-loop-comparison.md"
+  }
+}

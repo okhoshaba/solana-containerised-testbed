@@ -1,0 +1,7 @@
+profile,candidate_count,pass_count,settled_warn_count,explained_transient_count,unexplained_fail_count,best_candidate_id,best_settled_rmse,best_full_rmse
+hold-y-eq,12,12,0,0,0,mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0,0.9788377809977965,0.9788377809977965
+lower-range,12,0,12,0,0,mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0,2.9969507208930226,2.8670044919967697
+multistep,12,0,0,0,12,mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0,7.164627706672947,6.702143491756597
+sine-approx,12,4,0,8,0,mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0,0.0,2.6325620063265394
+step64-96,12,0,4,0,8,mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0,2.9075933693675613,2.907049001138811
+step96-64,12,0,4,0,8,mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0,3.1134836012870877,3.0846909206590993
