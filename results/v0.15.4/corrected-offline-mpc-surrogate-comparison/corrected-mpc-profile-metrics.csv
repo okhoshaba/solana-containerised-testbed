@@ -1,0 +1,7 @@
+profile,candidate_count,best_candidate_id,best_comparison_rmse,interpretation_mode
+hold-y-eq,12,mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0,2.1729985254991266,normal_settled
+lower-range,12,mpc_skeleton_ph15_ch01_q1.000_r0.010_du0.100_sc100.0,2.120233806199397,normal_settled
+multistep,12,mpc_skeleton_ph05_ch03_q1.000_r0.010_du0.100_sc100.0,2.1948075571520507,normal_settled
+sine-approx,12,mpc_skeleton_ph05_ch03_q1.000_r0.010_du0.100_sc100.0,6.649124665847375,high_frequency
+step64-96,12,mpc_skeleton_ph05_ch03_q1.000_r0.010_du0.100_sc100.0,2.173606852058079,normal_settled
+step96-64,12,mpc_skeleton_ph05_ch01_q1.000_r0.050_du0.100_sc100.0,2.109071258984581,normal_settled
