@@ -1,0 +1,137 @@
+{
+  "stage": "v0.15.1",
+  "experiment": "offline-mpc-prototype-skeleton",
+  "title": "offline MPC prototype skeleton",
+  "offline_only": true,
+  "purpose": "Create a deterministic offline MPC prototype skeleton without claiming closed-loop performance.",
+  "config_path": "configs/v0.15.1/offline-mpc-prototype-skeleton.json",
+  "config": {
+    "stage": "v0.15.1",
+    "experiment": "offline-mpc-prototype-skeleton",
+    "title": "offline MPC prototype skeleton",
+    "offline_only": true,
+    "purpose": "Create a deterministic offline MPC prototype skeleton without claiming closed-loop performance.",
+    "non_goals": [
+      "Do not run live Kubernetes control.",
+      "Do not claim MPC superiority over the v0.14.3 P-only baseline.",
+      "Do not perform full closed-loop MPC optimisation yet.",
+      "Do not replace the fixed reference baseline."
+    ],
+    "source_artifacts": {
+      "v0_15_0_config_path": "configs/v0.15.0/mpc-controller-preparation.json",
+      "v0_15_0_summary_path": "results/v0.15.0/mpc-controller-preparation/mpc-preparation-summary.json",
+      "v0_14_3_baseline_summary_path": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-summary.json",
+      "selected_recursive_model_path": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json",
+      "v0_14_0_summary_path": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-summary.json",
+      "v0_14_1_calibration_summary_path": "results/v0.14.1/offline-simulator-calibration-profile-safety-review/calibration-summary.json"
+    },
+    "reference_baseline": {
+      "source_stage": "v0.14.3",
+      "candidate_id": "p_kp0.350_ki0.000_kd0.000",
+      "effective_controller": "p_only",
+      "role": "fixed_reference_baseline_for_future_mpc_comparison"
+    },
+    "mpc_skeleton_policy": {
+      "candidate_generation_mode": "deterministic_grid",
+      "prediction_horizons": [
+        5,
+        10,
+        15
+      ],
+      "control_horizons": [
+        1,
+        3
+      ],
+      "tracking_error_weights": [
+        1.0
+      ],
+      "control_effort_weights": [
+        0.01,
+        0.05
+      ],
+      "control_delta_weights": [
+        0.1
+      ],
+      "soft_constraint_weights": [
+        100.0
+      ],
+      "require_control_horizon_lte_prediction_horizon": true
+    },
+    "prototype_components": {
+      "problem_loader": true,
+      "baseline_loader": true,
+      "candidate_spec_generator": true,
+      "objective_placeholder": true,
+      "constraint_placeholder": true,
+      "optimizer_placeholder": true,
+      "closed_loop_simulation": false,
+      "performance_claim": false
+    },
+    "future_simulation_interface": {
+      "next_stage": "v0.15.2 offline MPC closed-loop simulation comparison",
+      "expected_decision_after_this_stage": "ready_for_offline_mpc_simulation",
+      "required_future_comparison_baseline": "v0.14.3 fixed P-only baseline",
+      "required_future_metrics": [
+        "full_rmse",
+        "settled_rmse",
+        "overshoot",
+        "undershoot",
+        "rate_limit_fraction",
+        "saturation_fraction",
+        "safety_classification",
+        "recovery_behaviour_after_target_changes"
+      ]
+    },
+    "outputs": {
+      "summary_json": "results/v0.15.1/offline-mpc-prototype-skeleton/mpc-prototype-summary.json",
+      "candidate_specs_csv": "results/v0.15.1/offline-mpc-prototype-skeleton/mpc-candidate-specs.csv",
+      "readme_md": "results/v0.15.1/offline-mpc-prototype-skeleton/README.md",
+      "experiment_doc": "docs/experiments/v0.15.1-offline-mpc-prototype-skeleton.md"
+    },
+    "decision_policy": {
+      "pass_status": "ready_for_offline_mpc_simulation",
+      "minimum_candidate_count": 1,
+      "require_v0_15_0_ready": true,
+      "require_v0_14_3_baseline_valid": true,
+      "require_no_performance_claim": true
+    }
+  },
+  "v0_15_0_validation": {
+    "checks": {
+      "stage_is_v0_15_0": true,
+      "experiment_is_mpc_preparation": true,
+      "ready_for_offline_mpc_prototype": true,
+      "decision_status_ready": true
+    },
+    "valid": true
+  },
+  "baseline_validation": {
+    "expected_candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "observed_candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "effective_controller": "p_only",
+    "checks": {
+      "stage_is_v0_14_3": true,
+      "candidate_count_is_one": true,
+      "candidate_matches": true,
+      "effective_controller_is_p_only": true,
+      "accepted_for_mpc_reference": true,
+      "decision_status_pass": true
+    },
+    "valid": true
+  },
+  "candidate_count": 12,
+  "candidate_generation_mode": "deterministic_grid",
+  "closed_loop_simulation_performed": false,
+  "performance_claim": false,
+  "decision": {
+    "status": "ready_for_offline_mpc_simulation",
+    "ready_for_offline_mpc_simulation": true,
+    "reason": "The MPC prototype skeleton defines deterministic candidates, placeholders, constraints, and a fixed reference baseline for the next offline simulation stage."
+  },
+  "outputs": {
+    "summary_json": "results/v0.15.1/offline-mpc-prototype-skeleton/mpc-prototype-summary.json",
+    "candidate_specs_csv": "results/v0.15.1/offline-mpc-prototype-skeleton/mpc-candidate-specs.csv",
+    "readme_md": "results/v0.15.1/offline-mpc-prototype-skeleton/README.md",
+    "experiment_doc": "docs/experiments/v0.15.1-offline-mpc-prototype-skeleton.md"
+  }
+}
