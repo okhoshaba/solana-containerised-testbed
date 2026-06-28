@@ -1,0 +1,13 @@
+rank,candidate_id,prediction_horizon,control_horizon,tracking_error_weight,control_effort_weight,control_delta_weight,soft_constraint_weight,objective_placeholder,constraint_placeholder,optimizer_placeholder,closed_loop_simulated,performance_claim
+1,mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0,5,1,1.0,0.01,0.1,100.0,True,True,True,False,False
+2,mpc_skeleton_ph05_ch01_q1.000_r0.050_du0.100_sc100.0,5,1,1.0,0.05,0.1,100.0,True,True,True,False,False
+3,mpc_skeleton_ph05_ch03_q1.000_r0.010_du0.100_sc100.0,5,3,1.0,0.01,0.1,100.0,True,True,True,False,False
+4,mpc_skeleton_ph05_ch03_q1.000_r0.050_du0.100_sc100.0,5,3,1.0,0.05,0.1,100.0,True,True,True,False,False
+5,mpc_skeleton_ph10_ch01_q1.000_r0.010_du0.100_sc100.0,10,1,1.0,0.01,0.1,100.0,True,True,True,False,False
+6,mpc_skeleton_ph10_ch01_q1.000_r0.050_du0.100_sc100.0,10,1,1.0,0.05,0.1,100.0,True,True,True,False,False
+7,mpc_skeleton_ph10_ch03_q1.000_r0.010_du0.100_sc100.0,10,3,1.0,0.01,0.1,100.0,True,True,True,False,False
+8,mpc_skeleton_ph10_ch03_q1.000_r0.050_du0.100_sc100.0,10,3,1.0,0.05,0.1,100.0,True,True,True,False,False
+9,mpc_skeleton_ph15_ch01_q1.000_r0.010_du0.100_sc100.0,15,1,1.0,0.01,0.1,100.0,True,True,True,False,False
+10,mpc_skeleton_ph15_ch01_q1.000_r0.050_du0.100_sc100.0,15,1,1.0,0.05,0.1,100.0,True,True,True,False,False
+11,mpc_skeleton_ph15_ch03_q1.000_r0.010_du0.100_sc100.0,15,3,1.0,0.01,0.1,100.0,True,True,True,False,False
+12,mpc_skeleton_ph15_ch03_q1.000_r0.050_du0.100_sc100.0,15,3,1.0,0.05,0.1,100.0,True,True,True,False,False
