@@ -1,0 +1,2 @@
+rank,candidate_id,family,kp,ki,kd,case_count,pass_count,settled_warn_count,explained_transient_count,review_count,unexplained_fail_count,average_full_rmse,average_full_mae,average_full_max_abs_error,average_settled_rmse,average_settled_mae,average_settled_max_abs_error,worst_settled_max_abs_error,average_rate_limit_fraction,average_saturation_fraction
+1,p_kp0.350_ki0.000_kd0.000,p,0.35,0.0,0.0,6,5,0,1,0,0,2.2994707054434707,0.5447648198740777,16.67488303859327,0.047925125701007314,0.04686417826987709,0.07525707608968564,0.15332754794125947,0.027083333333333334,0.0

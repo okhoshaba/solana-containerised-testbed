@@ -1,0 +1,129 @@
+{
+  "stage": "v0.14.3",
+  "title": "selected PID baseline closed-loop validation",
+  "offline_only": true,
+  "inputs": {
+    "config_path": "configs/v0.14.3/selected-pid-baseline-closed-loop-validation.json",
+    "v0_14_0_summary_path": "results/v0.14.0/offline-controller-simulator-selected-recursive-model/simulation-summary.json",
+    "v0_14_1_summary_path": "results/v0.14.1/offline-simulator-calibration-profile-safety-review/calibration-summary.json",
+    "selected_recursive_model_path": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json"
+  },
+  "candidate_count": 1,
+  "profile_count": 6,
+  "case_count": 6,
+  "candidate_selection_basis": [
+    "unexplained_fail_count",
+    "settled_warn_count",
+    "explained_transient_count",
+    "average_settled_rmse",
+    "average_full_rmse",
+    "average_rate_limit_fraction"
+  ],
+  "transient_window_steps_after_target_change": 5,
+  "settled_metric_thresholds": {
+    "settled_fail_rmse": 8.0,
+    "settled_fail_max_abs_error": 24.0,
+    "settled_warn_rmse": 4.0,
+    "settled_warn_max_abs_error": 12.0,
+    "maximum_saturation_fraction_for_calibrated_pass": 0.2
+  },
+  "decision": {
+    "status": "pass",
+    "accepted_as_reference_baseline_for_mpc": true,
+    "selected_candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "selected_family": "p",
+    "selected_kp": 0.35,
+    "selected_ki": 0.0,
+    "selected_kd": 0.0,
+    "effective_controller": "p_only",
+    "reason": "The fixed selected baseline has no unexplained failures, no settled warnings, and acceptable settled RMSE under calibrated offline closed-loop metrics.",
+    "recommended_next_step": "Use this fixed P-only baseline as the reference comparator before MPC experiments."
+  },
+  "top_candidates": [
+    {
+      "candidate_id": "p_kp0.350_ki0.000_kd0.000",
+      "family": "p",
+      "kp": 0.35,
+      "ki": 0.0,
+      "kd": 0.0,
+      "case_count": 6,
+      "pass_count": 5,
+      "settled_warn_count": 0,
+      "explained_transient_count": 1,
+      "review_count": 0,
+      "unexplained_fail_count": 0,
+      "average_full_rmse": 2.2994707054434707,
+      "average_full_mae": 0.5447648198740777,
+      "average_full_max_abs_error": 16.67488303859327,
+      "average_settled_rmse": 0.047925125701007314,
+      "average_settled_mae": 0.04686417826987709,
+      "average_settled_max_abs_error": 0.07525707608968564,
+      "worst_settled_max_abs_error": 0.15332754794125947,
+      "average_rate_limit_fraction": 0.027083333333333334,
+      "average_saturation_fraction": 0.0,
+      "rank": 1
+    }
+  ],
+  "outputs": {
+    "result_dir": "results/v0.14.3/selected-pid-baseline-closed-loop-validation",
+    "summary_json": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-summary.json",
+    "candidate_ranking_csv": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-candidate-ranking.csv",
+    "case_metrics_csv": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-case-metrics.csv",
+    "profile_metrics_csv": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-profile-metrics.csv",
+    "readme_md": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/README.md",
+    "experiment_doc": "docs/experiments/v0.14.3-selected-pid-baseline-closed-loop-validation.md"
+  },
+  "experiment": "selected-pid-baseline-closed-loop-validation",
+  "purpose": "Validate the selected PID baseline controller as a fixed closed-loop reference controller before MPC experiments.",
+  "source_stage": "v0.14.2",
+  "validation_mode": "single_fixed_selected_candidate_closed_loop_validation",
+  "allow_gain_sweep": false,
+  "allow_retuning": false,
+  "baseline_role": "reference_controller_before_mpc",
+  "selected_candidate": {
+    "candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "controller_type": "pid",
+    "family": "p",
+    "kp": 0.35,
+    "ki": 0.0,
+    "kd": 0.0,
+    "effective_controller": "p_only",
+    "source_stage": "v0.14.2"
+  },
+  "source_decision_v0_14_2_style": {
+    "status": "pass",
+    "accepted_selected_pid_candidate_for_followup": true,
+    "selected_candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "selected_family": "p",
+    "selected_kp": 0.35,
+    "selected_ki": 0.0,
+    "selected_kd": 0.0,
+    "reason": "Best-ranked candidate has no unexplained failures, no settled warnings, and acceptable settled RMSE.",
+    "recommended_next_step": "Use selected candidate as baseline offline PID-style controller before MPC comparison."
+  },
+  "baseline_metrics": {
+    "case_count": 6,
+    "pass_count": 5,
+    "settled_warn_count": 0,
+    "explained_transient_count": 1,
+    "review_count": 0,
+    "unexplained_fail_count": 0,
+    "average_full_rmse": 2.2994707054434707,
+    "average_full_mae": 0.5447648198740777,
+    "average_full_max_abs_error": 16.67488303859327,
+    "average_settled_rmse": 0.047925125701007314,
+    "average_settled_mae": 0.04686417826987709,
+    "average_settled_max_abs_error": 0.07525707608968564,
+    "worst_settled_max_abs_error": 0.15332754794125947,
+    "average_rate_limit_fraction": 0.027083333333333334,
+    "average_saturation_fraction": 0.0
+  },
+  "safety_summary": {
+    "unexplained_fail_count": 0,
+    "average_saturation_fraction": 0.0,
+    "average_rate_limit_fraction": 0.027083333333333334,
+    "explicit_safety_violation_count": 0,
+    "explicit_unsafe_action_count": 0,
+    "note": "The inherited v0.14.2 case-metrics schema does not emit separate unsafe-action counters. This stage therefore evaluates offline safety through calibrated status, unexplained failure count, saturation fraction, and rate-limit fraction."
+  }
+}
