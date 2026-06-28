@@ -1,0 +1,45 @@
+{
+  "stage": "v0.15.3",
+  "experiment": "mpc-failure-diagnostics",
+  "title": "MPC failure diagnostics and surrogate correction plan",
+  "offline_only": true,
+  "purpose": "Diagnose why v0.15.2 offline MPC closed-loop comparison failed and define a correction plan before another MPC comparison run.",
+  "non_goals": [
+    "Do not run a new MPC performance experiment.",
+    "Do not claim that MPC is unsuitable in general.",
+    "Do not modify the fixed v0.14.3 P-only baseline.",
+    "Do not introduce live-controller claims."
+  ],
+  "source_artifacts": {
+    "v0_15_2_summary": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-comparison-summary.json",
+    "v0_15_2_ranking": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-candidate-ranking.csv",
+    "v0_15_2_case_metrics": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-case-metrics.csv",
+    "v0_15_2_profile_metrics": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-profile-metrics.csv",
+    "v0_15_2_script": "scripts/v0.15.2/run-offline-mpc-closed-loop-comparison.py",
+    "v0_15_2_config": "configs/v0.15.2/offline-mpc-closed-loop-comparison.json",
+    "v0_14_0_config": "configs/v0.14.0/offline-controller-simulator-selected-recursive-model.json",
+    "v0_14_3_baseline_summary": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-summary.json"
+  },
+  "diagnostic_questions": [
+    "Was the v0.15.2 failure a technical execution failure or a scientific negative result?",
+    "Is the MPC surrogate comparable with the baseline PID simulation?",
+    "Do MPC skeleton parameters materially affect the simulated results?",
+    "Is action delay handled consistently with the simulator specification?",
+    "Are transient and settled metrics reliable for high-frequency target profiles?",
+    "What should be corrected before v0.15.4?"
+  ],
+  "decision_policy": {
+    "pass_status": "diagnostic_pass",
+    "require_v0_15_2_fail_confirmed": true,
+    "require_root_cause_findings": true,
+    "minimum_findings": 5,
+    "require_correction_plan": true
+  },
+  "outputs": {
+    "summary_json": "results/v0.15.3/mpc-failure-diagnostics/mpc-failure-diagnostics-summary.json",
+    "findings_csv": "results/v0.15.3/mpc-failure-diagnostics/diagnostic-findings.csv",
+    "correction_plan_csv": "results/v0.15.3/mpc-failure-diagnostics/correction-plan.csv",
+    "readme_md": "results/v0.15.3/mpc-failure-diagnostics/README.md",
+    "experiment_doc": "docs/experiments/v0.15.3-mpc-failure-diagnostics.md"
+  }
+}

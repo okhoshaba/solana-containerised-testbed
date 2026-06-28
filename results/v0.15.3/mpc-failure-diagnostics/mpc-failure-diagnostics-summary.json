@@ -1,0 +1,115 @@
+{
+  "stage": "v0.15.3",
+  "experiment": "mpc-failure-diagnostics",
+  "title": "MPC failure diagnostics and surrogate correction plan",
+  "offline_only": true,
+  "purpose": "Diagnose why v0.15.2 offline MPC closed-loop comparison failed and define a correction plan before another MPC comparison run.",
+  "v0_15_2_decision_status": "fail",
+  "selected_mpc_candidate_id": "mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0",
+  "selected_settled_rmse_ratio_vs_baseline": 59.681614213125606,
+  "selected_unexplained_fail_count": 1,
+  "selected_settled_warn_count": 3,
+  "reference_baseline_candidate_id": "p_kp0.350_ki0.000_kd0.000",
+  "reference_baseline_effective_controller": "p_only",
+  "baseline_decision": {
+    "status": "pass",
+    "accepted_as_reference_baseline_for_mpc": true,
+    "selected_candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "selected_family": "p",
+    "selected_kp": 0.35,
+    "selected_ki": 0.0,
+    "selected_kd": 0.0,
+    "effective_controller": "p_only",
+    "reason": "The fixed selected baseline has no unexplained failures, no settled warnings, and acceptable settled RMSE under calibrated offline closed-loop metrics.",
+    "recommended_next_step": "Use this fixed P-only baseline as the reference comparator before MPC experiments."
+  },
+  "candidate_count": 12,
+  "case_count": 72,
+  "profile_count": 6,
+  "linear_model_used_in_v0_15_2": {
+    "c": -1.8814556821807338,
+    "a_y": 0.10889615191767432,
+    "b_u": 0.8845312889194352,
+    "delay_steps": 0
+  },
+  "candidate_degeneracy": {
+    "duplicate_group_count": 3,
+    "duplicate_candidate_count": 12,
+    "duplicate_groups": [
+      [
+        "mpc_skeleton_ph05_ch01_q1.000_r0.010_du0.100_sc100.0",
+        "mpc_skeleton_ph05_ch01_q1.000_r0.050_du0.100_sc100.0",
+        "mpc_skeleton_ph05_ch03_q1.000_r0.010_du0.100_sc100.0",
+        "mpc_skeleton_ph05_ch03_q1.000_r0.050_du0.100_sc100.0"
+      ],
+      [
+        "mpc_skeleton_ph10_ch01_q1.000_r0.010_du0.100_sc100.0",
+        "mpc_skeleton_ph10_ch01_q1.000_r0.050_du0.100_sc100.0",
+        "mpc_skeleton_ph10_ch03_q1.000_r0.010_du0.100_sc100.0",
+        "mpc_skeleton_ph10_ch03_q1.000_r0.050_du0.100_sc100.0"
+      ],
+      [
+        "mpc_skeleton_ph15_ch01_q1.000_r0.010_du0.100_sc100.0",
+        "mpc_skeleton_ph15_ch01_q1.000_r0.050_du0.100_sc100.0",
+        "mpc_skeleton_ph15_ch03_q1.000_r0.010_du0.100_sc100.0",
+        "mpc_skeleton_ph15_ch03_q1.000_r0.050_du0.100_sc100.0"
+      ]
+    ],
+    "prediction_horizon_summary": [
+      {
+        "prediction_horizon": "5",
+        "candidate_count": 4,
+        "unique_metric_signatures": 1,
+        "average_settled_rmse_values": [
+          2.860248863
+        ]
+      },
+      {
+        "prediction_horizon": "10",
+        "candidate_count": 4,
+        "unique_metric_signatures": 1,
+        "average_settled_rmse_values": [
+          5.153556329
+        ]
+      },
+      {
+        "prediction_horizon": "15",
+        "candidate_count": 4,
+        "unique_metric_signatures": 1,
+        "average_settled_rmse_values": [
+          6.831349138
+        ]
+      }
+    ]
+  },
+  "script_usage_diagnostics": {
+    "control_horizon_mentions": 7,
+    "control_horizon_used_inside_score_plan": false,
+    "constant_u_plan_signature": true,
+    "uses_candidate_control_horizon_in_optimisation": false
+  },
+  "sine_metric_diagnostics": {
+    "profile_present": true,
+    "case_count": 12,
+    "max_target_change_count": 79,
+    "zero_settled_rmse_count": 12,
+    "min_settled_rmse": 0.0,
+    "max_full_rmse": 13.994890358592686
+  },
+  "finding_count": 7,
+  "decision": {
+    "status": "diagnostic_pass",
+    "ready_for_corrected_surrogate_stage": true,
+    "recommended_next_stage": "v0.15.4 corrected offline MPC surrogate comparison",
+    "reason": "The v0.15.2 failure is diagnosed as a surrogate/comparability problem requiring correction before another MPC comparison."
+  },
+  "performance_claim": false,
+  "live_controller_claim": false,
+  "outputs": {
+    "summary_json": "results/v0.15.3/mpc-failure-diagnostics/mpc-failure-diagnostics-summary.json",
+    "findings_csv": "results/v0.15.3/mpc-failure-diagnostics/diagnostic-findings.csv",
+    "correction_plan_csv": "results/v0.15.3/mpc-failure-diagnostics/correction-plan.csv",
+    "readme_md": "results/v0.15.3/mpc-failure-diagnostics/README.md",
+    "experiment_doc": "docs/experiments/v0.15.3-mpc-failure-diagnostics.md"
+  }
+}

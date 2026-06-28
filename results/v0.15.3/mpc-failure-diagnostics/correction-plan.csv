@@ -1,0 +1,7 @@
+step,target_stage,action,details,expected_output
+1,v0.15.4,Correct surrogate comparability before another MPC comparison.,"Reuse the same initial_y policy, target profile handling, action delay semantics, and safety interpretation as the baseline simulator.",Corrected offline MPC surrogate configuration and validation checks.
+2,v0.15.4,Make control horizon operational.,Evaluate an explicit sequence of future control moves rather than a constant command over the whole prediction horizon.,Candidate metrics that vary when control_horizon changes.
+3,v0.15.4,Make objective weights identifiable.,"Scale tracking, control effort, and delta penalties so that different weights can change the selected command sequence.",Candidate metrics that vary when effort and delta weights change.
+4,v0.15.4,Audit delay extraction.,Confirm whether delay_steps should be zero or should follow the simulator plant equation and selected model metadata.,Documented delay policy used by the corrected surrogate.
+5,v0.15.4,Repair high-frequency target settled-metric interpretation.,Handle sine-like profiles separately when nearly every step is a target transition.,Reliable settled/transient metrics for sine-approx and multi-step profiles.
+6,v0.15.5_or_later,"Only after surrogate correction, rerun offline comparison.","Interpret pass, conditional_pass, or fail against the fixed v0.14.3 baseline without live-controller claims.",A scientifically comparable corrected MPC-vs-baseline result.
