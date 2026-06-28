@@ -1,0 +1,78 @@
+{
+  "stage": "v0.15.4",
+  "experiment": "corrected-offline-mpc-surrogate-comparison",
+  "offline_only": true,
+  "v0_15_3_decision": "diagnostic_pass",
+  "v0_15_2_previous_decision": "fail",
+  "reference_baseline": {
+    "source_stage": "v0.14.3",
+    "candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "effective_controller": "p_only",
+    "role": "fixed_reference_baseline_for_corrected_mpc_comparison"
+  },
+  "baseline_comparison_rmse": 0.11336075773667269,
+  "baseline_profile_comparison_rmse": {
+    "hold-y-eq": 0.05843774554081607,
+    "step64-96": 0.05327860984097661,
+    "step96-64": 0.044499446190927744,
+    "multistep": 0.05035493152134333,
+    "lower-range": 0.02910678028922235,
+    "sine-approx": 0.44448703303675
+  },
+  "candidate_count": 12,
+  "profile_count": 6,
+  "case_count": 72,
+  "linear_model_used": {
+    "c": -1.8814556821807338,
+    "a_y": 0.10889615191767432,
+    "b_u": 0.8845312889194352,
+    "discovered_delay_steps": 0,
+    "delay_steps": 1
+  },
+  "selected_candidate": {
+    "candidate_id": "mpc_skeleton_ph05_ch03_q1.000_r0.010_du0.100_sc100.0",
+    "prediction_horizon": 5,
+    "control_horizon": 3,
+    "tracking_error_weight": 1.0,
+    "control_effort_weight": 0.01,
+    "control_delta_weight": 0.1,
+    "soft_constraint_weight": 100.0,
+    "case_count": 6,
+    "pass_count": 1,
+    "settled_warn_count": 0,
+    "high_frequency_warn_count": 1,
+    "warning_count": 1,
+    "explained_transient_count": 4,
+    "unexplained_fail_count": 0,
+    "average_comparison_rmse": 2.9098498380832325,
+    "comparison_rmse_ratio_vs_baseline": 25.66893426067744,
+    "average_full_rmse": 6.793533910099379,
+    "average_settled_rmse": 1.8016623937753367,
+    "average_rate_limit_fraction": 0.016666666666666666,
+    "average_saturation_fraction": 0.0,
+    "average_tracking_fraction": 0.7314285714282449,
+    "closed_loop_simulated": true,
+    "performance_claim": false,
+    "rank": 1
+  },
+  "correction_checks_passed": 7,
+  "correction_checks_failed": 0,
+  "decision": {
+    "status": "fail",
+    "selected_candidate_id": "mpc_skeleton_ph05_ch03_q1.000_r0.010_du0.100_sc100.0",
+    "corrected_surrogate_comparable": true,
+    "usable_offline_tradeoff_vs_baseline": false,
+    "reason": "Corrected surrogate is comparable, but MPC candidates remain unsuitable against the fixed baseline."
+  },
+  "performance_claim": false,
+  "live_controller_claim": false,
+  "outputs": {
+    "summary_json": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/corrected-mpc-summary.json",
+    "candidate_ranking_csv": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/corrected-mpc-candidate-ranking.csv",
+    "case_metrics_csv": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/corrected-mpc-case-metrics.csv",
+    "profile_metrics_csv": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/corrected-mpc-profile-metrics.csv",
+    "correction_validation_csv": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/correction-validation.csv",
+    "readme_md": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/README.md",
+    "experiment_doc": "docs/experiments/v0.15.4-corrected-offline-mpc-surrogate-comparison.md"
+  }
+}

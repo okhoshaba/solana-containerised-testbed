@@ -1,0 +1,68 @@
+{
+  "stage": "v0.15.4",
+  "experiment": "corrected-offline-mpc-surrogate-comparison",
+  "title": "corrected offline MPC surrogate comparison",
+  "offline_only": true,
+  "purpose": "Rerun offline MPC-vs-baseline comparison after correcting surrogate/comparability defects identified in v0.15.3.",
+  "non_goals": [
+    "Do not run a live Kubernetes controller.",
+    "Do not claim production readiness.",
+    "Do not retune or replace the fixed v0.14.3 P-only baseline.",
+    "Do not hide a negative MPC result behind surrogate corrections."
+  ],
+  "source_artifacts": {
+    "v0_15_3_summary": "results/v0.15.3/mpc-failure-diagnostics/mpc-failure-diagnostics-summary.json",
+    "v0_15_3_correction_plan": "results/v0.15.3/mpc-failure-diagnostics/correction-plan.csv",
+    "v0_15_2_summary": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-comparison-summary.json",
+    "v0_15_1_candidate_specs": "results/v0.15.1/offline-mpc-prototype-skeleton/mpc-candidate-specs.csv",
+    "v0_14_0_config": "configs/v0.14.0/offline-controller-simulator-selected-recursive-model.json",
+    "v0_14_2_config": "configs/v0.14.2/offline-pid-gain-sweep-calibrated-metrics.json",
+    "v0_14_2_script": "scripts/v0.14.2/run-offline-pid-gain-sweep-calibrated-metrics.py",
+    "v0_14_3_baseline_summary": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-summary.json",
+    "v0_14_3_baseline_case_metrics": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-case-metrics.csv",
+    "selected_recursive_model": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json"
+  },
+  "reference_baseline": {
+    "source_stage": "v0.14.3",
+    "candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "effective_controller": "p_only",
+    "role": "fixed_reference_baseline_for_corrected_mpc_comparison"
+  },
+  "correction_policy": {
+    "force_explicit_delay_steps": 1,
+    "delay_policy": "explicit_delay_one_step_due_to_delay_aware_v0140_plant_equation",
+    "activate_control_horizon": true,
+    "activate_objective_weights": true,
+    "use_sequence_based_receding_horizon": true,
+    "high_frequency_target_change_threshold": 20,
+    "high_frequency_metric_source": "full_rmse",
+    "normal_profile_metric_source": "settled_rmse",
+    "tracking_error_scale": 10.0,
+    "control_effort_scale": 25.0,
+    "control_delta_scale": 5.0,
+    "sequence_branch_limit": 5
+  },
+  "decision_policy": {
+    "blocked_if_correction_validation_fails": true,
+    "pass": {
+      "maximum_unexplained_fail_count": 0,
+      "maximum_warning_count": 0,
+      "maximum_average_saturation_fraction": 0.2,
+      "maximum_comparison_rmse_ratio_vs_baseline": 1.1
+    },
+    "conditional_pass": {
+      "maximum_unexplained_fail_count": 0,
+      "maximum_average_saturation_fraction": 0.3,
+      "maximum_comparison_rmse_ratio_vs_baseline": 2.0
+    }
+  },
+  "outputs": {
+    "summary_json": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/corrected-mpc-summary.json",
+    "candidate_ranking_csv": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/corrected-mpc-candidate-ranking.csv",
+    "case_metrics_csv": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/corrected-mpc-case-metrics.csv",
+    "profile_metrics_csv": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/corrected-mpc-profile-metrics.csv",
+    "correction_validation_csv": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/correction-validation.csv",
+    "readme_md": "results/v0.15.4/corrected-offline-mpc-surrogate-comparison/README.md",
+    "experiment_doc": "docs/experiments/v0.15.4-corrected-offline-mpc-surrogate-comparison.md"
+  }
+}

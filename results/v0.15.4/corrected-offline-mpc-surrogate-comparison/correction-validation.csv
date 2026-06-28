@@ -1,0 +1,8 @@
+check_id,description,passed,evidence
+C001,v0.15.3 diagnostic_pass confirmed,True,diagnostic_pass
+C002,explicit one-step delay applied,True,1
+C003,candidate metrics identifiable,True,unique_signatures=12
+C004,control_horizon active,True,tracking_fraction_varies
+C005,objective weights active,True,control_effort_weight_varies
+C006,high-frequency interpretation active,True,high_frequency_cases=12
+C007,no live or performance claim emitted,True,performance_claim=False live_controller_claim=False
