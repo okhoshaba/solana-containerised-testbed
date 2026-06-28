@@ -1,0 +1,7 @@
+profile,case_count,pass_count,settled_warn_count,explained_transient_count,review_count,unexplained_fail_count,best_settled_rmse,best_candidate_id,max_abs_target_delta
+hold-y-eq,1,1,0,0,0,0,0.05843774554081607,p_kp0.350_ki0.000_kd0.000,0.0
+lower-range,1,1,0,0,0,0,0.02910678028922235,p_kp0.350_ki0.000_kd0.000,26.0
+multistep,1,0,0,1,0,0,0.05035493152134333,p_kp0.350_ki0.000_kd0.000,66.0
+sine-approx,1,1,0,0,0,0,0.05187324082275779,p_kp0.350_ki0.000_kd0.000,3.754427160965548
+step64-96,1,1,0,0,0,0,0.05327860984097661,p_kp0.350_ki0.000_kd0.000,32.0
+step96-64,1,1,0,0,0,0,0.044499446190927744,p_kp0.350_ki0.000_kd0.000,32.0
