@@ -1,0 +1,82 @@
+{
+  "stage": "v0.15.2",
+  "experiment": "offline-mpc-closed-loop-comparison",
+  "title": "offline MPC closed-loop simulation comparison",
+  "offline_only": true,
+  "purpose": "Evaluate deterministic MPC skeleton candidates in offline closed-loop simulation and compare them against the fixed v0.14.3 P-only baseline.",
+  "non_goals": [
+    "Do not run a live Kubernetes controller.",
+    "Do not claim production readiness.",
+    "Do not retune the v0.14.3 reference baseline.",
+    "Do not interpret MPC as globally superior from a single offline stage."
+  ],
+  "source_artifacts": {
+    "v0_15_1_config_path": "configs/v0.15.1/offline-mpc-prototype-skeleton.json",
+    "v0_15_1_summary_path": "results/v0.15.1/offline-mpc-prototype-skeleton/mpc-prototype-summary.json",
+    "v0_15_1_candidate_specs_csv": "results/v0.15.1/offline-mpc-prototype-skeleton/mpc-candidate-specs.csv",
+    "v0_15_0_summary_path": "results/v0.15.0/mpc-controller-preparation/mpc-preparation-summary.json",
+    "v0_14_3_baseline_summary_path": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-summary.json",
+    "v0_14_3_baseline_case_metrics_csv": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-case-metrics.csv",
+    "v0_14_3_baseline_profile_metrics_csv": "results/v0.14.3/selected-pid-baseline-closed-loop-validation/pid-baseline-profile-metrics.csv",
+    "v0_14_2_config_path": "configs/v0.14.2/offline-pid-gain-sweep-calibrated-metrics.json",
+    "v0_14_2_script_path": "scripts/v0.14.2/run-offline-pid-gain-sweep-calibrated-metrics.py",
+    "v0_14_0_config_path": "configs/v0.14.0/offline-controller-simulator-selected-recursive-model.json",
+    "v0_14_1_calibration_summary_path": "results/v0.14.1/offline-simulator-calibration-profile-safety-review/calibration-summary.json",
+    "selected_recursive_model_path": "results/v0.13.6/recursive-plant-model-refit/selected-recursive-model.json"
+  },
+  "reference_baseline": {
+    "source_stage": "v0.14.3",
+    "candidate_id": "p_kp0.350_ki0.000_kd0.000",
+    "effective_controller": "p_only",
+    "role": "fixed_reference_baseline_for_mpc_comparison"
+  },
+  "mpc_simulation_policy": {
+    "mode": "offline_receding_horizon_surrogate",
+    "candidate_source": "v0.15.1 deterministic MPC skeleton specs",
+    "use_selected_recursive_model": true,
+    "reuse_v0_14_0_profiles": true,
+    "reuse_v0_14_0_safety_policy": true,
+    "reuse_v0_14_1_calibrated_transient_interpretation": true,
+    "actuator_applied": false,
+    "command_grid_points": 11,
+    "extra_candidate_commands": [
+      "previous_command",
+      "equilibrium_command"
+    ],
+    "model_delay_fallback_steps": 1
+  },
+  "comparison_policy": {
+    "baseline_metric_source": "v0.14.3",
+    "primary_metric": "average_settled_rmse",
+    "secondary_metrics": [
+      "average_full_rmse",
+      "average_settled_max_abs_error",
+      "worst_settled_max_abs_error",
+      "average_rate_limit_fraction",
+      "average_saturation_fraction",
+      "unexplained_fail_count",
+      "settled_warn_count"
+    ],
+    "allow_tradeoff_interpretation": true
+  },
+  "decision_policy": {
+    "pass": {
+      "maximum_unexplained_fail_count": 0,
+      "maximum_settled_warn_count": 0,
+      "maximum_average_saturation_fraction": 0.2,
+      "maximum_settled_rmse_ratio_vs_baseline": 1.1
+    },
+    "conditional_pass": {
+      "maximum_unexplained_fail_count": 0,
+      "maximum_average_saturation_fraction": 0.3
+    }
+  },
+  "outputs": {
+    "summary_json": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-comparison-summary.json",
+    "candidate_ranking_csv": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-candidate-ranking.csv",
+    "case_metrics_csv": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-case-metrics.csv",
+    "profile_metrics_csv": "results/v0.15.2/offline-mpc-closed-loop-comparison/mpc-profile-metrics.csv",
+    "readme_md": "results/v0.15.2/offline-mpc-closed-loop-comparison/README.md",
+    "experiment_doc": "docs/experiments/v0.15.2-offline-mpc-closed-loop-comparison.md"
+  }
+}
