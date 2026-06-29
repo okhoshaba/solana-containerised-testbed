@@ -1,0 +1,23 @@
+{
+  "stage": "v0.15.5",
+  "name": "mpc-line-decision-review",
+  "decision": "proceed_to_modular_simulation_platform",
+  "current_best_offline_reference_controller": {
+    "stage": "v0.14.3",
+    "controller": "P-only baseline",
+    "status": "current_best_offline_reference_controller"
+  },
+  "mpc_line": {
+    "status": "deferred",
+    "reason": "The current MPC surrogate/weighted policy line became comparable to the v0.14.3 P-only baseline but did not demonstrate stable superiority on the current calibrated offline model."
+  },
+  "strict_mpc": {
+    "status": "deferred",
+    "reason": "Strict MPC optimization should be introduced after the simulation platform supports replaceable controllers, reproducible scenarios, common metrics, and consistent safety constraints."
+  },
+  "next_stage": {
+    "stage": "v0.16.0",
+    "name": "modular offline controller simulation platform",
+    "purpose": "Build an extensible offline simulation platform where controllers are replaceable modules and the v0.14.3 P-only baseline is used as the reference controller."
+  }
+}
