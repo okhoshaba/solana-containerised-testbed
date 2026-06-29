@@ -19,6 +19,7 @@ def write_artefacts(config: Dict[str, Any], simulation_result: Dict[str, Any]) -
     _write_csv(output_dir / "controller-comparison.csv", simulation_result["controller_comparison"])
     _write_csv(output_dir / "case-metrics.csv", simulation_result["case_metrics"])
     _write_csv(output_dir / "profile-metrics.csv", simulation_result["profile_metrics"])
+    _write_csv(output_dir / "timeseries.csv", simulation_result["timeseries_rows"])
 
     _write_readme(output_dir, simulation_result)
     validate_expected_outputs(config)
@@ -94,6 +95,7 @@ def _write_readme(output_dir: Path, simulation_result: Dict[str, Any]) -> None:
         "- case-metrics.csv",
         "- profile-metrics.csv",
         "- reference-controller-metrics.json",
+        "- timeseries.csv",
         "",
         "## Reproduction",
         "",

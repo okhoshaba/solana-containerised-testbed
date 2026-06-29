@@ -27,6 +27,7 @@ It does not attempt to improve MPC or introduce strict MPC optimization.
 - case-metrics.csv
 - profile-metrics.csv
 - reference-controller-metrics.json
+- timeseries.csv
 
 ## Reproduction
 

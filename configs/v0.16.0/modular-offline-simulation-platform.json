@@ -43,7 +43,8 @@
       "controller-comparison.csv",
       "case-metrics.csv",
       "profile-metrics.csv",
-      "reference-controller-metrics.json"
+      "reference-controller-metrics.json",
+      "timeseries.csv"
     ]
   },
   "non_goals": [
