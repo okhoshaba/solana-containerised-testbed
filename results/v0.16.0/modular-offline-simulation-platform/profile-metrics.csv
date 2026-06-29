@@ -1,0 +1,4 @@
+profile_id,case_count,mean_abs_error,max_abs_error,total_abs_replica_change,replica_changes,constraint_violations,mean_replicas
+conservative_profile,1,7.5287003100559815,15.31146666666666,82,42,0,2.316666666666667
+elevated_profile,1,6.596948362271475,45.0,86,46,0,3.85
+nominal_profile,1,7.843687757763876,30.0,119,60,0,3.1166666666666667

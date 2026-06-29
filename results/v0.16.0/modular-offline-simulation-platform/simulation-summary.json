@@ -1,0 +1,12 @@
+{
+  "case_count": 3,
+  "controller_count": 1,
+  "controller_interface_status": "implemented",
+  "decision": "pass",
+  "name": "modular-offline-simulation-platform",
+  "platform_status": "usable_minimal_platform",
+  "reference_controller": "reference_p_only_v0.14.3",
+  "replaceable_controller_architecture": true,
+  "stage": "v0.16.0",
+  "total_constraint_violations": 0
+}

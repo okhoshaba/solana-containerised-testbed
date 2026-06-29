@@ -1,0 +1,67 @@
+{
+  "stage": "v0.16.0",
+  "name": "modular-offline-simulation-platform",
+  "purpose": "Build an extensible offline simulation platform with replaceable controllers and v0.14.3 P-only as the reference controller.",
+  "reference_controller": {
+    "stage": "v0.14.3",
+    "name": "reference_p_only_v0.14.3",
+    "type": "p_only",
+    "status": "current_best_offline_reference_controller",
+    "parameters": {
+      "kp": 0.35,
+      "ki": 0.0,
+      "kd": 0.0
+    }
+  },
+  "simulation": {
+    "horizon_steps": 60,
+    "initial_replicas": 3,
+    "min_replicas": 1,
+    "max_replicas": 20,
+    "replica_step_limit": 2,
+    "target_throughput": 100.0
+  },
+  "controllers": [
+    {
+      "name": "reference_p_only_v0.14.3",
+      "type": "p_only",
+      "enabled": true
+    }
+  ],
+  "architecture": {
+    "controller_is_replaceable": true,
+    "simulation_engine_is_controller_agnostic": true,
+    "plant_model_is_separated_from_controller": true,
+    "metrics_layer_is_separated": true,
+    "artefact_writer_is_separated": true
+  },
+  "outputs": {
+    "directory": "results/v0.16.0/modular-offline-simulation-platform",
+    "expected_files": [
+      "README.md",
+      "simulation-summary.json",
+      "controller-comparison.csv",
+      "case-metrics.csv",
+      "profile-metrics.csv",
+      "reference-controller-metrics.json",
+      "timeseries.csv"
+    ]
+  },
+  "non_goals": [
+    "mpc_weight_tuning",
+    "strict_mpc_optimization",
+    "adaptive_control",
+    "live_kubernetes_control",
+    "offline_model_refit",
+    "large_controller_benchmark"
+  ],
+  "acceptance_criteria": [
+    "reference_controller_integrated",
+    "replaceable_controller_interface_defined",
+    "simulation_run_reproducible_from_config",
+    "json_and_csv_outputs_generated",
+    "per_case_metrics_generated",
+    "per_profile_metrics_generated",
+    "integrity_checks_pass"
+  ]
+}

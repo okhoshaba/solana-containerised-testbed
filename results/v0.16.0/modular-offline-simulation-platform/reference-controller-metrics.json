@@ -1,0 +1,10 @@
+{
+  "case_count": 3,
+  "constraint_violations": 0,
+  "controller": "reference_p_only_v0.14.3",
+  "max_abs_error": 45.0,
+  "mean_abs_error": 7.323112143363777,
+  "mean_replicas": 3.0944444444444446,
+  "replica_changes": 148,
+  "total_abs_replica_change": 287
+}
